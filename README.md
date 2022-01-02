@@ -1,8 +1,7 @@
 # My Personal Website
 
 * Main Domain: [davidtofan.com](https://davidtofan.com/)
-* Cloudflare Pages: https://davidjktofan-me.pages.dev/ (enjoys Cloudflare's security and performance features)
-* Netlify (backup): https://david-tofan.netlify.app/
+* Cloudflare Pages: https://davidtofan-com.pages.dev/ (enjoys Cloudflare's security and performance features)
 
 # Credits
 
