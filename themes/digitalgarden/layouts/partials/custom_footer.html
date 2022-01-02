@@ -1,0 +1,181 @@
+<!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- GOOGLE CHARTS SCRIPT -->
+<script type="text/javascript">
+
+  //If specific content exists on page, run Google Charts
+  try {
+    var world_charts = document.getElementById("Google_Charts_Here").innerHTML;
+  }
+  catch(err) {
+    var world_charts = null
+  }
+
+  if(world_charts == 'Work in progress...'){
+
+      console.log('Loading Google Charts on this site.');
+
+      google.charts.load('current', {
+        callback: function() {
+          var query = new google.visualization.Query(
+            'https://docs.google.com/spreadsheets/d/1E2lE8EJoZSu0NeG76Yyq7ai6zCHb7jILXjCqKMQMD0I/gviz/tq?sheet=resources&headers=1&tq='
+          );
+          query.setQuery('SELECT A, B, C, D, E, F, G, H');
+          // query.setRefreshInterval(10)
+          query.send(drawDashboard);
+        },
+        packages: ['controls', 'table']
+      });
+
+      function drawDashboard(response) {
+        if (response.isError()) {
+          console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+          return;
+        }
+
+        var data = response.getDataTable();
+
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard'));
+
+        // DROPDOWN FILTER
+        var controlCat = new google.visualization.ControlWrapper({
+          controlType: 'CategoryFilter',
+          containerId: 'category_div',
+          options: {
+            filterColumnIndex: 3, // Main Category 1
+            ui: {
+              labelStacking: 'vertical',
+              allowTyping: false,
+              allowMultiple: true,
+              labelSeparator: ':',
+              caption: 'Choose',
+              label: 'Category',
+              sortValues: true,
+              allowNone: true,
+              cssClass: 'filter',
+              selectedValuesLayout: 'below'
+            }
+          }
+        });
+
+        // DROPDOWN FILTER
+        var controlSubCat = new google.visualization.ControlWrapper({
+          controlType: 'CategoryFilter',
+          containerId: 'category_2_div',
+          options: {
+            filterColumnIndex: 5, // Sub Category
+            ui: {
+              labelStacking: 'vertical',
+              allowTyping: false,
+              allowMultiple: true,
+              labelSeparator: ':',
+              caption: 'Choose',
+              label: 'Sub-Category',
+              sortValues: true,
+              allowNone: true,
+              cssClass: 'filter2',
+              selectedValuesLayout: 'below'
+            }
+          }
+        });
+
+        // STRING FILTER
+        // create a list of columns for the dashboard
+        var columns = [{
+          // this column aggregates all of the data into one column
+          // for use with the string filter
+          type: 'string',
+          calc: function(dt, row) {
+            for (var i = 0, vals = [], cols = dt.getNumberOfColumns(); i < cols; i++) {
+              vals.push(dt.getFormattedValue(row, i));
+            }
+            return vals.join('\n');
+          }
+        }];
+        for (var i = 0, cols = data.getNumberOfColumns(); i < cols; i++) {
+          columns.push(i);
+        }
+
+        // Define a slider control for the 'Donuts eaten' column
+        var controlString = new google.visualization.ControlWrapper({
+          controlType: 'StringFilter',
+          containerId: 'string_div',
+          options: {
+            filterColumnIndex: 0,
+            matchType: 'any',
+            caseSensitive: false,
+            ui: {
+              label: 'Search',
+              labelSeparator: ':',
+            }
+          },
+          view: {
+            columns: columns
+          }
+        });
+
+        // TABLE STYLE CSS
+        var cssClassNames = {
+          headerRow: 'headerRow',
+          tableRow: 'tableRow',
+          oddTableRow: 'oddTableRow',
+          selectedTableRow: 'selectedTableRow',
+          hoverTableRow: 'hoverTableRow',
+          headerCell: 'headerCell',
+          tableCell: 'tableCell',
+          rowNumberCell: 'rowNumberCell'
+        };
+
+        // TABLE CHART
+        var table = new google.visualization.ChartWrapper({
+          chartType: 'Table',
+          containerId: 'chart_div',
+          options: {
+            allowHtml: true,
+            cssClassNames: cssClassNames,
+            width: '100%', // 100vw
+            height: '100%',
+            page: 'enable',
+            pageSize: 20,
+            pagingSymbols: {
+              prev: 'prev',
+              next: 'next'
+            },
+            pagingButtons: 7
+          },
+          view: {
+            columns: [0, 1, 2] // View first 3 columns
+          }
+        });
+
+        // TABLE COLUMN WIDTH - FIRST CELLS
+        data.setProperty(0, 0, 'style', 'width:25%'); // 20vw
+        data.setProperty(0, 1, 'style', 'width:50%'); // 50vw
+        data.setProperty(0, 2, 'style', 'width:25%'); // 30vw
+
+        // // FORMATTER
+        // hyperlink URL column
+        var format_url = new google.visualization.PatternFormat(
+          '<a href="{0}" target="_blank" rel="nofollow">{0}</a>');
+        // extract the third column for format_url variable
+        format_url.format(data, [2]);
+
+        // Use DataView to create read-only view for data.table
+        var view = new google.visualization.DataView(data);
+
+        // DEPENDENCIES
+        dashboard.bind(controlCat, controlSubCat);
+        dashboard.bind([controlCat, controlSubCat, controlString], table);
+        // DRAW
+        dashboard.draw(view);
+      }
+
+ } else{
+    console.log('Google Charts not on this site.');
+}
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "600c289daada4470bd4056220e8b2178"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->

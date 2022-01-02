@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Cloudflare",
+    "description": "Business Development Representative",
+    "link": "https://www.cloudflare.com/",
+    "icon": "",
+    "date": "April 2021 - today",
+    "location": "Munich, DE"
+  },
+  {
+    "name": "Lunalabs",
+    "description": "Digital Consultant",
+    "link": "https://www.lunalabs.eu/",
+    "icon": "",
+    "date": "April 2019 - April 2021",
+    "location": "Remote"
+  },
+  {
+    "name": "teknowlogy Group",
+    "description": "Marketing Technologist",
+    "link": "https://www.teknowlogy.com/fr/",
+    "icon": "",
+    "date": "Jul 2018 - Aug 2019",
+    "location": "Munich, DE"
+  },
+  {
+    "name": "MTC Management & Consulting",
+    "description": "Commercial Manager",
+    "link": "https://www.mtcproperties.es/",
+    "icon": "",
+    "date": "Sep 2017 - Jun 2018",
+    "location": "Cádiz, ES"
+  },
+  {
+    "name": "People's United Party (PUP)",
+    "description": "Parliamentary Assistant",
+    "link": "https://www.pup.org.bz/",
+    "icon": "",
+    "date": "May 2017 - August 2017",
+    "location": "Belmopan, BZ"
+  },
+  {
+    "name": "Idescopio",
+    "description": "Junior Consultant",
+    "link": "https://www.linkedin.com/company/idescopio-consultants",
+    "icon": "",
+    "date": "February 2012 - September 2015",
+    "location": "Cádiz, ES"
+  }
+]

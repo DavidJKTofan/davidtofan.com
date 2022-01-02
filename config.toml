@@ -1,0 +1,72 @@
+baseURL = "https://davidtofan.com/"
+languageCode = "en-us"
+title = "Personal Website | David Tofan"
+theme = "digitalgarden"
+
+disableHugoGeneratorInject = true
+
+[sitemap]
+  changefreq = 'monthly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+[Params]
+  description = "David Tofan's personal website, illustrating his experience as an Entrepreneur and Digital Consultant, as well as promoting his projects and travels."
+  images = ['/media/website_thumbnail.png']
+  googleTagManager = "GTM-PD4GZXJ"
+
+[menu]
+[[menu.main]]
+  name = 'Home'
+  url = '/'
+  weight = 1
+[[menu.main]]
+  name = 'Articles'
+  url = '/articles'
+  weight = 2
+[[menu.main]]
+  name = 'Projects'
+  url = '/projects'
+  weight = 3
+[[menu.main]]
+  name = 'Experience'
+  url = '/experience'
+  weight = 4
+[[menu.main]]
+  name = 'Dashboard'
+  url = 'https://davidjktofan.com/'
+  weight = 5
+
+[[menu.social]]
+  name = 'GitHub'
+  url = 'https://github.com/DavidJKTofan'
+  weight = 1
+[[menu.social]]
+  name = 'LinkedIn'
+  url = 'https://www.linkedin.com/in/davidtofan/'
+  weight = 2
+[[menu.social]]
+  name = 'Instagram'
+  url = 'https://www.instagram.com/davidjktofan/'
+  weight = 3
+[[menu.social]]
+  name = 'Twitter'
+  url = 'https://twitter.com/davidjktofan'
+  weight = 4
+[[menu.social]]
+  name = 'RSS'
+  url = '/articles/index.xml'
+  weight = 5
+
+
+# syntax highlight settings
+[markup]
+  [markup.highlight]
+    style = "dracula"
+  [markup.goldmark.renderer]
+    # Enable to include inline HTML
+    unsafe = true
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
