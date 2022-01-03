@@ -28,6 +28,14 @@ My curiosity to know how things work always makes me want to explore and learn m
     <ol style="list-style-type: none; margin: 0; padding: 0;">
         <li>Universidad Europea de Madrid (UEM)</li>
     </ol>
+  <li><i class="fa-li fas fa-graduation-cap"></i><b>Global Dimensions Programme, 2017</b></li>
+    <ol style="list-style-type: none; margin: 0; padding: 0;">
+        <li>The London School of Economics and Political Science (LSE)</li>
+    </ol>
+  <li><i class="fa-li fas fa-graduation-cap"></i><b>International Exchange Programme, 2016</b></li>
+    <ol style="list-style-type: none; margin: 0; padding: 0;">
+        <li>Pace University - Lubin School of Business</li>
+    </ol>
 </ul>
 
 ## Interests
