@@ -33,9 +33,13 @@ disableHugoGeneratorInject = true
   url = '/experience'
   weight = 4
 [[menu.main]]
+  name = 'Certificates'
+  url = '/certificates'
+  weight = 5
+[[menu.main]]
   name = 'Dashboard'
   url = 'https://davidjktofan.com/'
-  weight = 5
+  weight = 6
 
 [[menu.social]]
   name = 'GitHub'
