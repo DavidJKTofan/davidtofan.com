@@ -1,10 +1,73 @@
 [
   {
-    "name": "Cloudflare Accredited Sales Professional",
+    "name": "Advent of Cyber 2021",
+    "organization": "TryHackMe",
+    "link": "https://drive.google.com/file/d/1NdBuv-hVS1YCqb6jMtNCBKnvIRWMh9pu/view",
+    "icon": "",
+    "date": "Dec 2021"
+  },
+  {
+    "name": "Hands-on Linux: Self-Hosted WordPress for Linux Beginners",
+    "organization": "Udemy",
+    "link": "https://drive.google.com/file/d/1fOPNcVAEtcL8g9ANcE_MuD_f9e-vmHn-/view",
+    "icon": "",
+    "date": "Dec 2021"
+  },
+  {
+    "name": "API and Web Service Introduction",
+    "organization": "Udemy",
+    "link": "https://drive.google.com/file/d/1WC5-S_J1d8GZ6EVyDIAKsFh6G5gCjC-y/view",
+    "icon": "",
+    "date": "Oct 2021"
+  },
+  {
+    "name": "Introduction to IT & Cybersecurity",
+    "organization": "Cybrary",
+    "link": "https://app.cybrary.it/courses/api/certificate/CC-d473b345-5c75-4481-a31a-ca4ec7455847/view",
+    "icon": "",
+    "date": "Oct 2021"
+  },
+  {
+    "name": "Information Security Fundamentals Career Path Intro",
+    "organization": "Cybrary",
+    "link": "https://app.cybrary.it/courses/api/certificate/CC-61cd2f50-0680-47f7-99a0-406715ecbd44/view",
+    "icon": "",
+    "date": "Oct 2021"
+  },
+  {
+    "name": "Cloudflare Solution Specialist-CF for Teams",
     "organization": "Cloudflare",
-    "link": "https://drive.google.com/file/d/1BYuaHkUwPsuatkOfCRiTSVXuZS00nB06/view?usp=sharing",
+    "link": "https://drive.google.com/file/d/1s-Mrf2nlroTzZLtj3w_-mu0Vqvfov-HE/view",
+    "icon": "",
+    "date": "Sep 2021"
+  },
+  {
+    "name": "Cloudflare Accredited Sales Engineer",
+    "organization": "Cloudflare",
+    "link": "https://drive.google.com/file/d/1V5t4dfN2fmX2Rw6iKge_E452zmfp7rG2/view",
     "icon": "",
     "date": "Aug 2021"  
+  },
+  {
+    "name": "Cloudflare Accredited Sales Professional",
+    "organization": "Cloudflare",
+    "link": "https://drive.google.com/file/d/1BYuaHkUwPsuatkOfCRiTSVXuZS00nB06/view",
+    "icon": "",
+    "date": "Aug 2021"  
+  },
+  {
+    "name": "Cloudflare Accredited Configuration Engineer",
+    "organization": "Cloudflare",
+    "link": "https://drive.google.com/file/d/1zVYtxhaeZXAwkd_9prpTiYCP73aWx_Sy/view",
+    "icon": "",
+    "date": "Jul 2021"  
+  },
+  {
+    "name": "Cloudflare Accredited Services Architect",
+    "organization": "Cloudflare",
+    "link": "https://drive.google.com/file/d/1axoUejqb8536p2ZYZHZu3MgAiroaIFi2/view",
+    "icon": "",
+    "date": "Jul 2021"  
   },
   {
     "name": "IBM Cybersecurity Analyst",
@@ -70,6 +133,125 @@
     "date": "Nov 2020"
   },
   {
+    "name": "Deep Learning Fundamentals",
+    "organization": "IBM Cognitive Class",
+    "link": "https://courses.cognitiveclass.ai/certificates/e652a7ea89fc41e19e2a7dda575fd2e9",
+    "icon": "",
+    "date": "Oct 2020"
+  },
+  {
+    "name": "Introduction to Cybersecurity",
+    "organization": "Cisco Networking Academy",
+    "link": "https://drive.google.com/file/d/1GOimR6sShLxvvH4TUn_s6dd50OP4Rbw5/view",
+    "icon": "",
+    "date": "Oct 2020"
+  },
+  {
+    "name": "Protege tu Negocio: Ciberseguridad en el Teletrabajo",
+    "organization": "Google Actívate",
+    "link": "https://drive.google.com/file/d/1sFW8ORN1EZg-fg2P_jNT7jyB05CQC4LR/view",
+    "icon": "",
+    "date": "Oct 2020"
+  },
+  {
+    "name": "Data Visualization with R",
+    "organization": "IBM Cognitive Class",
+    "link": "https://courses.cognitiveclass.ai/certificates/60e20ee1b07547ea95feb4f1e1cbb244",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "IBM Cloud Essential",
+    "organization": "IBM Cognitive Class",
+    "link": "https://courses.cognitiveclass.ai/certificates/9e878a1dfc1f435ea08f79106cc21d60",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "Introduction to Cloud",
+    "organization": "IBM Cognitive Class",
+    "link": "https://courses.cognitiveclass.ai/certificates/182f858af3454191850857ee78a1ff53",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "Introduction to Packet Tracer",
+    "organization": "Cisco Networking Academy",
+    "link": "https://drive.google.com/file/d/1bQiAJIKXnf1kbrkXqHk8m_6ACNq5o_37/view",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "Open Data Foundations",
+    "organization": "IBM Cognitive Class",
+    "link": "https://courses.cognitiveclass.ai/certificates/cea42d68a1504237801ca9ac45cb801a",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "StarAudit-IA - Internal Auditor Certification 2019",
+    "organization": "EuroCloud Europe",
+    "link": "https://drive.google.com/file/d/1BMWYdQAnhqMDbGDLqms0u_XExpBTcYL_/view",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "R 101",
+    "organization": "IBM Cognitive Class",
+    "link": "https://courses.cognitiveclass.ai/certificates/e38ba726750541bf9db3114f5f0bd958",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "Spark Fundamentals I",
+    "organization": "IBM Cognitive Class",
+    "link": "https://courses.cognitiveclass.ai/certificates/f26edcd294cc46549e500e5da54404f6",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "Transformación digital para el empleo",
+    "organization": "Google Actívate (PLU AYF 24Y)",
+    "link": "https://learndigital.withgoogle.com/activate/validate-certificate-code",
+    "icon": "",
+    "date": "Sep 2020"
+  },
+  {
+    "name": "Curso de Ciberseguridad",
+    "organization": "Fujitsu",
+    "link": "https://drive.google.com/file/d/1-iP9PUT4qRcuAFws2NMsKqd2ZY2_iFmM/view",
+    "icon": "",
+    "date": "Jul 2020"
+  },
+  {
+    "name": "Scrum Foundation Professional Certificate (SFPC)",
+    "organization": "CertiProf",
+    "link": "https://drive.google.com/file/d/1chZgoceQQ1kkc0YqYXeDJhm8c5C03baA/view",
+    "icon": "",
+    "date": "Jun 2020"
+  },
+  {
+    "name": "NDG Linux Unhatched",
+    "organization": "Cisco Networking Academy",
+    "link": "https://drive.google.com/file/d/1ayOZpf53NbNvtsDtYUCp5cHdnmTEdFb6/view",
+    "icon": "",
+    "date": "Aug 2020"
+  },
+  {
+    "name": "StarAudit-FD - Foundation Certification 2019",
+    "organization": "EuroCloud Europe",
+    "link": "https://drive.google.com/file/d/1B5JZgsiKBEvkA5VuTU5tzTRkqg9OrXlx/view",
+    "icon": "",
+    "date": "May 2020"
+  },
+  {
+    "name": "StarAudit-AB - Ambassador Certification 2019",
+    "organization": "EuroCloud Europe",
+    "link": "https://drive.google.com/file/d/18nyXRR6QLtrsp0nSHrppbjh1OyfhZlV5/view",
+    "icon": "",
+    "date": "May 2020"
+  },
+  {
     "name": "Data Science Methodology",
     "organization": "IBM Cognitive Class",
     "link": "https://courses.cognitiveclass.ai/certificates/5c266b10f6a14459ae8a84549b895778",
@@ -82,6 +264,13 @@
     "link": "https://courses.cognitiveclass.ai/certificates/ed6d7dbc71814cf998b2020f7755fdbc",
     "icon": "",
     "date": "Dec 2019"
+  },
+  {
+    "name": "Curso Certificado en Creación de Aplicaciones Móviles",
+    "organization": "EOI Escuela de Organización Industrial",
+    "link": "https://drive.google.com/file/d/1FdivbZGVQctEGeBkNkmxgLevaAYQAUIR/view",
+    "icon": "",
+    "date": "Nov 2019"
   },
   {
     "name": "Data Privacy Fundamentals",
@@ -105,11 +294,32 @@
     "date": "Sep 2019"
   },
   {
+    "name": "Python Core course",
+    "organization": "SoloLearn",
+    "link": "https://www.sololearn.com/Certificate/1073-1027178/pdf/",
+    "icon": "",
+    "date": "Aug 2019"
+  },
+  {
+    "name": "HTML course",
+    "organization": "SoloLearn",
+    "link": "https://www.sololearn.com/Certificate/1014-1027178/pdf/",
+    "icon": "",
+    "date": "Aug 2019"
+  },
+  {
     "name": "SQL Fundamentals",
     "organization": "SoloLearn",
     "link": "https://www.sololearn.com/Certificate/1060-1027178/pdf/",
     "icon": "",
     "date": "Jul 2019"
+  },
+  {
+    "name": "Datenschutzschulung für Beschäftigte (DSGVO)",
+    "organization": "Hansen-Oest Kanzlei für Datenschutz",
+    "link": "https://drive.google.com/file/d/1tUQkMyrNwslErBCmAAXspjYxBHM3pYtj/view",
+    "icon": "",
+    "date": "Jul 2018"
   },
   {
     "name": "G Suite Administrator Fundamentals",
@@ -124,6 +334,34 @@
     "link": "https://www.coursera.org/account/accomplishments/verify/2Z57ZZ9763J7",
     "icon": "",
     "date": "Jun 2018"
+  },
+  {
+    "name": "Make the most of EU resources for your region or city",
+    "organization": "iversity Learning",
+    "link": "https://drive.google.com/file/d/1uuT7lq1WTSZvkoh4R1GUk6sFuuc1RmJ4/view",
+    "icon": "",
+    "date": "May 2018"
+  },
+  {
+    "name": "Essentials of youth policy",
+    "organization": "European Commission and the Council of Europe",
+    "link": "https://drive.google.com/file/d/0BxrutDycuqwtem54dG94TElZNVhJeWF3NW9keWl4MU1RcXlV/view",
+    "icon": "",
+    "date": "Dec 2017"
+  },
+  {
+    "name": "Innovation Workshop",
+    "organization": "Pangea",
+    "link": "https://drive.google.com/file/d/0BxrutDycuqwtcmZ1TWt2WEpheHNlQTd2TlY3NnFxaUFOVlZN/view",
+    "icon": "",
+    "date": "Nov 2017"
+  },
+  {
+    "name": "Volunteer",
+    "organization": "Campaña del Milenio de Naciones Unidas",
+    "link": "https://drive.google.com/file/d/1Fzh74KY6YN2pXMh257b9uCiQADiNm3Y6/view",
+    "icon": "",
+    "date": "Oct 2015"
   },
   {
     "name": "Public-Private Partnerships (PPP): How can PPPs help deliver better services?",
