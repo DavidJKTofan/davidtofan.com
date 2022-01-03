@@ -80,12 +80,12 @@ The World of Opportunities is a free resource platform for entrepreneurs and stu
   th {
     padding-top: 12px;
     padding-bottom: 12px;
-    border-color: rgb(151, 150, 168) !important;
+    border-color: rgb(151, 150, 168);
     color: #FFFFFF;
   }
 
   .headerRow {
-    background-color: rgb(1, 0, 113);
+    background-color: rgb(15, 23, 42);
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 18px;
