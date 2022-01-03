@@ -9,8 +9,6 @@ keywords: personal website, david tofan, davidjktofan, digital consultant
 
 My name is David and I am an aspiring Solutions Engineer @ [Cloudflare](https://www.cloudflare.com/)! 🧡
 
-I am curious about how things work, which motivates me to keep exploring and learning. This appetite for knowledge allows me to dive deeper into the world of digitalization and automation, and with my newly found insights, I strive to help organizations and individuals to develop and acquire the necessary tools and resources required to foster secure and resilient digital transformation.
-
 I am passionate about technology, specifically Cloud ☁️, Data Science 📊 and CyberSec 🔐.
 
 <hr />
