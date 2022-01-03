@@ -3,6 +3,14 @@ title: Cloudflare Data Localization
 date: 2021-11-11
 images: 
 - /media/articles/cloudflare-data-localization.png
+tags:
+  - Security
+  - Privacy
+  - Cloudflare
+  - CyberSec
+  - Data
+categories:
+  - Privacy
 ---
 
 This is a brief introduction to [Cloudflare Data Localization Suite](https://www.cloudflare.com/data-localization/), which honestly is A-M-A-Z-I-N-G!

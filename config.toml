@@ -70,3 +70,7 @@ disableHugoGeneratorInject = true
     endLevel = 4
     ordered = false
     startLevel = 2
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'

@@ -1,8 +1,15 @@
 ---
 title: Intro to Email Security
-date: 2021-02-29
+date: 2021-02-28
 images: 
 - /media/articles/email-security.png
+tags:
+  - Security
+  - Web Development
+  - CyberSec
+  - Email
+categories:
+  - Security
 ---
 
 Welcome to a brief introduction to Email Security – **FOCUS ON: SPF, DKIM, and DMARC**.

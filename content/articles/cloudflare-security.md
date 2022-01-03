@@ -3,6 +3,13 @@ title: Introducing Cloudflare
 date: 2021-04-18
 images: 
 - /media/articles/cloudflare-security.png
+tags:
+  - Security
+  - Web Development
+  - Cloudflare
+  - CyberSec
+categories:
+  - Security
 ---
 
 
@@ -14,7 +21,7 @@ According to [Industry Analyst Highlights](https://www.cloudflare.com/analysts/)
 
 * * *
 
-### Cloudflare in Numbers
+## Cloudflare in Numbers
 
 ![An Integrated Global Cloud Network](/media/Cloudflare/cloudflare-at-a-glance-v1.webp)
 _<caption>Image source: made by [Lunalabs](https://www.lunalabs.eu/) with info updated on the 20th of February.</caption>_
@@ -202,6 +209,7 @@ This is a very general introduction to Cloudflare. Educational purposes only, an
 
 ## More on Cloudflare
 
-- [Migrating to Cloudflare](https://davidtofan.com/post/migrating-to-cloudflare/)
-- [Cloudflare for Teams](https://davidtofan.com/post/cloudflare-for-teams/)
-- [Intro to Cloudflare Workers](https://davidtofan.com/post/cloudflare-workers/)
+- [Migrating to Cloudflare](https://davidtofan.com/articles/migrating-to-cloudflare/)
+- [Cloudflare for Teams](https://davidtofan.com/articles/cloudflare-for-teams/)
+- [Intro to Cloudflare Workers](https://davidtofan.com/articles/cloudflare-workers/)
+- [Cloudflare Data Localization](https://davidtofan.com/articles/cloudflare-data-localization/)

@@ -3,6 +3,15 @@ title: Migrating to Cloudflare
 date: 2021-04-19
 images: 
 - /media/articles/migrating-to-cloudflare.png
+tags:
+  - Security
+  - Web Development
+  - Cloudflare
+  - CyberSec
+  - Developers
+  - Workers
+categories:
+  - Developers
 ---
 
 After joining Cloudflare in April 2021, I recognized the amazing potential of [Cloudflare Pages](https://pages.cloudflare.com/) and all of its other products, so I decided to migrate my website from Netlify to Cloudflare (_sorry Netlify – it was nice!_).
@@ -180,6 +189,6 @@ Coming soon! Still working on some stuff...
 
 ## More on Cloudflare
 
-- [Introducing Cloudflare](https://davidtofan.com/post/cloudflare-security/)
-- [Intro to Cloudflare Workers](https://davidtofan.com/post/cloudflare-workers/)
-- [Cloudflare for Teams](https://davidtofan.com/post/cloudflare-for-teams/)
+- [Introducing Cloudflare](https://davidtofan.com/articles/cloudflare-security/)
+- [Intro to Cloudflare Workers](https://davidtofan.com/articles/cloudflare-workers/)
+- [Cloudflare for Teams](https://davidtofan.com/articles/cloudflare-for-teams/)

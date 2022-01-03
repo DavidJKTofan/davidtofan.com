@@ -4,6 +4,12 @@ date: 2021-11-20
 images: 
 - /media/articles/ddos-attacks.png
 draft: true
+tags:
+  - Security
+  - Cloudflare
+  - CyberSec
+categories:
+  - Security
 ---
 
 ## Denial-of-Service (DoS) attack explained

@@ -4,6 +4,15 @@ date: 2021-11-20
 images: 
 - /media/articles/cloudflare-full-stack-dev.png
 draft: true
+tags:
+  - Security
+  - Cloudflare
+  - CyberSec
+  - Developers
+  - Workers
+  - Web Development
+categories:
+  - Developers
 ---
 
 _"Cloudflare Pages Goes Full Stack"_ – this is the title of the [latest blog post](https://blog.cloudflare.com/cloudflare-pages-goes-full-stack/)

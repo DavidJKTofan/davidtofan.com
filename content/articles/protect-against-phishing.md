@@ -3,6 +3,13 @@ title: Protect yourself from Phishing
 date: 2021-04-02
 images: 
 - /media/articles/protect-against-phishing.png
+tags:
+  - Security
+  - Phishing
+  - CyberSec
+  - Email
+categories:
+  - Security
 ---
 
 Welcome to a brief introduction on how to protect yourself from phishing attacks.
@@ -116,6 +123,7 @@ Additionally, for more serious cases, you can also report cybercrime to national
 -   [EUROPOL – Report Cybercrime Online](https://www.europol.europa.eu/report-a-crime/report-cybercrime-online)
 -   [USA – Online Safety](https://www.usa.gov/online-safety)
 
+* * * * 
 
 ## DISCLAIMER
 

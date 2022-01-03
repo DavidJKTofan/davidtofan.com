@@ -3,6 +3,13 @@ title: Cloudflare IPFS Gateway
 date: 2021-12-10
 images: 
 - /media/articles/cloudflare-ipfs-gateway.png
+tags:
+  - Blockchain
+  - Cloudflare
+  - CyberSec
+  - Blockchain
+categories:
+  - Developers
 ---
 
 With [Cloudflare Distributed Web Gateway](https://www.cloudflare.com/distributed-web-gateway/) one can easily, quickly, and securely access both the Ethereum network and the InterPlanetary File System (IPFS).

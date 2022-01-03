@@ -3,6 +3,11 @@ title: Agile Boutique Agency
 date: 2020-11-03
 images: 
 - /media/articles/agile-boutique-agency.png
+tags:
+  - Startups
+  - Lunalabs
+categories:
+  - Startups
 ---
 
 I always dreamt about owning my own business, being in charge of my own work and schedule, and learning something new almost every day while witnessing the growth of the business. And though being an entrepreneur often sounds like a lot of fun, I soon came to realize that it definitely also is a very challenging way of life.

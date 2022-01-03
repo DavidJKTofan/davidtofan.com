@@ -3,6 +3,13 @@ title: Cloudflare for Teams
 date: 2021-05-26
 images: 
 - /media/articles/cloudflare-for-teams.png
+tags:
+  - Security
+  - Web Development
+  - Cloudflare
+  - CyberSec
+categories:
+  - Security
 ---
 
 Welcome to a brief introduction to Cloudflare for Teams.
@@ -29,10 +36,6 @@ Part of the Zero Trust solution is **Cloudflare for Teams**, which I'd like to i
 The official Developer Docs can be found here: [Cloudflare for Teams documentation](https://developers.cloudflare.com/cloudflare-one/)
 
 Take a [self-guided tour](https://www.cloudflare.com/teams/self-guided-tour-of-zero-trust-platform/) of Cloudflare’s Zero Trust platform.
-
-* * *
-
-{{% toc %}}
 
 * * *
 
@@ -257,6 +260,6 @@ This is a very general introduction to Cloudflare and [Cloudflare for Teams](htt
 
 ## More on Cloudflare
 
-- [Introducing Cloudflare](https://davidtofan.com/post/cloudflare-security/)
-- [Migrating to Cloudflare](https://davidtofan.com/post/migrating-to-cloudflare/)
-- [Intro to Cloudflare Workers](https://davidtofan.com/post/cloudflare-workers/)
+- [Introducing Cloudflare](https://davidtofan.com/articles/cloudflare-security/)
+- [Migrating to Cloudflare](https://davidtofan.com/articles/migrating-to-cloudflare/)
+- [Intro to Cloudflare Workers](https://davidtofan.com/articles/cloudflare-workers/)

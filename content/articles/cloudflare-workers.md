@@ -3,6 +3,14 @@ title: Intro to Cloudflare Workers
 date: 2021-08-02
 images: 
 - /media/articles/cloudflare-workers.png
+tags:
+  - Security
+  - Web Development
+  - Cloudflare
+  - CyberSec
+  - Workers
+categories:
+  - Developers
 ---
 
 Welcome to a brief introduction to [Cloudflare Workers](https://workers.cloudflare.com/).
@@ -231,6 +239,6 @@ Educational purposes only, and this blog post does not necessarily reflect the o
 
 ## More on Cloudflare
 
-- [Introducing Cloudflare](https://davidtofan.com/post/cloudflare-security/)
-- [Migrating to Cloudflare](https://davidtofan.com/post/migrating-to-cloudflare/)
-- [Cloudflare for Teams](https://davidtofan.com/post/cloudflare-for-teams/)
+- [Introducing Cloudflare](https://davidtofan.com/articles/cloudflare-security/)
+- [Migrating to Cloudflare](https://davidtofan.com/articles/migrating-to-cloudflare/)
+- [Cloudflare for Teams](https://davidtofan.com/articles/cloudflare-for-teams/)

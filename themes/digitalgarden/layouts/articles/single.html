@@ -40,7 +40,18 @@
       {{ $title := .Params.title }}
       <h1 class="!mb-2">{{ $title }}</h1>
       {{ if .Date }}
-      <p class="text-sm text-slate-500 !mb-8">{{ .Date.Format "January 2, 2006" }}</p>
+      <p class="text-sm text-slate-500 !mb-2">{{ .Date.Format "January 2, 2006" }}</p>
+      {{ end }}
+
+      {{ with .Param "tags" }}
+        {{ range $index, $tag := (. | sort) }} 
+          {{ with $.Site.GetPage (printf "/%s/%s" "tags" $tag) }}
+          <p
+          class="text-slate-500 text-xs mt-1 px-1.5 py-0.5 rounded-md border border-slate-300 dark:border-slate-600 inline-block !mb-2">
+            <a href="{{ .Permalink }}" class="text-slate-500">#{{ $tag | urlize }}</a>
+          </p>
+          {{ end }}
+        {{ end }}
       {{ end }}
 
       {{ with .Params.images }}

@@ -3,6 +3,12 @@ title: A Journey into Digital Privacy & CyberSec
 date: 2020-11-27
 images: 
 - /media/articles/a-journey-into-digital-privacy.png
+tags:
+  - Security
+  - Privacy
+  - CyberSec
+categories:
+  - Security
 ---
 
 This is a brief blog post about my friends' and my journey into digital privacy and cyber security, and how to achieve some of it by simply changing a few settings, or with the help of publicly available, free, and open source tools.

@@ -3,6 +3,12 @@ title: World of Opportunities
 date: 2020-10-06
 images: 
 - /media/articles/a-world-of-opportunities.png
+tags:
+  - Resources
+  - Opportunities
+  - Personal Development
+categories:
+  - Resources
 ---
 
 While growing up I have always been a fan of Google – you can find almost anything on there, as long as you are also kind of patient. Today, Google has tremendously improved its search algorithm and almost any one kind find anything on it.

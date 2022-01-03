@@ -3,6 +3,12 @@ title: Intro to Website Security
 date: 2021-02-28
 images: 
 - /media/articles/website-security.png
+tags:
+  - Security
+  - Web Development
+  - CyberSec
+categories:
+  - Security
 ---
 
 Welcome to a brief introduction to Website Security – **FOCUS ON: Content Security Policy (CSP)**.
@@ -218,6 +224,8 @@ Other good places to start learning more are these articles (or just Google):
 Let's not forget websites are served by servers. Security actually starts right there (_Security Misconfiguration_). The level of your server security depends on who is your hosting provider, what are you web admin configurations, how's your network firewall configured, and several other aspects.
 
 There are many more aspects and more things to take into account when working on your website's security. Google can be your best friend for that. Feel free to also contact your hosting provider to learn more about how to properly secure your website.
+
+* * * *
 
 ## Disclaimer
 
