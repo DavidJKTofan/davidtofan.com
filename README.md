@@ -10,6 +10,7 @@ Special thanks to all supporting entities/tools/softwares/packages/platforms/con
 * Website deployed via [Cloudflare Pages](https://pages.cloudflare.com/)
 * Website built on [Hugo](https://gohugo.io/) with theme from [apvarun](https://github.com/apvarun/digital-garden-hugo-theme)
 * Graphics from myself - some built with [Canva](https://www.canva.com/) - or from [Unsplash](https://unsplash.com/)
+* Icons from [Font Awesome](https://fontawesome.com/license)
 * Some code/scripts inspired by [Stack Overflow](https://stackoverflow.com/) or other online forums/discourse.
 
 Unless otherwise specified, built with 🧡 by myself.
