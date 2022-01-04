@@ -5,6 +5,9 @@ images:
 - /media/portfolio/google-travel-lists.png
 description: My GoogleMaps Travel Lists to explore some new places around the globe.
 website: ""
+aliases:
+    - /projects/google-travel-lists/
+    - /travel/
 ---
 
 During some of my journeys around the globe I try to remember the places that impacted me the most – _must-see places_ –, or simply places that I had fun seeing/visiting, or even got recommended by friends and locals. Therefore, I created a series of GoogleMaps Lists which I would like to share with you and your friends.
