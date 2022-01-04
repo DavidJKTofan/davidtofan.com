@@ -4,6 +4,7 @@ title = "Personal Website | David Tofan"
 theme = "digitalgarden"
 
 disableHugoGeneratorInject = true
+enableRobotsTXT = true
 
 [sitemap]
   changefreq = 'monthly'
