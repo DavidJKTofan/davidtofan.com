@@ -7,9 +7,9 @@ keywords: personal website, david tofan, davidjktofan, digital consultant
 
 **Welcome to my personal website!** 🤓
 
-My name is David and I am an aspiring Solutions Engineer @ [Cloudflare](https://www.cloudflare.com/)! 🧡
+My name is David & I am an aspiring Solutions Engineer @ [Cloudflare](https://www.cloudflare.com/)! 🧡
 
-I am passionate about technology, specifically Cloud ☁️, Data Science 📊 and CyberSec 🔐.
+I am passionate about technology, specifically Cloud ☁️, Data Science 📊 & CyberSec 🔐.
 
 <hr />
 
@@ -34,7 +34,7 @@ I am passionate about technology, specifically Cloud ☁️, Data Science 📊 a
     </ol>
   <li><i class="fa-li fas fa-graduation-cap" aria-hidden="true"></i><b>Global Dimensions Programme, 2017</b></li>
     <ol style="list-style-type: none !important; margin: 0; padding: 0;">
-        <li>The London School of Economics and Political Science (LSE)</li>
+        <li>The London School of Economics & Political Science (LSE)</li>
     </ol>
   <li><i class="fa-li fas fa-graduation-cap" aria-hidden="true"></i><b>International Exchange Programme, 2016</b></li>
     <ol style="list-style-type: none !important; margin: 0; padding: 0;">
@@ -52,6 +52,6 @@ I am passionate about technology, specifically Cloud ☁️, Data Science 📊 a
 
 <hr />
 
-Curious to learn more about me, my projects and my interests? 💬
+Curious to learn more about me, my projects & my interests? 💬
 
 → [Start with my articles](/articles)
