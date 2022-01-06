@@ -15,28 +15,54 @@ I am passionate about technology, specifically Cloud ☁️, Data Science 📊 &
 
 ## Education
 
+<style>
+  ul {
+    list-style-type: none !important;
+  }
+  li.education-icon::before {
+    display: block;
+    content: url(/media/icons/graduation-cap-solid.svg);
+
+    left: calc(var(--fa-li-width, 1.7em)*-1);
+    position: absolute;
+    text-align: center;
+    width: var(--fa-li-width,1.3em);
+    line-height: 2;
+  }
+  li.lightbulb-icon::before {
+    display: block;
+    content: url(/media/icons/lightbulb-solid.svg);
+
+    left: calc(var(--fa-li-width, 1.3em)*-1);
+    position: absolute;
+    text-align: center;
+    width: var(--fa-li-width,0.8em);
+    line-height: 2;
+  }
+</style>
+
 <ul class="fa-ul">
-  <li><i class="fa-li fas fa-graduation-cap" aria-hidden="true"></i><b>Master's in Business Analytics, 2020</b></li>
+  <li class="education-icon"><b>Master's in Business Analytics, 2020</b></li>
     <ol style="list-style-type: none !important; margin: 0; padding: 0;">
         <li>Universidad Europea de Madrid (UEM)</li>
     </ol>
-  <li><i class="fa-li fas fa-graduation-cap" aria-hidden="true"></i><b>MBA, 2018</b></li>
+  <li class="education-icon"><b>MBA, 2018</b></li>
     <ol style="list-style-type: none !important; margin: 0; padding: 0;">
         <li>EOI Business School</li>
     </ol>
-  <li><i class="fa-li fas fa-graduation-cap" aria-hidden="true"></i><b>International Study Trip, 2018</b></li>
+  <li class="education-icon"><b>International Study Trip, 2018</b></li>
     <ol style="list-style-type: none !important; margin: 0; padding: 0;">
         <li>School of Management at Fudan University</li>
     </ol>
-  <li><i class="fa-li fas fa-graduation-cap" aria-hidden="true"></i><b>Global Bachelor's Degree in International Relations, 2017</b></li>
+  <li class="education-icon"><b>Global Bachelor's Degree in International Relations, 2017</b></li>
     <ol style="list-style-type: none !important; margin: 0; padding: 0;">
         <li>Universidad Europea de Madrid (UEM)</li>
     </ol>
-  <li><i class="fa-li fas fa-graduation-cap" aria-hidden="true"></i><b>Global Dimensions Programme, 2017</b></li>
+  <li class="education-icon"><b>Global Dimensions Programme, 2017</b></li>
     <ol style="list-style-type: none !important; margin: 0; padding: 0;">
         <li>The London School of Economics & Political Science (LSE)</li>
     </ol>
-  <li><i class="fa-li fas fa-graduation-cap" aria-hidden="true"></i><b>International Exchange Programme, 2016</b></li>
+  <li class="education-icon"><b>International Exchange Programme, 2016</b></li>
     <ol style="list-style-type: none !important; margin: 0; padding: 0;">
         <li>Pace University - Lubin School of Business</li>
     </ol>
@@ -45,9 +71,9 @@ I am passionate about technology, specifically Cloud ☁️, Data Science 📊 &
 ## Interests
 
 <ul class="fa-ul">
-  <li><i class="fa-li fa fa-lightbulb"></i>Cybersecurity</li>
-  <li><i class="fa-li fa fa-lightbulb"></i>Artificial Intelligence</li>
-  <li><i class="fa-li fa fa-lightbulb"></i>Sustainable Development Goals (SDGs)</li>
+  <li class="lightbulb-icon">Cybersecurity</li>
+  <li class="lightbulb-icon">Artificial Intelligence</li>
+  <li class="lightbulb-icon">Sustainable Development Goals (SDGs)</li>
 </ul>
 
 <hr />
