@@ -15,7 +15,6 @@ I am passionate about technology, specifically Cloud ☁️, Data Science 📊 &
 
 ## Education
 
-
 <style>
   ul {
     list-style-type: none !important;
