@@ -175,9 +175,14 @@ Finally, we analyze our website and check what has changed or improved:
 -   [Security Headers](https://securityheaders.com/?q=https%3A%2F%2Fdavidtofan.com%2F&hide=on&followRedirects=on)
 -   [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fdavidtofan.com%2F)
 -   [Google Mobile-Friendly Test](https://search.google.com/test/mobile-friendly/result?id=abDpKeo79FNobtHKkNFHdg)
--   [Web Page Test](https://www.webpagetest.org/result/220108_AiDcX0_85f84797b6cf684530257180003aa71f/)
+-   [Web Page Test](https://www.webpagetest.org/result/220108_AiDc0X_9817cb34105ef8f2cb4feb25bbb13f34/)
 -   [DNSViz DNSSEC](https://dnsviz.net/d/davidtofan.com/dnssec/)
 -   [DNSSEC Analyzer](https://dnssec-analyzer.verisignlabs.com/davidtofan.com)
+-   [GTmetrix](https://gtmetrix.com/reports/davidtofan.com/VL739AzA/)
+-   [Request Map Generator](https://requestmap.webperf.tools/render/220108_BiDcM9_a3cfebd86a1cb63e69f8b9c158f80854?dark=0#)
+-   [DNS Speed Benchmark](https://www.dnsperf.com/dns-speed-benchmark?id=mt8i0gky5svaw6)
+-   [Yellow Lab Tools](https://yellowlab.tools/result/g5wx821w25)
+-   [SSL Labs](https://www.ssllabs.com/ssltest/analyze.html?d=davidtofan.com&hideResults=on&latest)
 
 ## Conclusion
 
