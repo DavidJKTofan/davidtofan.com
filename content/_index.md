@@ -21,7 +21,6 @@ I am passionate about technology, specifically Cloud ☁️, Data Science 📊 &
   }
   .education-icon {
     display: block;
-    content: url(/media/icons/graduation-cap-solid.svg);
     left: calc(var(--fa-li-width, 1.7em)*-1);
     position: absolute;
     text-align: center;
@@ -31,7 +30,6 @@ I am passionate about technology, specifically Cloud ☁️, Data Science 📊 &
   }
   .lightbulb-icon {
     display: block;
-    content: url(/media/icons/lightbulb-solid.svg);
     left: calc(var(--fa-li-width, 1.3em)*-1);
     position: absolute;
     text-align: center;

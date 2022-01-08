@@ -149,7 +149,7 @@ _Alternative code: [Set security headers - Workers](https://developers.cloudflar
 
 **OCTOBER 2021 UPDATE:** Cloudflare announced support for ```_headers``` and ```_redirects``` files. Simply create the files in the build directory of your project and within it, define the rules you want to apply.
 
-For example, to prevent your ```pages.dev``` deployment from being indexed and improve SEO: 
+For example, to prevent your ```pages.dev``` deployment from being indexed and improve SEO, add the following to your `_headers` file: 
 ```
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
@@ -174,8 +174,8 @@ Finally, we analyze our website and check what has changed or improved:
 -   [Cloudflare Diagnostic Center](https://www.cloudflare.com/diagnostic-center/?url=davidtofan.com)
 -   [Security Headers](https://securityheaders.com/?q=https%3A%2F%2Fdavidtofan.com%2F&hide=on&followRedirects=on)
 -   [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fdavidtofan.com%2F)
--   [Google Mobile-Friendly Test](https://search.google.com/test/mobile-friendly?id=BucltckOIIJdgi9CnUc4Uw)
--   [Web Page Test](https://www.webpagetest.org/)
+-   [Google Mobile-Friendly Test](https://search.google.com/test/mobile-friendly/result?id=abDpKeo79FNobtHKkNFHdg)
+-   [Web Page Test](https://www.webpagetest.org/result/220108_AiDcX0_85f84797b6cf684530257180003aa71f/)
 -   [DNSViz DNSSEC](https://dnsviz.net/d/davidtofan.com/dnssec/)
 -   [DNSSEC Analyzer](https://dnssec-analyzer.verisignlabs.com/davidtofan.com)
 
