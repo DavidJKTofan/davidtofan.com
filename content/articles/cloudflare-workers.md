@@ -183,13 +183,23 @@ wrangler publish
 
 The final result can be found [here](https://html-my-project.cf-testing.workers.dev/), including the [GitHub Repository](https://github.com/DavidJKTofan/html-my-project).
 
+**UPDATE 2021**: _With Cloudflare Pages, you can now build [full-stack applications](https://blog.cloudflare.com/building-full-stack-with-pages/) by executing code on the Cloudflare network with help from Cloudflare Workers._
+
 * * *
 
 ## Use Cases
 
 The amount of Use Cases and applications for Cloudflare Workers are only limited by your imagination and time! It's a powerful and amazing tool.
 
-Some examples of Use Cases are:
+Some Use Cases:
+
+- Customize Requests and Response: Header Manipulation, Authentication, HTMLRewriter...
+- Store Dynamic User Data: Workers KV / Durable Objects, Third Party Databases...
+- Integrate with other Cloudflare products: Images, Stream, Access...
+- Integrate with external services: Stripe, MongoDB, Auth0...
+- Integrate with full stack web frameworks: SvelteKit, Remix, and more soon...
+
+Some real-life examples:
 
 - [Localize a website with HTMLRewriter](https://developers.cloudflare.com/workers/tutorials/localize-a-website)
 - [A/B testing](https://developers.cloudflare.com/workers/examples/ab-testing)
