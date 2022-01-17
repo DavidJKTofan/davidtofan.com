@@ -7,9 +7,14 @@ description: Personal Cloudflare Playground to test and showcase Cloudflare’s 
 website: "https://www.cf-testing.com/"
 ---
 
-This is the front end website CF-testing.com - you can access this URL via any web browser and it can be found on the public internet for everyone.
+This is the front end website `cf-testing.com` - you can access this URL via any web browser and it can be found on the public Internet.
 
-This is our private playground where we demo and test different Cloudflare solutions.
+I built this playground out of personal curiosity, and to learn more about how Cloudflare's solutions are implemented and configured in practice.
+
+Private playground where I demo and test different Cloudflare solutions:
+https://www.cf-testing.com/
+
+Feedback and ideas are always welcomed!
 
 ## Disclaimer
 

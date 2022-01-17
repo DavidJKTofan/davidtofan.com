@@ -23,7 +23,7 @@ More information on the [Dev Docs](https://developers.cloudflare.com/distributed
 
 ## index.html Example
 
-See it in action on [Cloudflare Playground](https://www.cf-testing.com/ipfs-gateway.html).
+See it in action on [Cloudflare Playground](https://performance.cf-testing.com/ipfs-gateway.html).
 
 ```
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ See it in action on [Cloudflare Playground](https://www.cf-testing.com/ipfs-gate
 <body>
     <div class="container">
         <h1>Hello! <br>This website is hosted on IPFS and accessed via Cloudflare's gateway.</h1><br>
-        <p>More information on <a rel="noreferrer external" href="https://developers.cloudflare.com/distributed-web/ipfs-gateway" target="_blank">IPFS Gateway</a> or on <a rel="noreferrer external" href="https://www.cf-testing.com/ipfs-gateway.html" target="_blank">CF Playground</a></p>
+        <p>More information on <a rel="noreferrer external" href="https://developers.cloudflare.com/distributed-web/ipfs-gateway" target="_blank">IPFS Gateway</a> or on <a rel="noreferrer external" href="https://performance.cf-testing.com/ipfs-gateway.html" target="_blank">CF Playground</a></p>
     </div>
 </body>
 </html>
@@ -158,7 +158,7 @@ When you want to update your content, just repeat the steps we've outlined above
 
 ## Demo
 
-[Cloudflare Playground – IPFS Demo](https://www.cf-testing.com/ipfs-gateway.html)
+[Cloudflare Playground – IPFS Demo](https://performance.cf-testing.com/ipfs-gateway.html)
 
 * * *
 
