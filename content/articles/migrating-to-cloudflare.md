@@ -20,16 +20,29 @@ After joining Cloudflare in April 2021, I recognized the amazing potential of [C
 
 ## My Personal Website
 
+### Prep
+
+All my web content is located on my [GitHub repository](https://github.com/DavidJKTofan/davidtofan.com) – you can create one for free today.
+
+This can also be a simple `index.html` file, and Cloudflare Pages will deploy and render it.
+
+If you rather want to use a template, here a few interesting ones:
+- https://www.w3schools.com/w3css/w3css_templates.asp
+- https://html5up.net/
+- https://freehtml5.co/
+
+However, for this specific migration and my personal website, I used [Hugo](https://gohugo.io/) as [Jamstack](https://jamstack.org/generators/hugo/) framework.
+
 ### Step 0: Cloudflare Pages
 
-First, I created a FREE account on Cloudflare, and connected my GitHub repository with Cloudflare Pages.
+First, I created a FREE account on Cloudflare, and connected my [GitHub repository](https://github.com/DavidJKTofan/davidtofan.com) with Cloudflare Pages.
 
 I had to tweak the deployment a little by adding the build command:
 ```
 hugo --gc --minify -b https://YOUR_DOMAIN.com/
 ```
 
-Additionally, I had to set an Environment Variable:
+Additionally, I had to set an Environment Variable to use the right version:
 ```
 HUGO_VERSION   0.80.0
 ```
