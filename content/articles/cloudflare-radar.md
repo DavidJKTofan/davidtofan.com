@@ -1,0 +1,54 @@
+---
+title: Cloudflare Data Localization
+date: 2022-01-24
+images: 
+- /media/articles/cloudflare-radar.png
+tags:
+  - Security
+  - Privacy
+  - Cloudflare
+  - CyberSec
+  - Data
+  - Radar
+categories:
+  - Privacy
+---
+
+Let's take a look at the [Cloudflare Radar](https://radar.cloudflare.com/).
+
+* * *
+* * *
+
+# Cloudflare Radar
+
+The Cloudflare Radar shares insights on data and attack trends across the Cloudflare network.
+
+_Each second, Cloudflare handles on average 18 million HTTP requests and 6 million DNS requests. With 1 billion unique IP addresses connecting to Cloudflare’s network we have one of the most representative views on Internet traffic worldwide._
+
+_And by blocking 72 billion cyberthreats every day Cloudflare also has a unique position in understanding and mitigating Internet threats._ – Source: [Introducing Cloudflare Radar](https://blog.cloudflare.com/introducing-cloudflare-radar/)
+
+Check it out and see if you can find your own website: [davidtofan.com](https://radar.cloudflare.com/domain/davidtofan.com)
+
+## DDoS attack trends
+
+Another interesting thing, every Quarter, Cloudflare releases a report on the latest [DDoS attack trends](https://radar.cloudflare.com/notebooks/ddos).
+
+![Network-layer DDoS attacks: Distribution by duration](/media/articles/cloudflare-radar-network-layer-ddos-attack-chart.png)
+
+_Image Source: [DDoS attack trends](https://radar.cloudflare.com/notebooks/ddos)_
+
+## Future Improvements
+
+It would be great to see more data become available at some point in the future, as well as to be able to use that data via API – essentially an open / public API.
+
+Stay tuned for updates!
+
+## Help Improve
+
+Go to [https://radar.cloudflare.com/categorization-feedback/](https://radar.cloudflare.com/categorization-feedback/) in order to provide Domain Categorization Feedback.
+
+* * *
+
+## Disclaimer
+
+Educational purposes only, and this blog post does not necessarily reflect the opinions of Cloudflare. This is not legal advice. There are many more aspects to Cloudflare and its products and services – this is merely a brief educational intro. Properly inform yourself, keep learning, keep testing, and feel free to share your learnings and experiences as I do. Hope it was helpful! Images are online and publicly accessible.
