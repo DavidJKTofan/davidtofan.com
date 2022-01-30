@@ -1,5 +1,5 @@
 ---
-title: Cloudflare Data Localization
+title: Cloudflare Radar
 date: 2022-01-24
 images: 
 - /media/articles/cloudflare-radar.png
