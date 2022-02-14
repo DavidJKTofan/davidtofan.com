@@ -233,7 +233,8 @@ Use the filter below to check out your logs:
 {job="<YOUR_LOKI_JOB_NAME>"} | json | __error__ = ""
 ```
 
-There are a few interesting templates out there, such as [Grafana Loki Dashboard for NGINX Service Mesh](https://grafana.com/grafana/dashboards/12559). However, feel free to create your own too.
+There are a few interesting Dashboard templates out there, such as [Grafana Loki Dashboard for NGINX Service Mesh](https://grafana.com/grafana/dashboards/12559). 
+However, feel free to create your own too.
 
 * * *
 
