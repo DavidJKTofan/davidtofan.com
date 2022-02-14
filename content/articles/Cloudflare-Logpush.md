@@ -240,7 +240,7 @@ However, feel free to create your own too.
 
 This is how the Grafana Dashboard should more or less look like:
 
-![Grafana Dashboard Example](/static/media/articles/logpush-grafana-dashboard.png)
+![Grafana Dashboard Example](/media/articles/logpush-grafana-dashboard.png)
 
 * * *
 
