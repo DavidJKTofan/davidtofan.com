@@ -222,7 +222,7 @@ curl --location --request POST 'https://api.cloudflare.com/client/v4/zones/<ZONE
 
 ## Cloudflare Dashboard
 
-If everything worked, a new Logpush Job should appear on your [Cloudflare Dashboard > Analytics > Logs tab](https://dash.cloudflare.com/?to=/:account/:zone/analytics/logs).
+If everything worked, a new Logpush Job should appear on your [Cloudflare Dashboard &#x3e; Analytics &#x3e; Logs tab](https://dash.cloudflare.com/?to=/:account/:zone/analytics/logs).
 
 ## Grafana Cloud
 
@@ -236,11 +236,19 @@ Use the filter below to check out your logs:
 There are a few interesting Dashboard templates out there, such as [Grafana Loki Dashboard for NGINX Service Mesh](https://grafana.com/grafana/dashboards/12559). 
 However, feel free to create your own too.
 
+## Result
+
+This is how the Grafana Dashboard should more or less look like:
+
+![Grafana Dashboard Example](/static/media/articles/logpush-grafana-dashboard.png)
+
 * * *
 
 # Analytics Integrations
 
 Additionally, there is a variety of [Analytics Integrations](https://developers.cloudflare.com/fundamentals/data-products/analytics-integrations) to use.
+
+Cloudflare is working hard to integrate more things, and make it easier to connect to their Logpush.
 
 * * *
 

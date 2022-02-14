@@ -17,6 +17,8 @@ This is a brief introduction to [Cloudflare Data Localization Suite](https://www
 
 Check out Matthew Prince, co-founder and CEO at Cloudflare, talking about *"giving company regional distribution controls on customer data"* [on Bloomberg Technology](https://youtu.be/FWO7HQrMyzI).
 
+You can find more detailed information on the [Support Page](https://support.cloudflare.com/hc/en-us/articles/360061946171-Data-Localization-Suite), specifically also what products are covered.
+
 * * *
 * * *
 
@@ -43,7 +45,7 @@ _[Keyless SSL](https://www.cloudflare.com/ssl/keyless-ssl/) "allows security-con
 ![How Keyless SSL Works Diagram](/media/Cloudflare/keyless-ssl-diagram-how-keyless-ssl-works.svg)
 _<caption>Image source: [Overview of Keyless SSL](https://www.cloudflare.com/ssl/keyless-ssl/).</caption>_
 
-It allows organizations to store and manage their own SSL private keys for use with Cloudflare on any external infrastructure of their choosing.
+It allows organizations to store and manage their own SSL private keys for use with Cloudflare on any external infrastructure of their choosing. Cloudflare never has possession of the private key material at all.
 
 More information can be found on the [Dev Docs](https://developers.cloudflare.com/ssl/keyless-ssl).
 
@@ -51,7 +53,7 @@ More information can be found on the [Dev Docs](https://developers.cloudflare.co
 
 [Geo Key Manager](https://blog.cloudflare.com/scaling-geo-key-manager/) allows organizations to choose where they store their TLS certificate private keys.
 
-This is similar to Keyless SSL, with the difference that you get granular control over which locations should store the keys. For example, an organization can choose for the private keys required for inspection of traffic to only be accessible inside data centers located in the specified region.
+This is similar to Keyless SSL, with the difference that you get granular control over which locations should store the keys, which never leave the specified location/region. For example, an organization can choose for the private keys required for inspection of traffic to only be accessible inside data centers located in the specified region.
 
 One can set this up by going on the Cloudflare Dashboard > ```SSL/TLS``` > ```Edge Certificates``` > ```Upload Custom SSL Certificate```.
 
