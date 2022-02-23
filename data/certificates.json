@@ -497,6 +497,20 @@
     "date": "Sep 2014"
   },
   {
+    "name": "Paragliding Beginner Course",
+    "organization": "Club Aire Libre Liébana",
+    "link": "",
+    "icon": "",
+    "date": "Sep 2014"
+  },
+  {
+    "name": "Ultra Sierra Nevada 65KM FINISHER",
+    "organization": "Ultra Sierra Nevada Team",
+    "link": "",
+    "icon": "",
+    "date": "Sep 2014"
+  },
+  {
     "name": "Human Trafficking",
     "organization": "The Ohio State University, Coursera",
     "link": "https://drive.google.com/file/d/1NxnNRnJXjtnr7XOcostXLaXIMq4umxKY/view",
@@ -516,5 +530,19 @@
     "link": "https://drive.google.com/file/d/1PLkn8cMAc_l468CNUZU6Uaxu_zSBiyZd/view",
     "icon": "",
     "date": "Nov 2013"
+  },
+  {
+    "name": "Strongman Fisherman 2013 FINISHER",
+    "organization": "Fisherman's Friend StrongmanRun",
+    "link": "",
+    "icon": "",
+    "date": "May 2013"
+  },
+  {
+    "name": "Strongman Fisherman 2012 FINISHER",
+    "organization": "Fisherman's Friend StrongmanRun",
+    "link": "",
+    "icon": "",
+    "date": "May 2012"
   }
 ]
