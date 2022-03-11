@@ -1,6 +1,6 @@
 ---
 title: Cloudflare Cyber Readiness Guide
-date: 2022-03-12
+date: 2022-03-14
 images: 
 - /media/articles/cloudflare-cyber-readiness-guide.png
 tags:
