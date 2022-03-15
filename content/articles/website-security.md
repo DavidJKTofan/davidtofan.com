@@ -176,6 +176,8 @@ _Source for Cloudflare: Thanks to [maxchadwick](https://maxchadwick.xyz/blog/clo
 
 _Alternatively, check out this article: [GeekFlare](https://geekflare.com/de/cloudflare-workers-secure-headers/)_
 
+Definitely also check out [Cloudflare Zaraz supports CSP](https://blog.cloudflare.com/cloudflare-zaraz-supports-csp/).
+
 ### Report URI
 
 _"Report URI provides real-time security reporting for your site."_

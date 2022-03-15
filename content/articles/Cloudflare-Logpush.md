@@ -250,6 +250,8 @@ Additionally, there is a variety of [Analytics Integrations](https://developers.
 
 Cloudflare is working hard to integrate more things, and make it easier to connect to their Logpush.
 
+Check out [Get full observability into your Cloudflare logs with New Relic](https://blog.cloudflare.com/announcing-the-new-relic-direct-log-integration/).
+
 * * *
 
 # Disclaimer
