@@ -13,7 +13,7 @@ categories:
   - Insights
 ---
 
-# Logpush
+## Logpush
 
 [Logpush](https://developers.cloudflare.com/logs/about) allows you to _"push logs of Cloudflare's datasets to your cloud service in batches"_.
 
@@ -26,9 +26,9 @@ In this post, we will be taking a look at how to send logs to a [Grafana Loki](h
 * * *
 * * *
 
-# Logpush to Grafana Loki EndpointGrafana
+## Logpush to Grafana Loki EndpointGrafana
 
-## Set up Grafana
+### Set up Grafana
 
 Go to [Grafana](https://grafana.com/) and set up a free account.
 
@@ -36,7 +36,7 @@ On your Grafana Cloud Stack, go on Configuration > Data Sources > Add data sourc
 
 Configure your HTTP URL (like i.e. `https://logs-prod-eu-west-0.grafana.net`) and Basic Auth, as well as configuring your Basic Auth Details.
 
-## Create a Worker
+### Create a Worker
 
 Create a new Worker with [Cloudflare Wrangler](https://developers.cloudflare.com/workers/cli-wrangler/commands):
 ```
@@ -56,7 +56,7 @@ usage_model = "unbound"
 
 _NOTE: you need to have Workers Unbound enabled on your Cloudflare Account._
 
-### Dependencies
+#### Dependencies
 
 Depending on your system, you might have to install `node` and `xcode`, as well as (optionally) `jq`:
 ```
@@ -70,7 +70,7 @@ Install the `pako` npm package to decompress incoming files:
 npm i pako
 ```
 
-### Index.js
+#### Index.js
 
 Edit the `index.js` file:
 ```
@@ -156,7 +156,7 @@ async function handleRequest(request) {
 }
 ```
 
-### Grafana Loki Endpoint
+#### Grafana Loki Endpoint
 
 Create an environment variable with the URL – such as for example `https://logs-prod-eu-west-0.grafana.net/loki/api/v1/push` – to your [Loki Endpoint](https://grafana.com/docs/loki/latest/api/):
 ```
@@ -170,7 +170,7 @@ wrangler publish
 
 _Make sure you are getting a **"✨ Success!"** message from the wrangler commands!_
 
-### Log Retention
+#### Log Retention
 
 Check if [Log Retention](https://developers.cloudflare.com/logs/logpull/enabling-log-retention) is enabled:
 ```
@@ -190,7 +190,7 @@ curl -sv \
     "https://api.cloudflare.com/client/v4/zones/<ZONE_ID>/logs/received?start=2021-08-02T10:00:00Z&end=2021-08-02T10:01:00Z&fields=RayID,EdgeStartTimestamp" | jq .
 ```
 
-### Logpush Job
+#### Logpush Job
 
 Make sure to change the following details:
 * `<ZONE_ID>` (located in the Overview tab for the chosen domain)
@@ -220,11 +220,11 @@ curl --location --request POST 'https://api.cloudflare.com/client/v4/zones/<ZONE
 }' | jq .
 ```
 
-## Cloudflare Dashboard
+### Cloudflare Dashboard
 
 If everything worked, a new Logpush Job should appear on your [Cloudflare Dashboard &#x3e; Analytics &#x3e; Logs tab](https://dash.cloudflare.com/?to=/:account/:zone/analytics/logs).
 
-## Grafana Cloud
+### Grafana Cloud
 
 On your Grafana Cloud, go to your Explore tab and select your Loki data source.
 
@@ -236,7 +236,7 @@ Use the filter below to check out your logs:
 There are a few interesting Dashboard templates out there, such as [Grafana Loki Dashboard for NGINX Service Mesh](https://grafana.com/grafana/dashboards/12559). 
 However, feel free to create your own too.
 
-## Result
+### Result
 
 This is how the Grafana Dashboard should more or less look like:
 
@@ -244,13 +244,13 @@ This is how the Grafana Dashboard should more or less look like:
 
 * * *
 
-# Analytics Integrations
+## Analytics Integrations
 
 Additionally, there is a variety of [Analytics Integrations](https://developers.cloudflare.com/fundamentals/data-products/analytics-integrations) to use.
 
 Cloudflare is working hard to integrate more things, and make it easier to connect to their Logpush.
 
-## New Relic
+### New Relic
 
 Additionally, check out [Get full observability into your Cloudflare logs with New Relic](https://blog.cloudflare.com/announcing-the-new-relic-direct-log-integration/).
 
@@ -258,7 +258,7 @@ Additionally, check out [Get full observability into your Cloudflare logs with N
 
 * * *
 
-# Disclaimer
+## Disclaimer
 
 This guide was inspired by a colleague – all crediting goes to him. 🤓
 

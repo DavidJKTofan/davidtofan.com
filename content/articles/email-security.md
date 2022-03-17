@@ -102,6 +102,8 @@ More info can be found here:
 
 Find more information here: [Tackling Email Spoofing and Phishing](https://blog.cloudflare.com/tackling-email-spoofing/) and [Easily creating and routing email addresses with Cloudflare Email Routing](https://blog.cloudflare.com/introducing-email-routing/)
 
+**FEBRUARY 2022 UPDATE:** Cloudflare acquired Area 1 and is integrating it's technology and solutions to it's own stack. More info here: [Why we are acquiring Area 1](https://blog.cloudflare.com/why-we-are-acquiring-area-1/)
+
 
 ## Disclaimer
 

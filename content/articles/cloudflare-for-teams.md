@@ -1,5 +1,5 @@
 ---
-title: Cloudflare for Teams
+title: Cloudflare Zero Trust
 date: 2021-05-26
 images: 
 - /media/articles/cloudflare-for-teams.png
@@ -14,6 +14,8 @@ categories:
 
 Welcome to a brief introduction to Cloudflare for Teams.
 
+UPDATE 2022: now renamed to "**Cloudflare Zero Trust**".
+
 * * *
 
 ## Cloudflare One
@@ -23,19 +25,19 @@ Welcome to a brief introduction to Cloudflare for Teams.
 1. Zero Trust Security Solution Set
 2. Connectivity and Network Security
 
-Part of the Zero Trust solution is **Cloudflare for Teams**, which I'd like to introduce today.
+Part of the Zero Trust solution is **Cloudflare for Teams** (renamed to **Cloudflare Zero Trust** in 2022), which I'd like to introduce today.
 
-### Cloudflare for Teams
+### Cloudflare Zero Trust
 
-[Cloudflare for Teams](https://www.cloudflare.com/teams/) is divided into three solutions:
+[Cloudflare Zero Trust](https://www.cloudflare.com/products/zero-trust/) is divided into three solutions:
 
 -   **Gateway**: operates between a company's employees and the Internet.
 -   **Access**: secures access to applications.
 -   **Browser Isolation**: executes active webpage content in a secure isolated browser away from local or on-premise networks and endpoints, insulating devices from attacks.
 
-The official Developer Docs can be found here: [Cloudflare for Teams documentation](https://developers.cloudflare.com/cloudflare-one/)
+The official Developer Docs can be found here: [Cloudflare Zero Trust documentation](https://developers.cloudflare.com/cloudflare-one/)
 
-Take a [self-guided tour](https://www.cloudflare.com/teams/self-guided-tour-of-zero-trust-platform/) of Cloudflare’s Zero Trust platform.
+Take a [self-guided tour](https://www.cloudflare.com/products/zero-trust/interactive-demo/) of Cloudflare’s Zero Trust platform.
 
 * * *
 
@@ -62,7 +64,7 @@ In order to access my Droplet's NGINX content, I set a type A DNS record on my C
 
 ## Cloudflare Access
 
-Let's get started with Cloudflare for Teams and how to set up Access.
+Let's get started with Cloudflare Zero Trust and how to set up Access.
 
 ### cloudflared
 
@@ -183,7 +185,7 @@ _Once enabled, when users authenticate and visit the URL of the application, Clo
 
 If you are using Public key authentication for SSH on your Droplet, then the following method would make sense to make it easier for users to login: any authenticated user can access my Droplet through SSH without the necessary Public/Private Keys installed on their device by [configuring short-lived certificates](https://developers.cloudflare.com/cloudflare-one/identity/users/short-lived-certificates).
 
-First I had to generate a short-lived certificate Public Key on the Cloudflare for Teams dashboard (Configuration > Service Auth).
+First I had to generate a short-lived certificate Public Key on the Cloudflare Zero Trust dashboard (Configuration > Service Auth).
 
 Then I copy-pasted the Public Key on a new file called `ca.pub` on my Droplet:
 
@@ -219,9 +221,11 @@ This is Cloudflare's Secure Web Gateway (SWG) solution, which allows you to set 
 
 DNS policies work by simply replacing your router's or devices' DNS servers with Cloudflare's, and Network and HTTP policies work by installing [Cloudflare's Root Certificate](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/install-cloudflare-cert) and a small client called [WARP](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment).
 
-Part of the WARP client is the add-on Browser Isolation, which _"complements the Teams Secure Web Gateway and Zero Trust Network Access solutions by executing active webpage content in a secure isolated browser"_.
+Part of the WARP client is the add-on Browser Isolation, which _"complements the Secure Web Gateway and Zero Trust Network Access solutions by executing active webpage content in a secure isolated browser"_.
 
 Nonetheless, Cloudflare recently introduced [Clientless Web Isolation](https://blog.cloudflare.com/introducing-clientless-web-isolation-beta/), meaning that you can use Browser Isolation without WARP installed on your device.
+
+More info on [Clientless Web Isolation](https://developers.cloudflare.com/cloudflare-one/policies/browser-isolation/clientless-browser-isolation/) on the DevDocs.
 
 * * *
 
@@ -254,7 +258,7 @@ _Note: [cloudflare-ufw](https://github.com/Paul-Reed/cloudflare-ufw/blob/master/
 
 ## Disclaimer
 
-This is a very general introduction to Cloudflare and [Cloudflare for Teams](https://www.cloudflare.com/teams/). Educational purposes only, and this blog post does not necessarily reflect the opinions of Cloudflare. There are many more aspects to Cloudflare and its products and services – this is merely a brief educational intro. Properly inform yourself, keep learning, keep testing, and feel free to share your learnings and experiences as I do. Hope it was helpful! Images are online and publicly accessible.
+This is a very general introduction to Cloudflare and [Cloudflare Zero Trust](https://www.cloudflare.com/products/zero-trust/). Educational purposes only, and this blog post does not necessarily reflect the opinions of Cloudflare. There are many more aspects to Cloudflare and its products and services – this is merely a brief educational intro. Properly inform yourself, keep learning, keep testing, and feel free to share your learnings and experiences as I do. Hope it was helpful! Images are online and publicly accessible.
 
 * * * *
 

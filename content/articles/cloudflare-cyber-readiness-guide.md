@@ -13,7 +13,7 @@ categories:
   - Security
 ---
 
-# Cyber Readiness Guide
+## Cyber Readiness Guide
 
 Cloudflare and many other companies/organizations/groups offer a variety of guides which prescribe a defense-in-depth approach or/and general cybersecurity best practices.
 
@@ -29,7 +29,7 @@ If you want to **protect yourself** as an individual or your family:
 * Check out my blog post [Protect yourself from Phishing](https://davidtofan.com/articles/protect-against-phishing/).
 * Stay properly informed and aware of the online tools you use, but keep calm and relax – too much screen time cannot be good.
 
-## Cloudflare Guides
+### Cloudflare Guides
 
 - [Considerations for enhancing cyber-readiness](https://www.cloudflare.com/lp/cyberattackreadiness/)
 - [Rapidly Improving Cyber Readiness for US Critical Infrastructure](https://criticalinfrastructuredefense.org/)

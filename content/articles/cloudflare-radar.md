@@ -19,7 +19,7 @@ Let's take a look at the [Cloudflare Radar](https://radar.cloudflare.com/).
 * * *
 * * *
 
-# Cloudflare Radar
+## Cloudflare Radar
 
 The Cloudflare Radar shares insights on data and attack trends across the Cloudflare network.
 
@@ -29,7 +29,7 @@ _And by blocking 72 billion cyberthreats every day Cloudflare also has a unique 
 
 Check it out and see if you can find your own website: [davidtofan.com](https://radar.cloudflare.com/domain/davidtofan.com)
 
-## DDoS attack trends
+### DDoS attack trends
 
 Another interesting thing, every Quarter, Cloudflare releases a report on the latest [DDoS attack trends](https://radar.cloudflare.com/notebooks/ddos).
 
@@ -37,13 +37,19 @@ Another interesting thing, every Quarter, Cloudflare releases a report on the la
 
 _Image Source: [DDoS attack trends](https://radar.cloudflare.com/notebooks/ddos)_
 
-## Future Improvements
+### Verified Bots
+
+Cloudflare published a more detailed list on [Verified Bots](https://radar.cloudflare.com/verified-bots) on Cloudflare Radar.
+
+The data on the list is updated in real time, and we'll be able to see [Bot Tags](https://developers.cloudflare.com/bots/concepts/cloudflare-bot-tags/), which provide more _detail about why Cloudflare assigned a bot score to a request_.
+
+### Future Improvements
 
 It would be great to see more data become available at some point in the future, as well as to be able to use that data via API – essentially an open / public API.
 
 Stay tuned for updates!
 
-## Help Improve
+### Help Improve
 
 Go to [https://radar.cloudflare.com/categorization-feedback/](https://radar.cloudflare.com/categorization-feedback/) in order to provide Domain Categorization Feedback.
 
