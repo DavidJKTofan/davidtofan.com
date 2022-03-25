@@ -70,6 +70,8 @@ Let's get started with Cloudflare Zero Trust and how to set up Access.
 
 Cloudflare Daemon – or `cloudflared` – is the software that powers Cloudflare Tunnel. `cloudflared` runs alongside origin servers to connect to Cloudflare's network, as well as client devices for non-HTTP traffic from user endpoints.
 
+**MARCH 2022 UPDATE:** You can now easily do a remote setup of the Cloudflare Tunnel [via the Dashboard](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/).
+
 #### Install cloudflared
 
 I downloaded and unpacked the `cloudflared` daemon on the Droplet server:
