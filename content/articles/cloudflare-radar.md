@@ -43,6 +43,12 @@ Cloudflare published a more detailed list on [Verified Bots](https://radar.cloud
 
 The data on the list is updated in real time, and we'll be able to see [Bot Tags](https://developers.cloudflare.com/bots/concepts/cloudflare-bot-tags/), which provide more _detail about why Cloudflare assigned a bot score to a request_.
 
+### ASN
+
+Cloudflare opens up more data, specifically data about [Autonomous System Numbers (ASN)](https://blog.cloudflare.com/asn-on-radar/): _"a group of routable IP prefixes belonging to a single entity, and is one of the key building blocks of the Internet"_.
+
+`https://radar.cloudflare.com/asn/<number>`
+
 ### Future Improvements
 
 It would be great to see more data become available at some point in the future, as well as to be able to use that data via API – essentially an open / public API.
