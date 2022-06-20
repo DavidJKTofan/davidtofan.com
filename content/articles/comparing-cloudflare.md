@@ -11,6 +11,17 @@ categories:
 draf: true
 ---
 
+## Cloudflare One
+
+"[Cloudflare One Week](https://blog.cloudflare.com/cloudflare-one-week-2022/)" is one of the several innovation weeks that Cloudflare organizes every year to highlight new product announcements, beta products opening up to general availability, and share how their users and customers are using Cloudflare to help build a better Internet.
+
+> _We believe in Zero Trust Architecture so strongly that we worked with security experts to build a **vendor-agnostic guide** to implementing Zero Trust_
+
+Check it out here: **https://zerotrustroadmap.org/**
+
+All Cloudflare's solutions related to Zero Trust and SASE are mapped out here: [Zero Trust, SASE and SSE: foundational concepts for your next-generation network](https://blog.cloudflare.com/zero-trust-sase-and-sse-foundational-concepts-for-your-next-generation-network/)
+
+
 ## Comparison Table
 
 |  | **Cloudflare** | **Akamai** | **Zscaler** | **Cisco** | **Netskope** |
