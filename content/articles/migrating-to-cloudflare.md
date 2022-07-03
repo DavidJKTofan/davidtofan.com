@@ -59,6 +59,8 @@ CNAME   davidtofan.com    CLOUDFLARE-PAGES.pages.dev   Auto
 CNAME   www               CLOUDFLARE-PAGES.pages.dev   Auto
 ```
 
+_Note: it's recomended to use [Page Rules](https://developers.cloudflare.com/pages/how-to/www-redirect/) to redirect `www` to the domain apex when using Cloudflare Pages.
+
 Make sure that there are orange cloud icons ![Cloudflare Icon](/media/Cloudflare/cloudflare-orange-cloud.webp) next to the DNS records, which mean that traffic to those hostnames is running / proxied through Cloudflare.
 
 Some other benefits of the orange cloud DNS records are:
