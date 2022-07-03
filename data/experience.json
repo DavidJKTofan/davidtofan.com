@@ -1,10 +1,18 @@
 [
   {
     "name": "Cloudflare",
+    "description": "Solutions Engineer",
+    "link": "https://www.cloudflare.com/network/",
+    "icon": "",
+    "date": "Jul 2022 - today",
+    "location": "Munich, DE"
+  },
+  {
+    "name": "Cloudflare",
     "description": "Business Development Representative",
     "link": "https://www.cloudflare.com/",
     "icon": "",
-    "date": "Apr 2021 - today",
+    "date": "Apr 2021 - Jun 2022",
     "location": "Munich, DE"
   },
   {
