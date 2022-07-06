@@ -4,7 +4,7 @@ title = "Personal Website | David Tofan"
 theme = "digitalgarden"
 
 disableHugoGeneratorInject = true
-enableRobotsTXT = true
+enableRobotsTXT = false
 enableEmoji = true
 
 [sitemap]
