@@ -7,11 +7,12 @@
 
 Special thanks to all supporting entities/tools/softwares/packages/platforms/contributors... 🤓
 
-* Website deployed via [Cloudflare Pages](https://pages.cloudflare.com/)
+* Website deployed via [Cloudflare Pages](https://pages.cloudflare.com/) for FREE
 * Website built on [Hugo](https://gohugo.io/) with theme from [apvarun](https://github.com/apvarun/digital-garden-hugo-theme)
-* Graphics from myself - some built with [Canva](https://www.canva.com/) - or from [Unsplash](https://unsplash.com/)
+* Graphics from myself - some built with [Canva](https://www.canva.com/) - and some images from [Unsplash](https://unsplash.com/)
 * Icons from [Font Awesome](https://fontawesome.com/license)
-* Some code/scripts inspired by [Stack Overflow](https://stackoverflow.com/) or other online forums/discourse.
+* Some code/scripts inspired by [Stack Overflow](https://stackoverflow.com/) or other online forums/discourse
+* Automatically opening pull requests to fix known vulnerabilities in dependencies with [Snyk](https://snyk.io/)
 
 Unless otherwise specified, built with 🧡 by myself.
 
