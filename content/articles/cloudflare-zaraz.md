@@ -96,4 +96,4 @@ Alternatively, one can decide to turn off the [Auto-inject script](https://devel
 
 ## Disclaimer
 
-This is a very general introduction to Website security, specifically to Content Security Policy (CSP). Educational purposes only. There are many more aspects to website security which are not covered here, and all implementations might differ from situation to situation, technology to technology. Remember, you are responsible for your own actions – this is merely an educational intro. Properly inform yourself, keep learning, keep testing, and feel free to share your learnings and experiences as I do. Hope it was helpful!
+This is a very general introduction to Cloudflare Zaraz. Educational purposes only. Educational purposes only, and this blog post does not necessarily reflect the opinions of Cloudflare. There are many more aspects to Cloudflare and its products and services – this is merely a brief educational intro. Properly inform yourself, keep learning, keep testing, and feel free to share your learnings and experiences as I do. Hope it was helpful! Images are online and publicly accessible.
