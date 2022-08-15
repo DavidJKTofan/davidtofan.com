@@ -2,12 +2,12 @@
 title: GoogleMaps Travel List
 date: 2021-12-01
 images:
-- /media/portfolio/google-travel-lists.png
+  - /media/portfolio/google-travel-lists.png
 description: My GoogleMaps Travel Lists to explore some new places around the globe.
 website: ""
 aliases:
-    - /projects/google-travel-lists/
-    - /travel/
+  - /projects/google-travel-lists/
+  - /travel/
 ---
 
 During some of my journeys around the globe I try to remember the places that impacted me the most – _must-see places_ –, or simply places that I had fun seeing/visiting, or even got recommended by friends and locals. Therefore, I created a series of GoogleMaps Lists which I would like to share with you and your friends.
@@ -133,6 +133,18 @@ Work in progress...
         <div class="button-class">Iceland</div>
     </div>
     </a>
+    <a href="https://goo.gl/maps/ayVeY3vubnoMDRhK6" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/turkey.webp" alt="Turkey">
+        <div class="button-class">Türkiye</div>
+    </div>
+    </a>
+    <a href="https://goo.gl/maps/D8Fo9d9fbXcT25CM8" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/morocco.webp" alt="Morocco">
+        <div class="button-class">Morocco</div>
+    </div>
+    </a>
   </div>
 
   <div class="travel_column_img_grid">
@@ -160,6 +172,18 @@ Work in progress...
         <div class="button-class">Florence</div>
     </div>
     </a>
+    <a href="https://goo.gl/maps/UrjF3Yw5TazsLQPv9" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/milan-italy.webp" alt="Milan">
+        <div class="button-class">Milan</div>
+    </div>
+    </a>
+    <a href="https://goo.gl/maps/2tC9w1GtTQB1LPaFA" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/parma-italy.webp" alt="Parma">
+        <div class="button-class">Parma</div>
+    </div>
+    </a>
     <a href="https://goo.gl/maps/8QbYc92sPVZwr8MLA" target="_blank" rel="noreferrer nofollow external">
     <div class="travel_container_img_grid">
       <img src="/media/gmaps-images/berlin.webp" alt="Berlin">
@@ -173,6 +197,12 @@ Work in progress...
     <div class="travel_container_img_grid">
       <img src="/media/gmaps-images/cadiz-spain.webp" alt="Cadiz">
         <div class="button-class">Cádiz</div>
+    </div>
+    </a>
+    <a href="https://goo.gl/maps/mkBBDkF7Qhfo8A5TA" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/malaga-spain.webp" alt="Malaga">
+        <div class="button-class">Málaga</div>
     </div>
     </a>
     <a href="https://goo.gl/maps/uVDZCEa1vLotgps78" target="_blank" rel="noreferrer nofollow external">
@@ -224,6 +254,12 @@ Work in progress...
     <div class="travel_container_img_grid">
       <img src="/media/gmaps-images/paris-france.webp" alt="Paris">
         <div class="button-class">Paris</div>
+    </div>
+    </a>
+    <a href="https://goo.gl/maps/H7mSw7aMbakJ5EgW8" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/biarritz-france.webp" alt="Biarritz">
+        <div class="button-class">Biarriz</div>
     </div>
     </a>
     <a href="https://goo.gl/maps/KAUGawBPehRiiXxf8" target="_blank" rel="noreferrer nofollow external">
