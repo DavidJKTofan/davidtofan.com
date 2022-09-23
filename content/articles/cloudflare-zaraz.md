@@ -67,6 +67,8 @@ An example for a **Custom HTML** Tool Action with PageView Trigger to load **Goo
 </script>
 ```
 
+Alternatively, another example illustrated [here](https://github.com/cloudflare/templates/tree/main/examples/fast-google-fonts) by using Cloudflare Workers.
+
 ### Custom System Properties and Triggers
 
 Setting the rule type `Match rule` with variable `{{ system.page.url.pathname }}`, match operation `Starts with`, and match string i.e. `/index`, allows a tool to be triggered on specific URL pathnames.
@@ -91,6 +93,10 @@ Alternatively, one can decide to turn off the [Auto-inject script](https://devel
   </body>
 </html>
 ```
+
+## Check out Zaraz in action! 
+
+[Cloudflare Zaraz Demo](https://performance.cf-testing.com/zaraz.html).
 
 * * * *
 
