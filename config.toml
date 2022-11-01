@@ -15,7 +15,7 @@ enableEmoji = true
 [Params]
   description = "David Tofan's personal website, illustrating his experience as an Entrepreneur and Digital Consultant, as well as promoting his projects and travels."
   images = ['/media/website_thumbnail.png']
-  googleTagManager = "GTM-PD4GZXJ"
+  googleTagManager = "" #GTM-PD4GZXJ
 
 [menu]
 [[menu.main]]
