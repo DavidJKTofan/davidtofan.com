@@ -6,6 +6,8 @@ images:
 tags:
   - Security
   - CyberSec
+  - Privacy
+  - Cloudflare
 categories:
   - Security
   - Privacy
