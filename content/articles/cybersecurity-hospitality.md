@@ -22,7 +22,7 @@ Even hotels/hostels/aparthotels or any other business in the hospitality industr
 To briefly point out the obvious again: your websites and servers require cybersecurity.
 
 You can get started with advanced security and performance by setting up the [Cloudflare Business Plan](https://www.cloudflare.com/plans/business/) for only $200/month. 
-Go check it out today! However, take into account that it's a self-server plan, meaning that you will have to set up everything yourself.
+Go check it out today! However, take into account that it's a self-serve plan, meaning that you will have to set up everything yourself.
 
 If you require support, and enterprise-grade and customizable solutions, as well as [Data Localization Suite](https://www.cloudflare.com/data-localization/) – to control on a technical-level that visitor traffic's metadata which can identify a customer stays in the EU, and TLS termination and inspection happens only in EU data centers –, then get in touch with the Cloudflare team to talk about the [Enterprise Plan](https://www.cloudflare.com/enterprise/).
 
@@ -35,7 +35,7 @@ As an overview, the Enterprise Plan includes (among several other things):
 
 ### Compliance
 
-In terms of compliance, most often many hospitality businesses are faced with the challenge of using (or not using) Google products, especially Google Analytics or Google Fonts.
+In terms of compliance, most often many hospitality businesses are faced with the challenges of using (or not using) Google products, especially Google Analytics or Google Fonts.
 
 See the overview of Cloudflare's [certifications and compliance resources](https://www.cloudflare.com/trust-hub/compliance-resources/).
 
