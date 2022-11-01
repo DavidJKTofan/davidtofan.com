@@ -60,6 +60,14 @@ Technically, you are allowed to use Google Fonts, if the website user has given 
 
 Choose one option and stay up to date with the latest requirements and news.
 
+#### Google reCAPTCHA
+
+reCAPTCHA collects personal information and communicates with Google servers.
+
+Meet [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/): a user-friendly, privacy-preserving alternative to CAPTCHA.
+
+If you are already using reCAPTCHA today, [follow this tutorial to migrate](https://developers.cloudflare.com/turnstile/get-started/migrating-from-recaptcha/) seamlessly to Cloudflare Turnstile.
+
 ### Conclusion
 
 Get cybersecurity and performance, and achieve compliance within only a few hours, with the support of Cloudflare.
