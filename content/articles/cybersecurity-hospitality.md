@@ -21,13 +21,23 @@ Even hotels/hostels/aparthotels or any other business in the hospitality industr
 
 To briefly point out the obvious again: your websites and servers require cybersecurity.
 
-With the [Cloudflare Business Plan](https://www.cloudflare.com/plans/business/) for only $200/month, you can enjoy advanced security and performance. Go check it out today and get started within the hour!
+You can get started with advanced security and performance by setting up the [Cloudflare Business Plan](https://www.cloudflare.com/plans/business/) for only $200/month. 
+Go check it out today! However, take into account that it's a self-server plan, meaning that you will have to set up everything yourself.
 
-If you require enterprise-grade and customizable solutions, as well as [Data Localization Suite](https://www.cloudflare.com/data-localization/) – to also control on a technical-level that visitor traffic's metadata that can identify a customer stays in the EU, and TLS termination and inspection happens only in EU data centers –, then get in touch with the Cloudflare team to talk about the [Enterprise Plan](https://www.cloudflare.com/enterprise/).
+If you require support, and enterprise-grade and customizable solutions, as well as [Data Localization Suite](https://www.cloudflare.com/data-localization/) – to control on a technical-level that visitor traffic's metadata which can identify a customer stays in the EU, and TLS termination and inspection happens only in EU data centers –, then get in touch with the Cloudflare team to talk about the [Enterprise Plan](https://www.cloudflare.com/enterprise/).
+
+As an overview, the Enterprise Plan includes (among several other things):
+- 24/7/365 email & emergency phone support
+- Enterprise guided onboarding, training & continued 24/7/365 support
+- Dependable service level agreements (SLA) with 100% uptime
+- Advanced DDoS Protection
+- Access common compliance documentation for topics like PCI, SOC 2, ISO, and more
 
 ### Compliance
 
 In terms of compliance, most often many hospitality businesses are faced with the challenge of using (or not using) Google products, especially Google Analytics or Google Fonts.
+
+See the overview of Cloudflare's [certifications and compliance resources](https://www.cloudflare.com/trust-hub/compliance-resources/).
 
 #### Google Analytics
 
