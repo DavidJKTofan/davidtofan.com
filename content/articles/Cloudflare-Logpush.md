@@ -10,7 +10,7 @@ tags:
   - Logs
   - Analytics
 categories:
-  - Insights
+  - Developers
 ---
 
 ## Logpush

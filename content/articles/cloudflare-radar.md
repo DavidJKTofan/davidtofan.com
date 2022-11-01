@@ -27,19 +27,23 @@ _Each second, Cloudflare handles on average 18 million HTTP requests and 6 milli
 
 _And by blocking 72 billion cyberthreats every day Cloudflare also has a unique position in understanding and mitigating Internet threats._ – Source: [Introducing Cloudflare Radar](https://blog.cloudflare.com/introducing-cloudflare-radar/)
 
-Check it out and see if you can find your own website: [davidtofan.com](https://radar.cloudflare.com/domain/davidtofan.com)
+Meanwhile (as of August 2022), Cloudflare is blocking an average of 124 billion cyber threats per day.
+
+Check it out and see if you can find your own website: [davidtofan.com](https://radar.cloudflare.com/domains/domain/davidtofan.com)
+
+Furthermore, since **Alexa Rankings** is no more, say hi to the [Cloudflare Radar Domain Rankings](https://blog.cloudflare.com/radar-domain-rankings/), as well as the [Internet Outages Map](https://radar.cloudflare.com/outage-center).
 
 ### DDoS attack trends
 
-Another interesting thing, every Quarter, Cloudflare releases a report on the latest [DDoS attack trends](https://radar.cloudflare.com/notebooks/ddos).
+Another interesting thing, every Quarter, Cloudflare releases a report on the latest [DDoS attack trends](https://radar.cloudflare.com/reports?q=DDoS).
 
 ![Network-layer DDoS attacks: Distribution by duration](/media/articles/cloudflare-radar-network-layer-ddos-attack-chart.png)
 
-_Image Source: [DDoS attack trends](https://radar.cloudflare.com/notebooks/ddos)_
+_Image Source: [DDoS attack trends](https://radar.cloudflare.com/reports?q=DDoS)_
 
 ### Verified Bots
 
-Cloudflare published a more detailed list on [Verified Bots](https://radar.cloudflare.com/verified-bots) on Cloudflare Radar.
+Cloudflare published a more detailed list on [Verified Bots](https://radar.cloudflare.com/traffic/verified-bots) on Cloudflare Radar.
 
 The data on the list is updated in real time, and we'll be able to see [Bot Tags](https://developers.cloudflare.com/bots/concepts/cloudflare-bot-tags/), which provide more _detail about why Cloudflare assigned a bot score to a request_.
 
@@ -47,7 +51,7 @@ The data on the list is updated in real time, and we'll be able to see [Bot Tags
 
 Cloudflare opens up more data, specifically data about [Autonomous System Numbers (ASN)](https://blog.cloudflare.com/asn-on-radar/): _"a group of routable IP prefixes belonging to a single entity, and is one of the key building blocks of the Internet"_.
 
-`https://radar.cloudflare.com/asn/<number>`
+`https://radar.cloudflare.com/traffic/as3209`
 
 ### Future Improvements
 
@@ -57,7 +61,7 @@ Stay tuned for updates!
 
 ### Help Improve
 
-Go to [https://radar.cloudflare.com/categorization-feedback/](https://radar.cloudflare.com/categorization-feedback/) in order to provide Domain Categorization Feedback.
+Go to [radar.cloudflare.com/categorization-feedback](https://radar.cloudflare.com/categorization-feedback/) in order to provide Domain Categorization Feedback.
 
 * * *
 

@@ -27,6 +27,10 @@ Here some interesting reads:
 
 Several examples and best practices are described in the Zaraz Developer Docs in the [triggers and rules](https://developers.cloudflare.com/zaraz/reference/triggers/) section.
 
+One example for a URL Query Parameter Trigger is `Match rule- Query param: key - Contains - true`, meaning that if the URL has a query saying `key=true` then it would trigger. ("Remove URL query parameters" needs to be disabled on the Privacy Settings.)
+
+Furthermore, Zaraz offers relevant [Privacy Settings](https://developers.cloudflare.com/zaraz/reference/settings/#privacy).
+
 ### Google Analytics 4
 
 By going on the [Privacy](https://dash.cloudflare.com/?to=/:account/:zone/zaraz/settings) settings and toggling-on all those options, as well as toggling-on "Hide Originating IP Address" in the Tools' Settings of Google Analytics 4 itself ensures that you are taking a proactive approach towards privacy and some regulations and standards.
@@ -67,7 +71,11 @@ An example for a **Custom HTML** Tool Action with PageView Trigger to load **Goo
 </script>
 ```
 
-Alternatively, another example illustrated [here](https://github.com/cloudflare/templates/tree/main/examples/fast-google-fonts) by using Cloudflare Workers.
+_Note: this method does not allow you to apply Zaraz's privacy settings on Google Fonts._
+
+Another example to load Google Fonts fast is illustrated [here](https://github.com/cloudflare/templates/tree/main/examples/fast-google-fonts) by using Cloudflare Workers.
+
+If you are interested in blocking Google Fonts, you can find more info on the [Cloudflare Community](https://community.cloudflare.com/t/completely-block-google-fonts-from-loading/416440), or simply download the fonts from Google Fonts to your server and load them locally, to prevent visitors' IP addresses to be sent to the US.
 
 ### Custom System Properties and Triggers
 
@@ -97,6 +105,8 @@ Alternatively, one can decide to turn off the [Auto-inject script](https://devel
 ## Check out Zaraz in action! 
 
 [Cloudflare Zaraz Demo](https://performance.cf-testing.com/zaraz.html).
+
+Don't forget the [Consent Management platform](https://developers.cloudflare.com/zaraz/consent-management/).
 
 * * * *
 
