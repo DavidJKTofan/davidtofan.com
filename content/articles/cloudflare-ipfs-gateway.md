@@ -7,7 +7,6 @@ tags:
   - Blockchain
   - Cloudflare
   - CyberSec
-  - Blockchain
 categories:
   - Developers
 ---
@@ -23,7 +22,7 @@ More information on the [Dev Docs](https://developers.cloudflare.com/distributed
 
 ## index.html Example
 
-See it in action on [Cloudflare Playground](https://performance.cf-testing.com/ipfs-gateway.html).
+See it in action on [Cloudflare Playground](https://dweb.cf-testing.com/ipfs-gateway.html).
 
 ```
 <!DOCTYPE html>
@@ -128,7 +127,7 @@ ipfs daemon
 
 Add your content to IPFS:
 ```
-ipfs add -r /path/to/folder-with-your-content
+ipfs add -r /path/to/folder-with-your-content/index.html
 ```
 
 _Note: This will add your content to IPFS and give you back the hash of the directory._
@@ -158,7 +157,7 @@ When you want to update your content, just repeat the steps we've outlined above
 
 ## Demo
 
-[Cloudflare Playground – IPFS Demo](https://performance.cf-testing.com/ipfs-gateway.html)
+[Cloudflare Playground – IPFS Demo](https://dweb.cf-testing.com/ipfs-gateway.html)
 
 * * *
 

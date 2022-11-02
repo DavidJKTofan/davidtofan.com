@@ -86,6 +86,8 @@ Get cybersecurity and performance, and achieve compliance within only a few hour
 
 Interested in some [demos](https://www.cf-testing.com/)?
 
+Need help getting started with Cloudflare? Get a [personalized recommendation](https://www.cloudflare.com/about-your-website/).
+
 * * * *
 
 ## Disclaimer
