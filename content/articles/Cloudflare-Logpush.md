@@ -252,7 +252,7 @@ Cloudflare is working hard to integrate more things, and make it easier to conne
 
 ### New Relic
 
-Additionally, check out [Get full observability into your Cloudflare logs with New Relic](https://blog.cloudflare.com/announcing-the-new-relic-direct-log-integration/).
+Additionally, check out [Get full observability into your Cloudflare logs with New Relic](https://blog.cloudflare.com/announcing-the-new-relic-direct-log-integration/) to easily Logpush your logs to a New Relic Dashboard.
 
 ![New Relic Dashboard Example](/media/articles/logpush-newrelic-dashboard.png)
 
