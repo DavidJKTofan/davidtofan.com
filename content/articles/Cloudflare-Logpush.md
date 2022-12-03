@@ -170,6 +170,8 @@ wrangler publish
 
 _Make sure you are getting a **"✨ Success!"** message from the wrangler commands!_
 
+Alternatively, you can get started right from my [GitHub Repo](https://github.com/DavidJKTofan/logpush-grafana).
+
 #### Log Retention
 
 Check if [Log Retention](https://developers.cloudflare.com/logs/logpull/enabling-log-retention) is enabled:
