@@ -17,6 +17,8 @@ categories:
 
 All businesses in the hospitality industry, including hotels, hostels, and aparthotels, require cybersecurity. Actually, especially those, since they are dealing with lots of personal information on a daily basis.
 
+Even hotel management SaaS companies like [Cloudbeds](https://www.cloudbeds.com/cloudbeds-data-security/) are taking security seriously, and continuously improving their setup.
+
 ### Application Security
 
 To briefly point out the obvious again: your websites and servers require cybersecurity.
