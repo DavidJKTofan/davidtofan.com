@@ -15,18 +15,19 @@ categories:
 
 ## Cybersecurity in Hospitality
 
-Even hotels/hostels/aparthotels or any other business in the hospitality industry requires cybersecurity. Actually, especially those, since they are dealing with lots of personal information on a daily basis.
+All businesses in the hospitality industry, including hotels, hostels, and aparthotels, require cybersecurity. Actually, especially those, since they are dealing with lots of personal information on a daily basis.
 
 ### Application Security
 
 To briefly point out the obvious again: your websites and servers require cybersecurity.
 
-You can get started with advanced security and performance by setting up the [Cloudflare Business Plan](https://www.cloudflare.com/plans/business/) for only $200/month. 
-Go check it out today! However, take into account that it's a self-serve plan, meaning that you will have to set up everything yourself.
+You can get started with advanced security and performance by signing up for the [Cloudflare Business Plan](https://www.cloudflare.com/plans/business/), which costs only $200 per month. Visit the website to learn more.
+
+However, keep in mind that the Business Plan is a self-service option, so you will be responsible for setting everything up yourself.
 
 If you require support, and enterprise-grade and customizable solutions, as well as [Data Localization Suite](https://www.cloudflare.com/data-localization/) – to control on a technical-level that visitor traffic's metadata which can identify a customer stays in the EU, and TLS termination and inspection happens only in EU data centers –, then get in touch with the Cloudflare team to talk about the [Enterprise Plan](https://www.cloudflare.com/enterprise/).
 
-As an overview, the Enterprise Plan includes (among several other things):
+The Enterprise Plan includes the following features, among others:
 - 24/7/365 email & emergency phone support
 - Enterprise guided onboarding, training & continued 24/7/365 support
 - Dependable service level agreements (SLA) with 100% uptime
@@ -50,11 +51,11 @@ With [Cloudflare Zaraz](https://developers.cloudflare.com/zaraz/) you can quickl
 
 Therefore, answering and following the guidelines set out by the [French National Data Protection Authority (CNIL)](https://blog.cloudflare.com/zaraz-privacy-features-in-response-to-cnil/), the [Austrian Data Protection Authority (DSB)](https://blog.cloudflare.com/keep-analytics-tracking-data-in-the-eu-cloudflare-zaraz/), and others.
 
-Read more on my other article [Cloudflare Zaraz](https://davidtofan.com/articles/cloudflare-zaraz/).
+Read more about [Cloudflare Zaraz](https://davidtofan.com/articles/cloudflare-zaraz/) in my other article.
 
 #### Google Fonts
 
-According to the [TechnikNews](https://www.techniknews.net/en/news/datenschutzverletzung-wegen-google-fonts-datenschutzanwalt-mahnt-ab/) and several others, Google Fonts sends a website users' IP addresses to the US, which is unlawful towards GDPR.
+According to [TechnikNews](https://www.techniknews.net/en/news/datenschutzverletzung-wegen-google-fonts-datenschutzanwalt-mahnt-ab/) and other sources, Google Fonts sends website users' IP addresses to the US, which is a violation of GDPR.
 
 The potential solutions are:
 
@@ -70,15 +71,15 @@ Changing your Content-Security-Policy (CSP) to `content-security-policy: font-sr
 
 Technically, you are allowed to use Google Fonts, if the website user has given explicit consent prior to them downloading and loading. The users should be informed that their IP addresses will be sent to Google servers to provide your website with Google Fonts.
 
-Choose one option and stay up to date with the latest requirements and news.
+Choose one of these options and make sure to stay up to date with the latest requirements and news.
 
 #### Google reCAPTCHA
 
 reCAPTCHA collects personal information and communicates with Google servers.
 
-Meet [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/): a user-friendly, privacy-preserving alternative to CAPTCHA.
+Introducing [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/): a user-friendly, privacy-preserving alternative to CAPTCHA.
 
-If you are already using reCAPTCHA today, [follow this tutorial to migrate](https://developers.cloudflare.com/turnstile/get-started/migrating-from-recaptcha/) seamlessly to Cloudflare Turnstile.
+If you are currently using reCAPTCHA, [follow this tutorial to smoothly migrate](https://developers.cloudflare.com/turnstile/get-started/migrating-from-recaptcha/) to Cloudflare Turnstile.
 
 ### Conclusion
 
@@ -92,4 +93,4 @@ Need help getting started with Cloudflare? Get a [personalized recommendation](h
 
 ## Disclaimer
 
-This is a very general introduction to Cybersecurity in Hospitality. Educational purposes only. Educational purposes only, and this blog post does not necessarily reflect the opinions of Cloudflare. There are many more aspects to Cloudflare and its products and services – this is merely a brief educational intro. Properly inform yourself, keep learning, keep testing, and feel free to share your learnings and experiences as I do. Hope it was helpful! Images are online and publicly accessible.
+This is a very general introduction to Cybersecurity in Hospitality. Educational purposes only. This blog post does not necessarily reflect the opinions of Cloudflare, or any other entities mentioned. There are many more aspects to Cloudflare and its products and services – this is merely a brief educational intro. Properly inform yourself, keep learning, keep testing, and feel free to share your learnings and experiences as I do. Hope it was helpful! Images are online and publicly accessible.
