@@ -21,7 +21,8 @@ All businesses in the hospitality industry, including hotels, hostels, and apart
 
 To briefly point out the obvious again: your websites and servers require cybersecurity.
 
-You can get started with advanced security and performance by signing up for the [Cloudflare Business Plan](https://www.cloudflare.com/plans/business/), which costs only $200 per month. Visit the website to learn more.
+You can get started with advanced security and performance by signing up for the [Cloudflare Business Plan](https://www.cloudflare.com/plans/business/), which costs only $200 per month. 
+This plan includes a Web Application Firewall (WAF) and the latest version of TLS encryption, which are requirements for [PCI DSS compliance](https://www.cloudflare.com/resources/assets/slt3lc6tev37/1kR1Ql7kIS7wsgPpFYASkG/3860de26da985a63a5e5127d2d28f140/PCI_compliance.pdf). Visit the websites to learn more.
 
 However, keep in mind that the Business Plan is a self-service option, so you will be responsible for setting everything up yourself.
 
@@ -71,7 +72,7 @@ Changing your Content-Security-Policy (CSP) to `content-security-policy: font-sr
 
 Technically, you are allowed to use Google Fonts, if the website user has given explicit consent prior to them downloading and loading. The users should be informed that their IP addresses will be sent to Google servers to provide your website with Google Fonts.
 
-Choose one of these options and make sure to stay up to date with the latest requirements and news.
+Make sure to stay up to date with the latest requirements and news.
 
 #### Google reCAPTCHA
 
