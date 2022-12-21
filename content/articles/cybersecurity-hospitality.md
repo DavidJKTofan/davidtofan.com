@@ -19,6 +19,16 @@ All businesses in the hospitality industry, including hotels, hostels, and apart
 
 Even hotel management SaaS companies like [Cloudbeds](https://www.cloudbeds.com/cloudbeds-data-security/) are taking security seriously, and continuously improving their setup.
 
+
+### Performance and Conversion Rate
+
+In addition to the security benefits of using Cloudflare, it can also improve the performance of your website, which can in turn improve your conversion rate.
+
+A slow-loading website can be frustrating for users and may lead them to abandon the site before completing a booking or other desired action. On the other hand, a fast and responsive website can provide a better user experience and increase the likelihood that users will complete a booking or other desired action.
+
+By using Cloudflare's performance features, such as its content delivery network (CDN) and optimization tools, you can improve the speed and responsiveness of your website, leading to a better user experience and potentially higher conversion rates.
+
+
 ### Application Security
 
 To briefly point out the obvious again: your websites and servers require cybersecurity.
@@ -36,6 +46,7 @@ The Enterprise Plan includes the following features, among others:
 - Dependable service level agreements (SLA) with 100% uptime
 - Advanced DDoS Protection
 - Access common compliance documentation for topics like PCI, SOC 2, ISO, and more
+
 
 ### Compliance
 
