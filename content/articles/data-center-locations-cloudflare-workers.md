@@ -1,0 +1,78 @@
+---
+title: Data Center Locations of Cloud Providers
+date: 2023-01-29
+images: 
+- /media/articles/map-thumbnail.png
+tags:
+  - Cloudflare
+  - CyberSec
+  - Data
+categories:
+  - CyberSec
+---
+
+Have you ever wondered – where does _the Cloud_ live?
+
+Let's take a look at an [interactive map of data center locations of top cloud providers
+](https://map.cf-testing.com/).
+
+* * *
+* * *
+
+## Data Center Locations
+
+This can be a useful tool for visualizing the locations and availability of cloud providers, which specifically offer [Zero Trust](https://www.cloudflare.com/learning/security/glossary/what-is-zero-trust/) services.
+
+## The Development... 🛠️
+
+First and foremost, where do we get **the data** from?
+
+Many cloud providers do not disclose detailed information about the locations of their data centers, with some being accessible only behind login pages, others seemingly behind the _whois_ information of IP ranges and ASNs, and some located on (probably unknown or forgotten) public projects.
+
+Nonetheless, some providers fortunately like to visually show their presence across the globe – like for example [Cloudflare](https://www.cloudflare.com/network/). Others have API endpoints with location data, or we were also thinking of looking up what information their public IP addresses would return to us.
+
+Once we googled like champions for weeks and scratched our heads a few times, we found some ways to get some proper data together.
+
+The real task then began, which involved obtaining the data in an automated manner as much as possible, enhancing certain elements to generate geoJSONs and subsequently creating interactive maps using the obtained data, as well as including their respective icons.
+
+We also had to figure out the proper sizes of each icon, as you can see...
+
+![Testing Map 1](/media/articles/map-test-1.png).
+
+And even had a weird "bug", where the data of all providers was overwritten by the last updated provider, because we wanted to try to use import one centralized geoJSON skeleton for each JS file.
+
+![Testing Map 5](/media/articles/map-test-5.png).
+
+There are many more tales to tell about what we experienced during this project. However, to get to the point, after some sleepless nights, many pizzas and drinks, it is finally live and it (seems to) work.
+
+Here how it looks:
+
+![Cloudflare vs Zscaler](/media/articles/cloudflare-vs-zscaler.png).
+
+### Performance ⚡️
+
+Through [Cloudflare Workers](https://workers.cloudflare.com/) we are not only deploying the severless code across the entire Cloudflare network within minutes, but it is also running blazing fast. 
+
+![PageSpeed Insights](/media/articles/pagespeed-insights.png).
+
+_Note: maps might run slower due to more third-party code dependencies and higher CPU usage._
+
+We also added the [Cache TTL](https://developers.cloudflare.com/workers/runtime-apis/kv/#cache-ttl) parameter to the KV, in order to reduce cold read latency on keys and cache the KV values.
+
+### Next Steps... 🚀
+
+As next steps, we'd like to improve the overall stability and performance of the code running on Cloudflare Workers – and the static homepage –, the comparison of the different cloud providers, as well as adding more Cloud providers and potentially improve data accuracy and the design of the map.
+
+What else should we do?
+
+## Feedback is welcomed!
+
+Go to the [GitHub repo](https://github.com/DavidJKTofan/interactive-map) and feel free to fork, contribute, open issues, provide feedback, and help improve.
+
+Thank you!
+
+* * *
+
+## Disclaimer
+
+Educational purposes only. This blog post does not necessarily reflect reality, or the opinions of Cloudflare or any other entity mentioned. The data is collected from publicly available sources on the Internet and is intended for general informational and educational purposes only. While we make every effort to ensure the accuracy and completeness of this information, we cannot guarantee that it is completely reliable, current, or free from errors or omissions. This website and its owners shall not be held liable for any damages or losses arising from the use of the information provided on this website. By accessing this website, you agree to use the information provided here at your own risk.

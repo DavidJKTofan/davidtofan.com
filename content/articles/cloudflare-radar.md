@@ -51,7 +51,7 @@ The data on the list is updated in real time, and we'll be able to see [Bot Tags
 
 Cloudflare opens up more data, specifically data about [Autonomous System Numbers (ASN)](https://blog.cloudflare.com/asn-on-radar/): _"a group of routable IP prefixes belonging to a single entity, and is one of the key building blocks of the Internet"_.
 
-`https://radar.cloudflare.com/traffic/as3209`
+For example: [radar.cloudflare.com/traffic/as3209](https://radar.cloudflare.com/traffic/as3209)
 
 ### Future Improvements
 
@@ -61,7 +61,7 @@ Stay tuned for updates!
 
 ### Help Improve
 
-Go to [radar.cloudflare.com/categorization-feedback](https://radar.cloudflare.com/categorization-feedback/) in order to provide Domain Categorization Feedback.
+Go to [radar.cloudflare.com/domains/feedback](https://radar.cloudflare.com/domains/feedback) in order to provide Domain Categorization Feedback.
 
 * * *
 

@@ -145,6 +145,12 @@ Work in progress...
         <div class="button-class">Morocco</div>
     </div>
     </a>
+    <a href="https://goo.gl/maps/HHyqSqxHs2ZR94UW8" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/belize.webp" alt="Belize">
+        <div class="button-class">Belize</div>
+    </div>
+    </a>
   </div>
 
   <div class="travel_column_img_grid">
