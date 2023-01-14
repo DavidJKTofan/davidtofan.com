@@ -29,7 +29,7 @@ First and foremost, where do we get **the data** from?
 
 Many cloud providers do not disclose detailed information about the locations of their data centers, with some being accessible only behind login pages, others seemingly behind the _whois_ information of IP ranges and ASNs, and some located on (probably unknown or forgotten) public projects.
 
-Nonetheless, some providers fortunately like to visually show their presence across the globe – like for example [Cloudflare](https://www.cloudflare.com/network/). Others have API endpoints with location data, or we were also thinking of looking up what information their public IP addresses would return to us.
+Nonetheless, some providers fortunately like to visually show their presence across the globe – like for example [Cloudflare](https://www.cloudflare.com/network/) and [Zscaler](https://trust.zscaler.com/zscaler.net/data-center-map). Others have API endpoints with location data, or we were also thinking of looking up what information their public IP addresses would return to us.
 
 Once we googled like champions for weeks and scratched our heads a few times, we found some ways to get some proper data together.
 
@@ -50,6 +50,8 @@ Here how it looks:
 ![Cloudflare vs Zscaler](/media/articles/cloudflare-vs-zscaler.png).
 
 ### Performance ⚡️
+
+Performance is important, for you, for us, for everyone, because you want a smooth online experience. And because performance is important to you, take a look at the blog post [Cloudflare is faster than Zscaler](https://blog.cloudflare.com/network-performance-update-cio-edition/).
 
 Through [Cloudflare Workers](https://workers.cloudflare.com/) we are not only deploying the severless code across the entire Cloudflare network within minutes, but it is also running blazing fast. 
 
