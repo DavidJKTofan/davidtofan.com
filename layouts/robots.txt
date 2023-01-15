@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /admin/
-Disallow: /privacy/
-
-Sitemap: https://davidtofan.com/sitemap.xml
