@@ -1,5 +1,5 @@
 ---
-title: Data Center Locations of Cloud Providers
+title: Where the Cloud lives – an Interactive Map of Data Center Locations of Top Cloud Providers
 date: 2023-01-29
 images: 
 - /media/articles/map-thumbnail.png
