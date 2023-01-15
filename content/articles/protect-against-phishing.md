@@ -121,7 +121,9 @@ Afterward, you'd have to go to the hosting provider's website and figure out the
 Additionally, for more serious cases, you can also report cybercrime to national authorities. Some of these can be found here:
 
 -   [EUROPOL – Report Cybercrime Online](https://www.europol.europa.eu/report-a-crime/report-cybercrime-online)
--   [USA – Online Safety](https://www.usa.gov/online-safety)
+-   [United States Government – Online Safety](https://www.usa.gov/online-safety)
+-   [United Kingdom Government – National Cyber Security Centre (NCSC)](https://www.ncsc.gov.uk/collection/phishing-scams/report-scam-email)
+-   [econsumer.gov – a project of the International Consumer Protection and Enforcement Network (ICPEN)](https://www.econsumer.gov/en/FileAComplaint#crnt)
 
 * * * * 
 
