@@ -7,7 +7,7 @@ keywords: personal website, david tofan, davidjktofan, digital consultant
 
 **Welcome to my personal website!** 🤓
 
-My name is David & I am an aspiring Solutions Engineer @ [Cloudflare](https://www.cloudflare.com/)! 🧡
+My name is David & I am a Solutions Engineer @ [Cloudflare](https://www.cloudflare.com/)! 🧡
 
 I am passionate about technology, specifically Cloud ☁️, Data Science 📊 & CyberSec 🔐.
 
