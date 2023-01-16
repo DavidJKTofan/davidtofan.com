@@ -6,15 +6,15 @@ images:
 tags:
   - Cloudflare
   - CyberSec
-  - Data
+  - Cloud
+  - Data Centers
 categories:
   - CyberSec
 ---
 
 Have you ever wondered – where does _the Cloud_ live?
 
-Let's take a look at an [interactive map of data center locations of top cloud providers
-](https://map.cf-testing.com/).
+Let's take a look at an [interactive map of data center locations of top cloud providers](https://map.cf-testing.com/).
 
 * * *
 * * *
