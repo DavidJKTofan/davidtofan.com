@@ -15,6 +15,8 @@ categories:
 
 ## Cybersecurity in Hospitality
 
+According to the [Cloudflare DDoS threat report for 2022 Q4](https://blog.cloudflare.com/ddos-threat-report-2022-q4/), the Hospitality industry was the most targeted industry of application-layer Distributed Denial of Service (DDoS) attacks.
+
 All businesses in the hospitality industry, including hotels, hostels, and aparthotels, require cybersecurity. Actually, especially those, since they are dealing with lots of personal information on a daily basis.
 
 Even hotel management SaaS companies like [Cloudbeds](https://www.cloudbeds.com/cloudbeds-data-security/) are taking security seriously, and continuously improving their setup.
