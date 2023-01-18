@@ -7,7 +7,7 @@
 
 Special thanks to all supporting entities/tools/softwares/packages/platforms/contributors... 🤓
 
-* Website deployed via [Cloudflare Pages](https://pages.cloudflare.com/) for FREE
+* Website deployed via [Cloudflare Pages](https://pages.cloudflare.com/) for FREE – [Build your next big idea with Cloudflare Pages](https://blog.cloudflare.com/big-ideas-on-pages/)
 * Website built on [Hugo](https://gohugo.io/) with theme from [apvarun](https://github.com/apvarun/digital-garden-hugo-theme)
 * Graphics from myself - some built with [Canva](https://www.canva.com/) - and some images from [Unsplash](https://unsplash.com/)
 * Icons from [Font Awesome](https://fontawesome.com/license)
