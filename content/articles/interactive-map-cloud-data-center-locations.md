@@ -23,17 +23,17 @@ Let's take a look at an [interactive map of data center locations of top cloud p
 
 This can be a useful tool for visualizing the locations and availability of cloud providers, which specifically offer [Zero Trust](https://www.cloudflare.com/learning/security/glossary/what-is-zero-trust/) services.
 
-## The Development... 🛠️
+### The Development... 🛠️
 
 First and foremost, where do we get **the data** from?
 
 Many cloud providers do not disclose detailed information about the locations of their data centers, with some being accessible only behind login pages, others seemingly behind the _whois_ information of IP ranges and ASNs, and some located on (probably unknown or forgotten) public projects.
 
-Nonetheless, some providers fortunately like to visually show their presence across the globe – like for example [Cloudflare](https://www.cloudflare.com/network/) and [Zscaler](https://trust.zscaler.com/zscaler.net/data-center-map). Others have API endpoints with location data, or we were also thinking of looking up what information their public IP addresses would return to us.
+Nonetheless, some providers fortunately like to visually show their presence across the globe – like for example [Cloudflare](https://www.cloudflare.com/network/) and [Zscaler](https://trust.zscaler.com/zscaler.net/data-center-map). Others have API endpoints or tables with location data, or we were also thinking of looking up what information their public IP addresses would return to us.
 
-Once we googled like champions for weeks and scratched our heads a few times, we found some ways to get some proper data together.
+Once we googled and searched like champions for weeks and scratched our heads a few times, we found some ways to get some proper data together.
 
-The real task then began, which involved obtaining the data in an automated manner as much as possible, enhancing certain elements to generate geoJSONs and subsequently creating interactive maps using the obtained data, as well as including their respective icons.
+The real task then began, which involved obtaining the data in an automated manner as much as possible, enhancing certain elements to generate [geoJSON](https://geojson.org/)s and subsequently creating interactive maps using the obtained data, as well as including their respective icons.
 
 We also had to figure out the proper sizes of each icon, as you can see...
 
@@ -61,6 +61,18 @@ _Note: maps might run slower due to more third-party code dependencies and highe
 
 We also added the [Cache TTL](https://developers.cloudflare.com/workers/runtime-apis/kv/#cache-ttl) parameter to the KV, in order to reduce cold read latency on keys and cache the KV values.
 
+On another note, when you start using Cloudflare Pages, it enjoys [early access to the latest, greatest, and fastest standards and network protocols](https://blog.cloudflare.com/cloudflare-pages-is-lightning-fast/), such as TLS 1.3, IPv6, QUIC & HTTP/3.
+
+Essentially, you can [build your next big idea with Cloudflare Pages](https://blog.cloudflare.com/big-ideas-on-pages/).
+
+### Security 🔐
+
+Ensuring the security of our website and tokens is crucial. 
+
+We started by looking at the Mapbox documentation: [How to use Mapbox securely](https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/).
+
+Out of the box, we are already benefiting from Cloudflare's offerings, such as [SSL/TLS](https://developers.cloudflare.com/ssl/), [DDoS protection](https://developers.cloudflare.com/ddos-protection/), [WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/), [Bot Management](https://developers.cloudflare.com/bots/), and more, which provide great application security.
+
 ### Next Steps... 🚀
 
 As next steps, we'd like to improve the overall stability and performance of the code running on Cloudflare Workers – and the static homepage –, the comparison of the different cloud providers, as well as adding more Cloud providers and potentially improve data accuracy and the design of the map.
@@ -70,6 +82,8 @@ What else should we do?
 ## Feedback is welcomed!
 
 Go to the [GitHub repo](https://github.com/DavidJKTofan/interactive-map) and feel free to fork, contribute, open issues, provide feedback, and help improve.
+
+For questions, feel free to reach out (I'll try to answer). :)
 
 Thank you!
 
