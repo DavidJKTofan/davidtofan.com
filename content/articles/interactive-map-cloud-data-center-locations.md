@@ -1,6 +1,6 @@
 ---
 title: Where the Cloud lives – an Interactive Map of Data Center Locations of Top Cloud Providers
-date: 2023-02-02
+date: 2023-01-30
 images: 
 - /media/articles/map-thumbnail.png
 tags:
@@ -21,7 +21,7 @@ Let's take a look at an [interactive map of data center locations of top cloud p
 
 ## Data Center Locations
 
-This can be a useful tool for visualizing the locations and availability of cloud providers, which specifically offer [Zero Trust](https://www.cloudflare.com/learning/security/glossary/what-is-zero-trust/) services.
+This can be a useful tool for visualizing the locations and availability of cloud providers, which specifically offer [Zero Trust](https://www.cloudflare.com/learning/security/glossary/what-is-zero-trust/) services, or similar.
 
 ### The Development... 🛠️
 
