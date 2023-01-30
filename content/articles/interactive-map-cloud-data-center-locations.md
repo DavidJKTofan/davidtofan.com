@@ -1,6 +1,6 @@
 ---
 title: Where the Cloud lives – an Interactive Map of Data Center Locations of Top Cloud Providers
-date: 2023-01-29
+date: 2023-02-02
 images: 
 - /media/articles/map-thumbnail.png
 tags:
@@ -33,21 +33,25 @@ Nonetheless, some providers fortunately like to visually show their presence acr
 
 Once we googled and searched like champions for weeks and scratched our heads a few times, we found some ways to get some proper data together.
 
-The real task then began, which involved obtaining the data in an automated manner as much as possible, enhancing certain elements to generate [geoJSON](https://geojson.org/)s and subsequently creating interactive maps using the obtained data, as well as including their respective icons.
+Of course, we intended to use [Cloudflare Workers](https://developers.cloudflare.com/workers/) in order to take care of most of the things and deploy the application without the need to think about configuring or maintaining our own infrastructure.
+
+Then the real task began, which involved obtaining the data in an automated manner as much as possible, enhancing certain elements to generate [geoJSON](https://geojson.org/)s and subsequently creating interactive maps using the obtained data, as well as including their respective icons.
+
+We decided to store the geoJSONs in [Workers KV](https://developers.cloudflare.com/workers/wrangler/workers-kv/) and the icons and other assets on [Cloudflare R2](https://developers.cloudflare.com/r2/) – all offering generous FREE plans.
 
 We also had to figure out the proper sizes of each icon, as you can see...
 
-![Testing Map 1](/media/articles/map-test-1.png).
+![Testing Map 1](/media/articles/map-test-1.png)
 
 And even had a weird "bug", where the data of all providers was overwritten by the last updated provider, because we wanted to try to use import one centralized geoJSON skeleton for each JS file.
 
-![Testing Map 5](/media/articles/map-test-5.png).
+![Testing Map 5](/media/articles/map-test-5.png)
 
-There are many more tales to tell about what we experienced during this project. However, to get to the point, after some sleepless nights, many pizzas and drinks, it is finally live and it (seems to) work.
+There are many more tales to tell about what we experienced during this project. However, to get to the point, after some sleepless nights, many pizzas and drinks, it is finally live and it (seems to) work. (Big thank you to my buddy at Cloudflare!)
 
-Here how it looks:
+How it looks:
 
-![Cloudflare vs Zscaler](/media/articles/cloudflare-vs-zscaler.png).
+![Cloudflare vs Zscaler](/media/articles/cloudflare-vs-zscaler.png)
 
 ### Performance ⚡️
 
@@ -55,7 +59,7 @@ Performance is important, for you, for us, for everyone, because you want a smoo
 
 Through [Cloudflare Workers](https://workers.cloudflare.com/) we are not only deploying the severless code across the entire Cloudflare network within minutes, but it is also running blazing fast. 
 
-![PageSpeed Insights](/media/articles/pagespeed-insights.png).
+![PageSpeed Insights](/media/articles/pagespeed-insights.png)
 
 _Note: maps might run slower due to more third-party code dependencies and higher CPU usage._
 
