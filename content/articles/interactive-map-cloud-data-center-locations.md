@@ -85,7 +85,7 @@ What else should we do?
 
 ## Feedback is welcomed!
 
-Go to the [GitHub repo](https://github.com/DavidJKTofan/interactive-map) and feel free to fork, contribute, open issues, provide feedback, and help improve.
+Go to the [GitHub repo](https://github.com/DavidJKTofan/sase-cloud-map) and feel free to fork, contribute, open issues, provide feedback, and help improve.
 
 For questions, feel free to reach out (I'll try to answer). :)
 
