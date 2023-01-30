@@ -43,7 +43,7 @@ We also had to figure out the proper sizes of each icon, as you can see...
 
 ![Testing Map 1](/media/articles/map-test-1.png)
 
-And even had a weird "bug", where the data of all providers was overwritten by the last updated provider, because we wanted to try to use import one centralized geoJSON skeleton for each JS file.
+And even had a weird "bug", where the data of all providers was scrumbled and overwritten, because we wanted to try to use import one centralized geoJSON skeleton for each JS file; (we fixed it though).
 
 ![Testing Map 5](/media/articles/map-test-5.png)
 
@@ -61,7 +61,7 @@ Through [Cloudflare Workers](https://workers.cloudflare.com/) we are not only de
 
 ![PageSpeed Insights](/media/articles/pagespeed-insights.png)
 
-_Note: maps might run slower due to more third-party code dependencies and higher CPU usage._
+_Note: maps might run slower due to more third-party code dependencies and higher CPU usage, or your network situation._
 
 We also added the [Cache TTL](https://developers.cloudflare.com/workers/runtime-apis/kv/#cache-ttl) parameter to the KV, in order to reduce cold read latency on keys and cache the KV values.
 
@@ -87,7 +87,7 @@ What else should we do?
 
 Go to the [GitHub repo](https://github.com/DavidJKTofan/sase-cloud-map) and feel free to fork, contribute, open issues, provide feedback, and help improve.
 
-For questions, feel free to reach out (I'll try to answer). :)
+For questions, feel free to reach out (I'll try to answer). 🤓
 
 Thank you!
 
