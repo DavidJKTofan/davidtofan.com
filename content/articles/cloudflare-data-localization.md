@@ -32,6 +32,14 @@ The Cloudflare Data Localization Suite is mainly composed of 4 solutions:
 
 3. **Customer Metadata Boundary**: Decide where log data and analytics is sent with **Edge Log Delivery**, as well as protect end-user's privacy with **IP obfuscation**
 
+## UPDATES
+
+_Updated: January 30th 2023_
+
+Check out the Blog Post on [Navigating the changing data localization landscape with Cloudflare’s Data Localization Suite](https://blog.cloudflare.com/dls-2022/), as well as the new [Developer Docs](https://developers.cloudflare.com/data-localization/).
+
+Additionally, there is a new [Geo Key Manager v2](https://blog.cloudflare.com/inside-geo-key-manager-v2/) with more capabilities and features.
+
 * * *
 
 ### Encryption Key Management
