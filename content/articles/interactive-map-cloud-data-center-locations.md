@@ -14,7 +14,7 @@ categories:
 
 Have you ever wondered – where does _the Cloud_ live?
 
-Let's take a look at an [interactive map of data center locations of top cloud providers](https://map.cf-testing.com/).
+Let's take a look at an [interactive map of data center locations of top cloud providers](https://sasecloudmap.com/).
 
 * * *
 * * *
