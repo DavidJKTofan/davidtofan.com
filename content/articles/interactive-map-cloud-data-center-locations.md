@@ -53,6 +53,10 @@ How it looks:
 
 ![Cloudflare vs Zscaler](/media/articles/cloudflare-vs-zscaler.png)
 
+Additionally, we wanted to make it easier to compare the vendors with Cloudflare. So there's a nice little button on the right top corner now to do exactly that.
+
+![Comparison](/media/articles/comparison.gif)
+
 ### Performance ⚡️
 
 Performance is important, for you, for us, for everyone, because you want a smooth online experience. And because performance is important to you, take a look at the blog post [Cloudflare is faster than Zscaler](https://blog.cloudflare.com/network-performance-update-cio-edition/).
