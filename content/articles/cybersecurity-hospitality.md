@@ -97,6 +97,18 @@ Introducing [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/)
 
 If you are currently using reCAPTCHA, [follow this tutorial to smoothly migrate](https://developers.cloudflare.com/turnstile/get-started/migrating-from-recaptcha/) to Cloudflare Turnstile.
 
+* * * *
+
+## Physical Security in Hospitality
+
+Physical security is an essential aspect of any industry, but it is especially crucial in the hospitality industry, specifically hotels, to prevent unauthorized access to guests' sensitive information such as passport copies or bank details. Hotels collect and store sensitive data of their guests for various reasons, including check-in and payment processing. This data must be protected from unauthorized access, theft, or misuse to prevent potential financial loss, identity theft, and damage to the hotel's reputation.
+
+How often have we seen papers with scans of passports laying around at the reception of a hotel? Once too many... Personally, I don't want my information to be handled like that.
+
+However, first and foremost, employees need training and need to be aware of the fact that they themselves also wouldn't like to have their passport information laying around for anyone to see.
+
+Hotel staff must be trained to identify and report suspicious behavior, handle sensitive data with care, and follow strict security protocols. It is essential to educate staff on how to identify phishing scams, social engineering attacks, and other types of cyber threats that can lead to unauthorized access to sensitive information.
+
 ### Conclusion
 
 Get cybersecurity and performance, and achieve compliance within only a few hours, with the support of Cloudflare.
@@ -104,6 +116,8 @@ Get cybersecurity and performance, and achieve compliance within only a few hour
 Interested in some [demos](https://www.cf-testing.com/)?
 
 Need help getting started with Cloudflare? Get a [personalized recommendation](https://www.cloudflare.com/about-your-website/).
+
+Do not forget physical security and training for your employees, to prevent unauthorized access to documents or computers.
 
 * * * *
 
