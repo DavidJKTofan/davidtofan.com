@@ -95,7 +95,11 @@ reCAPTCHA collects personal information and communicates with Google servers.
 
 Introducing [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/): a user-friendly, privacy-preserving alternative to CAPTCHA.
 
+Additionally, Apple devices with versions iOS 16+, iPad 16+ or macOS 13+ will send an encrypted [Private Access Tokens](https://blog.cloudflare.com/eliminating-captchas-on-iphones-and-macs-using-new-standard/) to Cloudflare, in order to verify that the user is a human – without completing a CAPTCHA or giving up personal data.
+
 If you are currently using reCAPTCHA, [follow this tutorial to smoothly migrate](https://developers.cloudflare.com/turnstile/get-started/migrating-from-recaptcha/) to Cloudflare Turnstile.
+
+Check out the [Demo here](https://demo.turnstile.workers.dev/).
 
 * * * *
 
