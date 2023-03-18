@@ -1,5 +1,11 @@
 [
   {
+    "name": "IPv6 Certification",
+    "organization": "Hurricane Electric",
+    "link": "https://drive.google.com/file/d/18giHvHrdJVe0fXz6r7NYsiEyqRiEy1IE/view?usp=sharing",
+    "icon": "https://ipv6.he.net/certification/create_badge.php?pass_name=davidjktofan&badge=1",
+    "date": "Mar 2023"
+  },{
     "name": "Implementation Specialist - Zero Trust Services",
     "organization": "Cloudflare",
     "link": "https://drive.google.com/file/d/1hjNTbHqRdOODD-18J4F-bGKP3uOWxDZx/view",
