@@ -44,13 +44,6 @@
       <h1 class="!mb-2">{{ $title }}</h1>
       {{ if .Date }}
       <p class="text-sm text-slate-500 !mb-2">{{ .Date.Format "January 2, 2006" }}</p>
-
-	  {{ if .Date }}
-      <p class="text-sm text-slate-500 !mb-8"> Published {{ $date }}
-		{{ if ne $lastmod $date}}
-			<br/> Updated {{ .Lastmod.Format "January 2, 2006" }}
-        {{ end }}
-	  </p>
       {{ end }}
 
       {{ with .Param "tags" }}
