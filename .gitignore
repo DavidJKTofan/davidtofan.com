@@ -334,3 +334,11 @@ ASALocalRun/
 .localhistory/
 .DS_Store
 .hugo_build.lock
+
+# Digital Garden exampleSite
+themes/digitalgarden/exampleSite
+themes/digitalgarden/images
+themes/digitalgarden/static/favicon.ico
+
+# Hugo build output directory
+public
