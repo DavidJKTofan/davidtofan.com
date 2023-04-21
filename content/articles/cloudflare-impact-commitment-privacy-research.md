@@ -1,6 +1,6 @@
 ---
 title: Cloudflare's Impact, Commitments, Privacy-preserving Products, Research, and more
-date: 2023-03-29
+date: 2023-04-20
 images: 
 - /media/articles/cloudflare-impact.png
 tags:
@@ -16,7 +16,7 @@ categories:
 
 Personally, it's exciting and satisfying to see how many people work at and with Cloudflare to pursue incredible projects and initiatives, creating real positive impact in the world.
 
-Some of those amazing and inspiring impacts are displayed here:
+Some of those amazing and inspiring impacts are displayed here...
 
 ## Cloudflare Impact
 
@@ -36,6 +36,8 @@ _Cloudflare is proud to participate in and contribute commitments to the [Summit
 _Cloudflare is on a mission to help build a better Internet, and we are committed to doing this with ethics and integrity in everything that we do. This commitment extends beyond our own actions, to third parties acting on our behalf._ – [Blog Post](https://blog.cloudflare.com/introducing-cloudflares-third-party-code-of-conduct/)
 
 _Cloudflare committed to developing a human rights policy in order to ensure that the responsibility to respect human rights is embedded throughout our business functions._ – [Blog Post](https://blog.cloudflare.com/cloudflare-human-rights-commitments/)
+
+_Policies, technologies, and certifications that help us earn customer trust_ – [The Cloudflare Trust Hub](https://www.cloudflare.com/trust-hub/)
 
 ## Cloudflare's Privacy Edge
 
