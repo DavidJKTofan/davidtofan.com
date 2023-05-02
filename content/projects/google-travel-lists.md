@@ -151,6 +151,18 @@ Work in progress...
         <div class="button-class">Belize</div>
     </div>
     </a>
+    <a href="https://goo.gl/maps/86zTscXooBzyB5rt5" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/guatemala.webp" alt="Guatemala">
+        <div class="button-class">Guatemala</div>
+    </div>
+    </a>
+    <a href="https://goo.gl/maps/qA5qUYUCNLadKLTP9" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/jordan.webp" alt="Jordan">
+        <div class="button-class">Jordan</div>
+    </div>
+    </a>
   </div>
 
   <div class="travel_column_img_grid">
@@ -241,6 +253,12 @@ Work in progress...
         <div class="button-class">Lisbon</div>
     </div>
     </a>
+    <a href="https://goo.gl/maps/FP7pv556qRE5tLAU6" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/romania.webp" alt="Romania">
+        <div class="button-class">Romania</div>
+    </div>
+    </a>
   </div>
 
   <div class="travel_column_img_grid">
@@ -278,6 +296,12 @@ Work in progress...
     <div class="travel_container_img_grid">
       <img src="/media/gmaps-images/zurich-switzerland.webp" alt="Zurich">
         <div class="button-class">Zurich</div>
+    </div>
+    </a>
+    <a href="https://goo.gl/maps/qWG8QBSKsyZPNLnE8" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/galicia-spain.webp" alt="Galicia">
+        <div class="button-class">Galicia</div>
     </div>
     </a>
   </div>
