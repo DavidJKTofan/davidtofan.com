@@ -259,6 +259,12 @@ Work in progress...
         <div class="button-class">Romania</div>
     </div>
     </a>
+    <a href="https://goo.gl/maps/jRU7rsrGZeddLUDU6" target="_blank" rel="noreferrer nofollow external">
+    <div class="travel_container_img_grid">
+      <img src="/media/gmaps-images/rome-italy.webp" alt="Rome">
+        <div class="button-class">Rome</div>
+    </div>
+    </a>
   </div>
 
   <div class="travel_column_img_grid">
