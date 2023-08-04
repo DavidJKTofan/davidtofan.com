@@ -46,7 +46,7 @@ Ah, the memories we create while exploring the world! They deserve the best trea
 
 Speaking of moments, long flights or cozy evenings in your hotel room deserve some quality entertainment, right? 🍿 I know I love unwinding with my favorite shows on [Netflix](https://apps.apple.com/app/netflix/id363590051). The best part? You can download your preferred content and enjoy it offline. And hey, explore other streaming apps too – variety is the spice of life! Just make sure your phone storage has enough space.
 
-And for those with a love for Disney classics, National Geographic and more, consider [Disney+](https://www.disneyplus.com/) for a magical streaming experience. Plus, if you're an anime enthusiast like me, don't miss out on [Crunchyroll](https://www.crunchyroll.com/) for a diverse collection of anime titles that can transport you to different worlds.
+And for those with a love for Disney classics, National Geographic and more, consider [Disney+](https://apps.apple.com/app/disney/id1446075923) for a magical streaming experience. Plus, if you're an anime enthusiast like me, don't miss out on [Crunchyroll](https://www.crunchyroll.com/) for a diverse collection of anime titles that can transport you to different worlds.
 
 With a range of streaming options, your entertainment journey is bound to be as exciting as your travel adventures!
 
@@ -70,9 +70,9 @@ Before you jet off, a quick visa check is a must 🎫. I've found helpful tools 
 
 Security matters, even when you're miles away from home. That's why I trust _some_ VPNs to keep my online presence secure. 🔐
 
-I often use Surfshark, a reliable VPN service. And guess what? Signing up through my link gets you a whole month free. [Here's your ticket to secure browsing](https://surfshark.club/friend/qmZVGk8r) while you explore the digital world abroad.
+I often use Surfshark, a reliable VPN service. And guess what? Signing up through my link gets you a whole month free. [Here is your ticket to secure browsing](https://surfshark.club/friend/qmZVGk8r) while you explore the digital world abroad.
 
-There's another fantastic option you might want to consider – the [Cloudflare WARP app](https://apps.apple.com/app/1-1-1-1-faster-internet/id1423538627). One of the standout features of Cloudflare WARP is its commitment to online safety and privacy. You can not only safeguard your connection but also protect yourself from malware and unwanted content by using their [1.1.1.1 for Families](https://1.1.1.1/family/) feature. It's a comprehensive way to ensure your digital adventures remain as secure as your physical ones.
+There's another fantastic option you might want to consider – the [Cloudflare WARP app](https://warp.plus/9nwrK). One of the standout features of Cloudflare WARP is its commitment to online safety and privacy. You can not only safeguard your connection but also protect yourself from malware and unwanted content by using their [1.1.1.1 for Families](https://1.1.1.1/family/) feature. It's a comprehensive way to ensure your digital adventures remain as secure as your physical ones.
 
 Whether you're using this or other VPN options, staying safe online is an essential part of your travel toolkit.
 
@@ -90,7 +90,7 @@ Let's talk about getting around in cities – a crucial aspect of any travel adv
 
 - **Bolt**: Unfortunately no discount code here, but still a [useful app](https://bolt.eu/) to have in cities like London.
 
-- **Grab**: If you're venturing through countries like Singapore, Malaysia, or Thailand, the Grab app is a game-changer. It offers a wide range of capabilities – from ride-hailing to food delivery. [Let's explore Grab](https://r.grab.com/r/davd38bv).
+- **Grab**: If you're venturing through countries like Singapore, Malaysia, or Thailand, the Grab app is a game-changer. It offers a wide range of capabilities – from ride-hailing to food delivery. [Explore Grab](https://r.grab.com/r/davd38bv).
 
 Additionally, for travelers exploring cities with comprehensive public transportation systems, an app like **[Citymapper](https://citymapper.com/)** can be a lifesaver. Especially useful in cities like London and [many other cities](https://citymapper.com/cities), Citymapper provides detailed information about public transport routes, schedules, and even real-time updates. It's like having your own personal navigator for city transit!
 
