@@ -66,6 +66,8 @@ Having trouble understanding the locals? Apps like [Google Translate](https://tr
 
 Before you jet off, a quick visa check is a must 🎫. I've found helpful tools like [Passport Index](https://www.passportindex.org/travel-visa-checker/) and [Travelscope](https://www.markuslerner.com/travelscope/) to be lifesavers. They'll keep you informed about visa requirements and entry regulations, saving you from last-minute hiccups. However, always best to confirm with your official foreign affairs ministry or the airline you are traveling with.
 
+![Passport-Index-Screenshot](/media/articles/Passport-Index-Screenshot.png)
+
 ### **8. Secure Browsing with a VPN: Protect Yourself on the Go**
 
 Security matters, even when you're miles away from home. That's why I trust _some_ VPNs to keep my online presence secure. 🔐
