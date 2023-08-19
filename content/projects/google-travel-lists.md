@@ -1,6 +1,6 @@
 ---
 title: GoogleMaps Travel List
-date: 2021-12-01
+date: 2023-08-01
 images:
   - /media/portfolio/google-travel-lists.png
 description: My GoogleMaps Travel Lists to explore some new places around the globe.
