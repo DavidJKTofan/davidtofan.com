@@ -1,5 +1,11 @@
 [
   {
+    "name": "Introduction to Networking",
+    "organization": "NVIDIA",
+    "link": "https://coursera.org/share/3ed5ed8634d3abb87f84578fbcc75c0e",
+    "icon": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/http://coursera-university-assets.s3.amazonaws.com/77/9078959db5472ab81dbd883497e987/NVIDIA-360x360.png?auto=format%2Ccompress&dpr=2&w=80&h=80",
+    "date": "Aug 2023"
+  },{
     "name": "Cloudflare Pitch Certified",
     "organization": "Cloudflare, Inc.",
     "link": "https://www.credly.com/badges/c3bed3b9-0e98-4ef9-9e66-5741462572da",
