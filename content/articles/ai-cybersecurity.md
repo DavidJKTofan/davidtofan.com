@@ -6,13 +6,13 @@ images:
 tags:
   - Resources
   - Security
-  - Privacy
   - Artificial Intelligence
+  - Privacy
 categories:
   - Security
 ---
 
-In this blog post, we will be going over two important interactions with Artificial intelligence (AI):
+In this blog post, we will be going over two important interactions with Artificial Intelligence (AI):
 
 1. **Zero Trust and AI** – navigating the balance between empowering employees to leverage AI services and safeguarding against potential information leaks and misuse.
 
