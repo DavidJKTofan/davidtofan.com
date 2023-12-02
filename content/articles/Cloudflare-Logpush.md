@@ -258,6 +258,10 @@ Additionally, check out [Get full observability into your Cloudflare logs with N
 
 ![New Relic Dashboard Example](/media/articles/logpush-newrelic-dashboard.png)
 
+### Sentinel One
+
+Check out how to Logpush to SentinelOne Scalyr Dataset by using [cehrig/cloudflare-logpush-sentinelone-scalyr-dataset](https://github.com/cehrig/cloudflare-logpush-sentinelone-scalyr-dataset).
+
 * * *
 
 ## Disclaimer
