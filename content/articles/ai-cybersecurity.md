@@ -2,7 +2,7 @@
 title: Cybersecurity and Artificial Intelligence (AI)
 date: 2023-12-01
 images:
-  - /media/articles/TBD.png
+  - /media/articles/ai-cybersecurity.png
 tags:
   - Resources
   - Security
