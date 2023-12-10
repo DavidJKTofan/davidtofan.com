@@ -44,8 +44,6 @@ Additionally, with Cloudflare's **[Remote Browser Isolation (RBI)](https://devel
 
 ![Remote Browser Isolation (RBI)](img/remote-browser-isolation.png)
 
-![Remote Browser Isolation (RBI) blocking copy-paste](img/rbi-copy-paste-block.gif)
-
 ### Controlling Use without a Proxy
 
 > _**Cloudflare's API-driven Cloud Access Security Broker (CASB)** scans SaaS applications for misconfigurations, unauthorized user activity, shadow IT, and other data security issues that can occur after a user has successfully logged in._
