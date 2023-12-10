@@ -12,7 +12,7 @@ cascade:
   showDateUpdated: false
   showTableOfContents: true
   sitemap:
-    priority: 0.8
+    priority: 0.7
 ---
 
 {{< lead >}}

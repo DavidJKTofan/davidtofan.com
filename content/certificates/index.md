@@ -16,7 +16,7 @@ showTableOfContents: false
 sharingLinks: false
 enableCodeCopy: false
 sitemap:
-  priority: 0.8
+  priority: 0.6
 ---
 
 Explore my certificates and diplomas – a visual testament to my commitment and skills.
