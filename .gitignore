@@ -347,4 +347,4 @@ themes/blowfish/static
 
 # Hugo build output directory
 public
-resources
+#resources
