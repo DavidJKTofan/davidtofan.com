@@ -6,6 +6,9 @@ theme = "blowfish"
 baseURL = "https://davidtofan.com/"
 defaultContentLanguage = "en"
 
+# https://gohugo.io/getting-started/configuration/#timeout
+timeout = 120s
+
 [params]
   images = ["website-thumbnail.png"]
 
