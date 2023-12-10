@@ -3,3 +3,6 @@ https://:project.pages.dev/*
   
 https://:project.pages.dev/*
   Access-Control-Allow-Origin: https://staging.:project.pages.dev
+
+https://davidtofan-com.pages.dev/*
+  X-Robots-Tag: noindex

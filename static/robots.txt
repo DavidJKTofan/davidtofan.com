@@ -1,7 +1,8 @@
 User-agent: *
 Disallow: /cdn-cgi/
-Disallow: /admin/
-Disallow: /privacy/
 Disallow: /welcome/
+Disallow: /tags/
+Disallow: /data/
+Disallow: /authors/
 
 Sitemap: https://davidtofan.com/sitemap.xml

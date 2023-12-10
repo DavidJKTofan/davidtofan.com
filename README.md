@@ -8,13 +8,12 @@
 Special thanks to all supporting entities/tools/softwares/packages/platforms/contributors... 🤓
 
 * Website deployed via [Cloudflare Pages](https://pages.cloudflare.com/) for FREE – [Build your next big idea with Cloudflare Pages](https://blog.cloudflare.com/big-ideas-on-pages/)
-* Website built on [Hugo](https://gohugo.io/) with theme from [apvarun](https://github.com/apvarun/digital-garden-hugo-theme)
-* Graphics from myself - some built with [Canva](https://www.canva.com/) - and some images from [Unsplash](https://unsplash.com/)
-* Icons from [Font Awesome](https://fontawesome.com/license)
-* Some code/scripts inspired by [Stack Overflow](https://stackoverflow.com/) or other online forums/discourse
-* Automatically opening pull requests to fix known vulnerabilities in dependencies with [Snyk](https://snyk.io/)
+* Website built on [Hugo](https://github.com/gohugoio/hugo/releases) using the [blowfish](https://github.com/nunocoracao/blowfish) theme
+* Graphics designed on [Canva](https://www.canva.com/), others from [Unsplash](https://unsplash.com/), and contributions from [Stable Diffusion](https://stability.ai/stable-diffusion)
+* Some code/scripts inspired by [Stack Overflow](https://stackoverflow.com/), [ChatGPT](https://openai.com/chatgpt) or various other online forums
+* Vulnerability checks managed by [Snyk](https://snyk.io/)
 
-Unless otherwise specified, built with 🧡 by myself.
+Unless specified, everything 🧡-crafted by me.
 
 # Disclaimer
 

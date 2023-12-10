@@ -1,0 +1,11 @@
+{
+    "name": "David Tofan",
+    "image" : "img/profile.png",
+    "bio": "Solutions Engineer",
+    "social": [
+        { "linkedin": "https://www.linkedin.com/in/davidtofan/" },
+        { "twitter": "https://twitter.com/davidjktofan" },
+        { "instagram": "https://www.instagram.com/davidjktofan/" },
+        { "github": "https://github.com/DavidJKTofan" }
+    ]
+}

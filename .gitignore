@@ -340,5 +340,11 @@ themes/digitalgarden/exampleSite
 themes/digitalgarden/images
 themes/digitalgarden/static/favicon.ico
 
+# Blowfish exampleSite
+themes/blowfish/exampleSite
+themes/blowfish/images
+themes/blowfish/static
+
 # Hugo build output directory
 public
+resources

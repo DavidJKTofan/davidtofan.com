@@ -1,7 +1,0 @@
-{{ $built := resources.Get "js/main.js" | js.Build "main.js" }}
-<script type="text/javascript" src="{{ $built.RelPermalink }}" defer></script>
-
-<!-- Google Charts -->
-{{if (eq .Permalink ("/projects/world-of-opportunities/" | absURL))}}
-    {{- partial "custom_footer.html" . -}}
-{{end}}
