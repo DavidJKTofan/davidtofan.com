@@ -1,7 +1,6 @@
 ---
 title: "Data"
 date: 2023-12-09T20:55:37+01:00
-draft: true
 
 showDate : false
 showDateUpdated : false
