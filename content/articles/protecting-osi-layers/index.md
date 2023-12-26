@@ -60,6 +60,21 @@ It is crucial to **channel all traffic through Cloudflare** before reaching the 
 
 My personal favorite approach involves deploying the **[Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)** by installing the `cloudflared` daemon on the origin server. This setup establishes outbound-only connections to Cloudflare's global network, eliminating the need for the origin server's IP address, firewall configuration or any port forwarding. Instead, the [Cloudflare Tunnel hostname](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/routing-to-tunnel/dns/) becomes the designated _origin_.
 
+Bear in mind that it is possible to configure [Static IPs or Bringing Your Own IPs (BYOIP)](https://developers.cloudflare.com/fundamentals/concepts/cloudflare-ip-addresses/#customize-cloudflare-ip-addresses) as **Ingress IPs** for the client, enabling the allowlisting of these IPs for access. Moreover, by leveraging [Aegis](https://blog.cloudflare.com/cloudflare-aegis), you can establish dedicated **Egress IPs** connecting from Cloudflare to the Origin Server. This enables the allowlisting of these specific IPs on the Origin Server, allowing for the imposition of network Access Control Lists (ACLs) to exclusively permit traffic originating from these IPs into the network.
+
+```goat
+   +-------------------+         +-------------------+         +---------------------+
+   |       Client      |         |    Cloudflare     |         |    Origin Server    |
+   +-------------------+         +-------------------+         +---------------------+
+              |                           |                           |
+              |                           |                           |
+              |        Ingress IPs        |         Egress IPs        |
+              +-------------------------->+-------------------------->|
+              |                           |                           |
+              |                           |                           |
+              |                           |                           |
+```
+
 For comprehensive details, review the [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/) developer documentation, including which [network ports](https://developers.cloudflare.com/fundamentals/reference/network-ports/) are proxied by default.
 
 ### Flow of HTTP Requests
@@ -87,9 +102,9 @@ By routing HTTP traffic through Cloudflare, you can leverage a variety of soluti
 
 #### Use Case: Security
 
-Effortlessly enhance your security posture with one-click deployment of pre-configured **[WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)** across your entire domain or a specific scope of incoming requests. This provides peace of mind against various types of attacks. Nevertheless, it is advisable to review the individual rules in [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) and customize pre-defined rules to suit your specific needs.
+Effortlessly enhance your security posture with one-click deployment of pre-configured **[WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)** across your entire domain or a specific scope of incoming requests. This provides peace of mind against various types of attacks. Nevertheless, it is advisable to review the individual rules in [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) and customize pre-defined rules to suit your specific needs, as well as optimizing the paranoia level of the [OWASP Core Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/owasp-core-ruleset/) to prevent potential false positives.
 
-Start by gaining comprehensive visibility into all activities on your domain through an analysis of **[Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/)**. Subsequently, craft highly specific WAF Custom Rules employing the [SKIP action](https://developers.cloudflare.com/waf/custom-rules/skip/). This step is crucial for allowing internal, trusted and familiar traffic, particularly for internal API endpoints and [Verified Bots](https://developers.cloudflare.com/bots/reference/verified-bot-categories/), thereby minimizing the risk of false positives in other Custom Rules. 
+Start by gaining comprehensive visibility into all activities on your domain through an analysis of **[Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/)**. Subsequently, craft highly specific WAF Custom Rules employing the [SKIP action](https://developers.cloudflare.com/waf/custom-rules/skip/). This step is crucial for allowing internal, trusted and familiar traffic, particularly for internal API endpoints and [Verified Bots](https://developers.cloudflare.com/bots/reference/verified-bot-categories/), thereby minimizing the risk of false positives in other Custom Rules. You can create [lists](https://developers.cloudflare.com/waf/tools/lists/) to simplify the setup.
 
 Once this foundation is established, proceed to create more generalized Custom Rules to proactively mitigate potential attacks or implement measures to block or challenge specific types of traffic. This tiered approach ensures a nuanced and effective strategy for optimizing security while minimizing disruptions to legitimate operations.
 
@@ -109,7 +124,7 @@ To attain in-depth visibility into automated traffic, particularly content scrap
 
 _Image source: [Cloudflare WAF Product Brief](https://www.cloudflare.com/static/9fd7253e4009caaa928a67ecca5d2709/WAF_product_brief_Fall_2022__1_.pdf)_
 
-If you're seeking an alternative to CAPTCHA or unable to invest in the more comprehensive Bot Management solution, consider utilizing the privacy-preserving **[Turnstile](https://developers.cloudflare.com/turnstile/)** as a safeguard against malicious bots. Learn more about it's capabilities in the [Cloudflare is free of CAPTCHAs; Turnstile is free for everyone](https://blog.cloudflare.com/turnstile-ga) blog post.
+If you're seeking an alternative to CAPTCHA or unable to invest in the more comprehensive Bot Management solution, consider utilizing the privacy-preserving **[Turnstile](https://developers.cloudflare.com/turnstile/)** as a safeguard against malicious bots. Learn more about it's capabilities in the [Cloudflare is free of CAPTCHAs; Turnstile is free for everyone](https://blog.cloudflare.com/turnstile-ga) blog post. Furthermore, you have the option to seamlessly [integrate Turnstile into the WAF](https://blog.cloudflare.com/integrating-turnstile-with-the-cloudflare-waf-to-challenge-fetch-requests/). This allows web administrators to incorporate the Turnstile code snippet into their websites and subsequently configure the Cloudflare WAF to handle these requests.
 
 Moreover, for those seeking to scrutinize content uploaded to an application, **[WAF Content Scanning](https://developers.cloudflare.com/waf/about/content-scanning/)** can prove beneficial. When activated, content scanning endeavors to identify content objects, including uploaded files, and scans them for malicious signatures such as malware. It is advisable to establish a detailed WAF Custom Rule, specifying the URI Path where the content is uploaded, to promptly block any detected malicious content objects.
 
@@ -127,7 +142,9 @@ Configuring and adapting **[Cache Rules](https://developers.cloudflare.com/cache
 
 > Note: Cloudflare's [global network](https://www.cloudflare.com/network/) and direct peering with multiple providers contributes to exceptional [network performance](https://blog.cloudflare.com/network-performance-update-birthday-week-2023).
 
-Moreover, delve into detailed **performance metrics** by exploring various fields within the [HTTP request dataset](https://developers.cloudflare.com/logs/reference/log-fields/zone/http_requests/) accessible through [Logpush](https://developers.cloudflare.com/logs/about/). Gain valuable insights into aspects such as:
+Furthermore, you can explore **[Image Optimization](https://developers.cloudflare.com/images/)** features such as Image Resizing and Polish. Polish, a convenient one-click enhancement, not only optimizes images but also converts the `content-type` of PNG and JPEG images to WebP for improved efficiency. On the other hand, Image Resizing provides enhanced flexibility and granularity in image transformations. You can implement Image Resizing using [URL Format](https://developers.cloudflare.com/images/image-resizing/url-format/) (either directly in the HTML code with [`srcset`](https://developers.cloudflare.com/images/image-resizing/responsive-images/) or through [Transform Rules](https://developers.cloudflare.com/images/image-resizing/serve-images-custom-paths/#serve-images-from-custom-paths-1)), or alternatively, through [Workers](https://developers.cloudflare.com/images/image-resizing/resize-with-workers/).
+
+Delve into detailed **performance metrics** by exploring various fields within the [HTTP request dataset](https://developers.cloudflare.com/logs/reference/log-fields/zone/http_requests/) accessible through [Logpush](https://developers.cloudflare.com/logs/about/). Gain valuable insights into aspects such as:
 * _OriginResponseHeaderReceiveDurationMs_
 * _OriginTCPHandshakeDurationMs_
 * _OriginTLSHandshakeDurationMs_
@@ -221,7 +238,7 @@ This approach not only streamlines the integration of SSL VPNs but also presents
 
 When organizations seek to fortify their entire networks, IT departments often resort to conventional hardware solutions or cloud scrubbing providers. **[Magic Transit](https://developers.cloudflare.com/magic-transit/)** emerges as a comprehensive network security solution, delivering DDoS protection, traffic acceleration, and more, accessible from every Cloudflare PoP. This applies seamlessly to on-premise, cloud-hosted, and hybrid network environments.
 
-> Note: certain [prerequisites](https://developers.cloudflare.com/magic-transit/prerequisites/) are essential for utilizing Magic Transit, typically involving an IPv4 IP prefix length requirement of a minimum `/24`, due to how Border Gateway Protocol (BGP) works. However, those unable to meet this requirement can explore the option of [Cloudflare IPs](https://developers.cloudflare.com/magic-transit/cloudflare-ips/). In certain cases one can also directly connect their network infrastructure with Cloudflare with [Network Interconnect](https://developers.cloudflare.com/magic-transit/network-interconnect/) for a more reliable and secure experience.
+> Note: certain [prerequisites](https://developers.cloudflare.com/magic-transit/prerequisites/) are essential for utilizing Magic Transit, typically involving an IPv4 IP prefix length requirement of a minimum `/24`, due to how [Border Gateway Protocol (BGP)](https://www.cloudflare.com/learning/security/glossary/what-is-bgp/) works. However, those unable to meet this requirement can explore the option of [Cloudflare IPs](https://developers.cloudflare.com/magic-transit/cloudflare-ips/). In certain cases one can also directly connect their network infrastructure with Cloudflare with [Network Interconnect](https://developers.cloudflare.com/magic-transit/network-interconnect/) for a more reliable and secure experience.
 
 ![Magic Transit Use Cases and Reference Architecture](img/magic-transit-diagram.png)
 
