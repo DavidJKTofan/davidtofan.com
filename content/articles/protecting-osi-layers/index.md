@@ -13,6 +13,10 @@ In this article, we explore general recommendations and best practices for safeg
 - **[SSL VPN endpoints](#use-case-ssl-vpn)** (TCP and UDP segments)
 - **[Data Center with a CIDR notation /24](#use-case-cidr-24)** (IP Prefix)
 
+Cloudflare can be instrumental in enhancing security and streamlining operational complexity by **consolidating multiple tools into a unified, integrated platform**. Real-world case studies illustrating organizations benefiting from this approach include [Carrefour](https://www.cloudflare.com/case-studies/carrefour/) (the eighth-largest retailer globally by revenue) and [Chrono24](https://www.cloudflare.com/case-studies/chrono24/) (one of the world's largest online marketplaces for luxury watches).
+
+Other interesting case studies are: [Eurovision](https://blog.cloudflare.com/how-cloudflare-scaled-and-protected-eurovision-2023-voting), [Discord](https://www.cloudflare.com/case-studies/discord/), [Republic of Estonia Information Security Authority](https://www.cloudflare.com/case-studies/republic-of-estonian-information-security-authority/), [DHL Parcel](https://www.cloudflare.com/case-studies/dhl-parcel/), [C&A](https://www.cloudflare.com/case-studies/c-and-a/), and [9GAG](https://www.cloudflare.com/case-studies/9gag-cdn-ddos-protection/) among others.
+
 ## Getting Started
 
 ### Authoritative DNS
