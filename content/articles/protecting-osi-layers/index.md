@@ -8,10 +8,10 @@ type: "article"
 
 In this article, we explore general recommendations and best practices for safeguarding a comprehensive IT architecture. The following use cases are highlighted for protection and optimization:
 
-- **[Websites / web applications](#http-web-applications)** (standard HTTP requests)
-- **[API endpoints](#http-api-endpoints)** (HTTP requests with `content-type` JSON)
+- **[Websites / web applications](#l7-http-web-applications)** (standard HTTP requests)
+- **[API endpoints](#l7-http-api-endpoints)** (HTTP requests with `content-type` JSON)
 - **[SSL VPN endpoints](#use-case-ssl-vpn)** (TCP and UDP segments)
-- **[Data Center with a CIDR notation /24](#packets-cidr-24)** (IP Prefix)
+- **[Data Center with a CIDR notation /24](#use-case-cidr-24)** (IP Prefix)
 
 ## Getting Started
 
