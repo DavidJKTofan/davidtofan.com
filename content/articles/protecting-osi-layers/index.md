@@ -17,6 +17,16 @@ Cloudflare can be instrumental in enhancing security and streamlining operationa
 
 Other interesting case studies are: [Eurovision](https://blog.cloudflare.com/how-cloudflare-scaled-and-protected-eurovision-2023-voting), [Discord](https://www.cloudflare.com/case-studies/discord/), [Republic of Estonia Information Security Authority](https://www.cloudflare.com/case-studies/republic-of-estonian-information-security-authority/), [DHL Parcel](https://www.cloudflare.com/case-studies/dhl-parcel/), [C&A](https://www.cloudflare.com/case-studies/c-and-a/), and [9GAG](https://www.cloudflare.com/case-studies/9gag-cdn-ddos-protection/) among others.
 
+## OSI Layers
+
+Here is a visual representation of mapping Open Systems Interconnection model (OSI model) Layers to Cloudflare solutions:
+
+![mapping-osi-layers-with-solutions](img/mapping-osi-layers-with-solutions.png)
+
+This diagram provides an overview of how Cloudflare solutions effectively correspond to different OSI layers. High-level examples and use cases on these OSI layers are elaborated in this article, offering a general understanding of the practical applications of Cloudflare across the networking stack.
+
+* * * 
+
 ## Getting Started
 
 ### Authoritative DNS
@@ -106,6 +116,8 @@ By routing HTTP traffic through Cloudflare, you can leverage a variety of soluti
 
 #### Use Case: Security
 
+_**Web Application Firewall (WAF) – automatic protection and flexibility**_
+
 Effortlessly enhance your security posture with one-click deployment of pre-configured **[WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)** across your entire domain or a specific scope of incoming requests. This provides peace of mind against various types of attacks. Nevertheless, it is advisable to review the individual rules in [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) and customize pre-defined rules to suit your specific needs, as well as optimizing the paranoia level of the [OWASP Core Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/owasp-core-ruleset/) to prevent potential false positives.
 
 Start by gaining comprehensive visibility into all activities on your domain through an analysis of **[Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/)**. Subsequently, craft highly specific WAF Custom Rules employing the [SKIP action](https://developers.cloudflare.com/waf/custom-rules/skip/). This step is crucial for allowing internal, trusted and familiar traffic, particularly for internal API endpoints and [Verified Bots](https://developers.cloudflare.com/bots/reference/verified-bot-categories/), thereby minimizing the risk of false positives in other Custom Rules. You can create [lists](https://developers.cloudflare.com/waf/tools/lists/) to simplify the setup.
@@ -118,7 +130,11 @@ Exercise precise control over which requests are blocked, challenged, skipped, o
 
 For advanced threat mitigation, including potential zero-day attacks – like from SQL injection (SQLi), Cross-site scripting (XSS), and Remote Code Execution (RCE) attacks –, take advantage of the **[WAF Attack Score](https://developers.cloudflare.com/waf/about/waf-attack-score/)**. For instance, create a WAF Custom Rule to block requests with a WAF Attack Score below 50 (`cf.waf.score lt 50`), indicating a likely attack (`likely_attack`). This additional layer of defense fortifies your security measures against evolving and sophisticated threats.
 
+_**Rate Limiting – restricting the number of requests**_
+
 Enhance security further by integrating the deployment of WAF Managed Rules and WAF Custom Rules with **[Rate Limiting Rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)**. Rate Limiting empowers you to set specific limits for requests that meet defined criteria and determine the action to take when those limits are exceeded. Explore [common best practices](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/) and rule examples to fortify your defenses, whether you're safeguarding REST or GraphQL APIs or controlling the frequency of operations, among other scenarios. In order to [find an appropriate rate limit](https://developers.cloudflare.com/waf/rate-limiting-rules/find-rate-limit/), review the Security Analytics.
+
+_**Bot Management – mitigate automated traffic**_
 
 To attain in-depth visibility into automated traffic, particularly content scrapers, credential stuffing, inventory hoarding, and other bots, it is recommended to acquire a **[Bot Management](https://developers.cloudflare.com/bots/plans/bm-subscription/)** subscription. This subscription unlocks the utilization of fields such as [BotScore](https://developers.cloudflare.com/bots/concepts/bot-score/) and [JA3 Fingerprint](https://developers.cloudflare.com/bots/concepts/ja3-fingerprint/) in WAF Custom Rules and Rate Limiting Rules, providing added flexibility for crafting specific rules.
 
@@ -128,9 +144,15 @@ To attain in-depth visibility into automated traffic, particularly content scrap
 
 _Image source: [Cloudflare WAF Product Brief](https://www.cloudflare.com/static/9fd7253e4009caaa928a67ecca5d2709/WAF_product_brief_Fall_2022__1_.pdf)_
 
+_**Turnstile – CAPTCHA alternative**_
+
 If you're seeking an alternative to CAPTCHA or unable to invest in the more comprehensive Bot Management solution, consider utilizing the privacy-preserving **[Turnstile](https://developers.cloudflare.com/turnstile/)** as a safeguard against malicious bots. Learn more about it's capabilities in the [Cloudflare is free of CAPTCHAs; Turnstile is free for everyone](https://blog.cloudflare.com/turnstile-ga) blog post. Furthermore, you have the option to seamlessly [integrate Turnstile into the WAF](https://blog.cloudflare.com/integrating-turnstile-with-the-cloudflare-waf-to-challenge-fetch-requests/). This allows web administrators to incorporate the Turnstile code snippet into their websites and subsequently configure the Cloudflare WAF to handle these requests.
 
+_**WAF Content Scanning – malware scanning**_
+
 Moreover, for those seeking to scrutinize content uploaded to an application, **[WAF Content Scanning](https://developers.cloudflare.com/waf/about/content-scanning/)** can prove beneficial. When activated, content scanning endeavors to identify content objects, including uploaded files, and scans them for malicious signatures such as malware. It is advisable to establish a detailed WAF Custom Rule, specifying the URI Path where the content is uploaded, to promptly block any detected malicious content objects.
+
+_**Page Shield – third-party script management**_
 
 **[Page Shield](https://developers.cloudflare.com/page-shield/)** can display third-party scripts being loaded, when and where on your website, also allowing you to define policies to allow certain scripts to be loaded. In the near future, related potential CVEs will also be displayed.
 
@@ -138,15 +160,25 @@ Moreover, for those seeking to scrutinize content uploaded to an application, **
 
 Effortlessly enhance your website's performance with a single click by implementing a range of **[speed optimizations](https://developers.cloudflare.com/speed/optimization/)**. These include features such as [Brotli compression](https://developers.cloudflare.com/speed/optimization/content/brotli/), [HTTP/3 (with QUIC)](https://developers.cloudflare.com/speed/optimization/protocol/http3/), [Auto Minify](https://developers.cloudflare.com/speed/optimization/content/auto-minify/), and more.
 
+_**Argo Smart Routing – efficient routing**_
+
 Experience advanced Layer 7 efficiency with **[Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/)**, streamlining the routing of traffic along the most optimal network path from Cloudflare to the origin server — also achievable with just one-click.
 
+_**Zaraz – third-party tool manager**_
+
 Unlock precise control over cookie storage and information sharing with third party scripts by leveraging the capabilities of **[Zaraz](https://developers.cloudflare.com/zaraz/)** and it's [privacy settings](https://developers.cloudflare.com/zaraz/reference/settings/#privacy). Here it's important to point out the usage of [Google Analytics with Cloudflare](https://developers.cloudflare.com/fundamentals/reference/google-analytics/). Review my [Cloudflare Zaraz](/articles/cloudflare-zaraz/) article for some examples.
+
+_**Cache Rules – caching customization**_
 
 Configuring and adapting **[Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/)** is key to taking advantage of the global Cloudflare Content Delivery Network (CDN) and improving delivery of [eligible assets](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/). The `CF-Cache-Status` response header value we are looking for is [HIT](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/#cloudflare-cache-responses). The [CF-RAY](https://developers.cloudflare.com/fundamentals/reference/http-request-headers/#cf-ray) response header shows from which Cloudflare PoP (_IATA 3-letter airport code_) the asset was delivered. Keep in mind the [order and priority](https://developers.cloudflare.com/cache/how-to/cache-rules/order/) when creating the Rules.
 
 > Note: Cloudflare's [global network](https://www.cloudflare.com/network/) and direct peering with multiple providers contributes to exceptional [network performance](https://blog.cloudflare.com/network-performance-update-birthday-week-2023).
 
+_**Image Optimization – optimize and transform images on the fly**_
+
 Furthermore, you can explore **[Image Optimization](https://developers.cloudflare.com/images/)** features such as Image Resizing and Polish. Polish, a convenient one-click enhancement, not only optimizes images but also converts the `content-type` of PNG and JPEG images to WebP for improved efficiency. On the other hand, Image Resizing provides enhanced flexibility and granularity in image transformations. You can implement Image Resizing using [URL Format](https://developers.cloudflare.com/images/image-resizing/url-format/) (either directly in the HTML code with [`srcset`](https://developers.cloudflare.com/images/image-resizing/responsive-images/) or through [Transform Rules](https://developers.cloudflare.com/images/image-resizing/serve-images-custom-paths/#serve-images-from-custom-paths-1)), or alternatively, through [Workers](https://developers.cloudflare.com/images/image-resizing/resize-with-workers/).
+
+_**Performance Measurement**_
 
 Delve into detailed **performance metrics** by exploring various fields within the [HTTP request dataset](https://developers.cloudflare.com/logs/reference/log-fields/zone/http_requests/) accessible through [Logpush](https://developers.cloudflare.com/logs/about/). Gain valuable insights into aspects such as:
 * _OriginResponseHeaderReceiveDurationMs_
@@ -193,9 +225,13 @@ _Image Source: [Cloudflare blog post](https://blog.cloudflare.com/ml-api-discove
 
 #### Use Case: Positive Security Model
 
+_**API Schema Validation – compliant incoming traffic**_
+
 The compilation of all anticipated formats for every API endpoint within an API is termed an API schema. Utilizing **[API Schema Validation](https://developers.cloudflare.com/api-shield/security/schema-validation/)** proves highly effective in safeguarding against bug exploitation, invalid API requests, and malicious payloads. This validation ensures that the body, path, and query string of a request contain the expected information for a given API endpoint in the anticipated format.
 
 You have the flexibility to either manually upload API schemas or apply learned schemas after some time. Additionally, you can create an interactive documentation portal (API catalog) using the [developer portals](https://developers.cloudflare.com/api-shield/management-and-monitoring/developer-portal/). This empowers your team with a comprehensive resource for understanding and interacting with the APIs, promoting better development practices and enhanced security measures.
+
+_**mTLS – bidirectionally secure and trusted traffic**_
 
 In standard HTTPS communication, the server provides the TLS certificate during the SSL handshake to secure the connection. However, in **[mutual TLS (mTLS)](https://developers.cloudflare.com/api-shield/security/mtls/)**, clients are required to provide a certificate to the server, establishing a logical checkpoint that needs to be configured with the server. When utilizing Cloudflare to proxy traffic, Cloudflare assumes the role of the server in communication with clients. Consequently, you can enable the mTLS feature with Cloudflare without the necessity to configure it with your servers. As long as the client presents the correct certificate without triggering additional security checkpoints, Cloudflare will grant access to the server. 
 
@@ -203,20 +239,24 @@ In standard HTTPS communication, the server provides the TLS certificate during 
 
 ### L4 TCP/UDP
 
+_**Spectrum – global TCP and UDP proxy**_
+
 Cloudflare is typically used as an anycast reverse proxy for HTTP/S traffic. To extend its capabilities to **proxy TCP/UDP services**, you'll need to leverage **[Spectrum](https://developers.cloudflare.com/spectrum/)**.
 
 Spectrum serves as a global TCP and UDP proxy, operating on every Cloudflare's PoP. Unlike HTTP/S traffic, Spectrum doesn't [terminate the connection by default](https://developers.cloudflare.com/spectrum/reference/configuration-options/#edge-tls-termination); instead, it provides robust L3/L4 DDoS protection while efficiently passing packets through to the origin server. This enables secure and optimized handling of a diverse range of network protocols beyond traditional web traffic.
 
+_**IP Access Rules & Network-layer DDoS Protection**_
+
 As TCP/UDP operates at Layer 4, it's important to note that the WAF does not apply to this type of traffic. In such cases, the use of **[IP Access Rules](https://developers.cloudflare.com/waf/tools/ip-access-rules/)** is recommended. In addition, one can overwrite the [Network-layer DDoS Attack Protection managed ruleset](https://developers.cloudflare.com/ddos-protection/managed-rulesets/network/). It's worth mentioning that future plans might include extending support for Spectrum to incorporate the capabilities of **[Magic Firewall](https://developers.cloudflare.com/magic-firewall/)**, a global network firewall.
 
 ```goat
-+-----------------+      +---------+
-|  HTTP requests  | ---> |   WAF   |
-+-----------------+      +---------+ 
++-----------------+      +------------------------------+
+|  HTTP requests  | ---> |   WAF & L7 DDoS Protection   |
++-----------------+      +------------------------------+ 
 
-+-----------------+      +-------------------+
-|     TCP/UDP     | ---> |  IP Access Rules  |
-+-----------------+      +-------------------+
++-----------------+      +----------------------------------------+
+|     TCP/UDP     | ---> |  IP Access Rules & L3 DDoS Protection  |
++-----------------+      +----------------------------------------+
 ```
 
 > Note: if a Spectrum [application type](https://developers.cloudflare.com/spectrum/reference/configuration-options/#application-type) TCP/UDP employs a proxied hostname as its origin, the traffic will eventually still traverse through the WAF. Furthermore, when configuring Spectrum with an application type of HTTP/S, it's possible to define granular WAF Custom Rules with [specific HTTP ports](https://developers.cloudflare.com/waf/custom-rules/use-cases/require-specific-http-ports/).
@@ -240,6 +280,8 @@ This approach not only streamlines the integration of SSL VPNs but also presents
 
 ### L3 Network
 
+_**Magic Transit – IP network security and performance**_
+
 When organizations seek to fortify their entire networks or entire IP prefixes, IT departments often resort to conventional hardware solutions or cloud scrubbing providers. **[Magic Transit](https://developers.cloudflare.com/magic-transit/)** emerges as a comprehensive network security solution, delivering DDoS protection, traffic acceleration, and more, accessible from every Cloudflare PoP. This applies seamlessly to on-premise, cloud-hosted, and hybrid network environments.
 
 > Note: certain [prerequisites](https://developers.cloudflare.com/magic-transit/prerequisites/) are essential for utilizing Magic Transit, typically involving an IPv4 IP prefix length requirement of a minimum `/24`, due to how [Border Gateway Protocol (BGP)](https://www.cloudflare.com/learning/security/glossary/what-is-bgp/) works. However, those unable to meet this requirement can explore the option of [Cloudflare IPs](https://developers.cloudflare.com/magic-transit/cloudflare-ips/), or even Spectrum to protect only single IP addresses. In certain cases one can also directly connect their network infrastructure with Cloudflare with [Network Interconnect](https://developers.cloudflare.com/magic-transit/network-interconnect/) for a more reliable and secure experience.
@@ -249,6 +291,8 @@ When organizations seek to fortify their entire networks or entire IP prefixes, 
 _Image Source: [Magic Transit Reference Architecture](https://developers.cloudflare.com/reference-architecture/magic-transit-reference-architecture/)_
 
 For nearly real-time insights into network and transport-layer traffic patterns, as well as DDoS attacks, explore **[Network Analytics](https://developers.cloudflare.com/analytics/network-analytics/)**. Moreover, you can enhance your visibility into network traffic by configuring **[Magic Network Monitoring](https://developers.cloudflare.com/magic-network-monitoring/)** to analyze the network flow data transmitted from a your routers.
+
+_**Magic Firewall – Firewall-as-a-Service (FWaaS)**_
 
 Beyond DDoS protection, Magic Transit incorporates a version of **[Magic Firewall](https://developers.cloudflare.com/magic-firewall/)** – a Firewall-as-a-Service (FWaaS) solution. This network firewall allows you to apply filter rules based on various criteria, including protocol and packet length. By filtering undesirable traffic before it reaches your network, Magic Firewall acts as an additional global proactive defense mechanism, stopping attacks before they reach your network.
 
@@ -284,14 +328,6 @@ Additionally, the [Data Localization Suite (DLS)](https://developers.cloudflare.
 Review the [Cloudflare Trust Hub](https://www.cloudflare.com/trust-hub/) for more detailed information. 
 
 Learn more about [Cloudflare's Impact, Commitments, Privacy-preserving Products, Research, and more](/articles/cloudflare-impact-commitment-privacy-research/).
-
-## OSI Layers
-
-Here is a visual representation of mapping Open Systems Interconnection model (OSI model) Layers to Cloudflare solutions:
-
-![mapping-osi-layers-with-solutions](img/mapping-osi-layers-with-solutions.png)
-
-This diagram provides an overview of how Cloudflare solutions effectively correspond to different OSI layers. High-level examples and use cases on these OSI layers are elaborated in this article, offering a general understanding of the practical applications of Cloudflare across the networking stack.
 
 ## Final Remarks
 
