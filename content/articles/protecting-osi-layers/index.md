@@ -175,7 +175,7 @@ This is precisely where [API Shield](https://developers.cloudflare.com/api-shiel
 * Mutual TLS (mTLS): deliver robust authentication for mobile and IoT APIs.
 * [Sensitive Data Detection](https://developers.cloudflare.com/api-shield/management-and-monitoring/#sensitive-data-detection): safeguard against data leaks by continuously scanning response payloads for sensitive information.
 
-![Cloudflare API Gateway Demo and Walkthrough](img/Cloudflare-API%20Gateway-Traffic-Flow.png)
+![Cloudflare API Gateway Demo and Walkthrough](img/Cloudflare-API-Gateway-Traffic-Flow.png)
 
 _Image Source: [Cloudflare YouTube video](https://www.youtube.com/watch?v=wWkjqxHCfEI)_
 
@@ -207,7 +207,7 @@ Cloudflare is typically used as an anycast reverse proxy for HTTP/S traffic. To 
 
 Spectrum serves as a global TCP and UDP proxy, operating on every Cloudflare's PoP. Unlike HTTP/S traffic, Spectrum doesn't [terminate the connection by default](https://developers.cloudflare.com/spectrum/reference/configuration-options/#edge-tls-termination); instead, it provides robust L3/L4 DDoS protection while efficiently passing packets through to the origin server. This enables secure and optimized handling of a diverse range of network protocols beyond traditional web traffic.
 
-As TCP/UDP operates at Layer 4, it's important to note that the WAF does not apply to this type of traffic. In such cases, the use of **[IP Access Rules](https://developers.cloudflare.com/waf/tools/ip-access-rules/)** is recommended. It's worth mentioning that future plans might include extending support for Spectrum to incorporate the capabilities of **[Magic Firewall](https://developers.cloudflare.com/magic-firewall/)**, a global network firewall.
+As TCP/UDP operates at Layer 4, it's important to note that the WAF does not apply to this type of traffic. In such cases, the use of **[IP Access Rules](https://developers.cloudflare.com/waf/tools/ip-access-rules/)** is recommended. In addition, one can overwrite the [Network-layer DDoS Attack Protection managed ruleset](https://developers.cloudflare.com/ddos-protection/managed-rulesets/network/). It's worth mentioning that future plans might include extending support for Spectrum to incorporate the capabilities of **[Magic Firewall](https://developers.cloudflare.com/magic-firewall/)**, a global network firewall.
 
 ```goat
 +-----------------+      +---------+
@@ -240,9 +240,9 @@ This approach not only streamlines the integration of SSL VPNs but also presents
 
 ### L3 Network
 
-When organizations seek to fortify their entire networks, IT departments often resort to conventional hardware solutions or cloud scrubbing providers. **[Magic Transit](https://developers.cloudflare.com/magic-transit/)** emerges as a comprehensive network security solution, delivering DDoS protection, traffic acceleration, and more, accessible from every Cloudflare PoP. This applies seamlessly to on-premise, cloud-hosted, and hybrid network environments.
+When organizations seek to fortify their entire networks or entire IP prefixes, IT departments often resort to conventional hardware solutions or cloud scrubbing providers. **[Magic Transit](https://developers.cloudflare.com/magic-transit/)** emerges as a comprehensive network security solution, delivering DDoS protection, traffic acceleration, and more, accessible from every Cloudflare PoP. This applies seamlessly to on-premise, cloud-hosted, and hybrid network environments.
 
-> Note: certain [prerequisites](https://developers.cloudflare.com/magic-transit/prerequisites/) are essential for utilizing Magic Transit, typically involving an IPv4 IP prefix length requirement of a minimum `/24`, due to how [Border Gateway Protocol (BGP)](https://www.cloudflare.com/learning/security/glossary/what-is-bgp/) works. However, those unable to meet this requirement can explore the option of [Cloudflare IPs](https://developers.cloudflare.com/magic-transit/cloudflare-ips/). In certain cases one can also directly connect their network infrastructure with Cloudflare with [Network Interconnect](https://developers.cloudflare.com/magic-transit/network-interconnect/) for a more reliable and secure experience.
+> Note: certain [prerequisites](https://developers.cloudflare.com/magic-transit/prerequisites/) are essential for utilizing Magic Transit, typically involving an IPv4 IP prefix length requirement of a minimum `/24`, due to how [Border Gateway Protocol (BGP)](https://www.cloudflare.com/learning/security/glossary/what-is-bgp/) works. However, those unable to meet this requirement can explore the option of [Cloudflare IPs](https://developers.cloudflare.com/magic-transit/cloudflare-ips/), or even Spectrum to protect only single IP addresses. In certain cases one can also directly connect their network infrastructure with Cloudflare with [Network Interconnect](https://developers.cloudflare.com/magic-transit/network-interconnect/) for a more reliable and secure experience.
 
 ![Magic Transit Use Cases and Reference Architecture](img/magic-transit-diagram.png)
 
@@ -287,7 +287,7 @@ Learn more about [Cloudflare's Impact, Commitments, Privacy-preserving Products,
 
 ## OSI Layers
 
-Here is a visual representation of mapping OSI layers and services to Cloudflare solutions:
+Here is a visual representation of mapping Open Systems Interconnection model (OSI model) Layers to Cloudflare solutions:
 
 ![mapping-osi-layers-with-solutions](img/mapping-osi-layers-with-solutions.png)
 
