@@ -146,7 +146,9 @@ Once this foundation is established, proceed to create more generalized Custom R
 
 Exercise precise control over which requests are blocked, challenged, skipped, or logged by leveraging the flexibility of **WAF [Custom Rules](https://developers.cloudflare.com/waf/custom-rules/)**. Explore [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for practical examples, and be mindful of the [phases](https://developers.cloudflare.com/ruleset-engine/about/phases/) and the order of rule evaluation, considering the associated [actions](https://developers.cloudflare.com/ruleset-engine/rules-language/actions/). 
 
-There's also the option to inspect [HTTP request body fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/#http-request-body-fields) (payloads). The [encrypted payloads](https://developers.cloudflare.com/waf/managed-rules/payload-logging/) can be found in the `Metadata` field in [Firewall events](https://developers.cloudflare.com/logs/reference/log-fields/zone/firewall_events/) logs.
+> Note: Consider configuring [Custom Error Responses](https://developers.cloudflare.com/rules/custom-error-responses/) for your WAF Custom Rules, or [Configuring Custom Pages (Error and Challenge)](https://developers.cloudflare.com/support/more-dashboard-apps/cloudflare-custom-pages/configuring-custom-pages-error-and-challenge/), in order to establish a coherent branding across all custom pages and responses.
+
+There's also the option to inspect [HTTP request body fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/#http-request-body-fields) (payloads) / Payload Inspection. The [encrypted payloads](https://developers.cloudflare.com/waf/managed-rules/payload-logging/) can be found in the `Metadata` field in [Firewall events](https://developers.cloudflare.com/logs/reference/log-fields/zone/firewall_events/) logs.
 
 For advanced threat mitigation, including potential zero-day attacks – like from SQL injection (SQLi), Cross-site scripting (XSS), and Remote Code Execution (RCE) attacks –, take advantage of the **[WAF Attack Score](https://developers.cloudflare.com/waf/about/waf-attack-score/)**. For instance, create a WAF Custom Rule to block requests with a WAF Attack Score below 50 (`cf.waf.score lt 50`), indicating a likely attack (`likely_attack`). This additional layer of defense fortifies your security measures against evolving and sophisticated threats.
 
@@ -338,6 +340,8 @@ TBD
 ### Monitoring & Troubleshooting
 
 * Periodically monitor and review your general setup with the **[Security Center](https://developers.cloudflare.com/security-center/)**, the Zone **[Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/)**, and set up **[Notifications](https://developers.cloudflare.com/notifications/)** for important updates or incidents.
+
+> Note: Obviously also secure your Cloudflare account with [2FA](https://developers.cloudflare.com/fundamentals/account-and-billing/account-security/2fa/), considering the [Principle of Least Privilege](https://developers.cloudflare.com/fundamentals/setup/manage-members/roles/), and periodically reviewing your account [Audit Logs](https://developers.cloudflare.com/fundamentals/account-and-billing/account-security/review-audit-logs/).
 
 * Push all raw logs to a storage service, SIEMs, or log managemenet service with **[Logpush](https://developers.cloudflare.com/logs/about/)**. Review my [Cloudflare Logpush](/articles/cloudflare-logpush/) article for more details and setup examples.
 
