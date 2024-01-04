@@ -33,6 +33,8 @@ This diagram provides an overview of how Cloudflare solutions effectively corres
 
 Let's begin by designating Cloudflare as your **Authoritative DNS provider** using the [Full Setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/), granting you comprehensive control over all DNS-related aspects. Alternatively, opt for a CNAME Setup or [Partial Setup](https://developers.cloudflare.com/dns/zone-setups/partial-setup/).
 
+> Note: The hosting provider (origin server) and its location are inconsequential as long as it is accessible over the Internet.
+
 Once your [Zone](https://developers.cloudflare.com/fundamentals/concepts/accounts-and-zones/#zones) is added, proceed to **[proxy](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/)** (orange-cloud) your DNS records. Note that the [`/cdn-cgi/` endpoint](https://developers.cloudflare.com/fundamentals/reference/cdn-cgi-endpoint/) is then added to your domain.
 
 This initial setup seamlessly incorporates essential security features, providing:
@@ -116,9 +118,25 @@ By routing HTTP traffic through Cloudflare, you can leverage a variety of soluti
 
 #### Use Case: Security
 
+_**SSL/TLS – Edge Certificates**_
+
+By choosing Cloudflare as your Authoritative DNS provider, your Zone/Domain automatically receives an [Universal SSL Certificate](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/). For enhanced customization and coverage of multiple levels of subdomains, it is advisable to consider [Advanced Certificates](https://developers.cloudflare.com/ssl/edge-certificates/advanced-certificate-manager/). Cloudflare seamlessly manages and renews these certificates automatically.
+
+It is generally recommended to utilize the `Full (strict)` [encryption mode](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/) in conjunction with [Authenticated Origin Pulls (mTLS)](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/) using your own [Custom Certificate](https://developers.cloudflare.com/ssl/edge-certificates/custom-certificates/).
+
+> Note: For any compliance-related requirements, review the [custom cipher suites](https://developers.cloudflare.com/ssl/reference/cipher-suites/compliance-status/). Additionally, review the Developer Documentation on [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/).
+
 _**Web Application Firewall (WAF) – automatic protection and flexibility**_
 
 Effortlessly enhance your security posture with one-click deployment of pre-configured **[WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)** across your entire domain or a specific scope of incoming requests. This provides peace of mind against various types of attacks. Nevertheless, it is advisable to review the individual rules in [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) and customize pre-defined rules to suit your specific needs, as well as optimizing the paranoia level of the [OWASP Core Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/owasp-core-ruleset/) to prevent potential false positives.
+
+Generally recommended Managed Rules that should be manually enabled are:
+* _XSS, HTML Injection_ with Rule ID `882b37d6bd5f4bf2a3cdb374d503ded0`.
+* _Anomaly:URL:Path - Multiple Slashes, Relative Paths, CR, LF or NULL_ with Rule ID `6e759e70dc814d90a003f10424644cfb`.
+* _Anomaly:Body - Large_ with Rule ID `ee922cf00077462d9f2f7330b114b839`.
+* _Anomaly:Port - [Non Standard Port](https://developers.cloudflare.com/fundamentals/reference/network-ports/#how-to-block-traffic-on-additional-ports) (not 80 or 443)_ with Rule ID `8e361ee4328f4a3caf6caf3e664ed6fe`.
+
+> Note: Every application is uniquely constructed, and therefore, the enabled individual Managed Rules should undergo prior review to ensure that essential functionalities are not disrupted.
 
 Start by gaining comprehensive visibility into all activities on your domain through an analysis of **[Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/)**. Subsequently, craft highly specific WAF Custom Rules employing the [SKIP action](https://developers.cloudflare.com/waf/custom-rules/skip/). This step is crucial for allowing internal, trusted and familiar traffic, particularly for internal API endpoints and [Verified Bots](https://developers.cloudflare.com/bots/reference/verified-bot-categories/), thereby minimizing the risk of false positives in other Custom Rules. You can create [lists](https://developers.cloudflare.com/waf/tools/lists/) to simplify the setup.
 
@@ -126,7 +144,9 @@ Once this foundation is established, proceed to create more generalized Custom R
 
 > Note: we normally do not want to block the [`/cdn-cgi/` endpoint](https://developers.cloudflare.com/fundamentals/reference/cdn-cgi-endpoint/) or [Cloudflare crawlers](https://developers.cloudflare.com/fundamentals/reference/cloudflare-site-crawling/); or internally trusted traffic.
 
-Exercise precise control over which requests are blocked, challenged, skipped, or logged by leveraging the flexibility of **WAF [Custom Rules](https://developers.cloudflare.com/waf/custom-rules/)**. Explore [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for practical examples, and be mindful of the [phases](https://developers.cloudflare.com/ruleset-engine/about/phases/) and the order of rule evaluation, considering the associated [actions](https://developers.cloudflare.com/ruleset-engine/rules-language/actions/). There's also the option to inspect [HTTP request body fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/#http-request-body-fields) (payloads).
+Exercise precise control over which requests are blocked, challenged, skipped, or logged by leveraging the flexibility of **WAF [Custom Rules](https://developers.cloudflare.com/waf/custom-rules/)**. Explore [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for practical examples, and be mindful of the [phases](https://developers.cloudflare.com/ruleset-engine/about/phases/) and the order of rule evaluation, considering the associated [actions](https://developers.cloudflare.com/ruleset-engine/rules-language/actions/). 
+
+There's also the option to inspect [HTTP request body fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/#http-request-body-fields) (payloads). The [encrypted payloads](https://developers.cloudflare.com/waf/managed-rules/payload-logging/) can be found in the `Metadata` field in [Firewall events](https://developers.cloudflare.com/logs/reference/log-fields/zone/firewall_events/) logs.
 
 For advanced threat mitigation, including potential zero-day attacks – like from SQL injection (SQLi), Cross-site scripting (XSS), and Remote Code Execution (RCE) attacks –, take advantage of the **[WAF Attack Score](https://developers.cloudflare.com/waf/about/waf-attack-score/)**. For instance, create a WAF Custom Rule to block requests with a WAF Attack Score below 50 (`cf.waf.score lt 50`), indicating a likely attack (`likely_attack`). This additional layer of defense fortifies your security measures against evolving and sophisticated threats.
 
@@ -160,17 +180,30 @@ _**Page Shield – third-party script management**_
 
 Effortlessly enhance your website's performance with a single click by implementing a range of **[speed optimizations](https://developers.cloudflare.com/speed/optimization/)**. These include features such as [Brotli compression](https://developers.cloudflare.com/speed/optimization/content/brotli/), [HTTP/3 (with QUIC)](https://developers.cloudflare.com/speed/optimization/protocol/http3/), [Auto Minify](https://developers.cloudflare.com/speed/optimization/content/auto-minify/), and more.
 
+_**Cloudflare Fonts – compliant and fast fonts**_
+
+**[Cloudflare Fonts](https://developers.cloudflare.com/speed/optimization/content/fonts/)** transforms your website's HTML by eliminating Google Fonts links and substituting them with inline CSS. This strategic adjustment ensures that fonts are delivered from your domain through Cloudflare's infrastructure, leading to optimized performance and improved user privacy.
+
 _**Argo Smart Routing – efficient routing**_
 
 Experience advanced Layer 7 efficiency with **[Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/)**, streamlining the routing of traffic along the most optimal network path from Cloudflare to the origin server — also achievable with just one-click.
 
 _**Zaraz – third-party tool manager**_
 
-Unlock precise control over cookie storage and information sharing with third party scripts by leveraging the capabilities of **[Zaraz](https://developers.cloudflare.com/zaraz/)** and it's [privacy settings](https://developers.cloudflare.com/zaraz/reference/settings/#privacy). Here it's important to point out the usage of [Google Analytics with Cloudflare](https://developers.cloudflare.com/fundamentals/reference/google-analytics/). Review my [Cloudflare Zaraz](/articles/cloudflare-zaraz/) article for some examples.
+Unlock precise control over cookie storage (consent management) and information sharing with third party scripts by leveraging the capabilities of **[Zaraz](https://developers.cloudflare.com/zaraz/)** and it's [privacy settings](https://developers.cloudflare.com/zaraz/reference/settings/#privacy). Here it's important to point out the usage of [Google Analytics with Cloudflare](https://developers.cloudflare.com/fundamentals/reference/google-analytics/). Review my [Cloudflare Zaraz](/articles/cloudflare-zaraz/) article for some examples.
 
 _**Cache Rules – caching customization**_
 
-Configuring and adapting **[Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/)** is key to taking advantage of the global Cloudflare Content Delivery Network (CDN) and improving delivery of [eligible assets](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/). The `CF-Cache-Status` response header value we are looking for is [HIT](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/#cloudflare-cache-responses). The [CF-RAY](https://developers.cloudflare.com/fundamentals/reference/http-request-headers/#cf-ray) response header shows from which Cloudflare PoP (_IATA 3-letter airport code_) the asset was delivered. Keep in mind the [order and priority](https://developers.cloudflare.com/cache/how-to/cache-rules/order/) when creating the Rules.
+Configuring and adapting **[Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/)** is key to taking advantage of the global Cloudflare Content Delivery Network (CDN) and improving delivery of [eligible assets](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/). The `CF-Cache-Status` response header value we are looking for is [HIT](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/#cloudflare-cache-responses). The [CF-RAY](https://developers.cloudflare.com/fundamentals/reference/http-request-headers/#cf-ray) response header shows from which Cloudflare PoP (_IATA 3-letter airport code_) the asset was delivered.
+
+Generally, the following Cache Rules are commonly used:
+* Low [Edge Cache TTL](https://developers.cloudflare.com/cache/how-to/edge-browser-cache-ttl/): Ideal for rapidly changing content, revalidation and update of content.
+* [Cache by Status Code](https://developers.cloudflare.com/cache/how-to/configure-cache-status-code/): Enables selective caching based on status code, such as caching only `200` responses or customizing caching for errors.
+* [Cache Reserve Eligibility](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/#cache-reserve-eligibility): Useful for seldom-changing stale content like favicons or logos, requiring the implementation of [Cache Reserve](https://developers.cloudflare.com/cache/advanced-configuration/cache-reserve/).
+* ​[​Proxy Read Timeout](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/#proxy-read-timeout-enterprise-only): Designed for slow origins that perform extensive computations before responding.
+* [Bypass Cache](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/#bypass-cache): Appropriate for dynamic or user-specific content, such as data from API endpoints, ensuring it is not cached. Do not cache sensitive paths or Personal Identifiable Information (PII).
+
+Keep in mind the [order and priority](https://developers.cloudflare.com/cache/how-to/cache-rules/order/) when creating the Rules.
 
 > Note: Cloudflare's [global network](https://www.cloudflare.com/network/) and direct peering with multiple providers contributes to exceptional [network performance](https://blog.cloudflare.com/network-performance-update-birthday-week-2023).
 
@@ -302,11 +335,11 @@ TBD
 
 * * * 
 
-### Monitoring
+### Monitoring & Troubleshooting
 
 * Periodically monitor and review your general setup with the **[Security Center](https://developers.cloudflare.com/security-center/)**, the Zone **[Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/)**, and set up **[Notifications](https://developers.cloudflare.com/notifications/)** for important updates or incidents.
 
-* Push all raw logs to a storage service, SIEMs, or log managemenet service with [Logpush](https://developers.cloudflare.com/logs/about/). Review my [Cloudflare Logpush](/articles/cloudflare-logpush/) article for more details and setup examples.
+* Push all raw logs to a storage service, SIEMs, or log managemenet service with **[Logpush](https://developers.cloudflare.com/logs/about/)**. Review my [Cloudflare Logpush](/articles/cloudflare-logpush/) article for more details and setup examples.
 
 * Set up standalone **[Health Checks](https://developers.cloudflare.com/health-checks/)** to monitor whether an IP address or hostname is online. Additionally, the analytics show average latency – measured in round-trip time (RTT) — for individual origins over time.
 
@@ -330,6 +363,8 @@ Review the [Cloudflare Trust Hub](https://www.cloudflare.com/trust-hub/) for mor
 Learn more about [Cloudflare's Impact, Commitments, Privacy-preserving Products, Research, and more](/articles/cloudflare-impact-commitment-privacy-research/).
 
 ## Final Remarks
+
+> **Security is not a simple flip of a switch; it's built through processes and layers. The more layers you incorporate, the stronger your security posture becomes.**
 
 Embark on securing your web applications (Layer 7), API endpoints (Layer 7), TCP/UDP services (Layer 4), and IP prefixes (Layer 3) today with the deployment of a comprehensive layered security solution.
 
