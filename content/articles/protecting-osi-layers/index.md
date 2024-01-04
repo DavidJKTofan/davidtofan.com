@@ -33,7 +33,7 @@ This diagram provides an overview of how Cloudflare solutions effectively corres
 
 Let's begin by designating Cloudflare as your **Authoritative DNS provider** using the [Full Setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/), granting you comprehensive control over all DNS-related aspects. Alternatively, opt for a CNAME Setup or [Partial Setup](https://developers.cloudflare.com/dns/zone-setups/partial-setup/).
 
-> Note: The hosting provider (origin server) and its location are inconsequential as long as it is accessible over the Internet.
+> Note: The hosting provider (origin server) and its location are usually inconsequential as long as it is accessible over the Internet.
 
 Once your [Zone](https://developers.cloudflare.com/fundamentals/concepts/accounts-and-zones/#zones) is added, proceed to **[proxy](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/)** (orange-cloud) your DNS records. Note that the [`/cdn-cgi/` endpoint](https://developers.cloudflare.com/fundamentals/reference/cdn-cgi-endpoint/) is then added to your domain.
 
@@ -72,7 +72,7 @@ When a client makes a standard request to the origin server, Cloudflare sits in-
               |                           |                           |
 ```
 
-It is crucial to **channel all traffic through Cloudflare** before reaching the origin to optimize security measures, conserve origin bandwidth, and efficiently utilize origin resources. Cloudflare essentially becomes the _gatekeeper_.
+> Note: It is crucial to **channel all traffic through Cloudflare** before reaching the origin to optimize security measures, masking the origin IP address, conserve origin bandwidth, and efficiently utilize origin resources. Cloudflare essentially becomes the _gatekeeper_ (proxy).
 
 My personal favorite approach involves deploying the **[Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)** by installing the `cloudflared` daemon on the origin server. This setup establishes outbound-only connections to Cloudflare's global network, eliminating the need for the origin server's IP address, firewall configuration or any port forwarding. Instead, the [Cloudflare Tunnel hostname](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/routing-to-tunnel/dns/) becomes the designated _origin_.
 
@@ -145,6 +145,8 @@ Once this foundation is established, proceed to create more generalized Custom R
 > Note: we normally do not want to block the [`/cdn-cgi/` endpoint](https://developers.cloudflare.com/fundamentals/reference/cdn-cgi-endpoint/) or [Cloudflare crawlers](https://developers.cloudflare.com/fundamentals/reference/cloudflare-site-crawling/); or internally trusted traffic.
 
 Exercise precise control over which requests are blocked, challenged, skipped, or logged by leveraging the flexibility of **WAF [Custom Rules](https://developers.cloudflare.com/waf/custom-rules/)**. Explore [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for practical examples, and be mindful of the [phases](https://developers.cloudflare.com/ruleset-engine/about/phases/) and the order of rule evaluation, considering the associated [actions](https://developers.cloudflare.com/ruleset-engine/rules-language/actions/). 
+
+Another peace of mind configuration is to simply block [Managed Lists](https://developers.cloudflare.com/waf/tools/lists/managed-lists/) with WAF Custom Rules.
 
 > Note: Consider configuring [Custom Error Responses](https://developers.cloudflare.com/rules/custom-error-responses/) for your WAF Custom Rules, or [Configuring Custom Pages (Error and Challenge)](https://developers.cloudflare.com/support/more-dashboard-apps/cloudflare-custom-pages/configuring-custom-pages-error-and-challenge/), in order to establish a coherent branding across all custom pages and responses.
 
