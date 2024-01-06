@@ -6,8 +6,6 @@ tags: ["cybersecurity", "developers", "privacy", "resources"]
 type: "article"
 ---
 
-# Setting up your new macOS
-
 I predominantly use Apple products, and when transitioning to a new device within the Apple ecosystem, such as a fresh new MacBook, I find myself in the routine task of reinstalling all the essential software and tools crucial for my projects and day to day.
 
 This article serves as a general to-do list for my own reference during the setup of a new laptop. Moreover, it can be a valuable source of inspiration for fellow individuals aiming to establish a privacy-conscious developer environment, encompassing the essential and often indispensable tools.
