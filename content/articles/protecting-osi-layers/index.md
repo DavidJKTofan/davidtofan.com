@@ -37,6 +37,8 @@ Let's begin by designating Cloudflare as your **Authoritative DNS provider** usi
 
 Once your [Zone](https://developers.cloudflare.com/fundamentals/concepts/accounts-and-zones/#zones) is added, proceed to **[proxy](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/)** (orange-cloud) your DNS records. Note that the [`/cdn-cgi/` endpoint](https://developers.cloudflare.com/fundamentals/reference/cdn-cgi-endpoint/) is then added to your domain.
 
+> Note: Safeguard your origin IP address by adhering to Cloudflare's recommendations, including the rotation of IP addresses and concealing unproxied DNS records through the use of non-standard names for these records. Learn more about this in the [Protect origin IP address](https://developers.cloudflare.com/learning-paths/prevent-ddos-attacks/advanced/protect-origin-ip/) guide.
+
 This initial setup seamlessly incorporates essential security features, providing:
 
 * Built-in **[DNSSEC](https://developers.cloudflare.com/dns/dnssec/)**, [Automatic HTTPS Rewrites](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/automatic-https-rewrites/), and [HTTP Strict Transport Security (HSTS)](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/) with one-click.
@@ -52,6 +54,8 @@ This initial setup seamlessly incorporates essential security features, providin
 * Pre-configured **[WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)** immediately deployable with one-click.
 
 * Unmetered and unlimited **[DDoS protection](https://developers.cloudflare.com/ddos-protection/about/attack-coverage/)** at layers 3, 4, and 7 of the OSI model for proxied hostnames. Review the [DDoS attack coverage](https://developers.cloudflare.com/ddos-protection/about/attack-coverage/).
+
+> Note: Follow Cloudflare's recommendations on [third-party services and Cloudflare DDoS protection](https://developers.cloudflare.com/ddos-protection/best-practices/third-party/).
 
 ### Origin Server Security
 
@@ -183,6 +187,8 @@ _**Page Shield – third-party script management**_
 #### Use Case: Performance
 
 Effortlessly enhance your website's performance with a single click by implementing a range of **[speed optimizations](https://developers.cloudflare.com/speed/optimization/)**. These include features such as [Brotli compression](https://developers.cloudflare.com/speed/optimization/content/brotli/), [HTTP/3 (with QUIC)](https://developers.cloudflare.com/speed/optimization/protocol/http3/), [Auto Minify](https://developers.cloudflare.com/speed/optimization/content/auto-minify/), and more.
+
+Moreover, [improve SEO](https://developers.cloudflare.com/fundamentals/basic-tasks/improve-seo/) by following Cloudflare's recommendations.
 
 _**Cloudflare Fonts – compliant and fast fonts**_
 
