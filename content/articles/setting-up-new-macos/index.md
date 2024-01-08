@@ -12,6 +12,8 @@ This article serves as a general to-do list for my own reference during the setu
 
 ## macOS Privacy & Security Settings
 
+Update all devices to the latest version.
+
 [Change Privacy & Security Advanced settings on Mac](https://support.apple.com/en-gb/guide/mac-help/mh40595/mac).
 
 Turn on [FileVault](https://support.apple.com/en-gb/guide/mac-help/mh11785/mac).
@@ -23,6 +25,10 @@ Configure [firmware password](https://support.apple.com/en-au/102384).
 ## Install Objective-See's Tools
 
 Follow the instructions to install [LuLu](https://github.com/objective-see/LuLu) firewall and [BlockBlock](https://objective-see.org/products/blockblock.html) monitor.
+
+## Install Warp.dev
+
+Install [Warp](https://www.warp.dev/) terminal. Disable telemetry.
 
 ## Xcode & Command Line Tools
 
