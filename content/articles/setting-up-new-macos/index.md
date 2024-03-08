@@ -110,6 +110,8 @@ Alternatively, [configure DoH on your browser](https://developers.cloudflare.com
 
 Sign up, configure and use the [Proton](https://proton.me/) suite of products.
 
+Alternatively, configure and use the FREE [Cloudflare Zero Trust](https://www.cloudflare.com/plans/zero-trust-services/) plan, using the WARP VPN client and Gateway filtering to protect oneself from threats on the Internet.
+
 ## More...
 
 Read more on [A Journey into Digital Privacy & CyberSec](/articles/a-journey-into-digital-privacy/).

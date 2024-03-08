@@ -6,7 +6,7 @@ tags: ["cybersecurity", "artificial intelligence", "privacy", "resources"]
 type: 'article'
 ---
 
-In this blog post, we will be going over two important interactions with Artificial Intelligence (AI):
+In this blog post, we will be going over two important interactions with Artificial Intelligence (AI) and how Cloudflare solutions can help us with these:
 
 1. **Zero Trust and AI** – navigating the balance between empowering employees to leverage AI services and safeguarding against potential information leaks and misuse.
 
@@ -18,7 +18,7 @@ In this blog post, we will be going over two important interactions with Artific
 
 > _**Shadow IT Discovery** provides visibility into the SaaS applications and private network origins your end users are visiting._
 
-By implementing **[Cloudflare Gateway](https://developers.cloudflare.com/cloudflare-one/policies/gateway/)**, and hence **[Shadow IT](https://developers.cloudflare.com/cloudflare-one/insights/analytics/access/)**, IT departments can review AI usage, helping in budgeting and policy-making decisions, as well as the ability to block AI services if needed.
+By implementing **[Cloudflare Gateway](https://developers.cloudflare.com/cloudflare-one/policies/gateway/)**, and hence **[Shadow IT](https://developers.cloudflare.com/cloudflare-one/insights/analytics/access/)**, IT departments can review AI usage – such as ChatGPT or Google Bard, now Google Gemini –, helping in budgeting and policy-making decisions, as well as the ability to block AI services if needed.
 
 ![Gateway Shadow IT](img/shadow-it.png)
 
@@ -35,6 +35,8 @@ Developers can use **[Service Tokens](https://developers.cloudflare.com/cloudfla
 > _**Cloudflare Data Loss Prevention (DLP)** allows you to scan your web traffic and SaaS applications for the presence of sensitive data such as social security numbers, financial information, secret keys, and source code._
 
 Human involvement always has the potential for security incidents through oversharing. By implementing Cloudflare's **[Data Loss Prevention (DLP)](https://developers.cloudflare.com/cloudflare-one/policies/data-loss-prevention/)** with **[Gateway HTTP Policies](https://developers.cloudflare.com/cloudflare-one/policies/gateway/http-policies/)**, IT departments can define data parameters and establish detailed rules for sharing sensitive information with AI services, essentially preventing information leaks.
+
+This is a classical use case of protecting your sensitive data from ChatGPT: ChatGPT and Zero Trust.
 
 ![Gateway HTTP Policy with Data Loss Prevention (DLP)](img/gateway-data-loss-prevention.png)
 
