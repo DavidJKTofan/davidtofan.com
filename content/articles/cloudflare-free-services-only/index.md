@@ -10,7 +10,7 @@ Are you starting a new business, working at a startup, freelancing, or simply in
 
 ## Free Cloudflare Services Overview
 
-Cloudflare provides a variety of solutions, many of which are free or have free tiers. Here’s a comprehensiv (but non-exhaustive) breakdown of some key services:
+Cloudflare provides a variety of solutions, many of which are free or have free tiers. Here’s a comprehensive (but non-exhaustive) breakdown of some key services:
 
 | **Solution**                    | **Description**                                                      | **Is there a Free version?** |
 | ------------------------------- | -------------------------------------------------------------------- | ---------------------------- |
