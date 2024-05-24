@@ -12,23 +12,23 @@ Are you starting a new business, working at a startup, freelancing, or simply in
 
 Cloudflare provides a variety of solutions, many of which are free or have free tiers. Here’s a comprehensive (but non-exhaustive) breakdown of some key services:
 
-| **Solution**                    | **Description**                                                      | **Is there a Free version?** |
+| **Cloudflare Solution**                    | **Description**                                                      | **Is there a Free version?** |
 | ------------------------------- | -------------------------------------------------------------------- | ---------------------------- |
-| **Cloudflare Registrar**        | Domain registrar with no-markup pricing                              | At-cost pricing              |
-| **Cloudflare Pages**            | Free deployment and hosting of websites                              | ✅                           |
-| **Cloudflare Workers**          | Serverless execution environment to build full-stack applications    | ✅                           |
-| **Cloudflare Zaraz**            | Third-party tool manager built for speed, privacy, and security      | ✅                           |
-| **Cloudflare R2**               | Object storage for any type of asset or unstructured data            | ✅                           |
-| **Cloudflare CDN**              | Global static and dynamic content delivery                           | ✅                           |
-| **Cloudflare DDoS Protection**  | Unlimited and unmetered website DDoS protection                      | ✅                           |
-| **Cloudflare WAF**              | Customizable application firewall                                    | ✅                           |
-| **Cloudflare Rate Limiting**    | Basic IP-based Rate Limiting                                         | ✅                           |
-| **Cloudflare Bot Fight Mode**   | Basic bot detection and mitigation                                   | ✅                           |
-| **Cloudflare Turnstile**        | Smart CAPTCHA alternative                                            | ✅                           |
-| **Cloudflare Email Routing**    | Custom email addresses and routing                                   | ✅                           |
-| **Cloudflare DMARC Management** | Helps stop brand impersonation                                       | ✅                           |
-| **Cloudflare Zero Trust**       | Perimeterless security for employees, networks, and applications     | ✅                           |
-| **Cloudflare Radar**            | Global Internet traffic, attacks, and technology trends and insights | ✅                           |
+| **Registrar**        | Domain registrar with no-markup pricing                              | At-cost pricing              |
+| **Pages**            | Free deployment and hosting of websites                              | ✅                           |
+| **Workers**          | Serverless execution environment to build full-stack applications    | ✅                           |
+| **Zaraz**            | Third-party tool manager built for speed, privacy, and security      | ✅                           |
+| **R2**               | Object storage for any type of asset or unstructured data            | ✅                           |
+| **CDN**              | Global static and dynamic content delivery                           | ✅                           |
+| **DDoS Protection**  | Unlimited and unmetered website DDoS protection                      | ✅                           |
+| **WAF**              | Customizable application firewall                                    | ✅                           |
+| **Rate Limiting**    | Basic IP-based Rate Limiting                                         | ✅                           |
+| **Bot Fight Mode**   | Basic bot detection and mitigation                                   | ✅                           |
+| **Turnstile**        | Smart CAPTCHA alternative                                            | ✅                           |
+| **Email Routing**    | Custom email addresses and routing                                   | ✅                           |
+| **DMARC Management** | Helps stop brand impersonation                                       | ✅                           |
+| **Zero Trust**       | Perimeterless security for employees, networks, and applications     | ✅                           |
+| **Radar**            | Global Internet traffic, attacks, and technology trends and insights | ✅                           |
 
 ### Domain Registration with Cloudflare Registrar
 
