@@ -2,7 +2,7 @@
 title: Webinars
 date: 2024-05-31
 description: Webinars
-showTableOfContents: false
+showTableOfContents: true
 aliases:
   - /projects/webinars/
   - /webinars/
@@ -16,9 +16,11 @@ Here is a list of webinars I was involved in:
 
 _Wie Sie Ihre Daten in der gewünschten Region halten_
 
-**Date: 17.04.2024**
+- **Date: 17.04.2024**
 
-**Language: German / Deutsch**
+- **Language: German / Deutsch**
+
+- **Registration link: https://webcast.idg.de/content/ddos-wenn-nichts-mehr-geht**
 
 <div style="position: relative; padding-top: 56.25%;">
   <iframe
@@ -30,13 +32,17 @@ _Wie Sie Ihre Daten in der gewünschten Region halten_
   ></iframe>
 </div>
 
+---
+
 ## DDoS – wenn nichts mehr geht
 
 _Die Sicherheitslücke „HTTP/2 Rapid Reset“ und ihre Folgen_
 
-**Date: 16.01.2024**
+- **Date: 16.01.2024**
 
-**Language: German / Deutsch**
+- **Language: German / Deutsch**
+
+- **Registration link: https://webcast.idg.de/content/data-localization-suite**
 
 <div style="position: relative; padding-top: 56.25%;">
   <iframe
