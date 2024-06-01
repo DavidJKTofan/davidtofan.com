@@ -193,11 +193,37 @@ Finally, we analyze our website and check what has changed or improved:
 
 ## Conclusion
 
-Still working on some stuff...
+**2023 UPDATE:** review the [Migration Hub](https://www.cloudflare.com/migration-hub/).
+
+Comparisons from 2023 to 2024...
+
+### 2023
 
 ![Cloudflare Speed Measurement](img/cloudflare-speed-measurement.png)
 
-**2023 UPDATE:** review the [Migration Hub](https://www.cloudflare.com/migration-hub/).
+![Screenshot 2023-12-10 at 21.22.35.png](img/Screenshot%202023-12-10%20at%2021.22.35.png)
+
+![Screenshot 2023-12-10 at 21.22.48.png](img/Screenshot%202023-12-10%20at%2021.22.48.png)
+
+![Screenshot 2023-12-10 at 21.23.01.png](img/Screenshot%202023-12-10%20at%2021.23.01.png)
+
+![Screenshot 2023-12-10 at 21.23.16.png](img/Screenshot%202023-12-10%20at%2021.23.16.png)
+
+![Screenshot 2023-12-10 at 21.23.23.png](img/Screenshot%202023-12-10%20at%2021.23.23.png)
+
+### 2024
+
+![Screenshot 2024-06-02 at 00.30.41.png](img/Screenshot%202024-06-02%20at%2000.30.41.png)
+
+![Screenshot 2024-06-02 at 00.30.48.png](img/Screenshot%202024-06-02%20at%2000.30.48.png)
+
+![Screenshot 2024-06-02 at 00.32.17.png](img/Screenshot%202024-06-02%20at%2000.32.17.png)
+
+![Screenshot 2024-06-02 at 00.49.10.png](img/Screenshot%202024-06-02%20at%2000.49.10.png)
+
+![Screenshot 2024-06-02 at 00.51.14.png](img/Screenshot%202024-06-02%20at%2000.51.14.png)
+
+![Screenshot 2024-06-02 at 00.51.40.png](img/Screenshot%202024-06-02%20at%2000.51.40.png)
 
 * * * *
 
