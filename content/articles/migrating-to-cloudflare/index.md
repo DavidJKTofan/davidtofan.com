@@ -201,29 +201,29 @@ Comparisons from 2023 to 2024...
 
 ![Cloudflare Speed Measurement](img/cloudflare-speed-measurement.png)
 
-![Screenshot 2023-12-10 at 21.22.35.png](img/Screenshot%202023-12-10%20at%2021.22.35.png)
+![Screenshot 2023-12-10 at 21.22.35.png](img/Screenshot-2023-12-10-img1.png)
 
-![Screenshot 2023-12-10 at 21.22.48.png](img/Screenshot%202023-12-10%20at%2021.22.48.png)
+![Screenshot 2023-12-10 at 21.22.48.png](img/Screenshot-2023-12-10-img2.png)
 
-![Screenshot 2023-12-10 at 21.23.01.png](img/Screenshot%202023-12-10%20at%2021.23.01.png)
+![Screenshot 2023-12-10 at 21.23.01.png](img/Screenshot-2023-12-10-img3.png)
 
-![Screenshot 2023-12-10 at 21.23.16.png](img/Screenshot%202023-12-10%20at%2021.23.16.png)
+![Screenshot 2023-12-10 at 21.23.16.png](img/Screenshot-2023-12-10-img4.png)
 
-![Screenshot 2023-12-10 at 21.23.23.png](img/Screenshot%202023-12-10%20at%2021.23.23.png)
+![Screenshot 2023-12-10 at 21.23.23.png](img/Screenshot-2023-12-10-img5.png)
 
 ### 2024
 
-![Screenshot 2024-06-02 at 00.30.41.png](img/Screenshot%202024-06-02%20at%2000.30.41.png)
+![Screenshot 2024-06-02 at 00.30.41.png](img/Screenshot-2024-06-02-img1.png)
 
-![Screenshot 2024-06-02 at 00.30.48.png](img/Screenshot%202024-06-02%20at%2000.30.48.png)
+![Screenshot 2024-06-02 at 00.30.48.png](img/Screenshot-2024-06-02-img2.png)
 
-![Screenshot 2024-06-02 at 00.32.17.png](img/Screenshot%202024-06-02%20at%2000.32.17.png)
+![Screenshot 2024-06-02 at 00.32.17.png](img/Screenshot-2024-06-02-img3.png)
 
-![Screenshot 2024-06-02 at 00.49.10.png](img/Screenshot%202024-06-02%20at%2000.49.10.png)
+![Screenshot 2024-06-02 at 00.49.10.png](img/Screenshot-2024-06-02-img4.png)
 
-![Screenshot 2024-06-02 at 00.51.14.png](img/Screenshot%202024-06-02%20at%2000.51.14.png)
+![Screenshot 2024-06-02 at 00.51.14.png](img/Screenshot-2024-06-02-img5.png)
 
-![Screenshot 2024-06-02 at 00.51.40.png](img/Screenshot%202024-06-02%20at%2000.51.40.png)
+![Screenshot 2024-06-02 at 00.51.40.png](img/Screenshot-2024-06-02-img6.png)
 
 * * * *
 

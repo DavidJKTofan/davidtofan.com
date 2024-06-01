@@ -21,7 +21,7 @@ summaryLength = 0
 buildDrafts = false
 buildFuture = false
 
-googleAnalytics = "G-PQG2H86QS9"
+# googleAnalytics = "G-PQG2H86QS9"
 # googleTagManager = "" #GTM-PD4GZXJ # Not implemented
 
 [imaging]
