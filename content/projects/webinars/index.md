@@ -1,7 +1,7 @@
 ---
 title: Webinars
 date: 2024-05-31
-description: Webinars
+description: Webinars and webcasts David participated in or contributed to.
 showTableOfContents: true
 aliases:
   - /projects/webinars/
@@ -11,6 +11,28 @@ aliases:
 Here is a list of webinars I was involved in:
 
 # COMPUTERWOCHE Webcasts
+
+## Die intelligente Antwort auf NIS2
+
+_Wie cloud-basierte Cybersecurity-Lösungen helfen, Ihre rechtlichen Anforderungen zu erfüllen_
+
+- **Date: 11.07.2024**
+
+- **Language: German / Deutsch**
+
+- **Registration link: https://webcast.idg.de/content/die-intelligente-antwort-auf-nis2**
+
+<div style="position: relative; padding-top: 56.25%;">
+  <iframe
+    src="https://customer-px4ru5rucxtgoo68.cloudflarestream.com/5c3789907e15c004ce705028b02575aa/iframe?poster=https%3A%2F%2Fcustomer-px4ru5rucxtgoo68.cloudflarestream.com%2F5c3789907e15c004ce705028b02575aa%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+    loading="lazy"
+    style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+    allowfullscreen="true"
+  ></iframe>
+</div>
+
+---
 
 ## Data Localization Suite
 
