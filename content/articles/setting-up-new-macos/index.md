@@ -83,6 +83,16 @@ brew install python3
 brew install node
 ```
 
+Update npm:
+```
+npm install -g npm@latest
+```
+
+Update Node.js:
+```
+sudo n stable
+```
+
 ### Update Everything
 
 Updating `brew`, `npm`, `nvm` and their packages:
