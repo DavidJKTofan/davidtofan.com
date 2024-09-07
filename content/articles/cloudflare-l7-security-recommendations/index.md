@@ -62,7 +62,8 @@ For customers also using [Zaraz](https://developers.cloudflare.com/zaraz/), it i
 
 ![deploy-owasp-core-ruleset](img/deploy-owasp-core-ruleset.png)
 
-Reference: [Handle false positives](https://developers.cloudflare.com/waf/managed-rules/handle-false-positives/).  
+Reference: [Handle false positives](https://developers.cloudflare.com/waf/managed-rules/handle-false-positives/).
+
 ---
 
 ### **WAF Custom Rules**
