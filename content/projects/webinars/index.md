@@ -10,9 +10,9 @@ aliases:
 
 Here is a list of webinars I was involved in:
 
-# COMPUTERWOCHE Webcasts
+## COMPUTERWOCHE Webcasts
 
-## Die intelligente Antwort auf NIS2
+### Die intelligente Antwort auf NIS2
 
 _Wie cloud-basierte Cybersecurity-Lösungen helfen, Ihre rechtlichen Anforderungen zu erfüllen_
 
@@ -34,7 +34,7 @@ _Wie cloud-basierte Cybersecurity-Lösungen helfen, Ihre rechtlichen Anforderung
 
 ---
 
-## Data Localization Suite
+### Data Localization Suite
 
 _Wie Sie Ihre Daten in der gewünschten Region halten_
 
@@ -56,7 +56,7 @@ _Wie Sie Ihre Daten in der gewünschten Region halten_
 
 ---
 
-## DDoS – wenn nichts mehr geht
+### DDoS – wenn nichts mehr geht
 
 _Die Sicherheitslücke „HTTP/2 Rapid Reset“ und ihre Folgen_
 
@@ -78,6 +78,6 @@ _Die Sicherheitslücke „HTTP/2 Rapid Reset“ und ihre Folgen_
 
 ---
 
-## Disclaimer
+### Disclaimer
 
 For educational purposes only.
