@@ -22,7 +22,9 @@ Some features mentioned are available only through advanced Cloudflare bundles, 
 
 ## Recommendations
 
-In general, in most cases you can create a rules with the action set to "Log" for testing purposes. This allows you to review what it matches in the [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/) and fine-tune it as needed before applying a more impactful action, such as "Block", "Managed Challenge", or even "SKIP".
+In general, in most cases you can create rules with the action set to "Log" for testing purposes. This allows you to review what it matches in the [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/) and fine-tune it as needed before applying a more impactful action, such as "Block", "Managed Challenge", or even "SKIP".
+
+For more information, review the older article [Protecting OSI layers](/articles/protecting-osi-layers/).
 
 ### **WAF Managed Rules**
 
