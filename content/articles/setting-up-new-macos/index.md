@@ -106,7 +106,7 @@ Install and use [Brave](https://brave.com/) or [Firefox](https://www.mozilla.org
 
 Review browser configurations.
 
-Additionally, install and configure [uBlock Origin](https://github.com/gorhill/uBlock) Add-On on Firefox, or [Brave Shields](https://brave.com/shields/) on Brave.
+Additionally, install and configure [uBlock Origin](https://github.com/gorhill/uBlock) or [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home) Add-Ons on Firefox, or [Brave Shields](https://brave.com/shields/) on Brave.
 
 > Use the [Startpage](https://www.startpage.com/) or [DuckDuckGo](https://duckduckgo.com/) or [Ecosia](https://www.ecosia.org/) Search Engines.
 
@@ -118,9 +118,11 @@ Alternatively, [configure DoH on your browser](https://developers.cloudflare.com
 
 ## E-Mail, Calendar, Drive, VPN, Password Manager
 
-Sign up, configure and use the [Proton](https://proton.me/) suite of products.
+Sign up, configure and use the entire [Proton](https://proton.me/) suite of products.
 
-Alternatively, configure and use the FREE [Cloudflare Zero Trust](https://www.cloudflare.com/plans/zero-trust-services/) plan, using the WARP VPN client and Gateway filtering to protect oneself from threats on the Internet.
+Some alternatives are:
+* Configure and use the FREE [Cloudflare Zero Trust](https://www.cloudflare.com/plans/zero-trust-services/) plan, using the WARP VPN client and Gateway filtering to protect oneself from threats on the Internet.
+* Configure and use the FREE [NextDNS](https://nextdns.io/) plan, which also has an encrypted DNS option.
 
 ## More...
 
