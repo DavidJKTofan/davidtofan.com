@@ -16,7 +16,7 @@ cascade:
 ---
 
 {{< lead >}}
-Welcome to my articles and blog posts :books:
+Welcome to my articles and blog posts 📚
 {{< /lead >}}
 
 Discover a variety of articles that span topics such as cybersecurity, data science, privacy, and the broader landscape of the Internet.
