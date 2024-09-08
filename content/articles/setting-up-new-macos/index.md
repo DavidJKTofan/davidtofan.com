@@ -16,7 +16,7 @@ Update all devices to the latest version.
 
 [Change Privacy & Security Advanced settings on Mac](https://support.apple.com/en-gb/guide/mac-help/mh40595/mac).
 
-Turn on [FileVault](https://support.apple.com/en-gb/guide/mac-help/mh11785/mac).
+Turn on [FileVault](https://support.apple.com/en-gb/guide/mac-help/mh11785/mac) to encrypt your data.
 
 Configure [firmware password](https://support.apple.com/en-au/102384).
 
@@ -126,9 +126,13 @@ Some alternatives are:
 
 ## More...
 
+I also enabled [Hot Corners](https://support.apple.com/en-gb/guide/notes/apdf028f7034/mac) Shortcuts to immediately lockdown my laptop. Very practical when I need to just look away for a minute.
+
 Read more on [A Journey into Digital Privacy & CyberSec](/articles/a-journey-into-digital-privacy/).
 
 More information and examples on my [GitHub Repository](https://github.com/DavidJKTofan/CyberSec-resources/blob/master/MacOS_Commands.md).
+
+Another very cool resource is [macos_hardening](https://github.com/ataumo/macos_hardening), where you can manually check the [policies](https://github.com/ataumo/macos_hardening/blob/main/POLICIES.md).
 
 ---
 
