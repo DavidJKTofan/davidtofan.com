@@ -20,6 +20,8 @@ Turn on [FileVault](https://support.apple.com/en-gb/guide/mac-help/mh11785/mac) 
 
 Configure [firmware password](https://support.apple.com/en-au/102384).
 
+A nice feature is also [Secure Keyboard Entry](https://support.apple.com/en-gb/guide/terminal/trml109/mac) for the Terminal.
+
 > Review the GitHub repository [drduh/macOS-Security-and-Privacy-Guide](https://github.com/drduh/macOS-Security-and-Privacy-Guide).
 
 ## Install Objective-See's Tools
