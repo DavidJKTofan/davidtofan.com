@@ -88,6 +88,14 @@ It’s generally recommended to have as one of the first top Custom Rules a [SKI
 
 Reference: [API Shield](https://developers.cloudflare.com/api-shield/).
 
+#### **Block Fallthrough API Requests**
+
+In order to truly enforce a Positive Security Model, for any fallthrough action of requests not matching any of the [API Shield-managed endpoints](https://developers.cloudflare.com/api-shield/management-and-monitoring/), create a WAF Custom Rule similar to the one below, preferably with more specific fields to your API. 
+
+![waf-custom-rule-api-shield-block-fallthrough](img/waf-custom-rule-api-shield-block-fallthrough.png)
+
+Reference: [Schema Validation](https://developers.cloudflare.com/api-shield/security/schema-validation/).
+
 #### **Mitigate likely Malicious Payloads**
 
 Every HTTP request with a payload receives a WAF Attack Score, indicating the likelihood of containing something malicious related to SQLi, XSS, or RCE attacks.
