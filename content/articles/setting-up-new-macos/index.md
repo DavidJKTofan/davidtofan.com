@@ -120,7 +120,7 @@ Alternatively, [configure DoH on your browser](https://developers.cloudflare.com
 
 ## E-Mail, Calendar, Drive, VPN, Password Manager
 
-Sign up, configure and use the entire [Proton](https://proton.me/) suite of products.
+Sign up, configure and use the entire [Proton](https://proton.me/) suite of products. Check out my [invitation to join Proton](https://pr.tn/ref/T9EEJ6CB5Q3G) and get 1 month of premium features for free.
 
 Some alternatives are:
 * Configure and use the FREE [Cloudflare Zero Trust](https://www.cloudflare.com/plans/zero-trust-services/) plan, using the WARP VPN client and Gateway filtering to protect oneself from threats on the Internet.
