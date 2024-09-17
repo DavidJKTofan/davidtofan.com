@@ -42,7 +42,7 @@ For additional and stricter security requirements, deploy some of the following 
 
 * *XSS, HTML Injection* with Rule ID *882b37d6bd5f4bf2a3cdb374d503ded0*.  
 * *Anomaly:URL:Path \- Multiple Slashes, Relative Paths, CR, LF or NULL* with Rule ID *6e759e70dc814d90a003f10424644cfb*.  
-* *Anomaly:Body \- Large* with Rule ID *7b822fd1f5814e17888ded658480ea8f*, in order to mitigate body payloads which are higher than the [processing limit](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/\#http-request-body-fields).   
+* *Anomaly:Body \- Large* with Rule ID *7b822fd1f5814e17888ded658480ea8f*, in order to mitigate body payloads which are higher than the [processing limit](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/http-request-body/).   
   * It is generally recommended to add [WAF exceptions](https://developers.cloudflare.com/waf/managed-rules/waf-exceptions/) for this, especially for [upload endpoints](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/\#upload-limits).  
 * *Anomaly:Port \- [Non Standard Port](https://developers.cloudflare.com/fundamentals/reference/network-ports/\#how-to-block-traffic-on-additional-ports) (not 80 or 443\)* with Rule ID *8e361ee4328f4a3caf6caf3e664ed6fe*.  
 * *Anomaly:Method \- Unusual HTTP Method* with Rule ID *ab53f93c9b03472ab34a5405d9bdc7d5*.  
