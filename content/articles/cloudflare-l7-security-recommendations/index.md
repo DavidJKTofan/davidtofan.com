@@ -30,7 +30,7 @@ For more information, review the older article [Protecting OSI layers](/articles
 
 #### **Deploy WAF Managed Ruleset**
 
-It’s widely recommended to briefly review and then deploy the [Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) across the entire [Zone](https://developers.cloudflare.com/dns/concepts/\#zone). Create specific [exceptions](https://developers.cloudflare.com/waf/managed-rules/waf-exceptions/), if required.
+It’s widely recommended to briefly review and then deploy the [Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) across the entire [Zone](https://developers.cloudflare.com/dns/concepts/#zone). Create specific [exceptions](https://developers.cloudflare.com/waf/managed-rules/waf-exceptions/), if required.
 
 ![deploy-waf-managed-ruleset](img/deploy-waf-managed-ruleset.png)
 
@@ -41,16 +41,16 @@ Reference: [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/ma
 For additional and stricter security requirements, deploy some of the following rules:
 
 * *XSS, HTML Injection* with Rule ID *882b37d6bd5f4bf2a3cdb374d503ded0*.  
-* *Anomaly:URL:Path \- Multiple Slashes, Relative Paths, CR, LF or NULL* with Rule ID *6e759e70dc814d90a003f10424644cfb*.  
-* *Anomaly:Body \- Large* with Rule ID *7b822fd1f5814e17888ded658480ea8f*, in order to mitigate body payloads which are higher than the [processing limit](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/http-request-body/).   
-  * It is generally recommended to add [WAF exceptions](https://developers.cloudflare.com/waf/managed-rules/waf-exceptions/) for this, especially for [upload endpoints](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/\#upload-limits).  
-* *Anomaly:Port \- [Non Standard Port](https://developers.cloudflare.com/fundamentals/reference/network-ports/\#how-to-block-traffic-on-additional-ports) (not 80 or 443\)* with Rule ID *8e361ee4328f4a3caf6caf3e664ed6fe*.  
-* *Anomaly:Method \- Unusual HTTP Method* with Rule ID *ab53f93c9b03472ab34a5405d9bdc7d5*.  
-* *Anomaly:Method \- Unknown HTTP Method* with Rule ID *6e2240ffcb87477bbd4881b6fd13142f*.  
-* Including all the *Vulnerability scanner activity*\-related Rules.  
+* *Anomaly:URL:Path - Multiple Slashes, Relative Paths, CR, LF or NULL* with Rule ID *6e759e70dc814d90a003f10424644cfb*.  
+* *Anomaly:Body - Large* with Rule ID *7b822fd1f5814e17888ded658480ea8f*, in order to mitigate body payloads which are higher than the [processing limit](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/http-request-body/).   
+  * It is generally recommended to add [WAF exceptions](https://developers.cloudflare.com/waf/managed-rules/waf-exceptions/) for this, especially for [upload endpoints](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/#upload-limits).  
+* *Anomaly:Port - [Non Standard Port](https://developers.cloudflare.com/fundamentals/reference/network-ports/#how-to-block-traffic-on-additional-ports) (not 80 or 443)* with Rule ID *8e361ee4328f4a3caf6caf3e664ed6fe*.  
+* *Anomaly:Method - Unusual HTTP Method* with Rule ID *ab53f93c9b03472ab34a5405d9bdc7d5*.  
+* *Anomaly:Method - Unknown HTTP Method* with Rule ID *6e2240ffcb87477bbd4881b6fd13142f*.  
+* Including all the *Vulnerability scanner activity*-related Rules.  
 * Any [other relevant Rules](https://developers.cloudflare.com/waf/change-log/) you might need.
 
-[Log the payload of matched rules](https://developers.cloudflare.com/waf/managed-rules/payload-logging/), if required, to help diagnosing the behavior of the rules. The encrypted payloads can be found in the Metadata field in [Firewall events](https://developers.cloudflare.com/logs/reference/log-fields/zone/firewall\_events/) logs.
+[Log the payload of matched rules](https://developers.cloudflare.com/waf/managed-rules/payload-logging/), if required, to help diagnosing the behavior of the rules. The encrypted payloads can be found in the Metadata field in [Firewall events](https://developers.cloudflare.com/logs/reference/log-fields/zone/firewall_events/) logs.
 
 It is also generally recommended to disable [Browser Integrity Check (BIC)](https://developers.cloudflare.com/waf/tools/browser-integrity-check/), especially to prevent potential false positives with API / automated traffic.
 
@@ -78,7 +78,7 @@ It’s ordinarily recommended to have as one of the first top Custom Rules a [SK
 
 ![allow-verified-bots](img/allow-verified-bots.png)
 
-Reference: [Verified Bots](https://developers.cloudflare.com/bots/concepts/bot/\#verified-bots)
+Reference: [Verified Bots](https://developers.cloudflare.com/bots/concepts/bot/#verified-bots)
 
 #### **Allow APIs**
 
@@ -110,11 +110,11 @@ By using the Cloudflare-Managed IP Lists, including your own [Custom Lists](http
 
 ![mitigate-known-open-proxies-anonymizers-vpns-malware-botnets](img/mitigate-known-open-proxies-anonymizers-vpns-malware-botnets.png)
 
-Reference: [Managed IP Lists](https://developers.cloudflare.com/waf/tools/lists/managed-lists/\#managed-ip-lists).
+Reference: [Managed IP Lists](https://developers.cloudflare.com/waf/tools/lists/managed-lists/#managed-ip-lists).
 
 #### **Mitigate Tor Traffic**
 
-In case that Tor traffic – an overlay network for enabling anonymous communication – is unwanted, one can simply mitigate it. Make sure to also disable [Onion Routing](https://developers.cloudflare.com/network/onion-routing/\#enable-onion-routing) in this case.
+In case that Tor traffic – an overlay network for enabling anonymous communication – is unwanted, one can simply mitigate it. Make sure to also disable [Onion Routing](https://developers.cloudflare.com/network/onion-routing/#enable-onion-routing) in this case.
 
 ![mitigate-tor-traffic](img/mitigate-tor-traffic.png)
 
@@ -122,7 +122,7 @@ Reference: [Onion Routing and Tor support](https://developers.cloudflare.com/net
 
 #### **Mitigate unwanted ASNs**
 
-Any unwanted traffic coming from Cloud ASNs (such as AWS, Azure, GCP, etc.) or other ASNs from which you don't expect traffic, you might want to mitigate. Use [Lists with ASNs](https://developers.cloudflare.com/waf/tools/lists/custom-lists/\#lists-with-asns) to easily manage these.
+Any unwanted traffic coming from Cloud ASNs (such as AWS, Azure, GCP, etc.) or other ASNs from which you don't expect traffic, you might want to mitigate. Use [Lists with ASNs](https://developers.cloudflare.com/waf/tools/lists/custom-lists/#lists-with-asns) to easily manage these.
 
 ![mitigate-unwanted-asns](img/mitigate-unwanted-asns.png)
 
@@ -130,7 +130,7 @@ Reference: [Custom Lists](https://developers.cloudflare.com/waf/tools/lists/cust
 
 #### **Block High Risk Countries**
 
-Block high risk countries like the ones that appear in the [official OFAC List](https://sanctionssearch.ofac.treas.gov/), as they might pose a higher threat. Alternatively, instead of blocking them altogether, you can set a [Managed Challenge](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/\#managed-challenge-recommended).
+Block high risk countries like the ones that appear in the [official OFAC List](https://sanctionssearch.ofac.treas.gov/), as they might pose a higher threat. Alternatively, instead of blocking them altogether, you can set a [Managed Challenge](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/#managed-challenge-recommended).
 
 ![block-high-risk-countries](img/block-high-risk-countries.png)
 
@@ -172,7 +172,7 @@ Reference: [Bot Management variables](https://developers.cloudflare.com/bots/ref
 
 #### **Visibility into IPv6 IPs**
 
-Most web applications want to be available via IPv6 IP addresses. However, in case that IPv6 is undesired, customers can mitigate IPv6 IPs through the WAF and also disable [IPv6 compatibility](https://developers.cloudflare.com/network/ipv6-compatibility/\#disable-ipv6-compatibility), if needed.
+Most web applications want to be available via IPv6 IP addresses. However, in case that IPv6 is undesired, customers can mitigate IPv6 IPs through the WAF and also disable [IPv6 compatibility](https://developers.cloudflare.com/network/ipv6-compatibility/#disable-ipv6-compatibility), if needed.
 
 ![visibility-into-ipv6-ips](img/visibility-into-ipv6-ips.png)
 
@@ -184,7 +184,7 @@ To detect and mitigate predictable bot behavior, such as *login failures*, one c
 
 ![account-takeover-ato-detections](img/account-takeover-ato-detections.png)
 
-Reference: [Account takeover detections](https://developers.cloudflare.com/bots/concepts/detection-ids/\#account-takeover-detections) and [Turnstile](https://developers.cloudflare.com/turnstile/).
+Reference: [Account takeover detections](https://developers.cloudflare.com/bots/concepts/detection-ids/#account-takeover-detections) and [Turnstile](https://developers.cloudflare.com/turnstile/).
 
 #### **Mitigate Disposable Emails on SignUps**
 
@@ -208,7 +208,7 @@ Review all the [fields reference](https://developers.cloudflare.com/ruleset-engi
 
 #### **IP-based Rate Limiting for Logins**
 
-To protect login endpoints from multiple login attempts from the same IP address, rate limit based on the required [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/\#with-the-same-characteristics).
+To protect login endpoints from multiple login attempts from the same IP address, rate limit based on the required [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics).
 
 ![ip-based-rate-limiting-for-logins](img/ip-based-rate-limiting-for-logins.png)
 
@@ -220,7 +220,7 @@ To prevent too many uploads / HTTP requests using POST / PUT / PATCH methods.
 
 ![rate-limiting-uploads.png](img/rate-limiting-uploads.png)
 
-Reference: [Standard fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/\#standard-fields).
+Reference: [Standard fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/#standard-fields).
 
 #### **Rate Limit Credential Stuffing**
 
@@ -228,19 +228,19 @@ To protect against credential stuffing attacks, it’s generally recommended usi
 
 ![rate-limit-credential-stuffing](img/rate-limit-credential-stuffing.png)
 
-Reference: [Protecting against credential stuffing](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/\#protecting-against-credential-stuffing) and [Find an appropriate rate limit](https://developers.cloudflare.com/waf/rate-limiting-rules/find-rate-limit/).
+Reference: [Protecting against credential stuffing](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/#protecting-against-credential-stuffing) and [Find an appropriate rate limit](https://developers.cloudflare.com/waf/rate-limiting-rules/find-rate-limit/).
 
 #### **Geography-based Rate Limiting**
 
-If there are markets from which one does not expect a lot of traffic coming from in general, one could rate limit requests coming from those countries based on IPs or other [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/\#with-the-same-characteristics).
+If there are markets from which one does not expect a lot of traffic coming from in general, one could rate limit requests coming from those countries based on IPs or other [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics).
 
 ![geography-based-rate-limiting](img/geography-based-rate-limiting.png)
 
-Reference: [Enforcing granular access control](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/\#enforcing-granular-access-control).
+Reference: [Enforcing granular access control](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/#enforcing-granular-access-control).
 
 #### **IPv6-based Rate Limiting**
 
-To protect against entire [IPv6 Prefixes](https://en.wikipedia.org/wiki/IPv6\_address), rate limit with the [custom characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/\#with-the-same-characteristics) using the [cidr6 function](https://developers.cloudflare.com/ruleset-engine/rules-language/functions/\#cidr6) and specifying the prefix length.
+To protect against entire [IPv6 Prefixes](https://en.wikipedia.org/wiki/IPv6_address), rate limit with the [custom characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics) using the [cidr6 function](https://developers.cloudflare.com/ruleset-engine/rules-language/functions/#cidr6) and specifying the prefix length.
 
 ![ipv6-based-rate-limiting](img/ipv6-based-rate-limiting.png)
 
@@ -294,7 +294,7 @@ Moreover, enabling [HTTP/2](https://developers.cloudflare.com/speed/optimization
 
 In case that branding is important to you and your business, you are able to [configure Custom Pages (Error and Challenge)](https://developers.cloudflare.com/support/more-dashboard-apps/cloudflare-custom-pages/configuring-custom-pages-error-and-challenge/).
 
-Additionally, for the Cloudflare WAF, you are able to [configure a custom response for blocked requests](https://developers.cloudflare.com/waf/custom-rules/create-dashboard/\#configure-a-custom-response-for-blocked-requests) or [custom error responses](https://developers.cloudflare.com/rules/custom-error-responses/) for the Cloudflare Rules.
+Additionally, for the Cloudflare WAF, you are able to [configure a custom response for blocked requests](https://developers.cloudflare.com/waf/custom-rules/create-dashboard/#configure-a-custom-response-for-blocked-requests) or [custom error responses](https://developers.cloudflare.com/rules/custom-error-responses/) for the Cloudflare Rules.
 
 ---
 
