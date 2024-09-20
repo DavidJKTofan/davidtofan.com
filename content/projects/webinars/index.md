@@ -10,6 +10,30 @@ aliases:
 
 Here is a list of webinars I was involved in:
 
+## Cloudflare Webinars
+
+### Aligning to NIS2 cybersecurity risk-management obligations in the EU
+
+_This webinar reviews the most important changes under NIS2 and addresses required risk management measures to help meet NIS2 requirements_
+
+- **Date: 18.07.2024**
+
+- **Language: English**
+
+- **Registration link: https://www.cloudflare.com/build-your-nis2-compliance-strategy/**
+
+<div style="position: relative; padding-top: 56.25%;">
+  <iframe
+    src="https://customer-px4ru5rucxtgoo68.cloudflarestream.com/1e39b330eae682ca6870d011449bfbc9/iframe?poster=https%3A%2F%2Fcustomer-px4ru5rucxtgoo68.cloudflarestream.com%2F1e39b330eae682ca6870d011449bfbc9%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+    loading="lazy"
+    style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+    allowfullscreen="true"
+  ></iframe>
+</div>
+
+---
+
 ## COMPUTERWOCHE Webcasts
 
 ### Die intelligente Antwort auf NIS2
