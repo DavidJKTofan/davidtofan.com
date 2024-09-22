@@ -1,7 +1,7 @@
 ---
 title: General Application Security Recommendations
 date: 2024-09-08
-description: "This guide provides non-exhaustive recommendations and general best practices to achieve a comprehensive Application Security approach with Cloudflare."
+description: "This guide provides non-exhaustive recommendations and general best practices to achieve a comprehensive L7 Application Security approach with Cloudflare."
 tags: ["cybersecurity", "cloudflare", "resources"]
 type: "article"
 ---
@@ -96,6 +96,14 @@ In order to truly enforce a Positive Security Model, for any fallthrough action 
 ![waf-custom-rule-api-shield-block-fallthrough](img/waf-custom-rule-api-shield-block-fallthrough.png)
 
 Reference: [Schema Validation](https://developers.cloudflare.com/api-shield/security/schema-validation/).
+
+#### **Visibility into Non-expected Request Methods**
+
+In some cases, you want to be specific about what type of HTTP Request Methods are allowed on certain endpoints or coming from specific requests, or even just logging relevant methods for visibility.
+
+![non-expected-request-methods](img/non-expected-request-methods.png)
+
+Reference: [HTTP Method Field](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/standard-fields/#httprequestmethod).
 
 #### **Mitigate likely Malicious Payloads**
 
