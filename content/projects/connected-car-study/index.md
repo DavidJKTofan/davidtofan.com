@@ -4,6 +4,7 @@ date: 2021-12-16
 description: Visualization of the results of a Connected Car online survey of more than 3,000 drivers from Germany, UK, Italy and Spain, showcasing consumer expectations, opportunities and challenges for the industry. Retired in 2022.
 website: "https://connected-car.pages.dev/"
 showTableOfContents: false
+draft: true
 ---
 
 The Connected Car study is based on an online survey with more than 3,000 drivers (excluding commercial drivers) from Germany, Spain, Italy and the United Kingdom (UK) finalized in February 2020.
