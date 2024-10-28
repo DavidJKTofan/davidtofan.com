@@ -31,7 +31,7 @@ For more information, review the older article [Protecting OSI layers](/articles
 
 #### **Deploy WAF Managed Ruleset**
 
-It’s widely recommended to briefly review and then deploy the [Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) across the entire [Zone](https://developers.cloudflare.com/dns/concepts/#zone). Create specific [exceptions](https://developers.cloudflare.com/waf/managed-rules/waf-exceptions/), if required.
+It's widely recommended to briefly review and then deploy the [Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) across the entire [Zone](https://developers.cloudflare.com/dns/concepts/#zone). Create specific [exceptions](https://developers.cloudflare.com/waf/managed-rules/waf-exceptions/), if required.
 
 ![deploy-waf-managed-ruleset](img/deploy-waf-managed-ruleset.png)
 
@@ -75,7 +75,7 @@ Reference: [Handle false positives](https://developers.cloudflare.com/waf/manage
 
 #### **Allow Verified Bots**
 
-It’s ordinarily recommended to have as one of the first top Custom Rules a [SKIP Custom Rule](https://developers.cloudflare.com/waf/custom-rules/skip/), allowing Verified Bots, such as i.e. Search Engine Crawler (like *GoogleBot*).
+It's ordinarily recommended to have as one of the first top Custom Rules a [SKIP Custom Rule](https://developers.cloudflare.com/waf/custom-rules/skip/), allowing Verified Bots, such as i.e. Search Engine Crawler (like *GoogleBot*).
 
 ![allow-verified-bots](img/allow-verified-bots.png)
 
@@ -83,7 +83,7 @@ Reference: [Verified Bots](https://developers.cloudflare.com/bots/concepts/bot/#
 
 #### **Allow APIs**
 
-It’s generally recommended to have as one of the first top Custom Rules a [SKIP Custom Rule](https://developers.cloudflare.com/waf/custom-rules/skip/), allowing your and/or partner APIs (i.e. payment callbacks, PreRender IO, etc.), being as specific and using as many [fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/) as possible. The ultimate goal is to pursue a **positive security model** by implementing [API Shield](https://developers.cloudflare.com/api-shield/security/).
+It's generally recommended to have as one of the first top Custom Rules a [SKIP Custom Rule](https://developers.cloudflare.com/waf/custom-rules/skip/), allowing your and/or partner APIs (i.e. payment callbacks, PreRender IO, etc.), being as specific and using as many [fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/) as possible. The ultimate goal is to pursue a **positive security model** by implementing [API Shield](https://developers.cloudflare.com/api-shield/security/).
 
 ![allow-apis](img/allow-apis.png)
 
@@ -171,6 +171,18 @@ Another alternative is to take advantage of [mTLS](https://developers.cloudflare
 
 Reference: [Allow traffic from specific countries only](https://developers.cloudflare.com/waf/custom-rules/use-cases/allow-traffic-from-specific-countries/).
 
+#### **Mutual TLS Authentication**
+
+Block all requests that do not have a valid client certificate for Mutual TLS (mTLS) authentication on a specific hostname.
+
+![waf-custom-rule-for-mtls](img/waf-custom-rule-for-mtls.png)
+
+Additionally, another consideration is to also check if the Client Certificates, generated with the default Cloudflare Managed CA, have been [revoked](https://developers.cloudflare.com/api-shield/security/mtls/configure/#check-for-revoked-certificates) and block those.
+
+![waf-custom-rule-block-revoked-and-not-valid-client-certificates](img/waf-custom-rule-block-revoked-and-not-valid-client-certificates.png)
+
+References: [Cloudflare Public Key Infrastructure (PKI)](https://developers.cloudflare.com/ssl/client-certificates/), [CFSSL](https://cfssl.org/), [API Shield mTLS](https://developers.cloudflare.com/api-shield/security/mtls/) and [Workers mTLS](https://developers.cloudflare.com/workers/runtime-apis/bindings/mtls/).
+
 #### **Visibility into Automated Bot Traffic**
 
 In general, one wants to have visibility into automated traffic. This can be commonly achieved with a [LOG](https://developers.cloudflare.com/ruleset-engine/rules-language/actions/) action, logging anything with a [Bot Score](https://developers.cloudflare.com/bots/concepts/bot-score/) likely automated.
@@ -197,7 +209,7 @@ Reference: [Account takeover detections](https://developers.cloudflare.com/bots/
 
 #### **Mitigate Disposable Emails on SignUps**
 
-To prevent users from signing up with known disposable emails, Cloudflare’s Disposable Email Check can easily check this behavior and the customer can decide what to do with this: block, challenge, log, rate limit, or even [add a request header](https://developers.cloudflare.com/rules/transform/request-header-modification/) for the origin server.
+To prevent users from signing up with known disposable emails, Cloudflare's Disposable Email Check can easily check this behavior and the customer can decide what to do with this: block, challenge, log, rate limit, or even [add a request header](https://developers.cloudflare.com/rules/transform/request-header-modification/) for the origin server.
 
 ![mitigate-disposable-emails-on-signups](img/mitigate-disposable-emails-on-signups.png)
 
@@ -233,11 +245,19 @@ Reference: [Standard fields](https://developers.cloudflare.com/ruleset-engine/ru
 
 #### **Rate Limit Credential Stuffing**
 
-To protect against credential stuffing attacks, it’s generally recommended using a layered-security approach. This rate limiting rule is but one example of several approaches.  
+To protect against credential stuffing attacks, it's generally recommended using a layered-security approach. This rate limiting rule is but one example of several approaches.  
 
 ![rate-limit-credential-stuffing](img/rate-limit-credential-stuffing.png)
 
 Reference: [Protecting against credential stuffing](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/#protecting-against-credential-stuffing) and [Find an appropriate rate limit](https://developers.cloudflare.com/waf/rate-limiting-rules/find-rate-limit/).
+
+#### **Rate Limit Suspicious Logins**
+
+Implement rate limiting for suspicious login attempts (authentication event) using leaked credentials, specifically leaked passwords, as per [Have I been Pwned (HIBP)](https://haveibeenpwned.com/).
+
+![rate-limit-suspicious-logins](img/rate-limit-suspicious-logins.png)
+
+Reference: [Leaked credentials detection](https://developers.cloudflare.com/waf/detections/leaked-credentials/).
 
 #### **Geography-based Rate Limiting**
 
@@ -255,6 +275,14 @@ To protect against entire [IPv6 Prefixes](https://en.wikipedia.org/wiki/IPv6_add
 
 Reference: [Rules language](https://developers.cloudflare.com/ruleset-engine/rules-language/).
 
+#### **Client Certificate-based Rate Limiting**
+
+Rate limit based on the same Client Certificate being used multiple times over a specific period of time, in order to prevent abuse of potentially compromised certificates or devices. This is part of mTLS protection.
+
+![rate-limiting-rule-by-client-certificate](img/rate-limiting-rule-by-client-certificate.png)
+
+Reference: [SHA-256 fingerprint of the certificate](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cftls_client_authcert_fingerprint_sha256).
+
 #### **More Common Use Cases for Rate Limiting Rules**
 
 Review the [rate limiting best practices](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/) for more examples. 
@@ -265,7 +293,7 @@ Review all the [fields reference](https://developers.cloudflare.com/ruleset-engi
 
 ### **Turnstile**
 
-Cloudflare’s [Turnstile](https://developers.cloudflare.com/turnstile/) allows [challenges](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/) anywhere on your site. It runs in standard browsers, including mobile, and can be used in native apps via WebViews for iOS and Android. [Implicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#implicitly-render-the-turnstile-widget) auto-loads on static pages, while [explicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicitly-render-the-turnstile-widget) offers control over when and where it appears, ideal for dynamic content or Single-Page Applications (SPAs). Learn more about the differences [here](https://developers.cloudflare.com/turnstile/tutorials/implicit-vs-explicit-rendering).
+Cloudflare's [Turnstile](https://developers.cloudflare.com/turnstile/) allows [challenges](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/) anywhere on your site. It runs in standard browsers, including mobile, and can be used in native apps via WebViews for iOS and Android. [Implicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#implicitly-render-the-turnstile-widget) auto-loads on static pages, while [explicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicitly-render-the-turnstile-widget) offers control over when and where it appears, ideal for dynamic content or Single-Page Applications (SPAs). Learn more about the differences [here](https://developers.cloudflare.com/turnstile/tutorials/implicit-vs-explicit-rendering).
 
 When [integrating on mobile](https://developers.cloudflare.com/turnstile/get-started/mobile-implementation/), address common issues to ensure smooth functionality.
 
@@ -331,7 +359,7 @@ Automate deployments and configuration changes or even rollbacks with:
 * [SDKs](https://developers.cloudflare.com/fundamentals/api/reference/sdks/)  
 * [Terraform](https://developers.cloudflare.com/terraform/)  
   * For external scripts / uncovered resources, use [external](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external).  
-  * If you’re planning to change from Dashboard UI to Terraform, use [cf-terraforming](https://github.com/cloudflare/cf-terraforming).  
+  * If you're planning to change from Dashboard UI to Terraform, use [cf-terraforming](https://github.com/cloudflare/cf-terraforming).  
 * [Pulumi](https://developers.cloudflare.com/pulumi/)
 
 ![automation-comparison](img/automation.png)
@@ -340,9 +368,9 @@ Automate deployments and configuration changes or even rollbacks with:
 
 ### **Origin Server Protection**
 
-Generally, it’s recommended to restrict external connections to your origin servers.
+Generally, it's recommended to restrict external connections to your origin servers.
 
-There’s a variety of different ways and options explained on the Developer Documentation to [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/). 
+There's a variety of different ways and options explained on the Developer Documentation to [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/). 
 
 [Post-Quantum Cryptography (PQC)](https://blog.cloudflare.com/post-quantum-to-origins) might also be interesting to explore. Carefully evaluate these and talk to your account team about the different options.
 
