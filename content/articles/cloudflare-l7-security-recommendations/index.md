@@ -89,6 +89,12 @@ It's generally recommended to have as one of the first top Custom Rules a [SKIP 
 
 Reference: [API Shield](https://developers.cloudflare.com/api-shield/).
 
+#### **Redirect to Custom HTML**
+
+Using a [Custom HTML](https://developers.cloudflare.com/waf/custom-rules/create-dashboard/#configure-a-custom-response-for-blocked-requests) response type, one can create a redirect to another site for specific requests. In this example, any non-verified bot requests coming from the US are redirected.
+
+![redirect-waf-custom-rules](img/redirect-waf-custom-rules.png)
+
 #### **Block Fallthrough API Requests**
 
 In order to truly enforce a Positive Security Model, for any fallthrough action of requests not matching any of the [API Shield-managed endpoints](https://developers.cloudflare.com/api-shield/management-and-monitoring/), create a WAF Custom Rule similar to the one below, preferably with more specific fields to your API. 
@@ -182,6 +188,10 @@ Additionally, another consideration is to also check if the Client Certificates,
 ![waf-custom-rule-block-revoked-and-not-valid-client-certificates](img/waf-custom-rule-block-revoked-and-not-valid-client-certificates.png)
 
 References: [Cloudflare Public Key Infrastructure (PKI)](https://developers.cloudflare.com/ssl/client-certificates/), [CFSSL](https://cfssl.org/), [API Shield mTLS](https://developers.cloudflare.com/api-shield/security/mtls/) and [Workers mTLS](https://developers.cloudflare.com/workers/runtime-apis/bindings/mtls/).
+
+Another interesting use case is to associate specific mTLS hostnames with Client Certificate Serial Numbers ([`cf.tls_client_auth.cert_serial`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cftls_client_authcert_serial)). This allows for more granular control.
+
+![waf-custom-rule-block-cert-serial.png](img/waf-custom-rule-block-cert-serial.png)
 
 #### **Visibility into Automated Bot Traffic**
 
