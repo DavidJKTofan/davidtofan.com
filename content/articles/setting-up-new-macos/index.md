@@ -74,8 +74,10 @@ brew install git
 ### Install Python
 
 ```
-brew install python3
+brew install python@3.13
 ```
+
+> In case of a complete Python cleanup, use something like this [script](https://raw.githubusercontent.com/DavidJKTofan/CyberSec-resources/refs/heads/master/Projects/macOS-Cleanup/clean_python_env.sh).
 
 > When developing with Python, use [virtual environments](https://github.com/DavidJKTofan/CyberSec-resources/blob/master/MacOS_Commands.md#virtual-environment).
 
