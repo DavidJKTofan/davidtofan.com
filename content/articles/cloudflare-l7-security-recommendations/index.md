@@ -35,6 +35,8 @@ It's widely recommended to briefly review and then deploy the [Managed Ruleset](
 
 ![deploy-waf-managed-ruleset](img/deploy-waf-managed-ruleset.png)
 
+Note that it is not recommended to have both Account-level WAF Managed Rules, as well as Zone-level WAF Managed Rules deployed and enabled at the same time as this could lead to confusion when reviewing the [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/). Preferably and if possible, only enable the Account-level WAF Managed Rules.
+
 Reference: [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/).
 
 #### **Stricter Security Requirements with WAF Managed Ruleset**
