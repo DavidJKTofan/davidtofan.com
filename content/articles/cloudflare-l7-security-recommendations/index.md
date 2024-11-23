@@ -189,11 +189,21 @@ Additionally, another consideration is to also check if the Client Certificates,
 
 ![waf-custom-rule-block-revoked-and-not-valid-client-certificates](img/waf-custom-rule-block-revoked-and-not-valid-client-certificates.png)
 
-References: [Cloudflare Public Key Infrastructure (PKI)](https://developers.cloudflare.com/ssl/client-certificates/), [CFSSL](https://cfssl.org/), [API Shield mTLS](https://developers.cloudflare.com/api-shield/security/mtls/) and [Workers mTLS](https://developers.cloudflare.com/workers/runtime-apis/bindings/mtls/).
+References: [Cloudflare Public Key Infrastructure (PKI)](https://developers.cloudflare.com/ssl/client-certificates/), [CFSSL](https://cfssl.org/), [API Shield mTLS](https://developers.cloudflare.com/api-shield/security/mtls/) and [Workers mTLS](https://developers.cloudflare.com/workers/runtime-apis/bindings/mtls/). Check out this Learning Path on [mTLS at Cloudflare](https://developers.cloudflare.com/learning-paths/mtls/).
 
 Another interesting use case is to associate specific mTLS hostnames with Client Certificate Serial Numbers ([`cf.tls_client_auth.cert_serial`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cftls_client_authcert_serial)). This allows for more granular control.
 
 ![waf-custom-rule-block-cert-serial.png](img/waf-custom-rule-block-cert-serial.png)
+
+#### **User-Specific JWT Claim Mitigation**
+
+To enhance the security of your API endpoints that rely on JSON Web Tokens (JWT), you can create rules targeting specific JWT claims, such as the user claim.
+
+In this example, requests from `admin` users based on the `user` claim are subjected to additional scrutiny by challenging requests flagged as potentially malicious based on their [WAF Attack Score](https://developers.cloudflare.com/waf/detections/attack-score/).
+
+![waf-custom-rule-jwt-claim](img/waf-custom-rule-jwt-claim.png)
+
+Reference: [Issue challenge for admin user in JWT claim based on attack score](https://developers.cloudflare.com/waf/custom-rules/use-cases/check-jwt-claim-to-protect-admin-user/) and [API Shield](https://developers.cloudflare.com/api-shield/).
 
 #### **Visibility into Automated Bot Traffic**
 
@@ -202,6 +212,18 @@ In general, one wants to have visibility into automated traffic. This can be com
 ![visibility-into-automated-bot-traffic](img/visibility-into-automated-bot-traffic.png)
 
 Reference: [Bot Management variables](https://developers.cloudflare.com/bots/reference/bot-management-variables/).
+
+#### **Mitigating Pretend-Browsers with JavaScript Detections**
+
+In scenarios where the [BotScore](https://developers.cloudflare.com/bots/concepts/bot-score/) alone may not reliably differentiate between likely human and bots, you can enhance detection by optionally enabling [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/). 
+
+When enforced via [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed) rules and a [Managed Challenge](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/#managed-challenge-recommended), JSD ensures active verification checks.
+
+![waf-custom-rule-pretend-browsers](img/waf-custom-rule-pretend-browsers.png)
+
+> _Note: Test with a logging action before enforcing rules to avoid impacting legitimate traffic. Additionally, the Rule should only apply on critical paths and not on initial landing pages, where JS might have not been injected yet._
+
+Reference: [Enforcing execution of JavaScript detections](https://developers.cloudflare.com/bots/reference/javascript-detections/#enforcing-execution-of-javascript-detections).
 
 #### **Visibility into IPv6 IPs**
 
@@ -226,6 +248,20 @@ To prevent users from signing up with known disposable emails, Cloudflare's Disp
 ![mitigate-disposable-emails-on-signups](img/mitigate-disposable-emails-on-signups.png)
 
 Reference: [Cloudflare Fraud Detection](https://blog.cloudflare.com/cloudflare-fraud-detection).
+
+#### **Time-based Rules**
+
+Time-based rules can leverage the [http.request.timestamp.sec](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/standard-fields/#httprequesttimestampsec) field to apply logic based on specific time periods.
+
+For example, you could block all POST or PUT requests to a particular endpoint during a defined time frame.
+
+![waf-custom-rule-unix-timestamp](img/waf-custom-rule-unix-timestamp.png)
+
+Or simply Log or Skip (allow) specific requests for a specific time.
+
+> **Note:** The timestamp is represented in UNIX time and consists of a 10-digit value.
+
+Reference: [Configure a rule with the Skip action](https://developers.cloudflare.com/waf/custom-rules/skip/).
 
 #### **More Common Use Cases for Custom Rules**
 
