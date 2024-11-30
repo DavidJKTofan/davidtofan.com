@@ -416,11 +416,11 @@ Automate deployments and configuration changes or even rollbacks with:
 
 ### **Origin Server Protection**
 
-Generally, it's recommended to restrict external connections to your origin servers.
+Generally, it's recommended to properly secure and manage your origin servers.
 
-There's a variety of different ways and options explained on the Developer Documentation to [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/). 
+There's a variety of different ways and options explained on the Developer Documentation to [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/), as well as [prepare for surges or spikes in web traffic](https://developers.cloudflare.com/fundamentals/basic-tasks/preparing-for-surges-or-spikes-in-web-traffic/) for seasonal events, such as during holidays. 
 
-[Post-Quantum Cryptography (PQC)](https://blog.cloudflare.com/post-quantum-to-origins) might also be interesting to explore. Carefully evaluate these and talk to your account team about the different options.
+[Post-Quantum Cryptography (PQC)](https://blog.cloudflare.com/post-quantum-to-origins) might also be interesting to explore. Carefully evaluate these and talk to your Cloudflare account team or your internal Security / IT team about the different options.
 
 ![cloudflare-to-origin-server-connection](img/cloudflare-to-origin-server-connection.png)
 
