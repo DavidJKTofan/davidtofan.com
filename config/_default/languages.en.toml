@@ -13,7 +13,7 @@ title = "David Tofan"
   description = "David Tofan's personal website, illustrating his experience as an Entrepreneur and Digital Consultant, as well as promoting his projects and travels."
   # copyright = "Copy, _right?_ :thinking_face:"
 
-[author]
+[params.author]
    name = "David Tofan"
    image = "img/profile.png"
 #   headline = "I'm only human"
