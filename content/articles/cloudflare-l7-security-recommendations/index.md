@@ -129,6 +129,8 @@ By using the Cloudflare-Managed IP Lists, including your own [Custom Lists](http
 
 Reference: [Managed IP Lists](https://developers.cloudflare.com/waf/tools/lists/managed-lists/#managed-ip-lists).
 
+If you wish to manually block VPNs, here's a list of ASNs commonly associated with popular VPN providers: `AS62041, AS202420, AS20473, AS23966, AS36352, AS14061, AS209854, AS20001, AS20115, AS32934, AS16276`.
+
 #### **Mitigate Tor Traffic**
 
 In case that Tor traffic – an overlay network for enabling anonymous communication – is unwanted, one can simply mitigate it. Make sure to also disable [Onion Routing](https://developers.cloudflare.com/network/onion-routing/#enable-onion-routing) in this case.
@@ -265,7 +267,7 @@ Reference: [Configure a rule with the Skip action](https://developers.cloudflare
 
 #### **More Common Use Cases for Custom Rules**
 
-Review the [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for more examples. Additionally, for some use cases or if you are managing many Zones, the [Account-level WAF](https://developers.cloudflare.com/waf/managed-rules/deploy-account-dashboard/) can be a good feature to have.
+Review the [get started guide](https://developers.cloudflare.com/waf/get-started/) and the [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for more examples. Additionally, for some use cases or if you are managing many Zones, the [Account-level WAF](https://developers.cloudflare.com/waf/managed-rules/deploy-account-dashboard/) can be a good feature to have.
 
 Moreover, monitor and [replace insecure JS libraries](https://developers.cloudflare.com/waf/tools/replace-insecure-js-libraries/) used in your applications.
 
