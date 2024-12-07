@@ -47,6 +47,29 @@ Opt out of [analytics](https://docs.brew.sh/Analytics):
 brew analytics off
 ```
 
+### Install cURL
+
+```
+brew install curl
+```
+
+Use cURL from Homebrew instead of system:
+```
+echo 'export PATH="/opt/homebrew/opt/curl/bin:$PATH"' >> ~/.zshrc
+```
+
+> For HTTP/3 support, review experimental [HTTP3 (and QUIC)](https://curl.se/docs/http3.html), preferably `quiche`.
+
+Force Homebrew to use the brewed version of cURL instead of the system version:
+```
+export HOMEBREW_FORCE_BREWED_CURL=1
+```
+
+Reload `zsh`:
+```
+source ~/.zshrc
+```
+
 ### Install Visual Studio Code (VS Code)
 
 ```
@@ -95,6 +118,17 @@ npm install -g npm@latest
 Update Node.js:
 ```
 sudo n stable
+```
+
+### How `zsh` should look like
+
+```
+$ nano ~/.zshrc
+
+export PATH="/opt/homebrew/bin:/opt/homebrew/opt/curl/bin:/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin:$PATH"
+
+#export PATH="/usr/sbin:/sbin:/usr/bin:/bin:/opt/homebrew/bin:/usr/local/bin:/Us$
+#export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 ```
 
 ### Update Everything
