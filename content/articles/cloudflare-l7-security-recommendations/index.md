@@ -401,6 +401,14 @@ It is highly recommended to set up [Notifications](https://developers.cloudflare
 
 ---
 
+### **Scans and Penetration Testing Policy**
+
+Cloudflare customers may conduct scans and penetration tests (with certain restrictions) on application and network-layer aspects of their own assets.
+
+You can review all details in the [developer documentation](https://developers.cloudflare.com/fundamentals/reference/scans-penetration/).
+
+---
+
 ### **Automation**
 
 Automate deployments and configuration changes or even rollbacks with:
