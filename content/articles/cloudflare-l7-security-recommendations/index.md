@@ -426,7 +426,9 @@ Automate deployments and configuration changes or even rollbacks with:
 
 ### **Origin Server Protection**
 
-Generally, it's recommended to properly secure and manage your origin servers.
+Generally, it's recommended to properly secure and manage your origin servers. 
+
+> When migrating to Cloudflare, it's highly recommended to rotate Origin Server IPs and [proxy](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/) all DNS records.
 
 There's a variety of different ways and options explained on the Developer Documentation to [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/), as well as [prepare for surges or spikes in web traffic](https://developers.cloudflare.com/fundamentals/basic-tasks/preparing-for-surges-or-spikes-in-web-traffic/) for seasonal events, such as during holidays.
 
