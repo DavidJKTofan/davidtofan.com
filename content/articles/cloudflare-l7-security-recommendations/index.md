@@ -219,6 +219,8 @@ Reference: [Bot Management variables](https://developers.cloudflare.com/bots/ref
 
 In scenarios where the [BotScore](https://developers.cloudflare.com/bots/concepts/bot-score/) alone may not reliably differentiate between likely human and bots, you can enhance detection by optionally enabling [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
+> _Note: JSD can only be applied to HTML responses and it cannot be at the root/first HTML request._
+
 When enforced via [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed) rules and a [Managed Challenge](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/#managed-challenge-recommended), JSD ensures active verification checks.
 
 ![waf-custom-rule-pretend-browsers](img/waf-custom-rule-pretend-browsers.png)
