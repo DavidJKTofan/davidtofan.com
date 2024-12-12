@@ -426,7 +426,7 @@ Automate deployments and configuration changes or even rollbacks with:
 
 ### **Origin Server Protection**
 
-Generally, it's recommended to properly secure and manage your origin servers. 
+Generally, it's recommended to properly secure and manage your origin servers.
 
 > When migrating to Cloudflare, it's highly recommended to rotate Origin Server IPs and [proxy](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/) all DNS records.
 
@@ -439,6 +439,32 @@ There's a variety of different ways and options explained on the Developer Docum
 Additionally, review and enable the [available Managed Transforms](https://developers.cloudflare.com/rules/transform/managed-transforms/reference/) options to add some bot protection headers, remove "X-Powered-By” headers, or even create your own Content Security Policy (CSP) with the [Transform Rules](https://developers.cloudflare.com/rules/transform/).
 
 Reference: [Encryption modes](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/).
+
+---
+
+## Non-HTTP/S Use Cases
+
+There are scenarios where users might want to leverage Cloudflare’s global network and robust [L3/L4 DDoS protection](https://developers.cloudflare.com/ddos-protection/about/attack-coverage/) without handling TLS termination or processing HTTP/S traffic and payloads. For these specialized use cases, Cloudflare offers several options tailored to non-HTTP/S requirements.
+
+Available Options:
+
+1. **[Grey-Clouded DNS Records](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/#dns-only-records)**  
+   This involves setting a DNS record to "DNS Only" mode. However, this approach is **not recommended**, as it exposes the origin server's IP address, compromising security.
+
+2. **[Spectrum](https://developers.cloudflare.com/spectrum/)**  
+   A powerful TCP/UDP proxy solution that supports various non-HTTP/S protocols.  
+   - It is typically recommended to enable [Proxy Protocol](https://developers.cloudflare.com/spectrum/how-to/enable-proxy-protocol/).  
+   - To avoid unintended handling of TLS, ensure the [Edge TLS Termination](https://developers.cloudflare.com/spectrum/reference/configuration-options/#edge-tls-termination) option is disabled.
+
+3. **[Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/)**  
+   Privacy Gateway uses the **Oblivious HTTP (OHTTP)** standard to hide client IPs during backend interactions. Acting as a trusted relay, it forwards encrypted messages between clients and servers without accessing their content, ensuring enhanced privacy and anonymity.
+
+4. **[Magic Transit](https://developers.cloudflare.com/magic-transit/)**  
+   Operating at the network layer, Magic Transit offers advanced DDoS protection and traffic management without TLS termination.  
+   - For a deeper dive, check out the [Magic Transit Reference Architecture](https://developers.cloudflare.com/reference-architecture/architectures/magic-transit/).
+
+### Additional Resources:  
+For more guidance on avoiding Cloudflare TLS termination and decryption, visit the [Cloudflare Data Localization FAQ](https://developers.cloudflare.com/data-localization/faq/#are-there-other-options-if-i-prefer-not-to-have-cloudflare-handle-tls-termination-decryption).
 
 ---
 
