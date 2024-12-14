@@ -37,13 +37,13 @@ There are plenty of articles about these topics going into much more detail. Fee
 
 Some general advantages of SASE usually are:
 
-- **Comprehensive Security**: Combines network and security services in a unified platform.  
-- **Zero Trust Integration**: Incorporates Zero Trust principles for secure access.  
-- **Scalability**: Adapts to growing and evolving organizational needs.  
-- **Cloud Optimization**: Improves performance for cloud-based applications.  
-- **Simplified Management**: Centralizes control for reduced complexity.  
-- **Enhanced Performance**: Optimizes traffic routing for faster connectivity.  
-- **Global Reach**: Ensures consistent security policies across distributed locations.  
+- **Comprehensive Security**: Combines network and security services in a unified platform.
+- **Zero Trust Integration**: Incorporates Zero Trust principles for secure access.
+- **Scalability**: Adapts to growing and evolving organizational needs.
+- **Cloud Optimization**: Improves performance for cloud-based applications.
+- **Simplified Management**: Centralizes control for reduced complexity.
+- **Enhanced Performance**: Optimizes traffic routing for faster connectivity.
+- **Global Reach**: Ensures consistent security policies across distributed locations.
 
 ### Tailoring to Use Cases
 
@@ -60,22 +60,22 @@ Here are some roadmap examples:
 
 ### Understanding Connectivity
 
-It’s critical to distinguish between connecting **locations/networks**, **users (knowledge workers)**, and **applications/resources**. 
+It’s critical to distinguish between connecting **locations/networks**, **users (knowledge workers)**, and **applications/resources**.
 
 The following table outlines Cloudflare's composable and flexible connectivity options:
 
-| **Connectivity**                      	|        **Locations (Networks)**       	|                              **Users**                              	| **Applications** 	|   	|
-|---------------------------------------	|:-------------------------------------:	|:-------------------------------------------------------------------:	|:----------------:	|---	|
-| WARP Client (default mode)            	|                                       	|                                  ✅                                  	|                  	|   	|
-| WARP Client (Proxy mode)              	|                                       	|                                  ✅                                  	|                  	|   	|
-| DNS Resolver IPs                      	|                   ✅                   	|                                                                     	|                  	|   	|
-| DNS over HTTPS (DoH)                  	| ✅<br>(location-specific DoH endpoint) 	| ✅<br>(requires user-specific DoH token for identity-based policies) 	|                  	|   	|
-| Proxy Endpoint (PAC file)             	|                                       	|           ✅<br>(does not support identity-based policies)           	|                  	|   	|
-| Cloudflare Tunnel                     	|                   ✅                   	|                                                                     	|         ✅        	|   	|
-| WARP Connector                        	|                   ✅                   	|                                                                     	|         ✅        	|   	|
-| Clientless RBI                        	|                                       	|                                  ✅                                  	|                  	|   	|
-| Magic WAN                             	|                   ✅                   	|                                                                     	|         ✅        	|   	|
-| Cloudflare Network Interconnect (CNI) 	|                   ✅                   	|                                                                     	|         ✅        	|   	|
+| **Connectivity**                      |        **Locations (Networks)**        |                              **Users**                               | **Applications** |     |
+| ------------------------------------- | :------------------------------------: | :------------------------------------------------------------------: | :--------------: | --- |
+| WARP Client (default mode)            |                                        |                                  ✅                                  |                  |     |
+| WARP Client (Proxy mode)              |                                        |                                  ✅                                  |                  |     |
+| DNS Resolver IPs                      |                   ✅                   |                                                                      |                  |     |
+| DNS over HTTPS (DoH)                  | ✅<br>(location-specific DoH endpoint) | ✅<br>(requires user-specific DoH token for identity-based policies) |                  |     |
+| Proxy Endpoint (PAC file)             |                                        |           ✅<br>(does not support identity-based policies)           |                  |     |
+| Cloudflare Tunnel                     |                   ✅                   |                                                                      |        ✅        |     |
+| WARP Connector                        |                   ✅                   |                                                                      |        ✅        |     |
+| Clientless RBI                        |                                        |                                  ✅                                  |                  |     |
+| Magic WAN                             |                   ✅                   |                                                                      |        ✅        |     |
+| Cloudflare Network Interconnect (CNI) |                   ✅                   |                                                                      |        ✅        |     |
 
 > _Updated as of December 2024. Public Internet remains a viable connection option to the nearest Cloudflare data center._
 
@@ -118,7 +118,7 @@ Review and align current (device, on-prem or origin server) firewall configurati
 
 Be aware and familiarize yourself with the general [account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/), most of which are soft-limits, as well as any other feature-specific limitations or caveats, such as the [inspection limitations](https://developers.cloudflare.com/cloudflare-one/policies/gateway/http-policies/tls-decryption/#inspection-limitations).
 
-----
+---
 
 ## Getting Started
 
@@ -140,45 +140,43 @@ Be aware and familiarize yourself with the general [account limits](https://deve
 
 [Configure the App Launcher](https://developers.cloudflare.com/cloudflare-one/applications/app-launcher/) to provide users with a centralized dashboard of authorized applications.
 
-[Improve end user experience](https://developers.cloudflare.com/cloudflare-one/policies/gateway/block-page/#customize-the-block-page) by customizing the Block Page and applying your own corporate branding. Check out this open source _highly customizable block page built in Cloudflare Workers that provides enriched Access Deny reasoning to end users_ on [GitHub](https://github.com/cloudflare/cf-identity-dynamic). Be sure to enable Block Page support for DNS and HTTP policies.
+[Improve end user experience](https://developers.cloudflare.com/cloudflare-one/policies/gateway/block-page/#customize-the-block-page) by customizing the Block Page and applying your own corporate branding. Check out this open source _highly customizable block page built in Cloudflare Workers that provides enriched Access Deny reasoning to end users_ on [GitHub](https://github.com/cloudflare/cf-identity-dynamic). Be sure to enable Block Page support for DNS and HTTP policies. More details on customizing the UX [here](https://developers.cloudflare.com/learning-paths/zero-trust-web-access/customize-ux/).
 
-[Create or upload your Lists](https://developers.cloudflare.com/cloudflare-one/policies/gateway/lists/) of URLs, hostnames, or other entries to later use in the Gateway or Access Policies.
+[Create or upload your Lists](https://developers.cloudflare.com/cloudflare-one/policies/gateway/lists/) of URLs, hostnames, or other entries to later use in the Gateway or Access Policies. This can be relevant for corporate devices by keeping track of [Device Serial Numbers](https://developers.cloudflare.com/cloudflare-one/identity/devices/warp-client-checks/corp-device/).
 
 Create [Access Groups](https://developers.cloudflare.com/cloudflare-one/identity/users/groups/) for quick and reusable groups within policies.
 
-Create different [Lists](https://developers.cloudflare.com/cloudflare-one/policies/gateway/lists/) so you can quickly use them in future policies. 
-
 Configure [SSH command logging](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#ssh-command-logs) with your own public key to encrypt logged SSH commands that users ran on a target machine.
 
-----
+---
 
 ## Connecting Locations / Networks
 
 ### DNS Resolver IPs
 
-TBD 
+TBD
 
 ### DNS over HTTPS (DoH)
 
-TBD 
+TBD
 
 ### Cloudflare Tunnel
 
-TBD 
+TBD
 
 ### WARP Connector
 
-TBD 
+TBD
 
 ### MagicWAN
 
-TBD 
+TBD
 
 ### Cloudflare Network Interconnect (CNI)
 
-TBD 
+TBD
 
-----
+---
 
 ## Connecting Applications
 
@@ -190,7 +188,7 @@ TBD
 
 TBD
 
-----
+---
 
 ## Connecting Users
 
@@ -200,7 +198,7 @@ TBD
 
 ### DNS over HTTPS (DoH)
 
-TBD 
+TBD
 
 ### Proxy Endpoint (PAC file)
 
@@ -214,17 +212,17 @@ For Clientless RBI, they'll navigate any URL via: `https://<your-team-name>.clou
 
 ### DNS over HTTPS (DoH)
 
-This is an agentless option. 
+This is an agentless option.
 
 With Cloudflare Gateway, you can filter [DNS over HTTPS (DoH)](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/dns-over-https/#filter-doh-requests-by-user) requests by user with user-specific DoH tokens, applying identity-based policies.
 
 ### Proxy Endpoint (PAC file)
 
-This is an agentless option. 
+This is an agentless option.
 
-You can apply Gateway HTTP and DNS policies at the browser level by configuring a [Proxy Auto-Configuration (PAC) file](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/pac-files/). 
+You can apply Gateway HTTP and DNS policies at the browser level by configuring a [Proxy Auto-Configuration (PAC) file](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/pac-files/).
 
-----
+---
 
 ## Creating Policies
 
@@ -248,7 +246,7 @@ Reference: TBD.
 
 #### TBD
 
-TBD 
+TBD
 
 <IMAGE_HERE>
 
@@ -286,15 +284,23 @@ TBD
 
 <IMAGE_HERE>
 
-Reference: TBD.
+Reference: [Use virtual networks to change user egress IPs](https://developers.cloudflare.com/cloudflare-one/tutorials/user-selectable-egress-ips/).
 
-----
+### Access Policies (ZTNA)
+
+#### Isolate Third-Party Contractors
+
+Require specific users, such as third-party contractors, to access applications via RBI, while others are allowed direct access based on different policy rules. 
+
+Reference: [Isolate Access applications](https://developers.cloudflare.com/learning-paths/zero-trust-web-access/advanced-workflows/isolate-application/).
+
+---
 
 ## Insights & Monitoring
 
 ### Shadow IT
 
-TBD 
+TBD
 
 ### Digital Experience Monitoring (DEX)
 
@@ -306,7 +312,7 @@ TBD
 
 ### API & Terraform
 
-Infrastructure automation tools enable developers to seamlessly integrate Zero Trust security into their application development pipelines.  
+Infrastructure automation tools enable developers to seamlessly integrate Zero Trust security into their application development pipelines.
 
 For larger organizations, leveraging [Terraform](https://developers.cloudflare.com/cloudflare-one/api-terraform/) for automated deployment is highly recommended. Additionally, the **Dashboard Read-Only** functionality provides secure, audit-friendly access for monitoring and oversight.
 

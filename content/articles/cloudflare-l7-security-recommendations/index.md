@@ -39,7 +39,7 @@ Note that it is not recommended to have both Account-level WAF Managed Rules, as
 
 Reference: [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/).
 
-#### **Stricter Security Requirements with WAF Managed Ruleset**
+#### Stricter Security Requirements with WAF Managed Ruleset
 
 For additional and stricter security requirements, deploy some of the following rules:
 
@@ -59,7 +59,7 @@ It is also generally recommended to disable [Browser Integrity Check (BIC)](http
 
 Reference: [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/) and [Changelog](https://developers.cloudflare.com/changelog/).
 
-#### **Deploy OWASP Core Ruleset**
+#### Deploy OWASP Core Ruleset
 
 If required, review and then deploy the [OWASP Core Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/owasp-core-ruleset/).
 
@@ -75,7 +75,7 @@ Reference: [Handle false positives](https://developers.cloudflare.com/waf/manage
 
 ### **WAF Custom Rules**
 
-#### **Allow Verified Bots**
+#### Allow Verified Bots
 
 It's ordinarily recommended to have as one of the first top Custom Rules a [SKIP Custom Rule](https://developers.cloudflare.com/waf/custom-rules/skip/), allowing Verified Bots, such as i.e. Search Engine Crawler (like _GoogleBot_).
 
@@ -83,7 +83,7 @@ It's ordinarily recommended to have as one of the first top Custom Rules a [SKIP
 
 Reference: [Verified Bots](https://developers.cloudflare.com/bots/concepts/bot/#verified-bots)
 
-#### **Allow APIs**
+#### Allow APIs
 
 It's generally recommended to have as one of the first top Custom Rules a [SKIP Custom Rule](https://developers.cloudflare.com/waf/custom-rules/skip/), allowing your and/or partner APIs (i.e. payment callbacks, PreRender IO, etc.), being as specific and using as many [fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/) as possible. The ultimate goal is to pursue a **positive security model** by implementing [API Shield](https://developers.cloudflare.com/api-shield/security/).
 
@@ -91,13 +91,13 @@ It's generally recommended to have as one of the first top Custom Rules a [SKIP 
 
 Reference: [API Shield](https://developers.cloudflare.com/api-shield/).
 
-#### **Redirect to Custom HTML**
+#### Redirect to Custom HTML
 
 Using a [Custom HTML](https://developers.cloudflare.com/waf/custom-rules/create-dashboard/#configure-a-custom-response-for-blocked-requests) response type, one can create a redirect to another site for specific requests. In this example, any non-verified bot requests coming from the US are redirected.
 
 ![redirect-waf-custom-rules](img/redirect-waf-custom-rules.png)
 
-#### **Block Fallthrough API Requests**
+#### Block Fallthrough API Requests
 
 In order to truly enforce a Positive Security Model, for any fallthrough action of requests not matching any of the [API Shield-managed endpoints](https://developers.cloudflare.com/api-shield/management-and-monitoring/), create a WAF Custom Rule similar to the one below, preferably with more specific fields to your API.
 
@@ -105,7 +105,7 @@ In order to truly enforce a Positive Security Model, for any fallthrough action 
 
 Reference: [Schema Validation](https://developers.cloudflare.com/api-shield/security/schema-validation/).
 
-#### **Visibility into Non-expected Request Methods**
+#### Visibility into Non-expected Request Methods
 
 In some cases, you want to be specific about what type of HTTP Request Methods are allowed on certain endpoints or coming from specific requests, or even just logging relevant methods for visibility.
 
@@ -113,7 +113,7 @@ In some cases, you want to be specific about what type of HTTP Request Methods a
 
 Reference: [HTTP Method Field](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/standard-fields/#httprequestmethod).
 
-#### **Mitigate likely Malicious Payloads**
+#### Mitigate likely Malicious Payloads
 
 Every HTTP request with a payload receives a WAF Attack Score, indicating the likelihood of containing something malicious related to SQLi, XSS, or RCE attacks.
 
@@ -121,7 +121,7 @@ Every HTTP request with a payload receives a WAF Attack Score, indicating the li
 
 Reference: [WAF attack score](https://developers.cloudflare.com/waf/about/waf-attack-score/).
 
-#### **Mitigate known Open Proxies, Anonymizers, VPNs, Malware, and Botnets**
+#### Mitigate known Open Proxies, Anonymizers, VPNs, Malware, and Botnets
 
 By using the Cloudflare-Managed IP Lists, including your own [Custom Lists](https://developers.cloudflare.com/waf/tools/lists/custom-lists/), you can decide what to do with those IP categories. Generally, one wants to block Botnets and Malware.
 
@@ -131,7 +131,7 @@ Reference: [Managed IP Lists](https://developers.cloudflare.com/waf/tools/lists/
 
 If you wish to manually block VPNs, here's a list of ASNs commonly associated with popular VPN providers: `AS62041, AS202420, AS20473, AS23966, AS36352, AS14061, AS209854, AS20001, AS20115, AS32934, AS16276`.
 
-#### **Mitigate Tor Traffic**
+#### Mitigate Tor Traffic
 
 In case that Tor traffic – an overlay network for enabling anonymous communication – is unwanted, one can simply mitigate it. Make sure to also disable [Onion Routing](https://developers.cloudflare.com/network/onion-routing/#enable-onion-routing) in this case.
 
@@ -139,7 +139,7 @@ In case that Tor traffic – an overlay network for enabling anonymous communica
 
 Reference: [Onion Routing and Tor support](https://developers.cloudflare.com/network/onion-routing/).
 
-#### **Mitigate unwanted ASNs**
+#### Mitigate unwanted ASNs
 
 Any unwanted traffic coming from Cloud ASNs (such as AWS, Azure, GCP, etc.) or other ASNs from which you don't expect traffic, you might want to mitigate. Use [Lists with ASNs](https://developers.cloudflare.com/waf/tools/lists/custom-lists/#lists-with-asns) to easily manage these.
 
@@ -147,7 +147,7 @@ Any unwanted traffic coming from Cloud ASNs (such as AWS, Azure, GCP, etc.) or o
 
 Reference: [Custom Lists](https://developers.cloudflare.com/waf/tools/lists/custom-lists/).
 
-#### **Block High Risk Countries**
+#### Block High Risk Countries
 
 Block high risk countries like the ones that appear in the [official OFAC List](https://sanctionssearch.ofac.treas.gov/), as they might pose a higher threat. Alternatively, instead of blocking them altogether, you can set a [Managed Challenge](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/#managed-challenge-recommended).
 
@@ -155,7 +155,7 @@ Block high risk countries like the ones that appear in the [official OFAC List](
 
 Reference: [Sanctions List Search](https://sanctionssearch.ofac.treas.gov/).
 
-#### **Block known Bot User-Agents**
+#### Block known Bot User-Agents
 
 Block unwanted requests of user-agents known to be used by bots, such as _cURL_, _go-http-client_, or even empty user-agents.
 
@@ -163,7 +163,7 @@ Block unwanted requests of user-agents known to be used by bots, such as _cURL_,
 
 Reference: [Challenge bad bots](https://developers.cloudflare.com/waf/custom-rules/use-cases/challenge-bad-bots/).
 
-#### **Restrict WP Admin Dashboard Access**
+#### Restrict WP Admin Dashboard Access
 
 If you are using WordPress, restrict access to the `/wp-admin` to only specific static source IPs of employees or admins, or alternatively opt for a Zero Trust approach with [Cloudflare Access](https://developers.cloudflare.com/learning-paths/zero-trust-web-access/).
 
@@ -171,7 +171,7 @@ If you are using WordPress, restrict access to the `/wp-admin` to only specific 
 
 Reference: [Allow traffic from IP addresses in allowlist only](https://developers.cloudflare.com/waf/custom-rules/use-cases/allow-traffic-from-ips-in-allowlist/).
 
-#### **Restrict Access to Employees Only**
+#### Restrict Access to Employees Only
 
 If you have employee portals or extranets, restrict access to countries in which you have employees located, or preferably opt for a [Zero Trust approach](https://developers.cloudflare.com/learning-paths/zero-trust-web-access/). Try to be as specific as possible.
 
@@ -181,7 +181,7 @@ Another alternative is to take advantage of [mTLS](https://developers.cloudflare
 
 Reference: [Allow traffic from specific countries only](https://developers.cloudflare.com/waf/custom-rules/use-cases/allow-traffic-from-specific-countries/).
 
-#### **Mutual TLS Authentication**
+#### Mutual TLS Authentication
 
 Block all requests that do not have a valid client certificate for Mutual TLS (mTLS) authentication on a specific hostname.
 
@@ -197,7 +197,7 @@ Another interesting use case is to associate specific mTLS hostnames with Client
 
 ![waf-custom-rule-block-cert-serial.png](img/waf-custom-rule-block-cert-serial.png)
 
-#### **User-Specific JWT Claim Mitigation**
+#### User-Specific JWT Claim Mitigation
 
 To enhance the security of your API endpoints that rely on JSON Web Tokens (JWT), you can create rules targeting specific JWT claims, such as the user claim.
 
@@ -207,7 +207,7 @@ In this example, requests from `admin` users based on the `user` claim are subje
 
 Reference: [Issue challenge for admin user in JWT claim based on attack score](https://developers.cloudflare.com/waf/custom-rules/use-cases/check-jwt-claim-to-protect-admin-user/) and [API Shield](https://developers.cloudflare.com/api-shield/).
 
-#### **Visibility into Automated Bot Traffic**
+#### Visibility into Automated Bot Traffic
 
 In general, one wants to have visibility into automated traffic. This can be commonly achieved with a [LOG](https://developers.cloudflare.com/ruleset-engine/rules-language/actions/) action, logging anything with a [Bot Score](https://developers.cloudflare.com/bots/concepts/bot-score/) likely automated.
 
@@ -215,7 +215,7 @@ In general, one wants to have visibility into automated traffic. This can be com
 
 Reference: [Bot Management variables](https://developers.cloudflare.com/bots/reference/bot-management-variables/).
 
-#### **Mitigating Pretend-Browsers with JavaScript Detections**
+#### Mitigating Pretend-Browsers with JavaScript Detections
 
 In scenarios where the [BotScore](https://developers.cloudflare.com/bots/concepts/bot-score/) alone may not reliably differentiate between likely human and bots, you can enhance detection by optionally enabling [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
@@ -229,7 +229,7 @@ When enforced via [`cf.bot_management.js_detection.passed`](https://developers.c
 
 Reference: [Enforcing execution of JavaScript detections](https://developers.cloudflare.com/bots/reference/javascript-detections/#enforcing-execution-of-javascript-detections).
 
-#### **Visibility into IPv6 IPs**
+#### Visibility into IPv6 IPs
 
 Most web applications want to be available via IPv6 IP addresses. However, in case that IPv6 is undesired, customers can mitigate IPv6 IPs through the WAF and also disable [IPv6 compatibility](https://developers.cloudflare.com/network/ipv6-compatibility/#disable-ipv6-compatibility), if needed.
 
@@ -237,7 +237,7 @@ Most web applications want to be available via IPv6 IP addresses. However, in ca
 
 Reference: [IPv6 compatibility](https://developers.cloudflare.com/network/ipv6-compatibility/).
 
-#### **Account Takeover (ATO) Detections**
+#### Account Takeover (ATO) Detections
 
 To detect and mitigate predictable bot behavior, such as _login failures_, one can use [Detection IDs](https://developers.cloudflare.com/bots/concepts/detection-ids/). This is also available for Rate Limiting Rules.
 
@@ -245,7 +245,7 @@ To detect and mitigate predictable bot behavior, such as _login failures_, one c
 
 Reference: [Account takeover detections](https://developers.cloudflare.com/bots/concepts/detection-ids/#account-takeover-detections) and [Turnstile](https://developers.cloudflare.com/turnstile/).
 
-#### **Mitigate Disposable Emails on SignUps**
+#### Mitigate Disposable Emails on SignUps
 
 To prevent users from signing up with known disposable emails, Cloudflare's Disposable Email Check can easily check this behavior and the customer can decide what to do with this: block, challenge, log, rate limit, or even [add a request header](https://developers.cloudflare.com/rules/transform/request-header-modification/) for the origin server.
 
@@ -253,7 +253,7 @@ To prevent users from signing up with known disposable emails, Cloudflare's Disp
 
 Reference: [Cloudflare Fraud Detection](https://blog.cloudflare.com/cloudflare-fraud-detection).
 
-#### **Time-based Rules**
+#### Time-based Rules
 
 Time-based rules can leverage the [http.request.timestamp.sec](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/standard-fields/#httprequesttimestampsec) field to apply logic based on specific time periods.
 
@@ -267,7 +267,7 @@ Or simply Log or Skip (allow) specific requests for a specific time.
 
 Reference: [Configure a rule with the Skip action](https://developers.cloudflare.com/waf/custom-rules/skip/).
 
-#### **More Common Use Cases for Custom Rules**
+#### More Common Use Cases for Custom Rules
 
 Review the [get started guide](https://developers.cloudflare.com/waf/get-started/) and the [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for more examples. Additionally, for some use cases or if you are managing many Zones, the [Account-level WAF](https://developers.cloudflare.com/waf/managed-rules/deploy-account-dashboard/) can be a good feature to have.
 
@@ -279,7 +279,7 @@ Review all the [fields reference](https://developers.cloudflare.com/ruleset-engi
 
 ### **Rate Limiting Rules**
 
-#### **IP-based Rate Limiting for Logins**
+#### IP-based Rate Limiting for Logins
 
 To protect login endpoints from multiple login attempts from the same IP address, rate limit based on the required [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics).
 
@@ -287,7 +287,7 @@ To protect login endpoints from multiple login attempts from the same IP address
 
 Reference: [Rate limiting parameters](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/).
 
-#### **Rate Limiting Uploads**
+#### Rate Limiting Uploads
 
 To prevent too many uploads / HTTP requests using POST / PUT / PATCH methods.
 
@@ -295,7 +295,7 @@ To prevent too many uploads / HTTP requests using POST / PUT / PATCH methods.
 
 Reference: [Standard fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/#standard-fields).
 
-#### **Rate Limit Credential Stuffing**
+#### Rate Limit Credential Stuffing
 
 To protect against credential stuffing attacks, it's generally recommended using a layered-security approach. This rate limiting rule is but one example of several approaches.
 
@@ -303,7 +303,7 @@ To protect against credential stuffing attacks, it's generally recommended using
 
 Reference: [Protecting against credential stuffing](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/#protecting-against-credential-stuffing) and [Find an appropriate rate limit](https://developers.cloudflare.com/waf/rate-limiting-rules/find-rate-limit/).
 
-#### **Rate Limit Suspicious Logins**
+#### Rate Limit Suspicious Logins
 
 Implement rate limiting for suspicious login attempts (authentication event) using leaked credentials, specifically leaked passwords, as per [Have I been Pwned (HIBP)](https://haveibeenpwned.com/).
 
@@ -311,7 +311,7 @@ Implement rate limiting for suspicious login attempts (authentication event) usi
 
 Reference: [Leaked credentials detection](https://developers.cloudflare.com/waf/detections/leaked-credentials/).
 
-#### **Geography-based Rate Limiting**
+#### Geography-based Rate Limiting
 
 If there are markets from which one does not expect a lot of traffic coming from in general, one could rate limit requests coming from those countries based on IPs or other [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics).
 
@@ -319,7 +319,7 @@ If there are markets from which one does not expect a lot of traffic coming from
 
 Reference: [Enforcing granular access control](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/#enforcing-granular-access-control).
 
-#### **IPv6-based Rate Limiting**
+#### IPv6-based Rate Limiting
 
 To protect against entire [IPv6 Prefixes](https://en.wikipedia.org/wiki/IPv6_address), rate limit with the [custom characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics) using the [cidr6 function](https://developers.cloudflare.com/ruleset-engine/rules-language/functions/#cidr6) and specifying the prefix length.
 
@@ -327,7 +327,7 @@ To protect against entire [IPv6 Prefixes](https://en.wikipedia.org/wiki/IPv6_add
 
 Reference: [Rules language](https://developers.cloudflare.com/ruleset-engine/rules-language/).
 
-#### **Client Certificate-based Rate Limiting**
+#### Client Certificate-based Rate Limiting
 
 Rate limit based on the same Client Certificate being used multiple times over a specific period of time, in order to prevent abuse of potentially compromised certificates or devices. This is part of mTLS protection.
 
@@ -335,7 +335,15 @@ Rate limit based on the same Client Certificate being used multiple times over a
 
 Reference: [SHA-256 fingerprint of the certificate](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cftls_client_authcert_fingerprint_sha256).
 
-#### **More Common Use Cases for Rate Limiting Rules**
+#### JavaScript Detection-based Rate Limiting
+
+Use [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/) to identify human-like clients by solving a challenge in subsequent HTML requests, flagged as [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed). Since JSD cannot run on the first HTML request, track failed JSD attempts on subsequent HTML responses (`Content-Type: text/html`) and block or challenge clients after 5 consecutive failures.
+
+![rate-limiting-rule-javascript-detections-subsequent-request](img/rate-limiting-rule-javascript-detections-subsequent-request.png)
+
+Reference: [Do the Challenge actions support content types other than HTML (for example, AJAX or XHR requests)?](https://developers.cloudflare.com/waf/troubleshooting/faq/#do-the-challenge-actions-support-content-types-other-than-html-for-example-ajax-or-xhr-requests).
+
+#### More Common Use Cases for Rate Limiting Rules
 
 Review the [rate limiting best practices](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/) for more examples.
 
