@@ -149,11 +149,11 @@ Reference: [Custom Lists](https://developers.cloudflare.com/waf/tools/lists/cust
 
 #### Block High Risk Countries
 
-Block high risk countries like the ones that appear in the [official OFAC List](https://sanctionssearch.ofac.treas.gov/), as they might pose a higher threat. Alternatively, instead of blocking them altogether, you can set a [Managed Challenge](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/#managed-challenge-recommended).
+Block high risk countries like the ones that appear in [The Office of Foreign Assets Control (OFAC) List](https://sanctionssearch.ofac.treas.gov/).
 
 ![block-high-risk-countries](img/block-high-risk-countries.png)
 
-Reference: [Sanctions List Search](https://sanctionssearch.ofac.treas.gov/).
+References: [Sanctions List Search](https://sanctionssearch.ofac.treas.gov/) and [OpenSanctions](https://www.opensanctions.org/).
 
 #### Block known Bot User-Agents
 
