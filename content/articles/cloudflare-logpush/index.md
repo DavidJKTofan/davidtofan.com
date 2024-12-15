@@ -245,6 +245,8 @@ Additionally, there is a variety of [Analytics Integrations](https://developers.
 
 Cloudflare is working hard to integrate more things, and make it easier to connect to their Logpush.
 
+> _UPDATE DECEMBER 2024: There's now a [Grafana data source plugin](https://grafana.com/grafana/plugins/grafana-cloudflare-datasource/) ([docs](https://grafana.com/docs/plugins/grafana-cloudflare-datasource/latest/)) available._
+
 ### New Relic
 
 Additionally, check out [Get full observability into your Cloudflare logs with New Relic](https://blog.cloudflare.com/announcing-the-new-relic-direct-log-integration/) to easily Logpush your logs to a New Relic Dashboard.
