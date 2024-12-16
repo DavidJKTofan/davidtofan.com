@@ -9,7 +9,7 @@ draft: true
 
 ## Introduction
 
-This guide provides non-exhaustive recommendations and general best practices to achieve a comprehensive **Zero Trust or SASE approach** with [Cloudflare One](https://www.cloudflare.com/zero-trust/).
+This guide provides non-exhaustive recommendations and general best practices to achieve a comprehensive **Zero Trust or SASE approach** with [Cloudflare One](https://www.cloudflare.com/zero-trust/). Note that each and every organization determines for themselves what the best approach and policies are for them, their use cases and situations.
 
 Some features mentioned are available only through add-on solutions, such as **Data Loss Prevention (DLP)** and **Remote Browser Isolation (RBI)**, or other **Enterprise** features, such as Gateway **Dedicated Egress IPs**.
 
@@ -272,15 +272,19 @@ Documentation and guide:
 
 Policy Naming Convention model: `<Source>-<Cloudflare Component/Protocol>-<Destination>-<Purpose>`
 
+> There are certain [Global Policies](https://developers.cloudflare.com/cloudflare-one/policies/gateway/global-policies/) always enabled.
+
 ### DNS Policies
 
-#### TBD
+#### Block Security Categories
 
-TBD
+By default, one normally wants to block any [Security Categories](https://developers.cloudflare.com/cloudflare-one/policies/gateway/domain-categories/#security-categories) identified by Cloudflare's Threat Intelligence.
 
-<IMAGE_HERE>
+![dns-block-security-categories](img/dns-block-security-categories.png)
 
-Reference: TBD.
+> The same Policy should be applied as an HTTP Policy. Test this Policy with one of the [common test domains](https://developers.cloudflare.com/cloudflare-one/policies/gateway/dns-policies/test-dns-filtering/#common-test-domains).
+
+Reference: [Domain Categories](https://developers.cloudflare.com/cloudflare-one/policies/gateway/domain-categories/).
 
 #### More Examples for DNS Policies
 
@@ -302,13 +306,53 @@ Reference: TBD.
 
 ### HTTP Policies
 
-#### TBD
+#### Block unauthorized Applications
 
-TBD
+Any known unauthorized applications can be blocked by using a [List](https://developers.cloudflare.com/cloudflare-one/policies/gateway/lists/) of relevant URLs, hostnames, or IPs, or by simply using the [Applications Selector](https://developers.cloudflare.com/cloudflare-one/policies/gateway/application-app-types/).
 
-<IMAGE_HERE>
+![http-block-unauthorized-applications](img/http-block-unauthorized-applications.png)
 
-Reference: TBD.
+> After several days of usage, review the [Shadow IT Discovery](https://developers.cloudflare.com/cloudflare-one/insights/analytics/access/) to review any other previously unkown unauthorized apps.
+
+#### Allowing Social Media with Restrictions
+
+In a corporate environment, one might want to allow browsing and seeing social media activities, but prevent interactions, such as commenting, posting images, or even messaging.
+
+Depending on the social media platform, one needs to adapt the policies.
+
+Block messaging on LinkedIn:
+
+![http-block-linkedin-messaging](img/http-block-linkedin-messaging.png)
+
+Block posting on X (formerly Twitter):
+
+![http-block-x-posting](img/http-block-x-posting.png)
+
+Block messaging on X (formerly Twitter):
+
+![http-block-x-messaging](img/http-block-x-messaging.png)
+
+Block commenting on Reddit:
+
+![http-block-reddit-commenting](img/http-block-reddit-commenting.png)
+
+Block messaging on Reddit:
+
+![http-block-reddit-messaging](img/http-block-reddit-messaging.png)
+
+Block post creaton on Reddit, using DLP:
+
+![dlp-custom-detection-graphql-reddit-createpost](img/dlp-custom-detection-graphql-reddit-createpost.png)
+
+![http-block-reddit-post-creation](img/http-block-reddit-post-creation.png)
+
+Reference: [Block sites by URL](https://developers.cloudflare.com/cloudflare-one/policies/gateway/http-policies/common-policies/#block-sites-by-url).
+
+#### Enforce SCIM for Gateway
+
+The [WARP session timeouts](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/configure-warp/warp-sessions/#configure-warp-sessions-in-gateway) allow to enforce IdP user modifications via [SCIM](https://developers.cloudflare.com/fundamentals/setup/account/account-security/scim-setup/) by triggering user re-authentication.
+
+![enforce-warp-client-session-duration.png](img/enforce-warp-client-session-duration.png)
 
 #### More Examples for HTTP Policies
 
@@ -340,7 +384,13 @@ Reference: [Isolate Access applications](https://developers.cloudflare.com/learn
 
 ---
 
-## Insights & Monitoring
+## Troubleshooting, Insights & Monitoring
+
+### Troubleshooting
+
+Review the [FAQs](https://developers.cloudflare.com/cloudflare-one/faq/), including the [Troubleshooting WARP](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/troubleshooting/) sections and [common errors with Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/troubleshoot-tunnels/common-errors/).
+
+Visit the [Zero Trust Help Page](https://help.teams.cloudflare.com/) and [one.one.one.one/help](https://one.one.one.one/help/) to view relevant connection information.
 
 ### Shadow IT
 
