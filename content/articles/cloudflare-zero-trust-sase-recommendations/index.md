@@ -26,7 +26,7 @@ The primary difference between Zero Trust and Secure Access Service Edge (SASE) 
 - **Zero Trust**: Focuses on managing access and authorization for authenticated users based on the principle _"never trust, always verify"_.
 - **SASE**: Encompasses broader network and security functionalities, integrating Zero Trust alongside other capabilities.
 
-In Zero Trust, all networks are treated as insecure – whether corporate, home, or public Wi-Fi. This mindset simplifies security, reducing complexity and hidden costs associated with traditional models. This requires a change of perspective.
+In Zero Trust, all networks are treated as insecure - whether corporate, home, or public Wi-Fi. This mindset simplifies security, reducing complexity and hidden costs associated with traditional models. This requires a change of perspective.
 
 There are plenty of articles about these topics going into much more detail. Feel free to do your own research or check out these blog posts:
 
@@ -52,11 +52,11 @@ Organizations embark on SASE and Zero Trust journeys differently. A detailed ana
 Here are some roadmap examples:
 
 - [A vendor-agnostic Roadmap to Zero Trust Architecture](https://zerotrustroadmap.org/)
-- [A Roadmap to Zero Trust Architecture – Whitepaper](https://cf-assets.www.cloudflare.com/slt3lc6tev37/9jyDLdW3VXPGwChDCCnrx/a4b7f7825e229f2caeaa1a12a2d16b24/Whitepaper_A-Roadmap-to-Zero-Trust-Architecture.pdf)
-- [Roadmap to Zero Trust – theNET](https://www.cloudflare.com/the-net/roadmap-zerotrust/)
-- [Security Transformation – Episode 1: The Roadmap to Zero Trust – theNET](https://www.cloudflare.com/the-net/security-transformation/zero-trust-roadmap/)
+- [A Roadmap to Zero Trust Architecture - Whitepaper](https://cf-assets.www.cloudflare.com/slt3lc6tev37/9jyDLdW3VXPGwChDCCnrx/a4b7f7825e229f2caeaa1a12a2d16b24/Whitepaper_A-Roadmap-to-Zero-Trust-Architecture.pdf)
+- [Roadmap to Zero Trust - theNET](https://www.cloudflare.com/the-net/roadmap-zerotrust/)
+- [Security Transformation - Episode 1: The Roadmap to Zero Trust - theNET](https://www.cloudflare.com/the-net/security-transformation/zero-trust-roadmap/)
 - [Cloudflare Zero Trust: A roadmap for highrisk organizations](https://cf-assets.www.cloudflare.com/slt3lc6tev37/4R2Wyj1ERPecMhbycOiPj8/c30f3e8502a04c6626e98072c48d4d7b/Zero_Trust_Roadmap_for_High-Risk_Organizations.pdf)
-- [How to implement Zero Trust security – Learning](https://www.cloudflare.com/en-gb/learning/access-management/how-to-implement-zero-trust/)
+- [How to implement Zero Trust security - Learning](https://www.cloudflare.com/en-gb/learning/access-management/how-to-implement-zero-trust/)
 
 ### Understanding Connectivity
 
@@ -77,7 +77,7 @@ The following table outlines Cloudflare's composable and flexible connectivity o
 | Magic WAN                             |                   ✅                   |                                                                      |        ✅        |     |
 | Cloudflare Network Interconnect (CNI) |                   ✅                   |                                                                      |        ✅        |     |
 
-> _Updated as of December 2024. Public Internet remains a viable connection option to the nearest Cloudflare data center._
+> _Updated as of December 2024. Public Internet also remains a viable connection option to the nearest Cloudflare data center._
 
 ### Modus Operandi
 
@@ -148,33 +148,59 @@ Create [Access Groups](https://developers.cloudflare.com/cloudflare-one/identity
 
 Configure [SSH command logging](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#ssh-command-logs) with your own public key to encrypt logged SSH commands that users ran on a target machine.
 
+> _Depending on your use case and the phase of your Zero Trust deployment, you may configure certain features differently, enable them at a later stage, or leave them disabled altogether._
+
 ---
 
 ## Connecting Locations / Networks
 
 ### DNS Resolver IPs
 
-TBD
+> This is an [agentless option](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/).
+
+DNS Resolver IPs or DNS Locations refer to a set of DNS endpoints that are associated with physical entities, such as offices, homes, or data centers. 
+
+Cloudflare will provide **IPv4 and IPv6 DNS servers** for (default plaintext) unencrypted DNS, which you can easily configure on your routers or devices.
+
+Enterprise customers can opt to use [dedicated DNS resolver IP addresses](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/locations/dns-resolver-ips/#dns-resolver-ip) that are assigned to their account.
+
+Documentation and guide: [DNS Locations](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/locations/).
+
+> Note: any [third-party DNS filtering](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/locations/#third-party-filtering) can be replaced and should be deactivated.
 
 ### DNS over HTTPS (DoH)
 
-TBD
+> This is an [agentless option](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/).
+
+Cloudflare will provide **DNS over TLS (DoT)** and **DNS over HTTPS (DoH)** endpoints for encrypted DNS traffic, which you can easily configure on your routers or devices.
+
+Both are encryption protocols for securing DNS queries, but they differ in how they transmit data. DoT uses TLS on port 853, keeping DNS traffic separate from other traffic, while DoH uses HTTPS on port 443, blending DNS queries with regular web traffic.
+
+Documentation and guides: [Filter DoH requests by location](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/dns-over-https/#filter-doh-requests-by-location) and [DNS over TLS (DoT)](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/dns-over-tls/).
 
 ### Cloudflare Tunnel
 
 TBD
 
+Documentation and guide:
+
 ### WARP Connector
 
 TBD
+
+Documentation and guide:
 
 ### MagicWAN
 
 TBD
 
+Documentation and guide:
+
 ### Cloudflare Network Interconnect (CNI)
 
 TBD
+
+Documentation and guide:
 
 ---
 
@@ -184,9 +210,13 @@ TBD
 
 TBD
 
+Documentation and guide:
+
 ### WARP Connector
 
 TBD
+
+Documentation and guide:
 
 ---
 
@@ -196,31 +226,45 @@ TBD
 
 TBD
 
+Documentation and guide:
+
 ### DNS over HTTPS (DoH)
 
 TBD
+
+Documentation and guide: [Filter DoH requests by user](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/dns-over-https/#filter-doh-requests-by-user).
 
 ### Proxy Endpoint (PAC file)
 
 TBD
 
+Documentation and guide:
+
 ### Clientless Remote Browser Isolation (RBI)
+
+> This is an [agentless option](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/).
 
 TBD
 
 For Clientless RBI, they'll navigate any URL via: `https://<your-team-name>.cloudflareaccess.com/browser/<URL>`.
 
+Documentation and guide:
+
 ### DNS over HTTPS (DoH)
 
-This is an agentless option.
+> This is an [agentless option](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/).
 
 With Cloudflare Gateway, you can filter [DNS over HTTPS (DoH)](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/dns-over-https/#filter-doh-requests-by-user) requests by user with user-specific DoH tokens, applying identity-based policies.
 
+Documentation and guide:
+
 ### Proxy Endpoint (PAC file)
 
-This is an agentless option.
+> This is an [agentless option](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/).
 
 You can apply Gateway HTTP and DNS policies at the browser level by configuring a [Proxy Auto-Configuration (PAC) file](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/pac-files/).
+
+Documentation and guide:
 
 ---
 

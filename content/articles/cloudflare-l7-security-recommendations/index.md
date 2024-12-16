@@ -12,6 +12,8 @@ This guide provides non-exhaustive recommendations and general best practices to
 
 Some features mentioned are available only through advanced Cloudflare bundles, such as **WAF Advanced**, [Advanced Rate Limiting](https://developers.cloudflare.com/waf/rate-limiting-rules/#availability), or **Enterprise** features like [Enterprise Bot Management](https://developers.cloudflare.com/bots/plans/bm-subscription/).
 
+This guide assumes that your domain is already onboarded to Cloudflare as a [Zone](https://developers.cloudflare.com/fundamentals/setup/accounts-and-zones/#zones) and configured using [Full Setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/), meaning Cloudflare is acting as your authoritative DNS provider. Additionally, it's recommended to have [DNSSEC](https://developers.cloudflare.com/dns/dnssec/) enabled.
+
 ---
 
 ## Troubleshooting
@@ -29,7 +31,7 @@ For more information, review the older article [Protecting OSI layers](/articles
 
 ### **WAF Managed Rules**
 
-#### **Deploy WAF Managed Ruleset**
+#### Deploy WAF Managed Ruleset
 
 It's widely recommended to briefly review and then deploy the [Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/) across the entire [Zone](https://developers.cloudflare.com/dns/concepts/#zone). Create specific [exceptions](https://developers.cloudflare.com/waf/managed-rules/waf-exceptions/), if required.
 
@@ -454,7 +456,7 @@ Reference: [Encryption modes](https://developers.cloudflare.com/ssl/origin-confi
 
 ## Non-HTTP/S Use Cases
 
-There are scenarios where users might want to leverage Cloudflare’s global network and robust [L3/L4 DDoS protection](https://developers.cloudflare.com/ddos-protection/about/attack-coverage/) without handling TLS termination or processing HTTP/S traffic and payloads. For these specialized use cases, Cloudflare offers several options tailored to non-HTTP/S requirements.
+There are scenarios where users might want to leverage Cloudflare's global network and robust [L3/L4 DDoS protection](https://developers.cloudflare.com/ddos-protection/about/attack-coverage/) without handling TLS termination or processing HTTP/S traffic and payloads. For these specialized use cases, Cloudflare offers several options tailored to non-HTTP/S requirements.
 
 Available Options:
 
@@ -462,18 +464,20 @@ Available Options:
    This involves setting a DNS record to "DNS Only" mode. However, this approach is **not recommended**, as it exposes the origin server's IP address, compromising security.
 
 2. **[Spectrum](https://developers.cloudflare.com/spectrum/)**  
-   A powerful TCP/UDP proxy solution that supports various non-HTTP/S protocols.  
-   - It is typically recommended to enable [Proxy Protocol](https://developers.cloudflare.com/spectrum/how-to/enable-proxy-protocol/).  
+   A powerful TCP/UDP proxy solution that supports various non-HTTP/S protocols.
+
+   - It is typically recommended to enable [Proxy Protocol](https://developers.cloudflare.com/spectrum/how-to/enable-proxy-protocol/).
    - To avoid unintended handling of TLS, ensure the [Edge TLS Termination](https://developers.cloudflare.com/spectrum/reference/configuration-options/#edge-tls-termination) option is disabled.
 
 3. **[Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/)**  
    Privacy Gateway uses the **Oblivious HTTP (OHTTP)** standard to hide client IPs during backend interactions. Acting as a trusted relay, it forwards encrypted messages between clients and servers without accessing their content, ensuring enhanced privacy and anonymity.
 
 4. **[Magic Transit](https://developers.cloudflare.com/magic-transit/)**  
-   Operating at the network layer, Magic Transit offers advanced DDoS protection and traffic management without TLS termination.  
+   Operating at the network layer, Magic Transit offers advanced DDoS protection and traffic management without TLS termination.
    - For a deeper dive, check out the [Magic Transit Reference Architecture](https://developers.cloudflare.com/reference-architecture/architectures/magic-transit/).
 
-### Additional Resources:  
+### Additional Resources
+
 For more guidance on avoiding Cloudflare TLS termination and decryption, visit the [Cloudflare Data Localization FAQ](https://developers.cloudflare.com/data-localization/faq/#are-there-other-options-if-i-prefer-not-to-have-cloudflare-handle-tls-termination-decryption).
 
 ---
