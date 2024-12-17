@@ -56,6 +56,9 @@ Some general advantages of SASE usually are:
 | Zero Trust platform (ZTNA + SWG + RBI) |            Cloudflare One           |
 |     Remote Browser Isolation (RBI)     | Cloudflare Remote Browser Isolation |
 
+- On-ramps: Methods used to route traffic from users or networks into the Cloudflare network.
+- Off-ramps: Methods used to route traffic from Cloudflare to origin servers or private networks.
+
 ### Tailoring to Use Cases
 
 Organizations embark on SASE and Zero Trust journeys differently. A detailed analysis of specific use cases and risks helps define the optimal approach and roadmap.
@@ -73,7 +76,7 @@ Here are some roadmap examples:
 
 It’s critical to distinguish between connecting **locations/networks**, **users (knowledge workers)**, and **applications/resources**.
 
-The following table outlines Cloudflare's composable and flexible connectivity options:
+The following table outlines Cloudflare's composable and flexible connectivity options (on-ramps and off-ramps):
 
 | **Connectivity**                      |        **Locations (Networks)**        |                              **Users**                               | **Applications** |     |
 | ------------------------------------- | :------------------------------------: | :------------------------------------------------------------------: | :--------------: | --- |
