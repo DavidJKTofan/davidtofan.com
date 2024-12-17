@@ -45,6 +45,17 @@ Some general advantages of SASE usually are:
 - **Enhanced Performance**: Optimizes traffic routing for faster connectivity.
 - **Global Reach**: Ensures consistent security policies across distributed locations.
 
+#### Glossary
+
+|            **Industry Term**           |       **Cloudflare Solution**       |
+|:--------------------------------------:|:-----------------------------------:|
+|    Zero Trust Network Access (ZTNA)    |          Cloudflare Access          |
+|        Secure Web Gateway (SWG)        |          Cloudflare Gateway         |
+|    Device client (or endpoint agent)   |             WARP Client             |
+| Application connector (to set up ZTNA) |          Cloudflare Tunnel          |
+| Zero Trust platform (ZTNA + SWG + RBI) |            Cloudflare One           |
+|     Remote Browser Isolation (RBI)     | Cloudflare Remote Browser Isolation |
+
 ### Tailoring to Use Cases
 
 Organizations embark on SASE and Zero Trust journeys differently. A detailed analysis of specific use cases and risks helps define the optimal approach and roadmap.
@@ -347,12 +358,6 @@ Block post creaton on Reddit, using DLP:
 ![http-block-reddit-post-creation](img/http-block-reddit-post-creation.png)
 
 Reference: [Block sites by URL](https://developers.cloudflare.com/cloudflare-one/policies/gateway/http-policies/common-policies/#block-sites-by-url).
-
-#### Enforce SCIM for Gateway
-
-The [WARP session timeouts](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/configure-warp/warp-sessions/#configure-warp-sessions-in-gateway) allow to enforce IdP user modifications via [SCIM](https://developers.cloudflare.com/fundamentals/setup/account/account-security/scim-setup/) by triggering user re-authentication.
-
-![enforce-warp-client-session-duration.png](img/enforce-warp-client-session-duration.png)
 
 #### More Examples for HTTP Policies
 

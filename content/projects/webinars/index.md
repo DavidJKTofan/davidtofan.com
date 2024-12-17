@@ -10,6 +10,30 @@ aliases:
 
 Here is a list of webinars I was involved in:
 
+## Webinars
+
+### Cloudflare - Künstliche Intelligenz ohne Risiko
+
+_Erfahre im Cloudflare Webinar, wie Zero Trust und SASE deine Unternehmensdaten schützen und sich KI-Tools wie ChatGPT sicher einsetzen lassen._
+
+- **Date: 11.12.2024**
+
+- **Language: German**
+
+- **Registration link**: https://attendee.gotowebinar.com/recording/7399058389883597232
+
+<div style="position: relative; padding-top: 56.25%;">
+  <iframe
+    src="https://customer-px4ru5rucxtgoo68.cloudflarestream.com/6a95f4dcc416c8345cf11ea131a9a8d8/iframe?poster=https%3A%2F%2Fcustomer-px4ru5rucxtgoo68.cloudflarestream.com%2F6a95f4dcc416c8345cf11ea131a9a8d8%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+    loading="lazy"
+    style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+    allowfullscreen="true"
+  ></iframe>
+</div>
+
+---
+
 ## Cloudflare Webinars
 
 ### Aligning to NIS2 cybersecurity risk-management obligations in the EU
@@ -20,7 +44,7 @@ _This webinar reviews the most important changes under NIS2 and addresses requir
 
 - **Language: English**
 
-- **Registration link: https://www.cloudflare.com/build-your-nis2-compliance-strategy/**
+- **Registration link**: https://www.cloudflare.com/build-your-nis2-compliance-strategy/
 
 <div style="position: relative; padding-top: 56.25%;">
   <iframe
@@ -44,7 +68,7 @@ _Wie cloud-basierte Cybersecurity-Lösungen helfen, Ihre rechtlichen Anforderung
 
 - **Language: German / Deutsch**
 
-- **Registration link: https://webcast.idg.de/content/die-intelligente-antwort-auf-nis2**
+- **Registration link**: https://webcast.idg.de/content/die-intelligente-antwort-auf-nis2
 
 <div style="position: relative; padding-top: 56.25%;">
   <iframe
@@ -66,7 +90,7 @@ _Wie Sie Ihre Daten in der gewünschten Region halten_
 
 - **Language: German / Deutsch**
 
-- **Registration link: https://webcast.idg.de/content/ddos-wenn-nichts-mehr-geht**
+- **Registration link**: https://webcast.idg.de/content/ddos-wenn-nichts-mehr-geht
 
 <div style="position: relative; padding-top: 56.25%;">
   <iframe
@@ -88,7 +112,7 @@ _Die Sicherheitslücke „HTTP/2 Rapid Reset“ und ihre Folgen_
 
 - **Language: German / Deutsch**
 
-- **Registration link: https://webcast.idg.de/content/data-localization-suite**
+- **Registration link**: https://webcast.idg.de/content/data-localization-suite
 
 <div style="position: relative; padding-top: 56.25%;">
   <iframe
@@ -102,6 +126,6 @@ _Die Sicherheitslücke „HTTP/2 Rapid Reset“ und ihre Folgen_
 
 ---
 
-### Disclaimer
+## Disclaimer
 
 For educational purposes only.
