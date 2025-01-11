@@ -65,7 +65,7 @@ Reference: [Security Events](https://developers.cloudflare.com/waf/analytics/sec
 
 If required, review and then deploy the [OWASP Core Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/owasp-core-ruleset/).
 
-> Note that those types of rules are prone for false positives.
+> _**Note**: Those types of rules are prone for false positives._
 
 For customers also using [Zaraz](https://developers.cloudflare.com/zaraz/), it is recommended configuring an [exception](https://developers.cloudflare.com/ruleset-engine/managed-rulesets/create-exception/) for the configured Zaraz endpoint.
 
@@ -221,13 +221,13 @@ Reference: [Bot Management variables](https://developers.cloudflare.com/bots/ref
 
 In scenarios where the [BotScore](https://developers.cloudflare.com/bots/concepts/bot-score/) alone may not reliably differentiate between likely human and bots, you can enhance detection by optionally enabling [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
-> _Note: JSD can only be applied to HTML responses and it cannot be at the root/first HTML request._
+> _**Note**: JSD can only be applied to HTML responses and it cannot be at the root/first HTML request._
 
 When enforced via [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed) rules and a [Managed Challenge](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/#managed-challenge-recommended), JSD ensures active verification checks.
 
 ![waf-custom-rule-pretend-browsers](img/waf-custom-rule-pretend-browsers.png)
 
-> _Note: Test with a logging action before enforcing rules to avoid impacting legitimate traffic. Additionally, the Rule should only apply on critical paths and not on initial landing pages, where JS might have not been injected yet._
+> _**Note**: Test with a logging action before enforcing rules to avoid impacting legitimate traffic. Additionally, the Rule should only apply on critical paths and not on initial landing pages, where JS might have not been injected yet._
 
 Reference: [Enforcing execution of JavaScript detections](https://developers.cloudflare.com/bots/reference/javascript-detections/#enforcing-execution-of-javascript-detections).
 
@@ -255,6 +255,16 @@ To prevent users from signing up with known disposable emails, Cloudflare's Disp
 
 Reference: [Cloudflare Fraud Detection](https://blog.cloudflare.com/cloudflare-fraud-detection).
 
+#### Mitigate Authentication Requests
+
+Prevent or trigger a different behavior when a user tries to log in (authentication event) with leaked credentials, as per [Have I been Pwned (HIBP)](https://haveibeenpwned.com/). Or use different related [fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfwafcredential_checkpassword_leaked).
+
+![customer-rules-mitigate-authentication-requests](img/customer-rules-mitigate-authentication-requests.png)
+
+> _**Note**: Authentication events ([`cf.waf.auth_detected`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfwafauth_detected)) refers to authentication credentials detected in a request with a status code 2XX._
+
+Reference: [Leaked credentials detection](https://developers.cloudflare.com/waf/detections/leaked-credentials/).
+
 #### Time-based Rules
 
 Time-based rules can leverage the [http.request.timestamp.sec](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/standard-fields/#httprequesttimestampsec) field to apply logic based on specific time periods.
@@ -265,7 +275,7 @@ For example, you could block all POST or PUT requests to a particular endpoint d
 
 Or simply Log or Skip (allow) specific requests for a specific time.
 
-> **Note:** The timestamp is represented in UNIX time and consists of a 10-digit value.
+> _**Note**: The timestamp is represented in UNIX time and consists of a 10-digit value._
 
 Reference: [Configure a rule with the Skip action](https://developers.cloudflare.com/waf/custom-rules/skip/).
 
@@ -307,7 +317,7 @@ Reference: [Protecting against credential stuffing](https://developers.cloudflar
 
 #### Rate Limit Suspicious Logins
 
-Implement rate limiting for suspicious login attempts (authentication event) using leaked credentials, specifically leaked passwords, as per [Have I been Pwned (HIBP)](https://haveibeenpwned.com/).
+Implement rate limiting for suspicious login attempts (authentication events) using leaked credentials, specifically leaked passwords, as per [Have I been Pwned (HIBP)](https://haveibeenpwned.com/).
 
 ![rate-limit-suspicious-logins](img/rate-limit-suspicious-logins.png)
 
@@ -405,7 +415,7 @@ You can review all matched Rules in the [Security Events](https://developers.clo
 
 For an account-level overview, review the [Account Analytics](https://developers.cloudflare.com/analytics/account-and-zone-analytics/account-analytics/).
 
-> Note that all Cloudflare Dashboard analytics are [sampled](https://developers.cloudflare.com/analytics/graphql-api/sampling/).
+> _**Note**: All Cloudflare Dashboard analytics are [sampled](https://developers.cloudflare.com/analytics/graphql-api/sampling/)._
 
 It is strongly recommended to use [Logpush](https://developers.cloudflare.com/logs/about/), pushing your [logs](https://developers.cloudflare.com/logs/reference/log-fields/) to storage services (such as [R2](https://developers.cloudflare.com/r2), S3, or others), SIEMs, or log management providers.
 
