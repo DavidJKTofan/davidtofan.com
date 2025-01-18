@@ -120,6 +120,15 @@ Update Node.js:
 sudo n stable
 ```
 
+### Install SilentKnight
+
+Fully automatic checks of firmware and security systems:
+```
+https://formulae.brew.sh/cask/silentknight
+```
+
+Reference: [SilentKnight, Skint, silnite, LockRattler, SystHist & Scrub](https://eclecticlight.co/lockrattler-systhist/)
+
 ### How `zsh` should look like
 
 ```
