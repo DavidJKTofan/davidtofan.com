@@ -279,6 +279,24 @@ Or simply Log or Skip (allow) specific requests for a specific time.
 
 Reference: [Configure a rule with the Skip action](https://developers.cloudflare.com/waf/custom-rules/skip/).
 
+#### Mitigate Unauthorized Cloudflare Workers
+
+The [`CF-Worker`](https://developers.cloudflare.com/fundamentals/reference/http-headers/#cf-worker) request header identifies the originating host of a subrequest made by a [Cloudflare Workers Subrequest](https://developers.cloudflare.com/workers/platform/limits/#subrequests), such as when using the [Fetch API](https://developers.cloudflare.com/workers/runtime-apis/fetch/).
+
+Do not use `CF-Worker` in WAF Custom Rules, as it is added after rule evaluation. Instead, use [`cf.worker.upstream_zone`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/cf.worker.upstream_zone/), which holds the same value.
+
+**Block a specific Worker:**
+```
+cf.worker.upstream_zone eq "example.com"
+```
+
+**Block all Worker subrequests except from your own Worker:**
+```
+not (cf.worker.upstream_zone in {"" "your-zone.com"})
+```
+
+![waf-customer-rules-outside-cloudflare-workers-subrequests](img/waf-customer-rules-outside-cloudflare-workers-subrequests.png)
+
 #### More Common Use Cases for Custom Rules
 
 Review the [get started guide](https://developers.cloudflare.com/waf/get-started/) and the [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for more examples. Additionally, for some use cases or if you are managing many Zones, the [Account-level WAF](https://developers.cloudflare.com/waf/managed-rules/deploy-account-dashboard/) can be a good feature to have.
