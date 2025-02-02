@@ -47,13 +47,13 @@ Some general advantages of SASE usually are:
 
 #### Glossary
 
-|            **Industry Term**           |       **Cloudflare Solution**       |
-|:--------------------------------------:|:-----------------------------------:|
+|           **Industry Term**            |       **Cloudflare Solution**       |
+| :------------------------------------: | :---------------------------------: |
 |    Zero Trust Network Access (ZTNA)    |          Cloudflare Access          |
-|        Secure Web Gateway (SWG)        |          Cloudflare Gateway         |
-|    Device client (or endpoint agent)   |             WARP Client             |
+|        Secure Web Gateway (SWG)        |         Cloudflare Gateway          |
+|   Device client (or endpoint agent)    |             WARP Client             |
 | Application connector (to set up ZTNA) |          Cloudflare Tunnel          |
-| Zero Trust platform (ZTNA + SWG + RBI) |            Cloudflare One           |
+| Zero Trust platform (ZTNA + SWG + RBI) |           Cloudflare One            |
 |     Remote Browser Isolation (RBI)     | Cloudflare Remote Browser Isolation |
 
 - On-ramps: Methods used to route traffic from users or networks into the Cloudflare network.
@@ -78,20 +78,30 @@ It’s critical to distinguish between connecting **locations/networks**, **user
 
 The following table outlines Cloudflare's composable and flexible connectivity options (on-ramps and off-ramps):
 
-| **Connectivity**                      |        **Locations (Networks)**        |                              **Users**                               | **Applications** |     |
-| ------------------------------------- | :------------------------------------: | :------------------------------------------------------------------: | :--------------: | --- |
-| WARP Client (default mode)            |                                        |                                  ✅                                  |                  |     |
-| WARP Client (Proxy mode)              |                                        |                                  ✅                                  |                  |     |
-| DNS Resolver IPs                      |                   ✅                   |                                                                      |                  |     |
-| DNS over HTTPS (DoH)                  | ✅<br>(location-specific DoH endpoint) | ✅<br>(requires user-specific DoH token for identity-based policies) |                  |     |
-| Proxy Endpoint (PAC file)             |                                        |           ✅<br>(does not support identity-based policies)           |                  |     |
-| Cloudflare Tunnel                     |                   ✅                   |                                                                      |        ✅        |     |
-| WARP Connector                        |                   ✅                   |                                                                      |        ✅        |     |
-| Clientless RBI                        |                                        |                                  ✅                                  |                  |     |
-| Magic WAN                             |                   ✅                   |                                                                      |        ✅        |     |
-| Cloudflare Network Interconnect (CNI) |                   ✅                   |                                                                      |        ✅        |     |
+| **Connectivity**                                 |        **Locations (Networks)**        |                              **Users**                               | **Applications** |     |
+| ------------------------------------------------ | :------------------------------------: | :------------------------------------------------------------------: | :--------------: | --- |
+| WARP Client (default mode)                       |                                        |                                  ✅                                  |                  |     |
+| WARP Client (Gateway with DoH mode)              |                                        |                 🟡<br>(only supports DNS filtering)                  |                  |     |
+| WARP Client (Gateway without DNS filtering mode) |                                        |                🟡<br>(does not support DNS filtering)                |                  |     |
+| WARP Client (Proxy mode)                         |                                        |                🟡<br>(does not support DNS filtering)                |                  |     |
+| WARP Client (Device Information Only mode)       |                                        |              🟡<br>(only supports device posture rules)              |                  |     |
+| DNS Resolver IPs                                 |                   ✅                   |                                  🟡                                  |                  |     |
+| DNS over HTTPS (DoH)                             | ✅<br>(location-specific DoH endpoint) | ✅<br>(requires user-specific DoH token for identity-based policies) |                  |     |
+| DNS over TLS (DoT)                               | ✅<br>(location-specific DoT endpoint) |                                  🟡                                  |                  |     |
+| Proxy Endpoint (PAC file)                        |                                        |                                  🟡                                  |                  |     |
+| Cloudflare Tunnel                                |                   ✅                   |                                                                      |        ✅        |     |
+| WARP Connector                                   |                   ✅                   |                                                                      |        ✅        |     |
+| Clientless RBI                                   |                                        |                                  🟡                                  |                  |     |
+| Magic WAN                                        |                   ✅                   |                                                                      |        ✅        |     |
+| Cloudflare Network Interconnect (CNI)            |                   ✅                   |                                                                      |        ✅        |     |
 
-> _Updated as of December 2024. Public Internet also remains a viable connection option to the nearest Cloudflare data center._
+> _Updated as of December 2024. The public Internet (HTTPS) also remains a viable connection option to the nearest Cloudflare data center._
+
+> 🟡: does not support [identity-based policies](https://developers.cloudflare.com/cloudflare-one/policies/gateway/identity-selectors/).
+
+![cloudflare-connectivity-cloud-overview](img/cloudflare-connectivity-cloud-overview.png)
+
+> Note: IPSec / GRE Tunnels and Cloudflare Network Interconnect (CNI) require [Magic WAN](https://developers.cloudflare.com/magic-wan/) or [Magic Transit](https://developers.cloudflare.com/magic-transit/). However, for [Public Peering or Private Network Interconnect (PNI)](https://developers.cloudflare.com/network-interconnect/pni-and-peering/) Cloudflare follows an open peering policy.
 
 ### Modus Operandi
 
@@ -172,7 +182,7 @@ Configure [SSH command logging](https://developers.cloudflare.com/cloudflare-one
 
 > This is an [agentless option](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/).
 
-DNS Resolver IPs or DNS Locations refer to a set of DNS endpoints that are associated with physical entities, such as offices, homes, or data centers. 
+DNS Resolver IPs or DNS Locations refer to a set of DNS endpoints that are associated with physical entities, such as offices, homes, or data centers.
 
 Cloudflare will provide **IPv4 and IPv6 DNS servers** for (default plaintext) unencrypted DNS, which you can easily configure on your routers or devices.
 
@@ -182,7 +192,7 @@ Documentation and guide: [DNS Locations](https://developers.cloudflare.com/cloud
 
 > Note: any [third-party DNS filtering](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/locations/#third-party-filtering) can be replaced and should be deactivated.
 
-### DNS over HTTPS (DoH)
+### DNS over HTTPS (DoH) / DNS over TLS (DoT)
 
 > This is an [agentless option](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/).
 
@@ -386,7 +396,7 @@ Reference: [Use virtual networks to change user egress IPs](https://developers.c
 
 #### Isolate Third-Party Contractors
 
-Require specific users, such as third-party contractors, to access applications via RBI, while others are allowed direct access based on different policy rules. 
+Require specific users, such as third-party contractors, to access applications via RBI, while others are allowed direct access based on different policy rules.
 
 Reference: [Isolate Access applications](https://developers.cloudflare.com/learning-paths/zero-trust-web-access/advanced-workflows/isolate-application/).
 
