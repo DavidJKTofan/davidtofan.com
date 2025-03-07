@@ -90,7 +90,7 @@ _Wie Sie Ihre Daten in der gewünschten Region halten_
 
 - **Language: German / Deutsch**
 
-- **Registration link**: https://webcast.idg.de/content/ddos-wenn-nichts-mehr-geht
+- **Registration link**: https://webcast.idg.de/content/data-localization-suite
 
 <div style="position: relative; padding-top: 56.25%;">
   <iframe
@@ -112,7 +112,7 @@ _Die Sicherheitslücke „HTTP/2 Rapid Reset“ und ihre Folgen_
 
 - **Language: German / Deutsch**
 
-- **Registration link**: https://webcast.idg.de/content/data-localization-suite
+- **Registration link**: https://webcast.idg.de/content/ddos-wenn-nichts-mehr-geht
 
 <div style="position: relative; padding-top: 56.25%;">
   <iframe
