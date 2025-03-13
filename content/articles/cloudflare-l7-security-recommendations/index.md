@@ -421,7 +421,7 @@ Moreover, enabling [HTTP/2](https://developers.cloudflare.com/speed/optimization
 
 ### **Branding**
 
-In case that branding is important to you and your business, you are able to [configure Custom Pages (Error and Challenge)](https://developers.cloudflare.com/support/more-dashboard-apps/cloudflare-custom-pages/configuring-custom-pages-error-and-challenge/).
+In case that branding is important to you and your business, you are able to [configure Custom Pages (Error and Challenge)](https://developers.cloudflare.com/support/more-dashboard-apps/cloudflare-custom-pages/configuring-custom-pages-error-and-challenge/) and (preferably) [Custom Errors](https://developers.cloudflare.com/rules/custom-errors/).
 
 Additionally, for the Cloudflare WAF, you are able to [configure a custom response for blocked requests](https://developers.cloudflare.com/waf/custom-rules/create-dashboard/#configure-a-custom-response-for-blocked-requests) or [custom error responses](https://developers.cloudflare.com/rules/custom-error-responses/) for the Cloudflare Rules.
 
@@ -449,7 +449,7 @@ You can review all details in the [developer documentation](https://developers.c
 
 ---
 
-### **Automation**
+### **Automation & User Management**
 
 Automate deployments and configuration changes or even rollbacks with:
 
@@ -461,6 +461,12 @@ Automate deployments and configuration changes or even rollbacks with:
 - [Pulumi](https://developers.cloudflare.com/pulumi/)
 
 ![automation-comparison](img/automation.png)
+
+For effective Cloudflare Account User Management, it's important to follow general best practices that ensure both security and operational efficiency. Start by adhering to the principle of least privilege: assign each user or department only the permissions they need by utilizing the Dashboard's role management capabilities ([Roles](https://developers.cloudflare.com/fundamentals/setup/manage-members/roles/)). Permissions for [Cloudflare API endpoints](https://developers.cloudflare.com/api/resources/accounts/subresources/roles/methods/get/) differ from those in the Dashboard. Ensure API access is configured appropriately to align with your security and access control policies.
+
+For more advanced requirements, consider developing custom integrations using Cloudflare's SDKs or leveraging [Account-Owned Tokens](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/). These options allow you to automate processes and fine-tune access controls based on your organization's specific needs.
+
+Additionally, integrating [Single Sign-On (SSO)](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/dash-sso-apps/) simplifies user authentication and reinforces security policies. Complement these measures by enforcing [Multi-Factor Authentication (MFA)](https://developers.cloudflare.com/fundamentals/setup/account/account-security/2fa/), regularly reviewing user roles, and monitoring [Audit Logs](https://developers.cloudflare.com/fundamentals/setup/account/account-security/review-audit-logs/) to promptly detect and address any suspicious activities.
 
 ---
 
