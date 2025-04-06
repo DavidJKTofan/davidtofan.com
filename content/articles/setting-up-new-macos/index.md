@@ -43,6 +43,7 @@ xcode-select --install
 First start by installing Homebrew. Go to [brew.sh](https://brew.sh/).
 
 Opt out of [analytics](https://docs.brew.sh/Analytics):
+
 ```
 brew analytics off
 ```
@@ -54,6 +55,7 @@ brew install curl
 ```
 
 Use cURL from Homebrew instead of system:
+
 ```
 echo 'export PATH="/opt/homebrew/opt/curl/bin:$PATH"' >> ~/.zshrc
 ```
@@ -61,11 +63,13 @@ echo 'export PATH="/opt/homebrew/opt/curl/bin:$PATH"' >> ~/.zshrc
 > For HTTP/3 support, review experimental [HTTP3 (and QUIC)](https://curl.se/docs/http3.html), preferably `quiche`.
 
 Force Homebrew to use the brewed version of cURL instead of the system version:
+
 ```
 export HOMEBREW_FORCE_BREWED_CURL=1
 ```
 
 Reload `zsh`:
+
 ```
 source ~/.zshrc
 ```
@@ -111,11 +115,13 @@ brew install node
 ```
 
 Update npm:
+
 ```
 npm install -g npm@latest
 ```
 
 Update Node.js:
+
 ```
 sudo n stable
 ```
@@ -123,6 +129,7 @@ sudo n stable
 ### Install SilentKnight
 
 Fully automatic checks of firmware and security systems:
+
 ```
 https://formulae.brew.sh/cask/silentknight
 ```
@@ -143,19 +150,78 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/opt/curl/bin:/usr/local/bin:/usr/sb
 ### Update Everything
 
 Updating `brew`, `npm`, `nvm` and their packages:
+
 ```
 brew update && brew upgrade && brew autoremove && brew cleanup && brew doctor && npm install -g npm@latest && npm update -g && nvm install --lts --latest-npm && nvm alias default $(nvm version --lts) && npm cache clean
 ```
 
 ## Private Browser
 
-Install and use [Brave](https://brave.com/) or [Firefox](https://www.mozilla.org/en-US/firefox/new/) – whichever you feel safer with.
+Install and use [Brave](https://brave.com/) or [Firefox](https://www.mozilla.org/en-US/firefox/new/) – or other privacy-friendly browsers, whichever you feel safer with.
 
 Review browser configurations.
 
 Additionally, install and configure [uBlock Origin](https://github.com/gorhill/uBlock) or [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home) Add-Ons on Firefox, or [Brave Shields](https://brave.com/shields/) on Brave.
 
 > Use the [Startpage](https://www.startpage.com/) or [DuckDuckGo](https://duckduckgo.com/) or [Ecosia](https://www.ecosia.org/) Search Engines.
+
+Additionally, I'd bookmark the following sites...
+
+- https://report.automatic-demo.com/
+- https://web.archive.org/
+- https://redirectdetective.com/
+
+DNS:
+
+- https://toolbox.googleapps.com/apps/dig/
+- https://one.one.one.one/purge-cache/
+- https://one.one.one.one/help/
+- https://help.teams.cloudflare.com/
+
+URL Scan:
+
+- https://urlscan.io/
+- https://radar.cloudflare.com/scan
+- https://www.ipqualityscore.com/threat-feeds/malicious-url-scanner
+- https://securityheaders.com/
+- https://www.virustotal.com/gui/home/upload
+- https://host.io/
+- https://urlhaus.abuse.ch/browse/
+
+IP Scan:
+
+- https://ipinfo.io/
+- https://www.ipqualityscore.com/free-ip-lookup-proxy-vpn-test
+- https://www.abuseipdb.com/
+- https://search.censys.io/
+
+Images:
+
+- https://www.labnol.org/reverse
+- https://sightengine.com/detect-ai-generated-images
+- https://fotoforensics.com/
+- https://contentcredentials.org/verify
+- https://wasitai.com/
+- https://jimpl.com/
+- https://aiimagedetector.org/
+
+AI Text Detector:
+
+- https://gptzero.me/
+- https://www.zerogpt.com/
+
+Malware Analysis:
+
+- https://www.joesandbox.com/#windows
+- https://hybrid-analysis.com/
+
+Web Performance:
+
+- https://pagespeed.web.dev/
+- https://www.webpagetest.org/
+- https://www.debugbear.com/test/website-speed
+- https://gtmetrix.com/
+- https://tools.pingdom.com/
 
 ## Encrypted DNS
 
@@ -168,8 +234,9 @@ Alternatively, [configure DoH on your browser](https://developers.cloudflare.com
 Sign up, configure and use the entire [Proton](https://proton.me/) suite of products. Check out my [invitation to join Proton](https://pr.tn/ref/T9EEJ6CB5Q3G) and get 1 month of premium features for free.
 
 Some alternatives are:
-* Configure and use the FREE [Cloudflare Zero Trust](https://www.cloudflare.com/plans/zero-trust-services/) plan, using the WARP VPN client and Gateway filtering to protect oneself from threats on the Internet.
-* Configure and use the FREE [NextDNS](https://nextdns.io/) plan, which also has an encrypted DNS option.
+
+- Configure and use the FREE [Cloudflare Zero Trust](https://www.cloudflare.com/plans/zero-trust-services/) plan, using the WARP VPN client and Gateway filtering to protect oneself from threats on the Internet.
+- Configure and use the FREE [NextDNS](https://nextdns.io/) plan, which also has an encrypted DNS option.
 
 ## More...
 

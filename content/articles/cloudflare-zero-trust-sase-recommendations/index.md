@@ -52,9 +52,10 @@ Some general advantages of SASE usually are:
 |    Zero Trust Network Access (ZTNA)    |          Cloudflare Access          |
 |        Secure Web Gateway (SWG)        |         Cloudflare Gateway          |
 |   Device client (or endpoint agent)    |             WARP Client             |
-| Application connector (to set up ZTNA) |          Cloudflare Tunnel          |
+| Application connector (to set up ZTNA) | Cloudflare Tunnel or WARP Connector |
 | Zero Trust platform (ZTNA + SWG + RBI) |           Cloudflare One            |
 |     Remote Browser Isolation (RBI)     | Cloudflare Remote Browser Isolation |
+|     Data Loss Prevention (DLP)         |    Cloudflare Data Loss Prevention  |
 
 - On-ramps: Methods used to route traffic from users or networks into the Cloudflare network.
 - Off-ramps: Methods used to route traffic from Cloudflare to origin servers or private networks.
