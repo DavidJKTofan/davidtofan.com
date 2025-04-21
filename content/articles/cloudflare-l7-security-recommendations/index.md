@@ -377,6 +377,13 @@ Use [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/referen
 
 Reference: [Do the Challenge actions support content types other than HTML (for example, AJAX or XHR requests)?](https://developers.cloudflare.com/waf/troubleshooting/faq/#do-the-challenge-actions-support-content-types-other-than-html-for-example-ajax-or-xhr-requests).
 
+#### Cookie-based Rate Limiting
+
+
+![rate-limit-cookies](img/rate-limit-cookies.png)
+
+Reference: [Cloudflare Cookies](https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/).
+
 #### More Common Use Cases for Rate Limiting Rules
 
 Review the [rate limiting best practices](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/) for more examples.
@@ -531,7 +538,7 @@ To effectively mitigate bot traffic, consider the following (non-exhaustive) lay
 - Apply [Rate Limiting](https://developers.cloudflare.com/waf/rate-limiting-rules/) based on IP or other [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics) to prevent abuse and credential stuffing attacks.
   - This is often combined with [Leaked Credentials Detection](https://developers.cloudflare.com/waf/detections/leaked-credentials/).
 - For APIs, implement a positive security model with [API Shield](https://developers.cloudflare.com/api-shield/), including [Schema Validation](https://developers.cloudflare.com/api-shield/security/schema-validation/) and [Sequence Mitigation](https://developers.cloudflare.com/api-shield/security/sequence-mitigation/).
-  - Alternatively, one can use [Sequence Rules](https://developers.cloudflare.com/bots/concepts/sequence-rules/) to track and enforce the order of requests a user has made and the time between requests.
+  - Alternatively, one can use [Sequence Rules](https://developers.cloudflare.com/bots/concepts/sequence-rules/) (or also called _Cookie-based Sequences_) to track and enforce the order of requests a user has made and the time between requests.
 - [Caching](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/) anything possible can also help reduce the load and resources of the origin servers.
 - Cloudflare is gradually rolling out Fraud Detection features, such as [disposable email checks](https://blog.cloudflare.com/cloudflare-security-posture-management/).
 - Additional bot-related configurations can be adjusted by Cloudflare's Bot Team on a case-by-case basis.
