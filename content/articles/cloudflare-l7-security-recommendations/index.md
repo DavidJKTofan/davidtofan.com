@@ -379,6 +379,7 @@ Reference: [Do the Challenge actions support content types other than HTML (for 
 
 #### Cookie-based Rate Limiting
 
+In order to limit the amount of times a cookie can be used, one can rate limit by its [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics). For example, rate limit session cookies or limit the amount of times a single [cf_clearance cookie](https://developers.cloudflare.com/fundamentals/security/cloudflare-challenges/challenge-passage/) can be used.
 
 ![rate-limit-cookies](img/rate-limit-cookies.png)
 
