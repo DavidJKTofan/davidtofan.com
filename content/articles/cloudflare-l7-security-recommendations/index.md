@@ -301,6 +301,8 @@ not (cf.worker.upstream_zone in {"" "your-zone.com"})
 
 ![waf-customer-rules-outside-cloudflare-workers-subrequests](img/waf-customer-rules-outside-cloudflare-workers-subrequests.png)
 
+Reference: [CF-Connecting-IP in Worker subrequests](https://developers.cloudflare.com/fundamentals/reference/http-headers/#cf-connecting-ip-in-worker-subrequests).
+
 #### More Common Use Cases for Custom Rules
 
 Review the [get started guide](https://developers.cloudflare.com/waf/get-started/) and the [common use cases for custom rules](https://developers.cloudflare.com/waf/custom-rules/use-cases/) for more examples. Additionally, for some use cases or if you are managing many Zones, the [Account-level WAF](https://developers.cloudflare.com/waf/managed-rules/deploy-account-dashboard/) can be a good feature to have.
