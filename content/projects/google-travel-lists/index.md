@@ -12,7 +12,7 @@ During some of my journeys around the globe I try to remember the places that im
 
 Hope they are useful 🤓 and feel free to recommend me new places too!
 
-I definitely recommend visiting [Hotel am Markt](https://www.hotel-am-markt.eu/) in the hearth of Munich (Germany), or [Palla](https://www.palla.pe/) in Arequipa (Peru).
+I definitely recommend visiting [Kalimera Beach Hotel](https://www.kalimera.bz/) located in Placencia (South of Belize) at the Caribbean Sea, [Hotel am Markt](https://www.hotel-am-markt.eu/) in the hearth of Munich (Germany), or [Palla](https://www.palla.pe/) in Arequipa (Peru).
 
 Work in progress...
 
