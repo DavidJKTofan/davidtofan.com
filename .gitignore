@@ -348,3 +348,5 @@ themes/blowfish/static
 # Hugo build output directory
 public
 #resources
+/.wrangler
+package-lock.json
