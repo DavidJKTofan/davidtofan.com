@@ -170,12 +170,16 @@ Additionally, I'd bookmark the following sites...
 - https://report.automatic-demo.com/
 - https://web.archive.org/
 - https://redirectdetective.com/
+- https://haveibeenpwned.com/
+- https://canarytokens.org/nest/generate
+- https://gchq.github.io/CyberChef/
 
 DNS:
 
 - https://toolbox.googleapps.com/apps/dig/
 - https://one.one.one.one/purge-cache/
 - https://one.one.one.one/help/
+- https://dns.google/cache
 - https://help.teams.cloudflare.com/
 
 URL Scan:
@@ -194,6 +198,8 @@ IP Scan:
 - https://www.ipqualityscore.com/free-ip-lookup-proxy-vpn-test
 - https://www.abuseipdb.com/
 - https://search.censys.io/
+- https://www.shodan.io/
+- https://intelx.io/
 
 Images:
 
@@ -214,6 +220,7 @@ Malware Analysis:
 
 - https://www.joesandbox.com/#windows
 - https://hybrid-analysis.com/
+- https://app.any.run/
 
 Web Performance:
 
@@ -222,20 +229,22 @@ Web Performance:
 - https://www.debugbear.com/test/website-speed
 - https://gtmetrix.com/
 - https://tools.pingdom.com/
+- https://treo.sh/sitespeed
+- https://speedvitals.com/
 
 ## Encrypted DNS
 
 Follow the guide on [connect to 1.1.1.1 using DoH clients](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/dns-over-https-client/#cloudflared).
 
-Alternatively, [configure DoH on your browser](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/encrypted-dns-browsers/).
+Alternatively, [configure DoH on your browser](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/encrypted-dns-browsers/). Or this landing page offers more advanced options: [secure guest and public WiFi](https://www.cloudflare.com/zero-trust/solutions/secure-guest-wifi/).
 
 ## E-Mail, Calendar, Drive, VPN, Password Manager
 
-Sign up, configure and use the entire [Proton](https://proton.me/) suite of products. Check out my [invitation to join Proton](https://pr.tn/ref/T9EEJ6CB5Q3G) and get 1 month of premium features for free.
+Sign up, configure and use the entire [Proton](https://proton.me/) suite of products. Check out my [invitation to join Proton](https://pr.tn/ref/T9EEJ6CB5Q3G).
 
-Some alternatives are:
+Some additional options are:
 
-- Configure and use the FREE [Cloudflare Zero Trust](https://www.cloudflare.com/plans/zero-trust-services/) plan, using the WARP VPN client and Gateway filtering to protect oneself from threats on the Internet.
+- Configure and use the FREE [Cloudflare Zero Trust](https://www.cloudflare.com/plans/zero-trust-services/) plan, using the WARP VPN client and Gateway filtering to protect oneself from threats on the Internet. Including building your own email system with [Email Routing](https://developers.cloudflare.com/email-routing/).
 - Configure and use the FREE [NextDNS](https://nextdns.io/) plan, which also has an encrypted DNS option.
 
 ## More...
