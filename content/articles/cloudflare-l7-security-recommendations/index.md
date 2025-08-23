@@ -237,6 +237,8 @@ Reference: [Enforcing execution of JavaScript detections](https://developers.clo
 
 Most web applications want to be available via IPv6 IP addresses. However, in case that IPv6 is undesired, customers can mitigate IPv6 IPs through the WAF and also disable [IPv6 compatibility](https://developers.cloudflare.com/network/ipv6-compatibility/#disable-ipv6-compatibility), if needed.
 
+> _**Note**: that this will also block [Cloudflare Workers](https://developers.cloudflare.com/fundamentals/reference/http-headers/#cf-worker) scripts. In order to allow Workers, review the [Mitigate Unauthorized Cloudflare Workers](#mitigate-unauthorized-cloudflare-workers) section._
+
 ![visibility-into-ipv6-ips](img/visibility-into-ipv6-ips.png)
 
 Reference: [IPv6 compatibility](https://developers.cloudflare.com/network/ipv6-compatibility/).

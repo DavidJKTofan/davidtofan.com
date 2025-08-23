@@ -16,7 +16,6 @@ tags:
     "llm security",
   ]
 type: "article"
-draft: true
 ---
 
 This is a continuation and update of the previous blog post [_Cybersecurity and Artificial Intelligence (AI)_](articles/ai-cybersecurity/) from 2023.
@@ -80,7 +79,7 @@ To stay ahead, CISOs must adopt a proactive, Zero Trust security posture. This g
 
 ### [Use Case 4: Controlling Access to Self-Hosted AI](#use-case-4-controlling-access-to-self-hosted-ai)
 
-**The Problem:** Internal AI APIs need to be accessible only to authorized users or services / agents.
+**The Problem:** Internal AI APIs need to be accessible only to authorized users or services / agents and one needs to prevent synthetic identity fraud (SIF).
 
 **The Solution:** Implement Zero Trust Network Access (ZTNA) and authorization.
 
@@ -94,7 +93,7 @@ To stay ahead, CISOs must adopt a proactive, Zero Trust security posture. This g
 
 ### [Use Case 5: Auditing and Controlling AI Content Scrapers](#use-case-5-auditing-and-controlling-ai-content-scrapers)
 
-**The Problem:** AI bots are crawling your website to train their models without permission.
+**The Problem:** AI bots are crawling your website to train their models without permission. Review the [AI bot & crawler traffic insights](https://radar.cloudflare.com/ai-insights).
 
 **The Solution:** Mitigate AI bots.
 
@@ -119,7 +118,7 @@ To stay ahead, CISOs must adopt a proactive, Zero Trust security posture. This g
 
 ### [Use Case 7: Defending Against Model Denial-of-Service](#use-case-7-defending-against-model-denial-of-service)
 
-**The Problem:** Malicious traffic can overwhelm your AI API, denying service to real users.
+**The Problem:** Malicious traffic can overwhelm your AI API, denying service to real users. Review the [application layer DDoS attacks distribution insights](https://radar.cloudflare.com/security/application-layer#application-layer-ddos-attacks-distribution).
 
 **The Solution:** Use the [Cloudflare reverse proxy](https://developers.cloudflare.com/fundamentals/concepts/how-cloudflare-works/).
 
@@ -131,7 +130,7 @@ To stay ahead, CISOs must adopt a proactive, Zero Trust security posture. This g
 
 ### [Use Case 8: Preventing AI-Powered Social Engineering](#use-case-8-preventing-ai-powered-social-engineering)
 
-**The Problem:** AI-generated phishing can trick employees into breaches.
+**The Problem:** AI-generated phishing can trick employees into breaches. [Here](https://www.cloudflare.com/the-net/security-signals/ai-powered-threats/) are concrete real-world examples.
 
 **The Solution:** A layered Zero Trust defense.
 
@@ -182,9 +181,9 @@ To stay ahead, CISOs must adopt a proactive, Zero Trust security posture. This g
 
 ## Conclusion: Build the Future on a Secure Foundation
 
-Jumping into the AI revolution doesn't mean leaving security behind.
+Jumping into the AI revolution doesn't mean leaving security behind. As also attackers increasingly adopt AI, defending against these threats requires organizations to enhance observability, act in real time, and apply AI-driven defenses to match the speed and sophistication of adversaries.
 
-By building on a Zero Trust foundation and securing your AI stack – from inference to access, from APIs to browsers – Cloudflare enables CISOs to navigate risk, compliance, and cost. With a unified platform for both SASE and developer operations, you're not just adopting AI, you're doing it securely, by design.
+By building on a Zero Trust foundation and securing your AI stack – from inference to access, from APIs to browsers – Cloudflare enables CISOs and security teams to navigate risk, compliance, and cost. With a unified platform for both SASE and developer operations, you're not just adopting AI, you're doing it securely, by design.
 
 ---
 
