@@ -39,7 +39,7 @@ It's widely recommended to briefly review and then deploy the [Managed Ruleset](
 
 ![deploy-waf-managed-ruleset](img/deploy-waf-managed-ruleset.png)
 
-Note that it is not recommended to have both Account-level WAF Managed Rules, as well as Zone-level WAF Managed Rules deployed and enabled at the same time as this could lead to confusion when reviewing the [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/). Preferably and if possible, only enable the Account-level WAF Managed Rules.
+> _**Note**: that it is not recommended to have both [Account-level WAF](https://developers.cloudflare.com/waf/account/) Managed Rules, as well as Zone-level WAF Managed Rules deployed and enabled at the same time as this could lead to confusion when reviewing the [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/). Preferably, standardize at account level with the Account-level WAF Managed Rules; avoid duplicating the same ruleset at the zone level unless you need zone‑specific overrides._
 
 Reference: [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/).
 
@@ -59,7 +59,7 @@ For additional and stricter security requirements, deploy some of the following 
 
 [Log the payload of matched rules](https://developers.cloudflare.com/waf/managed-rules/payload-logging/), if required, to help diagnosing the behavior of the rules. The encrypted payloads can be found in the Metadata field in [Firewall events](https://developers.cloudflare.com/logs/reference/log-fields/zone/firewall_events/) logs.
 
-It is also generally recommended to disable [Browser Integrity Check (BIC)](https://developers.cloudflare.com/waf/tools/browser-integrity-check/), especially to prevent potential false positives with API / automated traffic.
+> _**Note**: it is also generally recommended to disable (globally or selectively) [Browser Integrity Check (BIC)](https://developers.cloudflare.com/waf/tools/browser-integrity-check/), especially to prevent potential false positives with APIs / automated traffic and non-browser endpoints. Use modern detections like WAF Managed Rules and Bot Management instead._
 
 Reference: [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/) and [Changelog](https://developers.cloudflare.com/changelog/).
 
@@ -67,17 +67,17 @@ Reference: [Security Events](https://developers.cloudflare.com/waf/analytics/sec
 
 If required, review and then deploy the [OWASP Core Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/owasp-core-ruleset/).
 
-> _**Note**: Those types of rules are prone for false positives._
-
-For customers also using [Zaraz](https://developers.cloudflare.com/zaraz/), it is recommended configuring an [exception](https://developers.cloudflare.com/ruleset-engine/managed-rulesets/create-exception/) for the configured Zaraz endpoint.
+> _**Note**: Those types of rules are prone for false positives. For customers also using [Zaraz](https://developers.cloudflare.com/zaraz/), it is recommended to configure an [exception](https://developers.cloudflare.com/ruleset-engine/managed-rulesets/create-exception/) for the configured Zaraz endpoint._
 
 ![deploy-owasp-core-ruleset](img/deploy-owasp-core-ruleset.png)
 
-Reference: [Handle false positives](https://developers.cloudflare.com/waf/managed-rules/handle-false-positives/).
+Reference: [Handle false positives / Troubleshooting](https://developers.cloudflare.com/waf/managed-rules/troubleshooting/).
 
 ---
 
 ### **WAF Custom Rules**
+
+Custom rules give you granular control to tailor your security policy to your application's specific needs. Rules are executed in [order / phases](https://developers.cloudflare.com/waf/reference/phases/), so place your most important rules at the top.
 
 #### Allow Verified Bots
 
@@ -119,7 +119,7 @@ Reference: [HTTP Method Field](https://developers.cloudflare.com/ruleset-engine/
 
 #### Mitigate likely Malicious Payloads
 
-Every HTTP request with a payload receives a WAF Attack Score, indicating the likelihood of containing something malicious related to SQLi, XSS, or RCE attacks.
+Every HTTP/S request receives a WAF Attack Score (WAF ML), indicating the likelihood of containing something malicious related to SQLi, XSS, or RCE attacks. This should be used to complement existing security rules and serve as an additional signal to help mitigate potential attacks.
 
 ![mitigate-likely-malicious-payloads](img/mitigate-likely-malicious-payloads.png)
 
@@ -133,7 +133,7 @@ By using the Cloudflare-Managed IP Lists, including your own [Custom Lists](http
 
 Reference: [Managed IP Lists](https://developers.cloudflare.com/waf/tools/lists/managed-lists/#managed-ip-lists).
 
-If you wish to manually block VPNs, here's a list of ASNs commonly associated with popular VPN providers: `AS62041, AS202420, AS20473, AS23966, AS36352, AS14061, AS209854, AS20001, AS20115, AS32934, AS16276`.
+> _**Note**: If you wish to manually block VPNs, here's a list of ASNs commonly associated with popular VPN providers: `AS62041, AS202420, AS20473, AS23966, AS36352, AS14061, AS209854, AS20001, AS20115, AS32934, AS16276`. This information might change and illustrative only._
 
 #### Mitigate Tor Traffic
 
@@ -145,7 +145,7 @@ Reference: [Onion Routing and Tor support](https://developers.cloudflare.com/net
 
 #### Mitigate unwanted ASNs
 
-Any unwanted traffic coming from Cloud ASNs (such as AWS, Azure, GCP, etc.) or other ASNs from which you don't expect traffic, you might want to mitigate. Use [Lists with ASNs](https://developers.cloudflare.com/waf/tools/lists/custom-lists/#lists-with-asns) to easily manage these.
+Any unwanted traffic coming from Cloud ASNs (such as AWS, Azure, GCP, etc.) or other ASNs from which you don't expect traffic, you might want to mitigate. Use [Lists with ASNs](https://developers.cloudflare.com/waf/tools/lists/custom-lists/#lists-with-asns) to easily manage these. One can also opt for dynamic [Managed IP Lists](https://developers.cloudflare.com/waf/tools/lists/managed-lists/#managed-ip-lists).
 
 ![mitigate-unwanted-asns](img/mitigate-unwanted-asns.png)
 
@@ -187,7 +187,7 @@ Reference: [Allow traffic from specific countries only](https://developers.cloud
 
 #### Mutual TLS Authentication
 
-Block all requests that do not have a valid client certificate for Mutual TLS (mTLS) authentication on a specific hostname.
+Block all requests that do not have a valid client certificate for Mutual TLS (mTLS) authentication on a specific hostname. In this scenario, mTLS refers to the connection between the client and Cloudflare.
 
 ![waf-custom-rule-for-mtls](img/waf-custom-rule-for-mtls.png)
 
@@ -213,7 +213,7 @@ Reference: [Issue challenge for admin user in JWT claim based on attack score](h
 
 #### Visibility into Automated Bot Traffic
 
-In general, one wants to have visibility into automated traffic. This can be commonly achieved with a [LOG](https://developers.cloudflare.com/ruleset-engine/rules-language/actions/) action, logging anything with a [Bot Score](https://developers.cloudflare.com/bots/concepts/bot-score/) likely automated.
+In general, one wants to have visibility into automated traffic. This can be commonly achieved with a [LOG](https://developers.cloudflare.com/ruleset-engine/rules-language/actions/) action, logging anything with a [Bot Score](https://developers.cloudflare.com/bots/concepts/bot-score/) "likely automated" based on available [detection engines](https://developers.cloudflare.com/bots/concepts/bot-detection-engines/).
 
 ![visibility-into-automated-bot-traffic](img/visibility-into-automated-bot-traffic.png)
 
@@ -225,7 +225,7 @@ In scenarios where the [BotScore](https://developers.cloudflare.com/bots/concept
 
 > _**Note**: JSD can only be applied to HTML responses and it cannot be at the root/first HTML request._
 
-When enforced via [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed) rules and a [Managed Challenge](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/#managed-challenge-recommended), JSD ensures active verification checks.
+When enforced via [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed) rules and a [Managed Challenge](https://developers.cloudflare.com/cloudflare-challenges/challenge-types/challenge-pages/#managed-challenge-recommended), JSD ensures active verification checks.
 
 ![waf-custom-rule-pretend-browsers](img/waf-custom-rule-pretend-browsers.png)
 
@@ -317,6 +317,8 @@ Review all the [fields reference](https://developers.cloudflare.com/ruleset-engi
 
 ### **Rate Limiting Rules**
 
+Rate limiting is essential for protecting your application from brute-force attacks, denial-of-service, and other forms of abuse.
+
 #### IP-based Rate Limiting for Logins
 
 To protect login endpoints from multiple login attempts from the same IP address, rate limit based on the required [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics).
@@ -379,11 +381,11 @@ Use [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/referen
 
 ![rate-limiting-rule-javascript-detections-subsequent-request](img/rate-limiting-rule-javascript-detections-subsequent-request.png)
 
-Reference: [Do the Challenge actions support content types other than HTML (for example, AJAX or XHR requests)?](https://developers.cloudflare.com/waf/troubleshooting/faq/#do-the-challenge-actions-support-content-types-other-than-html-for-example-ajax-or-xhr-requests).
+Reference: [Do the Challenge actions support content types other than HTML (for example, AJAX or XHR requests)?](https://developers.cloudflare.com/cloudflare-challenges/frequently-asked-questions/#do-the-challenge-actions-support-content-types-other-than-html-for-example-ajax-or-xhr-requests).
 
 #### Cookie-based Rate Limiting
 
-In order to limit the amount of times a cookie can be used, one can rate limit by its [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics). For example, rate limit session cookies or limit the amount of times a single [cf_clearance cookie](https://developers.cloudflare.com/fundamentals/security/cloudflare-challenges/challenge-passage/) can be used.
+In order to limit the amount of times a cookie can be used, one can rate limit by its [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics). For example, rate limit session cookies or limit the amount of times a single [cf_clearance cookie](https://developers.cloudflare.com/cloudflare-challenges/challenge-types/challenge-pages/challenge-passage/) can be used.
 
 ![rate-limit-cookies](img/rate-limit-cookies.png)
 
@@ -399,11 +401,11 @@ Review all the [fields reference](https://developers.cloudflare.com/ruleset-engi
 
 ### **Turnstile**
 
-Cloudflare's [Turnstile](https://developers.cloudflare.com/turnstile/) allows [challenges](https://developers.cloudflare.com/waf/reference/cloudflare-challenges/) anywhere on your site. It runs in standard browsers, including mobile – even native mobile apps – when using _WebView_. [Implicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#implicitly-render-the-turnstile-widget) auto-loads on static pages, while [explicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicitly-render-the-turnstile-widget) offers control over when and where it appears, ideal for dynamic content or Single-Page Applications (SPAs). Learn more about the differences [here](https://developers.cloudflare.com/turnstile/tutorials/implicit-vs-explicit-rendering).
+Cloudflare's [Turnstile](https://developers.cloudflare.com/turnstile/) allows [challenges](https://developers.cloudflare.com/cloudflare-challenges/) anywhere on your site. It runs in standard browsers, including mobile – even native mobile apps – when using _WebView_. [Implicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#implicitly-render-the-turnstile-widget) auto-loads on static pages, while [explicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicitly-render-the-turnstile-widget) offers control over when and where it appears, ideal for dynamic content or Single-Page Applications (SPAs). Learn more about the differences [here](https://developers.cloudflare.com/turnstile/tutorials/implicit-vs-explicit-rendering).
 
 Enterprise customers can also take advantage of [Ephemeral IDs](https://developers.cloudflare.com/turnstile/concepts/ephemeral-id/), which can help track bots over longer time periods and rate limit based on these IDs instead of IPs or other characteristics.
 
-> _**Note**: While Turnstile can be run in [invisible mode](https://developers.cloudflare.com/turnstile/concepts/widget/#invisible), it is recommended to use [managed mode](https://developers.cloudflare.com/turnstile/concepts/widget/#managed-recommended) for login and signup forms to provide users with a clear indication that an action is taking place. Additionally, the Turnstile [Siteverify API](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/) should be triggered when the user clicks the button, initiating the POST request._
+> _**Note**: While Turnstile can be run in [invisible mode](https://developers.cloudflare.com/turnstile/concepts/widget/#invisible), it is recommended to use [managed mode](https://developers.cloudflare.com/turnstile/concepts/widget/#managed-recommended) for login and signup forms to provide users with a clear indication that an action is taking place. Alternatively, another option is to set it up with [interaction-only](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/widget-configurations/#appearance-modes). Additionally, the Turnstile [Siteverify API](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/) should be triggered when the user clicks the button, initiating the POST request; (or while / before the user is already filling out the form)._
 
 When [integrating on mobile](https://developers.cloudflare.com/turnstile/get-started/mobile-implementation/), address common issues to ensure smooth functionality.
 
