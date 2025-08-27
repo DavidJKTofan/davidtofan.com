@@ -413,6 +413,20 @@ When [integrating on mobile](https://developers.cloudflare.com/turnstile/get-sta
 
 It is also suggested to [integrate Turnstile with WAF and Bot Management](https://developers.cloudflare.com/turnstile/tutorials/integrating-turnstile-waf-and-bot-management).
 
+#### API / AJAX / XHR Requests
+
+For API protection ([AJAX/XHR requests](https://developers.cloudflare.com/cloudflare-challenges/frequently-asked-questions/#do-the-challenge-actions-support-content-types-other-than-html-for-example-ajax-or-xhr-requests)), avoid using [Challenges](https://developers.cloudflare.com/cloudflare-challenges/) directly. APIs cannot complete interactive challenges, and browser CORS restrictions prevent smooth handling.
+
+Instead, deploy [Turnstile](https://developers.cloudflare.com/turnstile/) on high-risk frontend pages (e.g., login, checkout) to issue a [`cf_clearance` cookie](https://developers.cloudflare.com/cloudflare-challenges/concepts/clearance/#pre-clearance-support-in-turnstile). Once issued, the cookie allows subsequent API requests to pass WAF evaluation without triggering challenges, preserving both security and usability.
+
+For native or non-browser clients, consider [detecting Challenge Page responses](https://developers.cloudflare.com/cloudflare-challenges/challenge-types/challenge-pages/detect-response/) and handling them at the application layer.
+
+If Managed Challenge wants to be applied directly to API endpoints, configure [Transform Rules](https://developers.cloudflare.com/rules/transform/response-header-modification/) to expose the mitigation status by adding CORS:
+- `Access-Control-Allow-Origin: *`
+- `Access-Control-Expose-Headers: Cf-Mitigated`
+
+This enables clients to read the `Cf-Mitigated` header and adjust behavior accordingly.
+
 ---
 
 ### **Page Shield**
@@ -553,6 +567,7 @@ To effectively mitigate bot traffic, consider the following (non-exhaustive) lay
 - Additional bot-related configurations can be adjusted by Cloudflare's Bot Team on a case-by-case basis.
 
 Some interesting methods include:
+
 - [Delay action](https://developers.cloudflare.com/bots/concepts/bot-score/delay-action/)
 - [Send suspect bots to a honeypot](https://developers.cloudflare.com/rules/snippets/examples/bots-to-honeypot/)
 - [price scraping](https://developers.cloudflare.com/turnstile/reference/workers-templates/price-scraping/)
