@@ -40,7 +40,7 @@ Artificial Intelligence (AI) is reshaping our world. But as it enables new capab
 
 A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practices-sase-for-ai/), extended to AI Security Posture Management (AI-[SPM](https://www.cloudflare.com/learning/cloud/what-is-sspm/)), is essential. The following use cases highlight practical approaches with Cloudflare's platform to address real AI-era risks.
 
-### [Use Case 1: Discovering Shadow AI](#use-case-1-discovering-shadow-ai)
+### Use Case 1: Discovering Shadow AI
 
 **The Problem:** Employees using unsanctioned AI tools create potential data leakage and compliance risks.
 
@@ -62,7 +62,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![RBI File Upload blocked on ChatGPT](img/rbi-file-upload-chatgpt.png)
 
-### [Use Case 3: Protecting AI Applications from Abuse](#use-case-3-protecting-ai-applications-from-abuse)
+### Use Case 3: Protecting AI Applications from Abuse
 
 **The Problem:** AI APIs face prompt injection, data extraction, and malicious misuse.
 
@@ -80,7 +80,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![AI Gateway Guardrails blocking](img/ai-gateway-guardrails.png)
 
-### [Use Case 4: Controlling Access to Self-Hosted AI](#use-case-4-controlling-access-to-self-hosted-ai)
+### Use Case 4: Controlling Access to Self-Hosted AI
 
 **The Problem:** Internal models or AI APIs must only be accessible to verified, authorized and authenticated users, agents, or services, in order to prevent synthetic identity fraud (SIF).
 
@@ -90,7 +90,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![Access Policies with Service Tokens](img/access-policies-service-tokens.png)
 
-### [Use Case 5: Auditing and Controlling AI Content Scrapers](#use-case-5-auditing-and-controlling-ai-content-scrapers)
+### Use Case 5: Auditing and Controlling AI Content Scrapers
 
 **The Problem:** ([_Some_](https://blog.cloudflare.com/from-googlebot-to-gptbot-whos-crawling-your-site-in-2025/)) AI bots crawl websites without consent to collect training data. Review the [AI bot & crawler traffic insights](https://radar.cloudflare.com/ai-insights).
 
@@ -100,7 +100,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![WAF skips Verified Bots](img/waf-bot-management-allow-verified-bots.png)
 
-### [Use Case 6: Preventing API Abuse and Cost Overruns](#use-case-6-preventing-api-abuse-and-cost-overruns)
+### Use Case 6: Preventing API Abuse and Cost Overruns
 
 **The Problem:** Excessive or automated queries (i.e. prompt spamming) increase token costs and infrastructure load on self-hosted models.
 
@@ -108,7 +108,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![AI Gateway caching similar prompts](img/ai-gateway-caching.png)
 
-### [Use Case 7: Defending Against Model Denial-of-Service](#use-case-7-defending-against-model-denial-of-service)
+### Use Case 7: Defending Against Model Denial-of-Service
 
 **The Problem:** Floods of malicious traffic can deny access to AI APIs. Review the [application layer DDoS attacks distribution insights](https://radar.cloudflare.com/security/application-layer#application-layer-ddos-attacks-distribution).
 
@@ -120,7 +120,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![Cloudflare Application Security overview](img/application-security-overview.png)
 
-### [Use Case 8: Preventing AI-Powered Social Engineering](#use-case-8-preventing-ai-powered-social-engineering)
+### Use Case 8: Preventing AI-Powered Social Engineering
 
 **The Problem:** AI-generated phishing can trick employees into breaches. [Here](https://www.cloudflare.com/the-net/security-signals/ai-powered-threats/) are concrete real-world examples.
 
@@ -128,7 +128,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![Zero Trust Dashboard Email Activity Analytics Overview](img/email-security-analytics-activity.png)
 
-### [Use Case 9: Building Custom Governance Logic](#use-case-9-building-custom-governance-logic)
+### Use Case 9: Building Custom Governance Logic
 
 **The Problem:** Standard policies may not meet specific AI governance needs, custom and flexible security logic and checks might be required instead.
 
@@ -136,7 +136,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![Reference Architecture Diagram – Extend ZTNA with external authorization and serverless computing](img/extend-ztna-external-authorization-serverless-computing-diagram.png)
 
-### [Use Case 10: Running and Scaling AI Inference at the Edge](#use-case-10-running-and-scaling-ai-inference-at-the-edge)
+### Use Case 10: Running and Scaling AI Inference at the Edge
 
 **The Problem:** Scaling inference workloads requires distributed infrastructure.
 
