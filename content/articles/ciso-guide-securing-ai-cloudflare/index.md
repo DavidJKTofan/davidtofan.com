@@ -9,7 +9,6 @@ tags:
     "zero trust",
     "sase",
     "ai security",
-    "developer security",
     "ciso",
     "cloudflare workers",
     "api security",
@@ -52,7 +51,7 @@ A proactive [Zero Trust (SASE) strategy](https://blog.cloudflare.com/best-practi
 
 ![Isolate unauthorized SaaS application](img/gateway-http-policy-isolate-saas-apps.png)
 
-### [Use Case 2: Preventing Data Leaks to Public LLMs](#use-case-2-preventing-data-leaks-to-public-llms)
+### Use Case 2: Preventing Data Leaks to Public LLMs
 
 **The Problem:** Employees may expose sensitive data in public AI tools.
 
