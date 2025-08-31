@@ -16,6 +16,8 @@ Some features mentioned are available only through advanced Cloudflare bundles, 
 
 This guide assumes that your domain is already onboarded to Cloudflare as a [Zone](https://developers.cloudflare.com/fundamentals/setup/accounts-and-zones/#zones) and configured using [Full Setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/), meaning Cloudflare is acting as your authoritative DNS provider. Additionally, it's recommended to have [DNSSEC](https://developers.cloudflare.com/dns/dnssec/) enabled and being familiar with [Zone Holds](https://developers.cloudflare.com/fundamentals/account/account-security/zone-holds/).
 
+> **You can find all recommendations, security rules and more in the _[Cloudflare L7 Best Practices Repository (Database)](https://db.automatic-demo.com/)_ for quick searches.**
+
 ---
 
 ## Troubleshooting
@@ -115,7 +117,7 @@ In some cases, you want to be specific about what type of HTTP Request Methods a
 
 ![non-expected-request-methods](img/non-expected-request-methods.png)
 
-Reference: [HTTP Method Field](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/standard-fields/#httprequestmethod).
+Reference: [HTTP Method Field](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/http.request.method/).
 
 #### Mitigate likely Malicious Payloads
 
@@ -177,7 +179,7 @@ Reference: [Allow traffic from IP addresses in allowlist only](https://developer
 
 #### Restrict Access to Employees Only
 
-If you have employee portals or extranets, restrict access to countries in which you have employees located, or preferably opt for a [Zero Trust approach](https://developers.cloudflare.com/learning-paths/zero-trust-web-access/). Try to be as specific as possible.
+If you have employee portals or extranets, restrict access to countries in which you have employees located, or preferably opt for a [Zero Trust approach](https://developers.cloudflare.com/learning-paths/zero-trust-web-access/). Try to be as specific as possible using multiple conditions like HTTP Header, ASN, and HTTP method.
 
 ![restrict-access-to-employees-only](img/restrict-access-to-employees-only.png)
 
@@ -223,7 +225,7 @@ Reference: [Bot Management variables](https://developers.cloudflare.com/bots/ref
 
 In scenarios where the [BotScore](https://developers.cloudflare.com/bots/concepts/bot-score/) alone may not reliably differentiate between likely human and bots, you can enhance detection by optionally enabling [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
-> _**Note**: JSD can only be applied to HTML responses and it cannot be at the root/first HTML request._
+> _**Note**: JSD can only be applied to HTML responses (`Content-Type: text/html`) and it cannot be at the root/first HTML request as the JavaScript needs to be injected first._
 
 When enforced via [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed) rules and a [Managed Challenge](https://developers.cloudflare.com/cloudflare-challenges/challenge-types/challenge-pages/#managed-challenge-recommended), JSD ensures active verification checks.
 
@@ -271,7 +273,7 @@ Reference: [Leaked credentials detection](https://developers.cloudflare.com/waf/
 
 #### Time-based Rules
 
-Time-based rules can leverage the [http.request.timestamp.sec](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/standard-fields/#httprequesttimestampsec) field to apply logic based on specific time periods.
+Time-based rules can leverage the [http.request.timestamp.sec](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/http.request.timestamp.sec/) field to apply logic based on specific time periods (useful for maintenance windows or scheduled security posture changes).
 
 For example, you could block all POST or PUT requests to a particular endpoint during a defined time frame.
 
@@ -279,7 +281,7 @@ For example, you could block all POST or PUT requests to a particular endpoint d
 
 Or simply Log or Skip (allow) specific requests for a specific time.
 
-> _**Note**: The timestamp is represented in UNIX time and consists of a 10-digit value._
+> _**Note**: The timestamp is represented in UNIX time (epoch time) and consists of a 10-digit value._
 
 Reference: [Configure a rule with the Skip action](https://developers.cloudflare.com/waf/custom-rules/skip/).
 
@@ -377,7 +379,7 @@ Reference: [SHA-256 fingerprint of the certificate](https://developers.cloudflar
 
 #### JavaScript Detection-based Rate Limiting
 
-Use [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/) to identify human-like clients by solving a challenge in subsequent HTML requests, flagged as [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed). Since JSD cannot run on the first HTML request, track failed JSD attempts on subsequent HTML responses (`Content-Type: text/html`) and block or challenge clients after 5 consecutive failures.
+Use [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/) to identify human-like clients by solving a challenge in subsequent HTML requests, flagged as [`cf.bot_management.js_detection.passed`](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/dynamic-fields/#cfbot_managementjs_detectionpassed). Since JSD cannot run on the first HTML request, track failed JSD attempts on subsequent HTML responses (`Content-Type: text/html`) and block or challenge clients i.e. after 5 consecutive failures within a 10-minute window.
 
 ![rate-limiting-rule-javascript-detections-subsequent-request](img/rate-limiting-rule-javascript-detections-subsequent-request.png)
 
@@ -389,7 +391,7 @@ In order to limit the amount of times a cookie can be used, one can rate limit b
 
 ![rate-limit-cookies](img/rate-limit-cookies.png)
 
-> _**Note**: Challenge Passage can be lowered to 15 minutes to prevent re-usage by bots._
+> _**Note**: Challenge Passage can be lowered to 15 minutes to prevent re-usage by bots. Nonetheless, normally one should set the Challenge Passage to the user session time of 90-95% of users. For example, if users normally stay 6 hours on your website, set the Challenge Passage to 8 hours, in order to avoid a second challenge during a user session._
 
 Reference: [Cloudflare Cookies](https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/).
 
@@ -403,25 +405,26 @@ Review all the [fields reference](https://developers.cloudflare.com/ruleset-engi
 
 ### **Turnstile**
 
-Cloudflare's [Turnstile](https://developers.cloudflare.com/turnstile/) allows [challenges](https://developers.cloudflare.com/cloudflare-challenges/) anywhere on your site. It runs in standard browsers, including mobile – even native mobile apps – when using _WebView_. [Implicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#implicitly-render-the-turnstile-widget) auto-loads on static pages, while [explicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicitly-render-the-turnstile-widget) offers control over when and where it appears, ideal for dynamic content or Single-Page Applications (SPAs). Learn more about the differences [here](https://developers.cloudflare.com/turnstile/tutorials/implicit-vs-explicit-rendering).
+Cloudflare's [Turnstile](https://developers.cloudflare.com/turnstile/) is a privacy-preserving CAPTCHA alternative that allows [challenges](https://developers.cloudflare.com/cloudflare-challenges/) anywhere on your site. It runs in standard browsers, including mobile – even [native mobile apps](https://developers.cloudflare.com/turnstile/get-started/mobile-implementation/) – when using _WebView_. [Implicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#implicitly-render-the-turnstile-widget) auto-loads on static pages, while [explicit rendering](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicitly-render-the-turnstile-widget) offers control over when and where it appears, ideal for dynamic content or Single-Page Applications (SPAs). Learn more about the differences [here](https://developers.cloudflare.com/turnstile/tutorials/implicit-vs-explicit-rendering).
 
 Enterprise customers can also take advantage of [Ephemeral IDs](https://developers.cloudflare.com/turnstile/concepts/ephemeral-id/), which can help track bots over longer time periods and rate limit based on these IDs instead of IPs or other characteristics.
 
 > _**Note**: While Turnstile can be run in [invisible mode](https://developers.cloudflare.com/turnstile/concepts/widget/#invisible), it is recommended to use [managed mode](https://developers.cloudflare.com/turnstile/concepts/widget/#managed-recommended) for login and signup forms to provide users with a clear indication that an action is taking place. Alternatively, another option is to set it up with [interaction-only](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/widget-configurations/#appearance-modes). Additionally, the Turnstile [Siteverify API](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/) should be triggered when the user clicks the button, initiating the POST request; (or while / before the user is already filling out the form)._
 
-When [integrating on mobile](https://developers.cloudflare.com/turnstile/get-started/mobile-implementation/), address common issues to ensure smooth functionality.
+When [integrating on mobile](https://developers.cloudflare.com/turnstile/get-started/mobile-implementation/), address common issues like _WebView_ configuration and JavaScript interface to ensure smooth functionality.
 
 It is also suggested to [integrate Turnstile with WAF and Bot Management](https://developers.cloudflare.com/turnstile/tutorials/integrating-turnstile-waf-and-bot-management).
 
 #### API / AJAX / XHR Requests
 
-For API protection ([AJAX/XHR requests](https://developers.cloudflare.com/cloudflare-challenges/frequently-asked-questions/#do-the-challenge-actions-support-content-types-other-than-html-for-example-ajax-or-xhr-requests)), avoid using [Challenges](https://developers.cloudflare.com/cloudflare-challenges/) directly. APIs cannot complete interactive challenges, and browser CORS restrictions prevent smooth handling.
+For API protection ([AJAX/XHR requests](https://developers.cloudflare.com/cloudflare-challenges/frequently-asked-questions/#do-the-challenge-actions-support-content-types-other-than-html-for-example-ajax-or-xhr-requests)), avoid using [Challenges](https://developers.cloudflare.com/cloudflare-challenges/) directly. APIs cannot complete interactive challenges, and browser CORS (Cross-Origin Resource Sharing) restrictions prevent smooth handling.
 
 Instead, deploy [Turnstile](https://developers.cloudflare.com/turnstile/) on high-risk frontend pages (e.g., login, checkout) to issue a [`cf_clearance` cookie](https://developers.cloudflare.com/cloudflare-challenges/concepts/clearance/#pre-clearance-support-in-turnstile). Once issued, the cookie allows subsequent API requests to pass WAF evaluation without triggering challenges, preserving both security and usability.
 
 For native or non-browser clients, consider [detecting Challenge Page responses](https://developers.cloudflare.com/cloudflare-challenges/challenge-types/challenge-pages/detect-response/) and handling them at the application layer.
 
 If Managed Challenge wants to be applied directly to API endpoints, configure [Transform Rules](https://developers.cloudflare.com/rules/transform/response-header-modification/) to expose the mitigation status by adding CORS:
+
 - `Access-Control-Allow-Origin: *`
 - `Access-Control-Expose-Headers: Cf-Mitigated`
 
@@ -441,19 +444,17 @@ Create [Policies](https://developers.cloudflare.com/page-shield/policies/) to en
 
 ### **SSL/TLS Certificates**
 
-It is typically recommended to use the [Advanced Certificate Manager (ACM)](https://developers.cloudflare.com/ssl/edge-certificates/advanced-certificate-manager/).
-
-Soon you'll be benefiting from the [Automatic SSL/TLS](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/#automatic-ssltls-default).
+It is typically recommended to use the [Advanced Certificate Manager (ACM)](https://developers.cloudflare.com/ssl/edge-certificates/advanced-certificate-manager/) for features like delegated DCV, custom hostnames, total TLS, and [Automatic SSL/TLS](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/#automatic-ssltls-default).
 
 For customers with stricter requirements, additionally, disable the [Universal SSL](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/disable-universal-ssl/) certificate.
 
-Those seeking [PCI compliance](https://developers.cloudflare.com/ssl/reference/compliance-and-vulnerabilities/) and granular customization over [cipher suites](https://developers.cloudflare.com/ssl/reference/cipher-suites/customize-cipher-suites/) should review the developer documentations, as well as the features [TLS 1.3](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/tls-13/), [Minimum TLS Version](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/minimum-tls/) (TLS 1.2 is the recommended option here), [Automatic HTTPS Rewrites](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/automatic-https-rewrites/), [Always Use HTTPS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/always-use-https/) (or preferably [disable HTTP plaintext](https://jviide.iki.fi/http-redirects) altogether).
+Those seeking [PCI compliance](https://developers.cloudflare.com/ssl/reference/compliance-and-vulnerabilities/) and granular customization over [cipher suites](https://developers.cloudflare.com/ssl/reference/cipher-suites/customize-cipher-suites/) should review the developer documentations, as well as the features [TLS 1.3](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/tls-13/), [Minimum TLS Version](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/minimum-tls/) (TLS 1.2 is the recommended minimum, TLS 1.3 preferred), [Automatic HTTPS Rewrites](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/automatic-https-rewrites/), [Always Use HTTPS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/always-use-https/) (or preferably [disable HTTP plaintext](https://jviide.iki.fi/http-redirects) altogether using [HSTS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/)).
 
-> _**Note**: Review the [Post-Quantum Cryptography (PQC)](https://developers.cloudflare.com/ssl/post-quantum-cryptography/) documentation._
+> _**Note**: Review the [Post-Quantum Cryptography (PQC)](https://developers.cloudflare.com/ssl/post-quantum-cryptography/) documentation for quantum-resistant algorithms._
 
-Additionally, it is recommended to configure the origin server to [match on origin](https://developers.cloudflare.com/ssl/reference/cipher-suites/matching-on-origin/).
+Additionally, it is recommended to configure the origin server to [match on origin](https://developers.cloudflare.com/ssl/origin-configuration/cipher-suites/#match-on-origin).
 
-Verify that there's always a valid and active [Edge Certificate](https://developers.cloudflare.com/ssl/edge-certificates/) for your Zones.
+Verify that there's always a valid and active [Edge Certificate](https://developers.cloudflare.com/ssl/edge-certificates/) for your Zones at all times.
 
 Moreover, enabling [HTTP/2](https://developers.cloudflare.com/speed/optimization/protocol/http2/), [HTTP/3](https://developers.cloudflare.com/speed/optimization/protocol/http3/) (QUIC), and [HTTP/2 to Origin](https://developers.cloudflare.com/speed/optimization/protocol/http2-to-origin/) are performance-related features, but also good for improved security.
 
@@ -461,25 +462,25 @@ Moreover, enabling [HTTP/2](https://developers.cloudflare.com/speed/optimization
 
 ### **Branding**
 
-In case that branding is important to you and your business, you are able to [configure Custom Pages (Error and Challenge)](https://developers.cloudflare.com/support/more-dashboard-apps/cloudflare-custom-pages/configuring-custom-pages-error-and-challenge/) and (preferably) [Custom Errors](https://developers.cloudflare.com/rules/custom-errors/).
+In case that branding is important to you and your business, you are able to use and configure [Custom Errors](https://developers.cloudflare.com/rules/custom-errors/).
 
-Additionally, for the Cloudflare WAF, you are able to [configure a custom response for blocked requests](https://developers.cloudflare.com/waf/custom-rules/create-dashboard/#configure-a-custom-response-for-blocked-requests) or [custom error responses](https://developers.cloudflare.com/rules/custom-error-responses/) for the Cloudflare Rules.
+Additionally, for the Cloudflare WAF, you are able to [configure a custom response for blocked requests](https://developers.cloudflare.com/waf/custom-rules/create-dashboard/#configure-a-custom-response-for-blocked-requests).
 
 ---
 
 ### **Analytics & Log Management**
 
-You can review all matched Rules in the [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/) section. A broader overview of all requests can be found in the [Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/) section.
+You can review matched security rules in the [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/) section. A broader overview of all requests and trends can be found in the [Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/) section.
 
 For an account-level overview, review the [Account Analytics](https://developers.cloudflare.com/analytics/account-and-zone-analytics/account-analytics/).
 
-> _**Note**: All Cloudflare Dashboard analytics are [sampled](https://developers.cloudflare.com/analytics/graphql-api/sampling/)._
+> _**Note**: Cloudflare Dashboard analytics can likely be [sampled](https://developers.cloudflare.com/analytics/graphql-api/sampling/)._
 
 > _**Note**: Exclude the [`/cdn-cgi/` endpoint](https://developers.cloudflare.com/fundamentals/reference/cdn-cgi-endpoint/) from your Security Rules, specifically relevant for [challenges](https://developers.cloudflare.com/rules/reference/troubleshooting/#interaction-between-cloudflare-challenges-and-rules-features)._
 
 It is strongly recommended to use [Logpush](https://developers.cloudflare.com/logs/about/), pushing your [logs](https://developers.cloudflare.com/logs/reference/log-fields/) to storage services (such as [R2](https://developers.cloudflare.com/r2), S3, or others), SIEMs, or log management providers.
 
-It is highly recommended to set up [Notifications](https://developers.cloudflare.com/notifications/) to keep up to date with everything, and periodically review the [Cloudflare Status](https://www.cloudflarestatus.com/) page.
+It is highly recommended to set up [Notifications](https://developers.cloudflare.com/notifications/) to keep up to date with everything, subscribing to incident notifications and periodically review the [Cloudflare Status](https://www.cloudflarestatus.com/) page.
 
 ---
 
@@ -493,7 +494,13 @@ You can review all details in the [developer documentation](https://developers.c
 
 ### **Automation & User Management**
 
-Automate deployments and configuration changes or even rollbacks with:
+Effective automation and user management are critical for maintaining security, operational efficiency, and governance across your Cloudflare infrastructure.
+
+![automation-comparison](img/automation.png)
+
+#### Infrastructure as Code (IaC) Options
+
+Automate deployments, configuration changes, and rollbacks using these tools:
 
 - [Cloudflare API](https://developers.cloudflare.com/api/)
 - [SDKs](https://developers.cloudflare.com/fundamentals/api/reference/sdks/)
@@ -502,13 +509,110 @@ Automate deployments and configuration changes or even rollbacks with:
   - If you're planning to change from Dashboard UI to Terraform, use [cf-terraforming](https://github.com/cloudflare/cf-terraforming).
 - [Pulumi](https://developers.cloudflare.com/pulumi/)
 
-![automation-comparison](img/automation.png)
+> Note the [API rate limits](https://developers.cloudflare.com/fundamentals/api/reference/limits/).
 
-For effective Cloudflare Account User Management, it's important to follow general best practices that ensure both security and operational efficiency. Start by adhering to the principle of least privilege: assign each user or department only the permissions they need by utilizing the Dashboard's role management capabilities ([Roles](https://developers.cloudflare.com/fundamentals/setup/manage-members/roles/)). Permissions for [Cloudflare API endpoints](https://developers.cloudflare.com/api/resources/accounts/subresources/roles/methods/get/) differ from those in the Dashboard. Ensure API access is configured appropriately to align with your security and access control policies.
+#### User Access Management
 
-For more advanced requirements, consider developing custom integrations using Cloudflare's SDKs or leveraging [Account-Owned Tokens](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/). These options allow you to automate processes and fine-tune access controls based on your organization's specific needs.
+Implement least-privilege access control following these best practices:
 
-Additionally, integrating [Single Sign-On (SSO)](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/dash-sso-apps/) simplifies user authentication and reinforces security policies. Complement these measures by enforcing [Multi-Factor Authentication (MFA)](https://developers.cloudflare.com/fundamentals/setup/account/account-security/2fa/), regularly reviewing user roles, and monitoring [Audit Logs](https://developers.cloudflare.com/fundamentals/setup/account/account-security/review-audit-logs/) to promptly detect and address any suspicious activities.
+##### Role-Based Access Control (RBAC)
+
+Cloudflare provides predefined [roles](https://developers.cloudflare.com/fundamentals/manage-members/roles/) with specific permission sets:
+
+- **Super Administrator** - Full account access (limit to 2-3 users)
+- **Administrator** - Most administrative functions except billing and membership
+- **Domain-specific roles** - Scoped to individual zones:
+  - DNS Administrator
+  - Firewall Administrator
+  - Cache Administrator
+  - Analytics Administrator
+
+> **Important**: API permissions differ from Dashboard permissions. Review [API token permissions](https://developers.cloudflare.com/api/resources/accounts/subresources/roles/methods/get/) separately.
+
+##### User Groups
+
+[User Groups](https://developers.cloudflare.com/fundamentals/manage-members/user-groups/) enable scalable permission management:
+
+- Create groups based on teams or functions (e.g., "DevOps Team", "Security Team")
+- Assign multiple IAM policies to each group
+- Add users to groups instead of managing individual permissions
+- Automatic permission inheritance for group members
+
+#### Authentication Security
+
+**Multi-Factor Authentication (MFA)**
+
+- [Enforce MFA](https://developers.cloudflare.com/fundamentals/user-profiles/2fa/) for all users
+- Support for TOTP apps
+- Support for passkeys / [security keys](https://developers.cloudflare.com/fundamentals/user-profiles/2fa/#security-keys)
+- Backup codes for recovery scenarios
+
+**Single Sign-On (SSO)**
+
+- [Configure SSO](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/dash-sso-apps/) with SAML or OIDC providers
+- Automatic user (de)provisioning with [SCIM](https://developers.cloudflare.com/fundamentals/account/account-security/scim-setup/)
+
+##### API Token Management
+
+Use [Account-Owned Tokens](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/) for processes or services:
+
+- Create service accounts for CI/CD pipelines
+- Implement token rotation policies (i.e. 90-day maximum)
+- Scope tokens to minimum required permissions
+- Use separate tokens for different environments
+- Store tokens in secure vaults
+
+#### Monitoring and Compliance
+
+##### Audit Logging
+
+Monitor [Audit Logs](https://developers.cloudflare.com/fundamentals/account/account-security/audit-logs/) for:
+
+- User login events and MFA usage
+- Permission changes and role assignments
+- API token creation / deletion
+- Configuration modifications
+- Failed authentication attempts
+
+Export audit logs via:
+
+- [Logpush](https://developers.cloudflare.com/logs/logpush/) to SIEM platforms (Splunk, Datadog, Elastic)
+- [API](https://developers.cloudflare.com/fundamentals/account/account-security/audit-logs/#access-audit-logs) for custom integrations
+
+##### Access Reviews
+
+Establish regular review cycles:
+
+- **Quarterly**: Review Super Administrator and Administrator assignments
+- **Monthly**: Audit API tokens and remove unused ones
+- **Weekly**: Check audit logs for anomalous activity
+- **Automated**: Alert on privilege escalations or new user additions
+
+##### Compliance Considerations
+
+- Document role assignments for SOC 2, ISO 27001 compliance
+- Implement separation of duties
+- Maintain access control matrices
+- Regular attestation of user access rights
+
+#### Best Practices Summary
+
+1. **Principle of Least Privilege**: Start with minimal permissions and add as needed
+2. **Use Groups**: Manage permissions via groups, not individual users
+3. **Automate Everything**: Use IaC for reproducible configurations
+4. **Token Hygiene**: Rotate API tokens regularly, use scoped permissions
+5. **Monitor Continuously**: Set up alerts for suspicious activities
+6. **Document Policies**: Maintain runbooks for onboarding/offboarding
+7. **Regular Audits**: Schedule periodic access reviews
+8. **Emergency Access**: Define break-glass procedures for incidents
+
+For advanced scenarios, consider implementing:
+
+- Build your own custom RBAC using [Cloudflare Workers](https://developers.cloudflare.com/workers/) as an authentication and authorization gateway-layer for fine-grained access control
+- Integration with identity governance platforms
+- Automated compliance reporting using the [GraphQL Analytics API](https://developers.cloudflare.com/workers/tutorials/automated-analytics-reporting/)
+
+> _**Note**: these are non-exhaustive resources and a generalization of proper user and account management practices. Follow industry-standards and implement appropriate procedures within your organization._
 
 ---
 
@@ -518,7 +622,7 @@ Generally, it's recommended to properly secure and manage your origin servers.
 
 > When migrating to Cloudflare, it's highly recommended to rotate Origin Server IPs and [proxy](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/) all DNS records.
 
-There's a variety of different ways and options explained on the Developer Documentation to [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/), as well as [prepare for surges or spikes in web traffic](https://developers.cloudflare.com/fundamentals/basic-tasks/preparing-for-surges-or-spikes-in-web-traffic/) for seasonal events, such as during holidays.
+There's a variety of different ways and options explained on the Developer Documentation to [protect your origin server](https://developers.cloudflare.com/fundamentals/basic-tasks/protect-your-origin-server/), as well as [prepare for surges or spikes in web traffic](https://developers.cloudflare.com/fundamentals/basic-tasks/preparing-for-surges-or-spikes-in-web-traffic/) for seasonal events, such as during holidays or product launches.
 
 > _**Note**: Review the [Post-Quantum Cryptography (PQC)](https://developers.cloudflare.com/ssl/post-quantum-cryptography/) documentation._
 
@@ -543,30 +647,31 @@ A general goal is protecting against automated requests and bots – though the
 - Fake Account Creation
 - Content Spam
 
-The best approach to combating bots depends on the Cloudflare features available and configured, as well as the specific types of bot attacks being observed. [DDoS attacks](https://blog.cloudflare.com/ddos-threat-report-for-2024-q4/) are usually also launched by bots. Every website is unique, and often so are the attack patterns it faces. In general, fighting bots is a _cat-and-mouse game_, requiring continuous adaptation to evolving threats. Cloudflare continuously enhances its capabilities based on [customer feedback](https://developers.cloudflare.com/bots/concepts/feedback-loop/) and its [Threat Intelligence](https://www.cloudflare.com/threat-intelligence/) to try to stay ahead.
+The best approach to combating bots depends on the Cloudflare features available and configured, as well as the specific types of bot attacks being observed. [DDoS attacks](https://blog.cloudflare.com/ddos-threat-report-for-2024-q4/) are usually also launched by botnets. Every website is unique, and often so are the attack patterns it faces. In general, fighting bots is a _cat-and-mouse game_, requiring continuous adaptation to evolving threats. Cloudflare continuously enhances its capabilities based on [customer feedback](https://developers.cloudflare.com/bots/concepts/feedback-loop/) and its [Threat Intelligence](https://www.cloudflare.com/threat-intelligence/) to try to stay ahead.
 
 To effectively mitigate bot traffic, consider the following (non-exhaustive) layered-security approach:
 
 - Allow ([skip](https://developers.cloudflare.com/waf/custom-rules/skip/)) [Verified Bots](https://developers.cloudflare.com/bots/concepts/bot/#verified-bots) or [Verified Bot Categories](https://developers.cloudflare.com/bots/concepts/bot/verified-bots/categories/).
+- Allow ([skip](https://developers.cloudflare.com/waf/custom-rules/skip/)) your `sitemap.xml`, `robots.txt` and RSS feed (if applicable) to everyone.
 - Block or mitigate unwanted bots (i.e. [AI bots](https://developers.cloudflare.com/bots/concepts/bot/#ai-bots)) by leveraging [Bot Management fields](https://developers.cloudflare.com/bots/reference/bot-management-variables/) in combination with other security controls, solutions (i.e. [Snippets](https://developers.cloudflare.com/rules/snippets/when-to-use/)) and [fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/).
   - Example [honeypot for bots](https://developers.cloudflare.com/rules/snippets/examples/bots-to-honeypot/).
 - Enable [JavaScript Detections (JSD)](https://developers.cloudflare.com/bots/reference/javascript-detections/#enable-javascript-detections) and [enforce](https://developers.cloudflare.com/bots/reference/javascript-detections/#enforcing-execution-of-javascript-detections) them if possible.
-  - If enforcement isn't feasible (i.e. for native mobile apps), consider implementing [Turnstile](https://developers.cloudflare.com/turnstile/) (in [WebView](https://developers.cloudflare.com/turnstile/get-started/mobile-implementation/) for mobile) alongside the [WAF](https://developers.cloudflare.com/turnstile/tutorials/integrating-turnstile-waf-and-bot-management/) or Cloudflare's new mobile SDK (Enterprise feature), which can be combined with [API Shield JWT Validation](https://developers.cloudflare.com/api-shield/security/jwt-validation/) or [Snippets](https://developers.cloudflare.com/rules/snippets/examples/jwt-validation/).
-- Analyze heuristics using [Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/) and available [fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/) to build WAF Custom Rules.
+  - If enforcement isn't feasible (i.e. for native mobile apps), consider implementing [Turnstile](https://developers.cloudflare.com/turnstile/) (in [WebView](https://developers.cloudflare.com/turnstile/get-started/mobile-implementation/) for mobile) alongside the [WAF](https://developers.cloudflare.com/turnstile/tutorials/integrating-turnstile-waf-and-bot-management/) or Cloudflare's new mobile SDK (Enterprise feature), which can be combined with [API Shield JWT Validation](https://developers.cloudflare.com/api-shield/security/jwt-validation/) at the edge or programmatically with [Snippets](https://developers.cloudflare.com/rules/snippets/examples/jwt-validation/).
+- Analyze heuristics using [Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/) and available [fields](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/) to build WAF Custom Rules based on your needs and signals.
   - Deploy the [WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/) regularly updated security rules.
   - For important endpoints, we also recommend [WAF Attack Score](https://developers.cloudflare.com/waf/detections/attack-score/) enforcement.
-- Identify ASN patterns and block unwanted traffic from certain networks or cloud providers (i.e. [AWS or GCP](https://radar.cloudflare.com/bots)).
+- Identify ASN patterns and block unwanted traffic from certain networks or cloud providers (i.e. [AWS or GCP](https://radar.cloudflare.com/bots))l if no legitimate traffic is expected from them.
   - Use [Managed IP Lists](https://developers.cloudflare.com/waf/tools/lists/managed-lists/#managed-ip-lists) for dynamic mitigations.
   - Use ([Body](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/http.request.body.raw/)) [Payload Inspection](https://developers.cloudflare.com/waf/managed-rules/payload-logging/) to perform more detailed mitigations.
-- Apply [Rate Limiting](https://developers.cloudflare.com/waf/rate-limiting-rules/) based on IP or other [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics) to prevent abuse and credential stuffing attacks.
+- Apply [Rate Limiting](https://developers.cloudflare.com/waf/rate-limiting-rules/) based on IP and other [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics) to prevent abuse and credential stuffing attacks.
   - This is often combined with [Leaked Credentials Detection](https://developers.cloudflare.com/waf/detections/leaked-credentials/).
 - For APIs, implement a positive security model with [API Shield](https://developers.cloudflare.com/api-shield/), including [Schema Validation](https://developers.cloudflare.com/api-shield/security/schema-validation/) and [Sequence Mitigation](https://developers.cloudflare.com/api-shield/security/sequence-mitigation/).
   - Alternatively, one can use [Sequence Rules](https://developers.cloudflare.com/bots/concepts/sequence-rules/) (or also called _Cookie-based Sequences_) to track and enforce the order of requests a user has made and the time between requests.
-- [Caching](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/) anything possible can also help reduce the load and resources of the origin servers.
+- [Caching](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/) anything possible (non-user-specific content) can also help reduce the load and resources of the origin servers.
 - Cloudflare is gradually rolling out Fraud Detection features, such as [disposable email checks](https://blog.cloudflare.com/cloudflare-security-posture-management/).
-- Additional bot-related configurations can be adjusted by Cloudflare's Bot Team on a case-by-case basis.
+- Additional bot-related configurations can be adjusted by Cloudflare's Bot Team on a case-by-case basis when talking to the Support Team.
 
-Some interesting methods include:
+Some additional interesting methods include:
 
 - [Delay action](https://developers.cloudflare.com/bots/concepts/bot-score/delay-action/)
 - [Send suspect bots to a honeypot](https://developers.cloudflare.com/rules/snippets/examples/bots-to-honeypot/)
