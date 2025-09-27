@@ -1,35 +1,47 @@
 [
   {
+    "name": "Cloudflare Application Security Associate",
+    "organization": "Cloudflare, Inc.",
+    "link": "https://www.credly.com/badges/ace42b28-d09e-493e-9653-72bf50f9984c/public_url",
+    "icon": "https://images.credly.com/size/220x220/images/b58853a2-c460-444e-b934-b6136ffccc87/blob",
+    "date": "Sept 2025"
+  },
+  {
     "name": "LangChain 101 for Beginners (OpenAI / ChatGPT / LLMOps)",
     "organization": "Udemy",
     "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-7f402818-4fa5-49c3-884e-82236b50f9a4.pdf",
     "icon": "https://www.udemy.com/frontends-marketplace-experience/staticx/udemy/images/v7/logo-udemy.svg",
     "date": "Sept 2023"
-  },{
+  },
+  {
     "name": "Introduction to Networking",
     "organization": "NVIDIA",
     "link": "https://coursera.org/share/3ed5ed8634d3abb87f84578fbcc75c0e",
     "icon": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/http://coursera-university-assets.s3.amazonaws.com/77/9078959db5472ab81dbd883497e987/NVIDIA-360x360.png?auto=format%2Ccompress&dpr=2&w=80&h=80",
     "date": "Aug 2023"
-  },{
+  },
+  {
     "name": "Cloudflare Pitch Certified",
     "organization": "Cloudflare, Inc.",
     "link": "https://www.credly.com/badges/c3bed3b9-0e98-4ef9-9e66-5741462572da",
     "icon": "https://images.credly.com/size/680x680/images/f8646c57-a881-4e66-aaa6-65ee8e0a11fc/image.png",
     "date": "Apr 2023"
-  },{
+  },
+  {
     "name": "Privacy 2023",
     "organization": "Internet Society Foundation",
     "link": "https://drive.google.com/file/d/16-A8Go3U6kouGmSGTrbhwP4p4zRs5TP4/view?usp=sharing",
     "icon": "https://cdn5.dcbstatic.com/files/i/s/isocacademy_docebosaas_com/themes/6f987b7f9b8da9e0bf90cb7c84d25414738b893e.png",
     "date": "Apr 2023"
-  },{
+  },
+  {
     "name": "IPv6 Certification",
     "organization": "Hurricane Electric",
     "link": "https://drive.google.com/file/d/18giHvHrdJVe0fXz6r7NYsiEyqRiEy1IE/view?usp=sharing",
     "icon": "https://ipv6.he.net/certification/create_badge.php?pass_name=davidjktofan&badge=1",
     "date": "Mar 2023"
-  },{
+  },
+  {
     "name": "Implementation Specialist - Zero Trust Services",
     "organization": "Cloudflare",
     "link": "https://drive.google.com/file/d/1hjNTbHqRdOODD-18J4F-bGKP3uOWxDZx/view",
@@ -104,35 +116,35 @@
     "organization": "Cloudflare",
     "link": "https://drive.google.com/file/d/1V5t4dfN2fmX2Rw6iKge_E452zmfp7rG2/view",
     "icon": "/img/badges/Cloudflare-Accredited-Sales-Engineer-badge.png",
-    "date": "Aug 2021"  
+    "date": "Aug 2021"
   },
   {
     "name": "Cloudflare Accredited Sales Professional Level II",
     "organization": "Cloudflare",
     "link": "https://drive.google.com/file/d/1AkkRoFvjRerVcxj1WT_Qkq1zMjd9xyFu/view",
     "icon": "/img/badges/Cloudflare-Accredited-Sales-Professional-badge.png",
-    "date": "Aug 2021"  
+    "date": "Aug 2021"
   },
   {
     "name": "Cloudflare Accredited Sales Professional",
     "organization": "Cloudflare",
     "link": "https://drive.google.com/file/d/1BYuaHkUwPsuatkOfCRiTSVXuZS00nB06/view",
     "icon": "/img/badges/Cloudflare-Accredited-Sales-Professional-badge.png",
-    "date": "Aug 2021"  
+    "date": "Aug 2021"
   },
   {
     "name": "Cloudflare Accredited Configuration Engineer",
     "organization": "Cloudflare",
     "link": "https://drive.google.com/file/d/1zVYtxhaeZXAwkd_9prpTiYCP73aWx_Sy/view",
     "icon": "/img/badges/Cloudflare-Accredited-Configuration-Engineer-badge.png",
-    "date": "Jul 2021"  
+    "date": "Jul 2021"
   },
   {
     "name": "Cloudflare Accredited Services Architect",
     "organization": "Cloudflare",
     "link": "https://drive.google.com/file/d/1axoUejqb8536p2ZYZHZu3MgAiroaIFi2/view",
     "icon": "/img/badges/Cloudflare-Accredited-Services-Architect-badge.png",
-    "date": "Jul 2021"  
+    "date": "Jul 2021"
   },
   {
     "name": "IBM Cybersecurity Analyst",
