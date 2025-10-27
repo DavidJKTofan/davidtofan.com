@@ -1,5 +1,5 @@
 ---
-title: Multitenancy Security
+title: Tenant-Aware Security for SaaS and Platform Providers
 date: 2025-10-26
 description: "Comprehensive blueprint for securing SaaS and multi-tenant platforms on Cloudflare."
 tags:
@@ -15,11 +15,9 @@ tags:
 type: "article"
 ---
 
-## Tenant-Aware Security for SaaS and Platform Providers
-
 Modern SaaS and platform ecosystems rely on multi-tenant architectures – single infrastructures serving many distinct customers. This design maximizes scalability and efficiency but also centralizes risk: one vulnerability can impact all tenants. A tenant-based security strategy isolates risks, enforces per-customer policy, and maintains predictable control across layers of the stack.
 
-This blueprint defines a practical Cloudflare-based approach to [multitenant](https://www.cloudflare.com/learning/cloud/what-is-multitenancy/) security framework.
+This blueprint defines a practical Cloudflare-based approach to [multitenant](https://www.cloudflare.com/learning/cloud/what-is-multitenancy/) security strategy.
 
 ## 1. Foundational Layer: Account-Wide / Global Controls
 
@@ -43,9 +41,9 @@ These global measures define the shared defense surface, ensuring platform-wide 
 
 ## 2. Tenant Isolation at Application Layer
 
-SaaS applications vary in exposure and tenant structure, some examples include: custom hostnames, APIs, user identity tokens, and subscription tiers. Granular enforcement becomes mandatory.
+SaaS applications vary in exposure and tenant structure – some examples include: custom hostnames, APIs, user identity tokens, and subscription tiers. Granular enforcement becomes mandatory.
 
-### No Predefined Tenant Identifiers
+### When No Tenant Identifier Exists
 
 **Example scenario:** When tenants share a **common endpoint (e.g., `api.saas.com`)**, identifiers must be set based on specific logic or derived dynamically.
 
@@ -56,7 +54,7 @@ If tenants are not clearly identified by default, establish identifiers through 
 - **Rate Limiting by Header Value Of:** Apply rate limits based on a shared request header such as `api-key`, using the [characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics) parameter.
 - **Rate Limiting by Response Header:** [Increment counters](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#increment-counter-when) based on response headers (e.g., `X-Tenant-ID: TenantID#1234`), added by origin server / backend logic.
 
-### Vanity / Custom Hostnames as Tenant-Identifier
+### Vanity / Custom Hostnames as Tenant Identifier
 
 **Example scenario:**
 
@@ -167,27 +165,34 @@ Platform providers offering custom code execution environments for tenants must 
 - **[Dynamic Dispatch Worker](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/get-started/dynamic-dispatch/):** Routes requests to tenant [User Workers](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/get-started/user-workers/), handles authentication, sanitizes responses.
 - **[Outbound Workers](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/configuration/outbound-workers/):** Restrict and control outbound (egress) traffic to prevent data exfiltration.
 - **[Rate Limiting API](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/):** Enforce per-tenant or per-function throughput within Workers.
-- **[Workers Analytics Engine](https://developers.cloudflare.com/analytics/analytics-engine/) (WAE):** Track tenant usage and detect anomalies. **[Alternative storage solutions](https://developers.cloudflare.com/workers/platform/storage-options/)** are available; one recommended one is [Cloudflare D1 SQLite database](https://developers.cloudflare.com/d1/platform/limits/), which supports _for millions to tens-of-millions of databases (or more) per account_.
+- **[Workers Analytics Engine](https://developers.cloudflare.com/analytics/analytics-engine/) (WAE):** Track tenant usage and detect anomalies. **[Alternative storage solutions](https://developers.cloudflare.com/workers/platform/storage-options/)** are available; one recommended one is [Cloudflare D1 SQLite database](https://developers.cloudflare.com/d1/platform/limits/), which supports millions to tens of millions of isolated databases per account.
 
 > No tenant code executes without boundary isolation.
 
 In terms of observability:
+
 - [Workers Observability](https://developers.cloudflare.com/workers/observability/), which includes metrics and analytics, [Logs](https://developers.cloudflare.com/workers/observability/logs/), and more.
 - Build your own with [Tail Workers](https://developers.cloudflare.com/workers/observability/logs/tail-workers/) and/or [Workers Analytics Engine (WAE)](https://developers.cloudflare.com/analytics/analytics-engine/).
-- When using [Custom Domain / Routes](https://developers.cloudflare.com/workers/configuration/routing/), one also also benefits of the HTTP/S Application Services visibility.
+- When using [Custom Domain / Routes](https://developers.cloudflare.com/workers/configuration/routing/), one also benefits from the HTTP/S Application Services visibility.
 
 ## 5. Security Framework Summary
 
-| Layer              | Goal                                   | Cloudflare Mechanism                             |
-| ------------------ | -------------------------------------- | ------------------------------------------------ |
-| Account            | Shared baseline                        | Account-level WAF, Rate Limiting, Gateway DNS    |
-| Application        | Tenant differentiation                 | Metadata, JWT, API Key, Headers, Tier Logic               |
-| Observability      | Tenant visibility                      | Logpush, Analytics, GraphQL                      |
+| Layer              | Goal                                 | Cloudflare Mechanism                             |
+| ------------------ | ------------------------------------ | ------------------------------------------------ |
+| Account            | Shared baseline                      | Account-level WAF, Rate Limiting, Gateway DNS    |
+| Application        | Tenant differentiation               | Metadata, JWT, API Key, Headers, Tier Logic      |
+| Observability      | Tenant visibility                    | Logpush, Analytics, GraphQL                      |
 | Developer Platform | Tenant execution & storage isolation | Workers for Platforms, Rate Limit API, D1 SQLite |
 
 ## **Result**
 
 Tenant-aware security transforms Cloudflare's global edge into an adaptive programmable enforcement and execution fabric – distributed, per-tenant isolated, and inherently resilient. Shared infrastructure remains shared in design only, not in exposure.
+
+### Additional Options
+
+- [DNS Tenant Custom Nameservers (TCNS)](https://developers.cloudflare.com/dns/nameservers/custom-nameservers/tenant-custom-nameservers/)
+- [AI Search Multitenancy](https://developers.cloudflare.com/ai-search/how-to/multitenancy/)
+- [Protect ISP and telecommunications networks from DDoS attacks](https://developers.cloudflare.com/reference-architecture/diagrams/network/protecting-sp-networks-from-ddos/)
 
 ---
 
