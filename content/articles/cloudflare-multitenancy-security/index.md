@@ -171,6 +171,11 @@ Platform providers offering custom code execution environments for tenants must 
 
 > No tenant code executes without boundary isolation.
 
+In terms of observability:
+- [Workers Observability](https://developers.cloudflare.com/workers/observability/), which includes metrics and analytics, [Logs](https://developers.cloudflare.com/workers/observability/logs/), and more.
+- Build your own with [Tail Workers](https://developers.cloudflare.com/workers/observability/logs/tail-workers/) and/or [Workers Analytics Engine (WAE)](https://developers.cloudflare.com/analytics/analytics-engine/).
+- When using [Custom Domain / Routes](https://developers.cloudflare.com/workers/configuration/routing/), one also also benefits of the HTTP/S Application Services visibility.
+
 ## 5. Security Framework Summary
 
 | Layer              | Goal                                   | Cloudflare Mechanism                             |
