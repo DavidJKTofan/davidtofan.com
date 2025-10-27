@@ -13,7 +13,6 @@ tags:
     "platform",
   ]
 type: "article"
-draft: true
 ---
 
 ## Tenant-Aware Security for SaaS and Platform Providers
@@ -29,8 +28,16 @@ All platforms begin with shared baseline controls. These global defenses must pr
 **Recommended Controls:**
 
 - **[Account-level WAF](https://developers.cloudflare.com/waf/account/):** Apply managed and custom rulesets at the account layer for consistent protection across all zones and domains.
+
+![Account-level WAF example](img/account-level-waf.png)
+
 - **Global Rate Limiting:** Mitigate volumetric or brute-force attacks at the edge before they reach origin.
+
+![Catch-All Origin Server Infrastructure Capacity Rate Limiting Rule](img/catch-all-infrastructure-capacity-rate-limit.png)
+
 - **Gateway DNS Policies:** Apply DNS and egress filtering for [Managed Service Providers (MSPs)](https://developers.cloudflare.com/cloudflare-one/traffic-policies/managed-service-providers/) and platform operators.
+
+![Gateway DNS Filtering Policy](img/gateway-dns-policy-security-categories.png)
 
 These global measures define the shared defense surface, ensuring platform-wide protection regardless of tenant segmentation.
 
@@ -53,7 +60,7 @@ If tenants are not clearly identified by default, establish identifiers through 
 
 **Example scenario:**
 
-- Hostname: `saas.customer1.com` (vanity domain pointing to the SaaS provider)
+- Hostname: `customer1.saas.com` / `saas.customer1.com` (vanity domain pointing to the SaaS provider)
 - Custom Metadata: `"custom_metadata": { "customer_id": "12345", "redirect_to_https": true, "security_tag": "low", "tier": "free" }`
 - Related Case Study: [Shopify](https://www.cloudflare.com/case-studies/shopify/)
 
@@ -61,10 +68,22 @@ Using **[Cloudflare for SaaS](https://developers.cloudflare.com/cloudflare-for-p
 
 - Use the request host header [**`http.host`**](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/http.host/) as a tenant signal in WAF and rate-limiting expressions.
 
+![Cloudflare for SaaS WAF Hostname](img/saas-waf-host-header.png)
+
+```bash
+curl https://customer2.cf-saas.com
+```
+
 - Attach per-tenant [**Custom Metadata**](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/domain-support/custom-metadata/) to custom hostnames, then reference metadata in expressions for tier-based or customer-specific logic:
 
 ```
 lookup_json_string(cf.hostname.metadata, "tier") eq "enterprise"
+```
+
+![Cloudflare for SaaS WAF Custom Metadata](img/saas-waf-custom-metadata.png)
+
+```bash
+curl https://customer1.cf-saas.com
 ```
 
 > Custom Metadata is evaluated before the WAF [phase](https://developers.cloudflare.com/ruleset-engine/reference/phases-list/), making it the only viable option for attaching metadata that can be directly consumed by security rules.
@@ -73,26 +92,44 @@ lookup_json_string(cf.hostname.metadata, "tier") eq "enterprise"
 
 **Example scenario:**
 
-- Hostname: `api.saas.com`
+- Hostname: `api.saas.com` (general shared endpoint)
 - Request Header: `Authorization: Bearer wyJhbGc...` (includes JWT claims from the [JSON Web Key (JWK)](https://mkjwk.org/))
 
 Authenticate and segment API users using JSON Web Token (JWT) claims:
 
 - **API Shield [JWT Validation](https://developers.cloudflare.com/api-shield/security/jwt-validation/):** Validate tokens directly at the edge. For custom validation logic, use [Workers](https://developers.cloudflare.com/api-shield/security/jwt-validation/jwt-worker/) or lightweight [Snippets](https://developers.cloudflare.com/rules/snippets/examples/jwt-validation/).
+
+![API JWT Validation Rule](img/api-jwt-validation-rule.png)
+
+```bash
+curl -I https://petstore.automatic-demo.com/api/v3/pet/findByStatus
+```
+
 - **Advanced Rate Limiting:** Enforce thresholds by [custom JWT claims](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#requirements-for-using-claims-inside-a-json-web-token-jwt), such as `tenant_id` or `user_tier` claims.
+
+![Advanced Rate Limiting JWT claim](img/advanced-rate-limit-jwt-claim.png)
+
 - **[Transform Rules](https://developers.cloudflare.com/api-shield/security/jwt-validation/transform-rules/)**: Forward claims (e.g., `tenant_id`) as HTTP headers to origin server / backend systems for additional validation or custom logic.
 
 ### Request Header or API-Key Identification
 
 **Example scenario:**
 
-- Hostname: `api.saas.com`
+- Hostname: `api.saas.com` (general shared endpoint)
 - Common Request Header: `api-key`
 
 When tenants are distinguished via request headers:
 
 - Inspect [**request headers**](https://developers.cloudflare.com/ruleset-engine/rules-language/fields/reference/?search-term=request&field-category=Headers) such as `X-Tenant-ID` or `X-User-ID` to apply selective WAF and rate-limiting policies.
-- Configure rate limiting using the **[characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics) `Header Value Of`** `api-key` field for consistent per-tenant throttling.
+- Configure rate limiting using the **[characteristics](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#with-the-same-characteristics) `Header Value Of`** `api-key` field for consistent per-tenant per-API-Key throttling.
+
+![Advanced Rate Limiting Header Value Of API-KEY](img/advanced-rate-limit-request-header-api-key.png)
+
+```bash
+for i in {1..50}; do
+  curl -s -o /dev/null -w "%{http_code}\n" -H "api-key: something" -I "https://petstore.automatic-demo.com/api/v3/"
+done
+```
 
 ### Request Payload / Body
 
@@ -130,18 +167,18 @@ Platform providers offering custom code execution environments for tenants must 
 - **[Dynamic Dispatch Worker](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/get-started/dynamic-dispatch/):** Routes requests to tenant [User Workers](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/get-started/user-workers/), handles authentication, sanitizes responses.
 - **[Outbound Workers](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/configuration/outbound-workers/):** Restrict and control outbound (egress) traffic to prevent data exfiltration.
 - **[Rate Limiting API](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/):** Enforce per-tenant or per-function throughput within Workers.
-- **[Workers Analytics Engine](https://developers.cloudflare.com/analytics/analytics-engine/) (WAE):** Track tenant usage and detect anomalies. [Alternative storage solutions](https://developers.cloudflare.com/workers/platform/storage-options/) are available.
+- **[Workers Analytics Engine](https://developers.cloudflare.com/analytics/analytics-engine/) (WAE):** Track tenant usage and detect anomalies. **[Alternative storage solutions](https://developers.cloudflare.com/workers/platform/storage-options/)** are available; one recommended one is [Cloudflare D1 SQLite database](https://developers.cloudflare.com/d1/platform/limits/), which supports _for millions to tens-of-millions of databases (or more) per account_.
 
 > No tenant code executes without boundary isolation.
 
 ## 5. Security Framework Summary
 
-| Layer              | Goal                       | Cloudflare Mechanism                          |
-| ------------------ | -------------------------- | --------------------------------------------- |
-| Account            | Shared baseline            | Account-level WAF, Rate Limiting, Gateway DNS |
-| Application        | Tenant differentiation     | Metadata, JWT, API Key, Tier Logic            |
-| Observability      | Tenant visibility          | Logpush, Analytics, GraphQL                   |
-| Developer Platform | Tenant execution isolation | Workers for Platforms, Rate Limit API         |
+| Layer              | Goal                                   | Cloudflare Mechanism                             |
+| ------------------ | -------------------------------------- | ------------------------------------------------ |
+| Account            | Shared baseline                        | Account-level WAF, Rate Limiting, Gateway DNS    |
+| Application        | Tenant differentiation                 | Metadata, JWT, API Key, Headers, Tier Logic               |
+| Observability      | Tenant visibility                      | Logpush, Analytics, GraphQL                      |
+| Developer Platform | Tenant execution & storage isolation | Workers for Platforms, Rate Limit API, D1 SQLite |
 
 ## **Result**
 
