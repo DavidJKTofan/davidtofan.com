@@ -193,6 +193,7 @@ Tenant-aware security transforms Cloudflare's global edge into an adaptive progr
 - [DNS Tenant Custom Nameservers (TCNS)](https://developers.cloudflare.com/dns/nameservers/custom-nameservers/tenant-custom-nameservers/)
 - [AI Search Multitenancy](https://developers.cloudflare.com/ai-search/how-to/multitenancy/)
 - [Protect ISP and telecommunications networks from DDoS attacks](https://developers.cloudflare.com/reference-architecture/diagrams/network/protecting-sp-networks-from-ddos/)
+- [Durable Objects as Micro-Databases](https://boristane.com/blog/durable-objects-graph-databases/)
 
 ---
 
