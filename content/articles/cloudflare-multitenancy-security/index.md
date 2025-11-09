@@ -110,7 +110,7 @@ curl -I https://petstore.automatic-demo.com/api/v3/pet/findByStatus
 
 - **Rate limiting by JWT claims:** Enforce thresholds and quotas using [custom JWT claims](https://developers.cloudflare.com/waf/rate-limiting-rules/parameters/#requirements-for-using-claims-inside-a-json-web-token-jwt) (e.g., `tenant_id`, `user_tier` claims).
 
-_Example JWT payload (for reference):_
+_Example JWT payload ([Petstore serverless API](https://petstore.automatic-demo.com/) for reference):_
 
 ```json
 {
