@@ -708,6 +708,10 @@ Available Options:
 
 For more guidance on avoiding Cloudflare TLS termination and decryption, visit the [Cloudflare Data Localization FAQ](https://developers.cloudflare.com/data-localization/faq/#are-there-other-options-if-i-prefer-not-to-have-cloudflare-handle-tls-termination-decryption).
 
+## Performance Matters Too!
+
+For application performance recommendations, see: [General Application Performance Recommendations](/articles/cloudflare-l7-performance-recommendations/).
+
 ---
 
 ## Disclaimer
