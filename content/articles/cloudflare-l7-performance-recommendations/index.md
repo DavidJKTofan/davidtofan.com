@@ -49,7 +49,7 @@ Effective optimization starts with measuring the _right_ things – which intere
 
 Here's a high-level visual representation of the different Cloudflare features that can potentially improve the relevant metrics:
 
-![High-level Request Diagram focused on Cloudflare Performance Features](img/mermaid-light.png)
+![High-level Request Diagram focused on Cloudflare Performance Features](img/request-diagram-visual-cloudflare-performance.png)
 
 > Review the [network diagram](https://developers.cloudflare.com/smart-shield/concepts/network-diagram/) visualization for Cloudflare's [Smart Shield](https://blog.cloudflare.com/introducing-observatory-and-smart-shield/) capabilities.
 
