@@ -19,6 +19,8 @@ This guide provides non-exhaustive recommendations and general best practices fo
 
 ## Common Performance Goals
 
+Aligning technical goals with business outcomes ensures optimisation work improves User Experience (UX) and Return On Investment (ROI).
+
 Technical goals:
 
 - Low Time To First Byte (TTFB)
@@ -27,13 +29,15 @@ Technical goals:
 
 Translating these into business impact:
 
-- **Better performance / lower latency** → Improved user experience (UX) and higher conversion rates
+- **Better performance / lower latency** → Improved UX and higher conversion rates
 
 - **Reduced origin load and bandwidth** → Lower infrastructure and maintenance costs
 
 - **Ensured availability / uptime** → Business resiliency, positive reputation, better UX
 
 ## Key Performance Metrics
+
+Measuring the right metrics reveals which issues affect real users and guides effective remediation.
 
 Effective optimization starts with measuring the _right_ things – which interestingly is slightly different for everyone. Nonetheless, most people would agree to focus on user-centric metrics for website performance, using [TTFB as a diagnostic tool](https://blog.cloudflare.com/ttfb-is-not-what-it-used-to-be/) for server responsiveness, but prioritizing Core Web Vitals for measuring user experience.
 
@@ -44,6 +48,8 @@ Effective optimization starts with measuring the _right_ things – which intere
 | **Cumulative Layout Shift (CLS)**   | Measures visual stability. Quantifies how much unexpected layout shifts affect the user experience as the page loads.                                                                                                                                                                                                                        | CLS < 0.1 score              |     |     |
 | **Time to First Byte (TTFB)**       | Measures server responsiveness. It's the time between the client/eyeball request and the arrival of the first byte of the (Cloudflare) server response. A high TTFB will always lead to a poor LCP, but a good TTFB doesn't guarantee a good LCP.                                                                                            | TTFB < 800 ms                |     |     |
 | **Time to Last Byte (TTLB)**        | Measures the time it takes until the last byte of a resource is received.                                                                                                                                                                                                                                                                    | TTLB < 1.5 seconds           |     |     |
+
+> Why 75th percentile? Read [_How the Core Web Vitals metrics thresholds were defined_](https://web.dev/articles/defining-core-web-vitals-thresholds).
 
 > Note that **every browser behaves differently**. Check [Can I use](https://caniuse.com/) for compatibility. For example, Safari doesn't support [LCP](https://caniuse.com/wf-largest-contentful-paint).
 
@@ -58,6 +64,8 @@ Here's a high-level visual representation of the different Cloudflare features t
 > Note the [Phases list](https://developers.cloudflare.com/ruleset-engine/reference/phases-list/), highlighting the order of execution, as well as the Cloudflare [API rate limits](https://developers.cloudflare.com/fundamentals/api/reference/limits/).
 
 ### User (Eyeball Client)
+
+The user's connection is the baseline for every performance metric. Network quality, device hardware, and geographic distance determine initial load times and responsiveness. Because device and network variability dominate perceived speed, fixing issues at this layer delivers the largest and most immediate UX improvements.
 
 Many variables affect performance at the user connection stage: device hardware (and age), operating system (OS), CPU/RAM capacity, browser, location, Internet Service Provider (ISP), and more.
 
@@ -89,6 +97,8 @@ Some of the Cloudflare-related features that could potentially improve some of t
 
 ### Cloudflare Edge (Anycast)
 
+The Cloudflare Edge is where most performance optimization happens. Serving content from nearby locations and implementing intelligent caching strategies cuts load times and reduces origin dependence. Edge capabilities shorten network paths and absorb traffic, delivering faster responses while protecting origin capacity.
+
 | Feature                                | Primary Metrics Improved                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | -------------------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Caching**                            | Cache Hit Ratio, TTFB, LCP, Origin Load | Define precise [Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/) or [Origin Cache Control Headers](https://developers.cloudflare.com/cache/concepts/cache-control/) to control which resources are cached and for how long, optimizing caching and reducing the need to fetch assets from the origin server.                                                                                                                                                                                                                           |
@@ -106,6 +116,8 @@ Some of the Cloudflare-related features that could potentially improve some of t
 
 ### Cloudflare Edge (Tiered Cache / Storage)
 
+Advanced caching topologies and persistent edge storage create hierarchical cache layers and long-term content availability, cutting origin calls and raising global delivery efficiency. Tiered caching and edge storage handle infrequent requests at the edge, lowering load and cost. These same patterns allow fully serverless, originless architectures where logic and data reside entirely at the edge, eliminating the origin from the critical path and reducing latency to the minimum possible path.
+
 | Feature                     | Primary Metrics Improved                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | --------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Tiered Caching**          | Cache Hit Ratio, TTFB, LCP, Origin Load | Leverage a **[Tiered Caching Topology](https://developers.cloudflare.com/cache/how-to/tiered-cache/)** to ensure that assets are served from a hierarchy of Cloudflare PoPs, increasing [Cache Hit Ratio](https://developers.cloudflare.com/cache/performance-review/cache-analytics/), reducing latency, potentially saving bandwidth and load on the origin server, and improving response times for users (since optimally there's no additional network hop to the origin). Smart Tiered Caching is normally the recommended option.                                                          |
@@ -115,6 +127,8 @@ Some of the Cloudflare-related features that could potentially improve some of t
 | **Data or Storage Options** | TTFB, LCP, Origin Load, Cost            | Store assets or data in different [data or storage options](https://developers.cloudflare.com/workers/platform/storage-options/), such as **[Cloudflare R2](https://developers.cloudflare.com/r2/how-r2-works/)**, a distributed object storage solution, offering [faster retrieval](https://developers.cloudflare.com/r2/how-r2-works/#performance) and potential cost savings. Depending on your use case, different options are available.                                                                                                                                                    |
 
 ### Origin Server
+
+While edge optimization handles most traffic, the origin path still determines the speed of cache misses, dynamic logic, and API execution. A tuned origin connection and infrastructure keep latency steady, maintain availability, and sustain throughput for content that cannot be or was not cached. Tightening this layer lifts every downstream metric and prevents degradation under load.
 
 > There's the alternative option of going serverless / originless by building and hosting directly on Cloudflare's [Developer Platform](https://developers.cloudflare.com/learning-paths/workers/devplat/intro-to-devplat/), such as Workers [Static Assets](https://developers.cloudflare.com/workers/static-assets/) or [Frameworks](https://developers.cloudflare.com/workers/framework-guides/). Here's an example of [fullstack applications](https://developers.cloudflare.com/reference-architecture/diagrams/serverless/fullstack-application/).
 
@@ -128,6 +142,8 @@ Some of the Cloudflare-related features that could potentially improve some of t
 
 ## Summary: Features by Target Metric
 
+A concise feature-to-metric map accelerates decision-making and reduces trial-and-error.
+
 | To Improve             | Key Features                                                                         |
 | ---------------------- | ------------------------------------------------------------------------------------ |
 | **⚡ TTFB**            | Global DNS, HTTP/3, TLS 1.3, 0-RTT, Argo Smart Routing, Tiered Caching, Early Hints  |
@@ -138,6 +154,8 @@ Some of the Cloudflare-related features that could potentially improve some of t
 | **🖥️ Origin Load**     | All caching features, Connection Reuse, Load Balancing                               |
 
 ## Monitoring & Testing Tools
+
+Continuous monitoring and testing verify each optimization and expose new gaps. Measurement and logging confirm real gains, surface regressions early, and reveal edge cases long before they affect users.
 
 For more detailed investigations within Cloudflare, review [Cache Analytics](https://developers.cloudflare.com/cache/performance-review/cache-analytics/), [Instant Logs](https://developers.cloudflare.com/logs/instant-logs/), [GraphQL Analytics API](https://developers.cloudflare.com/analytics/graphql-api/), [Log Explorer](https://developers.cloudflare.com/log-explorer/), or [Logpush](https://developers.cloudflare.com/logs/logpush/).
 
