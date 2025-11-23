@@ -57,7 +57,7 @@ Before discussing contingency strategies, recognize that a properly configured C
 
 Most availability requirements are met through proper Cloudflare configuration – using Load Balancing, health checks, traffic steering, and multiple origins – rather than multi-vendor complexity.
 
-While Cloudflare strives for maximum [resilience](https://blog.cloudflare.com/18-november-2025-outage/) – constantly improving through learning and innovation – some customers require documented contingency ("break glass") strategies to meet risk compliance, regulatory, or sovereignty requirements. This document provides a high-level introduction to architectural patterns for designing failover capabilities while maintaining security posture.
+While Cloudflare strives for maximum [resilience](https://blog.cloudflare.com/18-november-2025-outage/) – constantly improving through learning and innovation – some customers require documented contingency ("break glass") strategies to meet risk compliance, regulatory, or sovereignty requirements. This document provides a non-exhaustive high-level introduction to architectural patterns for designing failover capabilities while maintaining security posture.
 
 > **The goal is not to offboard from Cloudflare, but to provide a potential safety net (backup plan) that allows customers to rely on the platform with confidence.**
 
@@ -86,37 +86,37 @@ The primary mechanism for circumventing [Cloudflare reverse proxy](https://devel
 ### Diagram: Emergency Bypass Flow
 
 ```
-┌──────────────────────────────────────────────────────────────────────┐
-│                           DNS RESOLUTION LAYER                       │
-├──────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│    User ──► DNS Query ──► Authoritative DNS                          │
-│                               │                                      │
-│              ┌────────────────┴────────────────┐                     │
-│              ▼                                 ▼                     │
-│    ┌─────────────────────┐          ┌─────────────────────┐          │
-│    │   PATH A: STANDARD  │          │  PATH B: EMERGENCY  │          │
-│    │   (Recommended)     │          │  (Contingency)      │          │
-│    └─────────┬───────────┘          └─────────┬───────────┘          │
-│              ▼                                 ▼                     │
-│    Cloudflare Anycast IPs           Backup Provider IP               │
-│              │                      OR Direct Origin IP              │
-│              ▼                                 │                     │
-│    ┌─────────────────────┐                     │                     │
-│    │  Cloudflare Edge    │                     │                     │
-│    │  • DDoS Protection  │                     │                     │
-│    │  • Bot Management   │                     │                     │
-│    │  • WAF              │                     │                     │
-│    │  • Rate Limiting    │                     │                     │
-│    │  • CDN/Cache        │                     │                     │
-│    └─────────┬───────────┘                     │                     │
-│              │                                 │                     │
-│              └────────────┬────────────────────┘                     │
-│                           ▼                                          │
-│                    Origin Server(s)                                  │
-│                    (Must have publicly trusted TLS certs)            │
-│                                                                      │
-└──────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────┐
+│                        DNS RESOLUTION LAYER                        │
+├────────────────────────────────────────────────────────────────────┤
+│                                                                    │
+│    User ──► DNS Query ──► Authoritative DNS                        │
+│                               │                                    │
+│              ┌────────────────┴────────────────┐                   │
+│              ▼                                 ▼                   │
+│    ┌─────────────────────┐          ┌─────────────────────┐        │
+│    │   PATH A: STANDARD  │          │  PATH B: EMERGENCY  │        │
+│    │   (Recommended)     │          │  (Contingency)      │        │
+│    └─────────┬───────────┘          └─────────┬───────────┘        │
+│              ▼                                 ▼                   │
+│    Cloudflare Anycast IPs           Backup Provider IP             │
+│              │                      OR Direct Origin IP            │
+│              ▼                                 │                   │
+│    ┌─────────────────────┐                     │                   │
+│    │  Cloudflare Edge    │                     │                   │
+│    │  • DDoS Protection  │                     │                   │
+│    │  • Bot Management   │                     │                   │
+│    │  • WAF              │                     │                   │
+│    │  • Rate Limiting    │                     │                   │
+│    │  • CDN/Cache        │                     │                   │
+│    └─────────┬───────────┘                     │                   │
+│              │                                 │                   │
+│              └────────────┬────────────────────┘                   │
+│                           ▼                                        │
+│                    Origin Server(s)                                │
+│                    (Must have publicly trusted TLS certs)          │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
 
 DECISION POINT: Switch occurs at the Authoritative DNS layer
 ```
@@ -162,31 +162,31 @@ DECISION POINT: Switch occurs at the Authoritative DNS layer
 For organizations with resources to maintain parallel infrastructure:
 
 ```
-┌───────────────────────────────────────────────────────────────────────┐
-│                    MULTI-VENDOR DNS LOAD BALANCING                    │
-├───────────────────────────────────────────────────────────────────────┤
-│                                                                       │
-│                      External DNS Provider                            │
-│                      (Route53 / Azure DNS)                            │
-│                             │                                         │
-│            ┌────────────────┴────────────────┐                        │
-│            ▼                                 ▼                        │
-│   ┌─────────────────┐               ┌─────────────────┐               │
-│   │   Cloudflare    │               │  Backup Vendor  │               │
-│   │   (Primary)     │               │  (Fallback)     │               │
-│   │                 │               │                 │               │
-│   │  Full feature   │               │  Baseline       │               │
-│   │  set enabled    │               │  protection     │               │
-│   └────────┬────────┘               └────────┬────────┘               │
-│            │                                 │                        │
-│            └────────────┬────────────────────┘                        │
-│                         ▼                                             │
-│                   Origin Server(s)                                    │
-│                                                                       │
-│   Traffic Distribution: Health-check based, performance-based,        │
-│                         or weighted round-robin                       │
-│                                                                       │
-└───────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│                    MULTI-VENDOR DNS LOAD BALANCING                   │
+├──────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│                      External DNS Provider                           │
+│                      (Route53 / Azure DNS)                           │
+│                             │                                        │
+│            ┌────────────────┴────────────────┐                       │
+│            ▼                                 ▼                       │
+│   ┌─────────────────┐               ┌─────────────────┐              │
+│   │   Cloudflare    │               │  Backup Vendor  │              │
+│   │   (Primary)     │               │  (Fallback)     │              │
+│   │                 │               │                 │              │
+│   │  Full feature   │               │  Baseline       │              │
+│   │  set enabled    │               │  protection     │              │
+│   └────────┬────────┘               └────────┬────────┘              │
+│            │                                 │                       │
+│            └────────────┬────────────────────┘                       │
+│                         ▼                                            │
+│                   Origin Server(s)                                   │
+│                                                                      │
+│   Traffic Distribution: Health-check based, performance-based,       │
+│                         or weighted round-robin                      │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
 **Configuration Management**: Maintain parity via Terraform across providers. [API](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/)-first approach enables automated synchronization.
@@ -216,52 +216,52 @@ For Zero Trust ([WARP Device Client](https://developers.cloudflare.com/cloudflar
 ### Diagram: SASE Failover Logic
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                     ZERO TRUST FAILOVER DECISION TREE                   │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│                        ┌─────────────────┐                              │
-│                        │  WARP Client    │                              │
-│                        │  (User Device)  │                              │
-│                        └────────┬────────┘                              │
-│                                 │                                       │
-│                        ┌────────▼────────┐                              │
-│                        │ Service Status? │                              │
-│                        └────────┬────────┘                              │
-│                    ┌────────────┴────────────┐                          │
-│                    ▼                         ▼                          │
-│           ┌──────────────┐          ┌──────────────┐                    │
-│           │    NORMAL    │          │   FAILURE    │                    │
-│           └──────┬───────┘          └──────┬───────┘                    │
-│                  ▼                         │                            │
-│    ┌─────────────────────┐      ┌──────────┴──────────┐                 │
-│    │   WARP Tunnel       │      ▼                     ▼                 │
-│    │        │            │  ┌─────────┐        ┌──────────┐             │
-│    │        ▼            │  │FAIL OPEN│        │FAIL CLOSE│             │
-│    │ Cloudflare Gateway  │  │(Trigger)│        │(Default) │             │
-│    │        │            │  └────┬────┘        └────┬─────┘             │
-│    │        ▼            │       ▼                  ▼                   │
-│    │ Internet / Company  │  Direct Internet     Block All               │
-│    │ Applications        │  (No filtering)      Traffic                 │
-│    └─────────────────────┘  HIGH AVAILABILITY   HIGH SECURITY           │
-│                             LOW SECURITY        ZERO AVAILABILITY       │
-│                                                                         │
-└─────────────────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────────┐
+│                     ZERO TRUST FAILOVER DECISION TREE                 │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│                        ┌─────────────────┐                            │
+│                        │  WARP Client    │                            │
+│                        │  (User Device)  │                            │
+│                        └────────┬────────┘                            │
+│                                 │                                     │
+│                        ┌────────▼────────┐                            │
+│                        │ Service Status? │                            │
+│                        └────────┬────────┘                            │
+│                    ┌────────────┴────────────┐                        │
+│                    ▼                         ▼                        │
+│           ┌──────────────┐          ┌──────────────┐                  │
+│           │    NORMAL    │          │   FAILURE    │                  │
+│           └──────┬───────┘          └──────┬───────┘                  │
+│                  ▼                         │                          │
+│    ┌─────────────────────┐      ┌──────────┴──────────┐               │
+│    │   WARP Tunnel       │      ▼                     ▼               │
+│    │        │            │  ┌─────────┐        ┌──────────┐           │
+│    │        ▼            │  │FAIL OPEN│        │FAIL CLOSE│           │
+│    │ Cloudflare Gateway  │  │(Trigger)│        │(Default) │           │
+│    │        │            │  └────┬────┘        └────┬─────┘           │
+│    │        ▼            │       ▼                  ▼                 │
+│    │ Internet / Company  │  Direct Internet     Block All             │
+│    │ Applications        │  (No filtering)      Traffic               │
+│    └─────────────────────┘  HIGH AVAILABILITY   HIGH SECURITY         │
+│                             LOW SECURITY        ZERO AVAILABILITY     │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      MAGIC TRANSIT FAILOVER                                 │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│    Normal State:                                                            │
-│    Customer IP Prefix ──► Cloudflare BGP Announcement ──► DDoS Scrubbing    │
-│                                ──► GRE / IPsec Tunnel ──► Customer Network  │
-│                                                                             │
-│    Failure State:                                                           │
-│    Withdraw BGP from Cloudflare ──► Announce via ISP directly               │
-│                                                                             │
-│    ⚠ WARNING: Direct ISP announcement removes Cloudflare DDoS protection    │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────┐
+│                      MAGIC TRANSIT FAILOVER                                │
+├────────────────────────────────────────────────────────────────────────────┤
+│                                                                            │
+│   Normal State:                                                            │
+│   Customer IP Prefix ──► Cloudflare BGP Announcement ──► DDoS Scrubbing    │
+│                               ──► GRE / IPsec Tunnel ──► Customer Network  │
+│                                                                            │
+│   Failure State:                                                           │
+│   Withdraw BGP from Cloudflare ──► Announce via ISP directly               │
+│                                                                            │
+│   ⚠ WARNING: Direct ISP announcement removes Cloudflare DDoS protection    │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Architecture Components & Failover Steps
