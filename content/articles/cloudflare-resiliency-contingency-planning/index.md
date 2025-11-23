@@ -25,7 +25,7 @@ Enterprise customers – particularly in public sector, finance, healthcare, and
 
 - **Financial Services**: Central Banks or Governments usually mandate operational resilience frameworks with vendor concentration risk assessments.
 - **Public Sector**: often reference sovereignty controls, documented exit capabilities.
-- **Critical Infrastructure**: NIS2 Directive mentions having robust redundancy measures in place for critical systems.
+- **Critical Infrastructure**: [Network and Information Security Directive 2.0 (NIS2)](https://www.cloudflare.com/build-your-nis2-compliance-strategy/) mentions having robust redundancy measures in place for critical systems.
 - **Healthcare**: US HIPAA business associate agreements and other data residency requirements usually drive contingency planning for protected health information (PHI) systems.
 
 ### Reality Check
@@ -327,8 +327,14 @@ Prioritize resilience strategies in this order:
 - Pre-staged DNS records (inactive) for rapid failover.
 - "Shadow VPN" infrastructure (dormant) for Zero Trust contingency.
 - Company-wide communication plans and escalation paths.
-- Periodic tabletop exercises testing incident response procedures.
-- Post-incident review (iteration) process to improve resilience architecture.
+- Periodic live failover exercises (not just tabletop): Simulate vendor failures in controlled environments, measure actual traffic rerouting times, and refine response processes under realistic conditions.
+- Post-incident review (iteration) process including:
+  - What protections were bypassed (WAF, bot management, geo-blocking, etc.) and duration
+  - Emergency DNS / routing changes made and approval chains
+  - Shadow IT emergence (personal devices, home networks, unsanctioned SaaS)
+  - Temporary services stood up _"just for now"_ that became permanent
+  - Documented unwinding plan for emergency changes
+  - Intentional fallback plan for next incident vs. decentralized improvisation (continuous improvement)
 
 ## Related Resources
 
