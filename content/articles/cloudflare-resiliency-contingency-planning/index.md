@@ -15,14 +15,51 @@ tags:
     "emergency exit strategy",
   ]
 type: "article"
-draft: true
 ---
+
+Enterprise customers – particularly in public sector, finance, healthcare, and critical infrastructure – increasingly face regulatory or governance requirements demanding documented vendor contingency strategies. This is not about distrust of Cloudflare's resilience; it's about demonstrating due diligence and risk management to auditors, boards, and compliance bodies.
+
+## When Contingency Planning Actually Matters
+
+### Regulatory Drivers
+
+- **Financial Services**: Central Banks or Governments usually mandate operational resilience frameworks with vendor concentration risk assessments.
+- **Public Sector**: often reference sovereignty controls, documented exit capabilities.
+- **Critical Infrastructure**: NIS2 Directive mentions having robust redundancy measures in place for critical systems.
+- **Healthcare**: US HIPAA business associate agreements and other data residency requirements usually drive contingency planning for protected health information (PHI) systems.
+
+### Reality Check
+
+Despite these drivers, security / operational cost of parallel infrastructure often exceeds vendor dependency risk. Most organizations are better served by:
+
+- Maximizing Cloudflare's native resilience features.
+- Maintaining strong Cloudflare Enterprise account team or [Partner](https://www.cloudflare.com/partners/) relationships.
+- Accepting brief degradation preferable to exposing unprotected origins.
+- Investing in origin resilience and disaster recovery.
+
+## Cloudflare's Standard Architecture Is Already Resilient
 
 Cloudflare separates its **[Control Plane](https://www.cloudflare.com/learning/network-layer/what-is-the-control-plane/)** (management/[API](https://developers.cloudflare.com/api/)/Dashboard) from its **Data Plane** ([traffic flow](https://developers.cloudflare.com/fundamentals/concepts/traffic-flow-cloudflare/)/Edge), ensuring traffic continues to flow even if the management dashboard is unavailable. Cloudflare's global anycast [network](https://www.cloudflare.com/network/) is architected for resilience – every server in every data center shares the same tech stack and announces IP addresses via [anycast](https://www.cloudflare.com/learning/cdn/glossary/anycast-network/), providing inherent redundancy.
 
+Before discussing contingency strategies, recognize that a properly configured Cloudflare deployment already provides exceptional resilience:
+
+- [Anycast](https://www.cloudflare.com/learning/cdn/glossary/anycast-network/) routing: Traffic automatically routes to the nearest healthy data center.
+
+- N+x redundancy: Multiple servers ([Multi-Colo-PoPs](https://blog.cloudflare.com/meet-traffic-manager/)) in each location provide failover without manual intervention.
+
+- Control/Data Plane separation: Existing configurations continue operating even during control plane degradation.
+
+- Load Balancing with health checks: [Automatic origin failover](https://developers.cloudflare.com/dns/manage-dns-records/how-to/round-robin-dns/) within Cloudflare.
+
+- Serverless Runtime [Workers](https://developers.cloudflare.com/workers/reference/how-workers-works/) for custom failover logic: Write programmable traffic routing based on [origin health](https://developers.cloudflare.com/workers/examples/modify-response/), retries, timeouts, and circuit breakers for dependencies for [storage options](https://developers.cloudflare.com/workers/platform/storage-options/).
+
+- Geographic distribution and [backbone](https://blog.cloudflare.com/backbone2024/): 13,000+ network interconnects with major ISPs and cloud providers.
+
+Most availability requirements are met through proper Cloudflare configuration – using Load Balancing, health checks, traffic steering, and multiple origins – rather than multi-vendor complexity.
+
 While Cloudflare strives for maximum [resilience](https://blog.cloudflare.com/18-november-2025-outage/) – constantly improving through learning and innovation – some customers require documented contingency ("break glass") strategies to meet risk compliance, regulatory, or sovereignty requirements. This document provides a high-level introduction to architectural patterns for designing failover capabilities while maintaining security posture.
 
-**The goal is not to offboard from Cloudflare, but to provide a potential safety net (backup plan) that allows customers to rely on the platform with confidence.**
+> **The goal is not to offboard from Cloudflare, but to provide a potential safety net (backup plan) that allows customers to rely on the platform with confidence.**
 
 ## Critical Self-Risk Assessment
 
@@ -36,8 +73,11 @@ Considerations:
 - **Integration breakage**: Third-party scripts and integrations, Workers, Load Balancing logic, and SaaS integrations may fail – if they are also using Cloudflare.
 - **Attack surface exposure**: Malicious actors monitor DNS changes; bypassing protections during outages creates potential exploitation windows.
 - **Operational cost**: Maintaining parallel infrastructure, training staff on multiple platforms, and designing applications for vendor-agnostic operation requires significant investment, time and additional resources.
+- **Configuration drift**: Multi-vendor setups introduce complexity in maintaining policy parity, certificate management, and configuration coordination.
 
 For most organizations, the answer is: **wait for service restoration**. The cost of maintaining bypass / a backup infrastructure, the security risk of exposure, and the complexity of [multi-vendor](https://developers.cloudflare.com/reference-architecture/architectures/multi-vendor/) operations exceeds the cost of brief service degradation.
+
+> Before implementing multi-vendor strategies, exhaust Cloudflare's native resilience capabilities.
 
 ## Part 1: Application Services (Reverse Proxy / CDN / WAF)
 
@@ -88,9 +128,10 @@ DECISION POINT: Switch occurs at the Authoritative DNS layer
 | **Management**        | Infrastructure as Code (IaC): Manage configurations via [API](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/) / [Terraform](https://developers.cloudflare.com/terraform/) instead of Dashboard UI. Use [CI/CD](https://developers.cloudflare.com/workers/ci-cd/) pipelines.                                               | If Dashboard (Control Plane) is unavailable, API often remains operational. Use pipelines to rollback or push bypass configs.                                                                                                                                       |
 | **Domain Registrar**  | **Decoupled Registrar**: Keep [Domain Registrar](https://developers.cloudflare.com/registrar/) separate from Cloudflare.                                                                                                                                                                                                                                        | Ultimate control point. Ensures capability to change [Nameserver (NS) records](https://developers.cloudflare.com/dns/nameservers/) even if Cloudflare is entirely unreachable.                                                                                      |
 | **DNS (CNAME Setup)** | Use external Authoritative DNS (Route53, Azure DNS) and CNAME specific subdomains to Cloudflare. Take into account [DNSSEC](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/dnssec-for-secondary/).                                                                                                                    | [Remove CNAME record](https://developers.cloudflare.com/dns/zone-setups/partial-setup/setup/#3-add-dns-records) pointing to `cdn.cloudflare.net` and replace with A/CNAME record pointing to origin or backup provider.                                             |
-| **DNS (Full Setup)**  | Configure [Secondary DNS](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/) provider with [zone transfers](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/). Take into account [DNSSEC](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-primary/dnssec-for-primary/). | If Cloudflare are nameservers unresponsive, secondary provider answers queries. Requires zone synchronization.                                                                                                                                                      |
+| **DNS (Full Setup)**  | Configure [Secondary DNS](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/) provider with [zone transfers](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/). Take into account [DNSSEC](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-primary/dnssec-for-primary/). | If Cloudflare nameservers are unresponsive, secondary provider answers queries. Requires zone synchronization.                                                                                                                                                      |
 | **Origin Security**   | **Publicly Trusted Certificates**: Ensure origins have valid, publicly trusted SSL/TLS certificates (not Cloudflare-issued Certificates only).                                                                                                                                                                                                                  | Critical: If disabling Cloudflare, origin (or backup provider) must terminate TLS directly without certificate errors. Using a [Custom Certificate](https://developers.cloudflare.com/ssl/edge-certificates/custom-certificates/) can be advantageous in this case. |
-| **CDN/Proxy**         | [Multi-vendor architecture](https://developers.cloudflare.com/reference-architecture/architectures/multi-vendor/) (Primary-Fallback or Active-Active) for those who can afford operational complexity.                                                                                                                                                          | Route traffic to backup CDN / security provider via DNS steering.                                                                                                                                                                                                   |
+| **Load Balancing**    | Configure [Cloudflare Load Balancing](https://developers.cloudflare.com/load-balancing/understand-basics/proxy-modes/) with health checks, multiple origins, and [traffic steering](https://developers.cloudflare.com/load-balancing/understand-basics/traffic-steering/).                                                                                      | Primary resilience mechanism: Cloudflare automatically fails over to healthy origins with [adaptive routing](https://developers.cloudflare.com/load-balancing/understand-basics/adaptive-routing/). Configure appropriate health check intervals and origin pools.  |
+| **CDN/Proxy**         | [Multi-vendor architecture](https://developers.cloudflare.com/reference-architecture/architectures/multi-vendor/) (Primary-Fallback or Active-Active) for those who can afford operational complexity.                                                                                                                                                          | Route traffic to backup CDN / security provider via DNS steering. Note: Introduces configuration drift, cache management complexity, and certificate coordination overhead.                                                                                         |
 
 ### DNS Setup Options
 
@@ -150,11 +191,27 @@ For organizations with resources to maintain parallel infrastructure:
 
 **Configuration Management**: Maintain parity via Terraform across providers. [API](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/)-first approach enables automated synchronization.
 
+- **Active-Active (Recommended)**: Both vendors receive traffic continuously. Provides ongoing signal for security tools (i.e. Bot Management, Rate Limiting). Configuration complexity manageable if traffic split is maintained.
+
+![Multi-Vendor Active-Active Architecture Example](img/visual-diagram-multi-vendor-active-active-architecture.png)
+
+- **Active-Passive**: One vendor receives all traffic normally; backup only used during incidents. Higher cutover risk due to cold configuration and lack of baseline traffic for Machine Learning (ML)-based security features.
+
+Operational Considerations:
+
+- Cache purge and [security coordination](https://developers.cloudflare.com/ddos-protection/best-practices/third-party/) across vendors required.
+- Certificate management complexity (same [Custom Certificates](https://developers.cloudflare.com/ssl/edge-certificates/custom-certificates/) on both platforms).
+- Log aggregation and normalization to common SIEM format.
+- Configuration drift monitoring and automated reconciliation.
+- Only really justified for extreme availability requirements or regulatory mandates.
+
 ---
 
 ## Part 2: SASE (Zero Trust) & Network Services
 
 For Zero Trust ([WARP Device Client](https://developers.cloudflare.com/cloudflare-one/team-and-resources/devices/warp/) / [Secure Web Gateway](https://developers.cloudflare.com/cloudflare-one/traffic-policies/)) and Network services ([Magic Transit](https://developers.cloudflare.com/magic-transit/)), contingency planning can be more complex as these services are deeply integrated into employee workflows and network infrastructure.
+
+- **"Shadow VPN" Strategy**: Pre-deployed but dormant legacy VPN infrastructure (OpenVPN, etc.) that can be activated if Cloudflare Zero Trust becomes unavailable. Requires maintaining separate authentication, DNS, and network routing configurations.
 
 ### Diagram: SASE Failover Logic
 
@@ -212,11 +269,12 @@ For Zero Trust ([WARP Device Client](https://developers.cloudflare.com/cloudflar
 | Component                                     | Resiliency Strategy                                                                                                                                                                                                                                                                                                                                                                                                         | Failure Scenario Action ("Break glass")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Client Agent (WARP)**                       | Mobile Device Management (MDM) [Managed Deployment](https://developers.cloudflare.com/cloudflare-one/team-and-resources/devices/warp/deployment/mdm-deployment/): Deploy WARP via Intune / Jamf to retain control over agent state. Or use the [Cloudflare API](https://developers.cloudflare.com/api/resources/zero_trust/subresources/devices/) for configuration changes.                                                | Push MDM command to [change mode](https://developers.cloudflare.com/cloudflare-one/team-and-resources/devices/warp/configure-warp/warp-modes/#device-information-only) or trigger [fail-open](https://developers.cloudflare.com/cloudflare-one/team-and-resources/devices/warp/configure-warp/warp-settings/#global-warp-override) via [API](https://developers.cloudflare.com/api/resources/zero_trust/subresources/devices/subresources/resilience/subresources/global_warp_override/methods/create/) or (worst-case [remove](https://developers.cloudflare.com/cloudflare-one/team-and-resources/devices/warp/remove-warp/)) WARP. Note: Removes all Zero Trust [traffic policies](https://developers.cloudflare.com/cloudflare-one/traffic-policies/).<br>**Fail Open**: Users access Internet directly (availability, low security). <br>**Fail Close (default behavior)**: Users blocked until recovery (high security, low availability). |
+| **Failover Mode**                             | Configure [Local Domain Fallback](https://developers.cloudflare.com/cloudflare-one/team-and-resources/devices/warp/configure-warp/route-traffic/local-domains/) for split-tunnel scenarios.                                                                                                                                                                                                                                 | For critical services, configure fallback domains accessible directly if WARP connectivity fails.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Internal Connectivity (Cloudflare Tunnel)** | High Availability (HA) [Replicas](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/tunnel-availability/): Deploy multiple `cloudflared` instances across servers for local redundancy. Additionally, use a fallback connectivity mechanism (other VPN) to allow to connect to the internal resources.                                                               | Activate "Shadow VPN" (legacy connector). Users disconnect WARP and connect to dormant legacy VPN (i.e. OpenVPN). Alternatively, via the Public Internet.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **Authentication (Access)**                   | Token Lifecycle: Adjust [session duration (JWT)](https://developers.cloudflare.com/cloudflare-one/access-controls/access-settings/session-management/) to balance security vs. resilience and user-experience.                                                                                                                                                                                                              | "Shadow VPN" must authenticate directly against the [Identity Provider (IdP)](https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/), circumventing Cloudflare Access during outage. It is also recommended to have a [backup IdP](https://developers.cloudflare.com/fundamentals/manage-members/dashboard-sso/#bypass-dashboard-sso).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | **Private DNS**                               | Internal [private hostnames](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/private-net/cloudflared/connect-private-hostname/) resolve via WARP (exposing [Private DNS](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/private-net/cloudflared/private-dns/) or using [Internal DNS](https://developers.cloudflare.com/dns/internal-dns/)). | "Shadow VPN" server must push internal DNS resolvers that resolve to local LAN IPs (RFC1918) instead.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **Publicly Exposed Apps and SaaS**            | IP Allowlisting with [Dedicated Egress IPs](https://developers.cloudflare.com/cloudflare-one/traffic-policies/egress-policies/dedicated-egress-ips/) for SaaS apps, and [Access](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/) authentication for [self-hosted apps](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/).                               | Configure origin firewall to allow traffic from "Shadow VPN" NAT IP or specific Admin IPs. Allow access via direct IP or backup hostname.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **Magic Transit**                             | BGP Control & Redundancy: [GRE / IPsec tunnels](https://developers.cloudflare.com/magic-transit/reference/gre-ipsec-tunnels/) to diverse PoPs, maintain backup ISP paths. In addition, consider [Network Interconnect (CNI)](https://developers.cloudflare.com/network-interconnect/) (peering) for dedicated links.                                                                                                        | [Withdraw BGP prefixes](<(https://developers.cloudflare.com/magic-transit/how-to/advertise-prefixes/)>) from Cloudflare. Announce prefixes directly to upstream ISPs. Requires ["BGP Zombie"](https://blog.cloudflare.com/going-bgp-zombie-hunting/) mitigation planning. Review [RPKI](https://developers.cloudflare.com/magic-transit/get-started/#optional-rpki-check-for-prefix-validation).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Magic Transit**                             | BGP Control & Redundancy: [GRE / IPsec tunnels](https://developers.cloudflare.com/magic-transit/reference/gre-ipsec-tunnels/) to diverse PoPs, maintain backup ISP paths. In addition, consider [Network Interconnect (CNI)](https://developers.cloudflare.com/network-interconnect/) (peering) for dedicated links.                                                                                                        | [Withdraw BGP prefixes](https://developers.cloudflare.com/magic-transit/how-to/advertise-prefixes/) from Cloudflare. Announce prefixes directly to upstream ISPs. Requires ["BGP Zombie"](https://blog.cloudflare.com/going-bgp-zombie-hunting/) mitigation planning (stale route cleanup). Review [RPKI](https://developers.cloudflare.com/magic-transit/get-started/#optional-rpki-check-for-prefix-validation). <br>[Magic Transit On-Demand](https://developers.cloudflare.com/magic-transit/on-demand/) provides pre-configured standby capacity without always-on costs.                                                                                                                                                                                                                                                                                                                                                                   |
 | **Private Links**                             | Private [Network Interconnect](https://developers.cloudflare.com/network-interconnect/) (PNI / CNI): Direct physical links where possible.                                                                                                                                                                                                                                                                                  | Fallback to traditional [GRE / IPsec tunnels](https://developers.cloudflare.com/magic-transit/reference/gre-ipsec-tunnels/), VPNs ("Shadow VPN"), or direct MPLS links.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ## Monitoring & Incident Detection
@@ -236,6 +294,16 @@ Independent monitoring is essential for informed failover decisions.
 
 Resilience is not a one-time setup but an ongoing discipline.
 
+### Resilience Hierarchy
+
+Prioritize resilience strategies in this order:
+
+1. **Cloudflare Native Resilience (Primary)**: Load Balancing, health checks, multiple origins, [Workers / Snippets](https://developers.cloudflare.com/rules/snippets/when-to-use/)-based failover, [Custom Errors](https://developers.cloudflare.com/rules/custom-errors/).
+
+2. **Multi-Vendor DNS (Secondary)**: External authoritative DNS with [Cloudflare as Secondary](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/), or [Partial (CNAME) setup](https://developers.cloudflare.com/dns/zone-setups/partial-setup/).
+
+3. **[Multi-Vendor](https://developers.cloudflare.com/reference-architecture/architectures/multi-vendor/) Security Proxy (Tertiary)**: Only for extreme compliance requirements; introduces significant operational overhead.
+
 ### Key Principles
 
 1. **Own Your Control Points**: Unfettered, secure access to Domain Registrar and MDM platform is non-negotiable, following a [principle of least privilege](https://developers.cloudflare.com/fundamentals/manage-members/).
@@ -250,6 +318,8 @@ Resilience is not a one-time setup but an ongoing discipline.
 
 6. **Accept the Trade-off**: For most organizations, the security risk of circumventing Cloudflare exceeds the cost of temporary service degradation. Design for this reality.
 
+7. **Configuration Hygiene**: Rigorous change management with approval workflows, staging environment testing, and rollback plans prevents self-inflicted incidents.
+
 ### Recommended Artifacts
 
 - Documented runbooks with step-by-step failover procedures for all involved teams.
@@ -257,13 +327,14 @@ Resilience is not a one-time setup but an ongoing discipline.
 - Pre-staged DNS records (inactive) for rapid failover.
 - "Shadow VPN" infrastructure (dormant) for Zero Trust contingency.
 - Company-wide communication plans and escalation paths.
+- Periodic tabletop exercises testing incident response procedures.
+- Post-incident review (iteration) process to improve resilience architecture.
 
 ## Related Resources
 
 - [Multi-vendor Application Security and Performance Reference Architecture](https://developers.cloudflare.com/reference-architecture/architectures/multi-vendor/)
-- [Secondary DNS Configuration](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/)
-- [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/)
-- [Magic Transit](https://developers.cloudflare.com/magic-transit/)
+- [Partial (CNAME) setup](https://developers.cloudflare.com/dns/zone-setups/partial-setup/)
+- [Cloudflare as Secondary DNS provider](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/)
 - [Cloudflare Status](https://www.cloudflarestatus.com/)
 
 ---
