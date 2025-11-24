@@ -277,6 +277,166 @@ For Zero Trust ([WARP Device Client](https://developers.cloudflare.com/cloudflar
 | **Magic Transit**                             | BGP Control & Redundancy: [GRE / IPsec tunnels](https://developers.cloudflare.com/magic-transit/reference/gre-ipsec-tunnels/) to diverse PoPs, maintain backup ISP paths. In addition, consider [Network Interconnect (CNI)](https://developers.cloudflare.com/network-interconnect/) (peering) for dedicated links.                                                                                                        | [Withdraw BGP prefixes](https://developers.cloudflare.com/magic-transit/how-to/advertise-prefixes/) from Cloudflare. Announce prefixes directly to upstream ISPs. Requires ["BGP Zombie"](https://blog.cloudflare.com/going-bgp-zombie-hunting/) mitigation planning (stale route cleanup). Review [RPKI](https://developers.cloudflare.com/magic-transit/get-started/#optional-rpki-check-for-prefix-validation). <br>[Magic Transit On-Demand](https://developers.cloudflare.com/magic-transit/on-demand/) provides pre-configured standby capacity without always-on costs.                                                                                                                                                                                                                                                                                                                                                                   |
 | **Private Links**                             | Private [Network Interconnect](https://developers.cloudflare.com/network-interconnect/) (PNI / CNI): Direct physical links where possible.                                                                                                                                                                                                                                                                                  | Fallback to traditional [GRE / IPsec tunnels](https://developers.cloudflare.com/magic-transit/reference/gre-ipsec-tunnels/), VPNs ("Shadow VPN"), or direct MPLS links.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
+---
+
+## Practical Sample Action Plan for Cloudflare L7 Application Services
+
+**Context and Scope**: This sample action plan assumes the outage affects Cloudflare Layer-7 (HTTP/HTTPS) reverse-proxy / application services. Mitigations differ for other Cloudflare products (Magic Transit, Spectrum, Zero Trust, etc.). The guidance below addresses immediate operational steps, risks, and configuration details for bypassing Cloudflare so traffic reaches origins directly.
+
+### Immediate Checks (First 60–120 Seconds)
+
+1. Confirm Cloudflare outage via [Cloudflare Status](https://www.cloudflarestatus.com/) and public reports
+2. Verify [Cloudflare API](https://developers.cloudflare.com/api/) accessibility (API responsiveness required for fast programmatic toggles)
+3. Identify which [DNS records are proxied](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/) (orange cloud / `proxied: true`) vs DNS-only
+4. Verify origin public accessibility, capacity (CPU, connections, bandwidth, autoscaling status) and security (firewall)
+
+### Fastest Mitigation (Not Recommended): Disable the Reverse Proxy (DNS Stays on Cloudflare)
+
+**Action**: Set affected DNS records from `proxied` → `DNS only` (orange cloud → grey cloud).
+
+**Effect**: Cloudflare continues serving DNS responses but no longer proxies or terminates TLS/HTTP; clients resolve names to origin IPs directly.
+
+**How to Execute**:
+
+**Via Dashboard**:
+
+```
+DNS → Select Record → Toggle Proxy Status → Save
+```
+
+**Via [API](https://developers.cloudflare.com/dns/manage-dns-records/how-to/create-dns-records/#edit-dns-records)** (example for single record):
+
+```bash
+curl -X PUT "https://api.cloudflare.com/client/v4/zones/{ZONE_ID}/dns_records/{RECORD_ID}" \
+  -H "Authorization: Bearer {API_TOKEN}" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "type": "A",
+    "name": "www.example.com",
+    "content": "198.51.100.4",
+    "ttl": 120,
+    "comment": "Disabled due to XYZ – write a recognizable comment for auditing",
+    "proxied": false
+  }'
+```
+
+**Post-Change Verification**:
+
+- Confirm `proxied: false` via `GET /zones/{zone_id}/dns_records` or `dig +short` to ensure responses are origin IPs
+- Test origin responds to HTTP(S) directly; validate TLS handshake and application behavior
+- Monitor origin resource utilization (CPU, memory, connections)
+
+### Alternative When Cloudflare API is Unavailable: Change DNS to Point Directly to Origin
+
+**If you operate external DNS** (or secondary DNS provider) with [CNAME setup](https://developers.cloudflare.com/dns/zone-setups/partial-setup/):
+
+- Update DNS entries to point to origin host or origin IPs directly
+- Replace CNAME target with origin A/AAAA record or CNAME to origin hostname
+
+**Considerations**:
+
+- If zone is Cloudflare authoritative DNS, switching to another provider requires NS record changes at registrar (not fast during outage – requires pre-planning)
+- DNS [TTL](https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/) matters: Long TTLs slow propagation. Use 60–300s TTLs in normal operation for faster failover
+- Secondary DNS with [zone transfers](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/) enables rapid failover if pre-configured
+
+### TLS, Certificates and Ports
+
+When traffic bypasses Cloudflare:
+
+**Certificate Requirements**:
+
+- Origin must present valid certificate accepted by clients
+- Ensure origin has public CA certificate (not [Cloudflare Origin CA](https://developers.cloudflare.com/ssl/origin-configuration/origin-ca/) only)
+- Clients will validate certificate directly; mismatched SANs or expired certs cause failures
+
+**Protocol Support**:
+
+- Verify origin supports SNI, ALPN, HTTP/2 if clients expect these
+- Cloudflare supports [non-standard ports](https://developers.cloudflare.com/fundamentals/reference/network-ports/); ensure origin listens on same ports clients use
+
+### Security and Operational Risks When Bypassing Cloudflare
+
+**Immediate Loss of Protections**:
+
+- [WAF](https://developers.cloudflare.com/waf/), [rate limiting](https://developers.cloudflare.com/waf/rate-limiting-rules/), [bot management](https://developers.cloudflare.com/bots/), [DDoS mitigation](https://developers.cloudflare.com/ddos-protection/) no longer active
+- Origin IPs exposed to scanning and direct attack if previously hidden
+- Review and update origin firewall rules, fail2ban configurations, and ACLs
+
+**Capacity Concerns**:
+
+- Predictable surge in traffic and connections
+- Monitor resource usage and enable autoscaling if available
+- Consider [connection limits](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/) at origin
+
+**Observability**:
+
+- Ensure direct-to-origin logs are collected
+- Adjust alerting thresholds for increased baseline traffic
+
+### Pre-Incident Preparedness Checklist
+
+Implement these measures before an outage occurs:
+
+✅ **Disaster Runbook**: Document exact API calls and operator steps to toggle proxied flags and update DNS records. Keep [API tokens](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) secure and accessible.
+
+✅ **DNS Resilience**:
+
+- Maintain low TTLs (60–300s) for critical records
+- Configure tested [secondary DNS provider](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/) with pre-staged records
+
+✅ **Origin TLS**:
+
+- Deploy publicly valid TLS certificates with automated renewal
+- Keep [Cloudflare Origin CA certs](https://developers.cloudflare.com/ssl/origin-configuration/origin-ca/) only if you also maintain public CA cert for failover
+
+✅ **Origin DDoS Protections**:
+
+- Implement network ACLs, upstream scrubbing, provider mitigations as fallback
+- Use [iptables](https://developers.cloudflare.com/fundamentals/concepts/cloudflare-ip-addresses/#configure-origin-server) to allowlist only Cloudflare IPs normally, but have rules ready to open during bypass
+
+✅ **Health-Check Driven Failover**:
+
+- Use DNS provider supporting [active/passive failover](https://developers.cloudflare.com/load-balancing/understand-basics/health-details/)
+- Test failover quarterly / periodically
+
+✅ **Multi-CDN Architecture** (for extreme requirements):
+
+- Consider active-passive or active-active with traffic steering at DNS or load balancer layer
+- Review [multi-vendor reference architecture](https://developers.cloudflare.com/reference-architecture/architectures/multi-vendor/)
+
+### Rollback and Verification After Cloudflare Recovery
+
+**Re-Enable Protections**:
+
+1. Verify Cloudflare services healthy via [Status page](https://www.cloudflarestatus.com/) and test requests
+2. Re-enable proxying (`proxied: true`) for records previously disabled
+3. Or re-point authoritative DNS back to Cloudflare if NS records were changed
+4. Re-verify [origin security rules](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/) to allow Cloudflare
+
+**Validation**:
+
+- Test TLS termination, WAF rules, bot management features
+- Review origin access logs and [Cloudflare Logs](https://developers.cloudflare.com/logs/) and [Analytics](https://developers.cloudflare.com/analytics/types-of-analytics/) to confirm traffic routing normalized
+- Verify security features (rate limiting, firewall rules) are active
+
+**Post-Incident Review**:
+
+- Document actual time to failover vs. RTO targets
+- Identify gaps in security, runbook or tooling
+- Update incident response procedures with lessons learned
+
+### Summary: Technical Tradeoffs
+
+| Mitigation Strategy                    | Speed                  | Requirements                 | Risks                                                     |
+| -------------------------------------- | ---------------------- | ---------------------------- | --------------------------------------------------------- |
+| **Toggle proxy off via API/Dashboard** | Fastest (seconds)      | Cloudflare API reachable     | Removes L7 protections, exposes origins                   |
+| **Change DNS to origin**               | Medium (TTL dependent) | External DNS control         | Propagation delay, requires pre-planning, exposes origins |
+| **Switch authoritative NS**            | Slowest (likely hours) | Pre-configured secondary DNS | Long propagation, manual registrar changes                |
+
+**Key Insight**: Preparation (low TTLs, secondary DNS, origin certs, autoscaling, origin security controls) reduces impact and decreases time to recovery. The fastest mitigations require the most preparation.
+
+---
+
 ## Monitoring & Incident Detection
 
 Independent monitoring is essential for informed failover decisions.
