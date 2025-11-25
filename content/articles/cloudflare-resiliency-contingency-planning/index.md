@@ -19,6 +19,8 @@ type: "article"
 
 Enterprise customers – particularly in public sector, finance, healthcare, and critical infrastructure – increasingly face regulatory or governance requirements demanding documented vendor contingency strategies. This is not about distrust of Cloudflare's resilience; it's about demonstrating due diligence and risk management to auditors, boards, and compliance bodies.
 
+**TL;DR:** _Cloudflare's native resilience (anycast, Load Balancing, health checks) handles most availability needs – fallback systems only make sense for compliance-level guarantees. Bypassing Cloudflare via DNS is possible but removes WAF / DDoS protection and exposes origin servers, so contingency must be built in advance: external DNS control / secondary, publicly trusted TLS certificates, origin firewalls, Infrastructure as Code, and tested runbooks. For most organizations, the security risk and operational complexity of bypass outweigh the rare benefit of avoiding brief outages – **waiting for restoration is usually the safer choice**._
+
 ## When Contingency Planning Actually Matters
 
 ### Regulatory Drivers
@@ -282,6 +284,8 @@ For Zero Trust ([WARP Device Client](https://developers.cloudflare.com/cloudflar
 ## Practical Sample Action Plan for Cloudflare L7 Application Services
 
 **Context and Scope**: This sample action plan assumes the outage affects Cloudflare Layer-7 (HTTP/HTTPS) reverse-proxy / application services. Mitigations differ for other Cloudflare products (Magic Transit, Spectrum, Zero Trust, etc.). The guidance below addresses immediate operational steps, risks, and configuration details for bypassing Cloudflare so traffic reaches origins directly.
+
+> **Develop and implement a tailored internal action plan and resiliency policies for each vendor you work with.**
 
 ### Immediate Checks (First 60–120 Seconds)
 
