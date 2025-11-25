@@ -171,7 +171,8 @@ For more detailed investigations within Cloudflare, review [Cache Analytics](htt
 - [Google PageSpeed Insights](https://pagespeed.web.dev/)
 - [DebugBear Free Site Speed Tools](https://www.debugbear.com/tools)
 - [Pingdom Website Speed Test](https://tools.pingdom.com/)
-- [Site Speed Report](https://treo.sh/sitespeed)
+- [Site Speed Report (CrUX)](https://treo.sh/sitespeed)
+- [Cloud Services Observability – Cloudflare Radar](https://radar.cloudflare.com/cloud-observatory)
 
 ## Security Matters Too!
 
