@@ -19,7 +19,7 @@ type: "article"
 
 Enterprise customers – particularly in public sector, finance, healthcare, and critical infrastructure – increasingly face regulatory or governance requirements demanding documented vendor contingency strategies. This is not about distrust of Cloudflare's resilience; it's about demonstrating due diligence and risk management to auditors, boards, and compliance bodies.
 
-**TL;DR:** _Cloudflare's native resilience (anycast, Load Balancing, health checks) handles most availability needs – fallback systems only make sense for compliance-level guarantees. Bypassing Cloudflare via DNS is possible but removes WAF / DDoS protection and exposes origin servers, so contingency must be built in advance: external DNS control / secondary, publicly trusted TLS certificates, origin firewalls, Infrastructure as Code, and tested runbooks. For most organizations, the security risk and operational complexity of bypass outweigh the rare benefit of avoiding brief outages – **waiting for restoration is usually the safer choice**._
+**TL;DR:** _Cloudflare's native resilience (anycast, Load Balancing, health checks) handles most availability needs – fallback systems only make sense for compliance-level guarantees. Bypassing Cloudflare via DNS is possible but removes WAF / DDoS protection and exposes origin servers. If contingency is required, use **Active-Active (Primary-Primary) DNS** with both Cloudflare and an external provider in NS records – traditional read-only Secondary DNS cannot modify records during outages. Additional requirements: publicly trusted TLS certificates, origin firewalls, Infrastructure as Code, and tested runbooks. Platform providers serving many customers need API-first automation; those with heavy edge logic (Workers / KV / DO) may find bypass doesn't restore functionality. For most organizations, the security risk and operational complexity of bypass outweigh the rare benefit of avoiding brief outages — **waiting for restoration is usually the safer choice**._
 
 ## When Contingency Planning Actually Matters
 
@@ -139,25 +139,29 @@ DECISION POINT: Switch occurs at the Authoritative DNS layer
 
 ![DNS Architecture Options](img/dns-setup-overview.png)
 
-**Option 1: [CNAME (Partial) Setup](https://developers.cloudflare.com/dns/zone-setups/partial-setup/)**
+| DNS Setup                                                                                                                | Failover Speed             | Write Access During Outage              | Best For                                                                 | Trade-offs                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------ | -------------------------- | --------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **[Active-Active (Primary-Primary)](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/)**                 | Fastest (seconds)          | ✅ Yes - modify at either provider      | Organizations requiring true contingency capability                      | • Bidirectional zone sync complexity (NOTIFY / AXFR)<br>• Both providers in NS records<br>• [DNSSEC coordination](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/dnssec-for-secondary/) required<br>• Higher cost                                                                                |
+| **[CNAME (Partial)](https://developers.cloudflare.com/dns/zone-setups/partial-setup/)**                                  | Fast (seconds-minutes)     | ✅ Yes - control external DNS           | Organizations wanting fastest failover with minimal setup                | • Requires external Auth DNS<br>• Per-subdomain [proxy](https://developers.cloudflare.com/dns/proxy-status/) management                                                                                                                                                                                                                    |
+| **Traditional Secondary (Cloudflare as Primary)**                                                                        | Fast (minutes) for queries | ❌ No - cannot modify records           | Organizations wanting DNS query redundancy only                          | **Not recommended for contingency** - if Cloudflare is primary and unavailable, cannot modify records at read-only secondary                                                                                                                                                                                                               |
+| **[Cloudflare as Secondary](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/)** | Fast (minutes)             | ✅ Yes - modify at primary provider     | Organizations wanting write access with simpler setup than Active-Active | • Cloudflare receives zone transfers (read-only)<br>• Modify records at external primary provider<br>• Changes sync to Cloudflare<br>• Can use [Secondary DNS Override](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/proxy-traffic/) to proxy specific records<br>• Simpler than Active-Active |
+| **[Full Setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/)** (Cloudflare Only)                        | Slowest (hours to days)    | ❌ No - requires NS change at registrar | Maximum Cloudflare features; accept degradation risk                     | • NS change usually requires several hours for propagation<br>• [Exposes origin IPs](https://developers.cloudflare.com/learning-paths/prevent-ddos-attacks/advanced/protect-origin-ip/#rotate-ip-addresses) when [unproxied](https://developers.cloudflare.com/dns/proxy-status/#dns-only-records)<br>• Accept wait time vs. exposure      |
 
-- Use an external Authoritative DNS provider.
-- [Proxy](https://developers.cloudflare.com/dns/proxy-status/) only specific hostnames via Cloudflare.
-- Fastest failover: [remove CNAME](https://developers.cloudflare.com/dns/zone-setups/partial-setup/setup/#3-add-dns-records), point to origin/backup.
-- [DNS TTL](https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/)-dependent propagation for change.
+> Take into account [DNS TTL](https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/).
 
-**Option 2: Secondary DNS with Override**
+#### Understanding Zone Transfer Directions
 
-- Cloudflare as [Primary or Secondary](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/).
-- Zone transfers maintain synchronization.
-- [Secondary DNS Override](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/proxy-traffic/) enables proxying specific records.
-- Provides DNS-level redundancy.
+| Setup                               | Primary (Read-Write) | Secondary (Read-Only) | Zone Transfer Direction | Who Can Modify Records During Outage? |
+| ----------------------------------- | -------------------- | --------------------- | ----------------------- | ------------------------------------- |
+| **Cloudflare as Primary**           | Cloudflare           | External provider     | Cloudflare → External   | ❌ If Cloudflare down, cannot modify  |
+| **Cloudflare as Secondary**         | External provider    | Cloudflare            | External → Cloudflare   | ✅ Modify at external primary         |
+| **Active-Active (Primary-Primary)** | Both                 | Both                  | Bidirectional           | ✅ Modify at either provider          |
 
-**Option 3: [Full Setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/) (Cloudflare Authoritative)**
+**Critical Distinction**: "Secondary DNS" traditionally means read-only zone transfers. For contingency planning, you need **write access** to modify DNS records during an outage. This requires either:
 
-- Weigh trade-off when [unproxying](https://developers.cloudflare.com/dns/proxy-status/#dns-only-records): exposed [origin IPs should be rotated](https://developers.cloudflare.com/learning-paths/prevent-ddos-attacks/advanced/protect-origin-ip/#rotate-ip-addresses) post-incident.
-- Consider accepting (unlikely) temporary unavailability vs. security exposure, in the unlikely event that Cloudflare suffers a serious incident.
-- May be preferable to wait for restoration rather than expose infrastructure.
+- Active-Active (Primary-Primary) configuration with bidirectional sync, OR
+- Cloudflare as Secondary DNS, OR
+- CNAME setup where you control the external authoritative DNS
 
 ### Multi-Vendor Architecture Options
 
@@ -407,6 +411,47 @@ Implement these measures before an outage occurs:
 
 - Consider active-passive or active-active with traffic steering at DNS or load balancer layer
 - Review [multi-vendor reference architecture](https://developers.cloudflare.com/reference-architecture/architectures/multi-vendor/)
+
+✅ **DNS Architecture** (Choose ONE):
+
+**Option A - Active-Active (Primary-Primary)** (Most robust, higher complexity):
+
+- Configure bidirectional zone synchronization
+- Both Cloudflare and external provider in NS records at registrar
+- Verify you can modify at either provider and changes sync
+- Test emergency DNS modifications at both providers periodically
+
+**Option B - Cloudflare as Secondary** (Simpler, recommended for most):
+
+- Configure external provider as primary (read-write)
+- Set up zone transfers: External → Cloudflare
+- Add both providers' nameservers to NS records at registrar
+- Can use [Secondary DNS Override](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/proxy-traffic/) to proxy specific records
+- Verify you can modify at external primary and changes sync to Cloudflare
+- Test emergency DNS modifications at external primary periodically
+
+✅ **Registrar Independence**:
+
+- **Critical**: If using [Cloudflare Registrar](https://developers.cloudflare.com/registrar/), transfer critical revenue-generating domains to external registrar
+- Maintain registrar credentials separately from Cloudflare account
+- Store MFA backup codes securely
+- Test registrar login and NS change procedures periodically
+
+✅ **Edge Logic Assessment**:
+
+- Document all application logic implemented in Workers, KV, Durable Objects, R2
+- Identify which features will be unavailable during bypass
+- For critical features: implement fallback logic at origin OR accept temporary unavailability
+- Create feature degradation communication templates for users
+- Test application behavior with edge logic disabled
+
+✅ **Platform Provider Scale** (if serving multiple customers):
+
+- Build API-first automation for bulk DNS/configuration changes
+- Pre-provision TLS certificates for critical customers at backup provider
+- Implement tiered customer approach (critical vs. standard)
+- Create staged rollout procedures
+- Test automation on pilot customers periodically
 
 ### Rollback and Verification After Cloudflare Recovery
 
