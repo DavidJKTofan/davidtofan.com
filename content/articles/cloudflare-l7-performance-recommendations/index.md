@@ -159,6 +159,8 @@ Continuous monitoring and testing verify each optimization and expose new gaps. 
 
 For more detailed investigations within Cloudflare, review [Cache Analytics](https://developers.cloudflare.com/cache/performance-review/cache-analytics/), [Instant Logs](https://developers.cloudflare.com/logs/instant-logs/), [GraphQL Analytics API](https://developers.cloudflare.com/analytics/graphql-api/), [Log Explorer](https://developers.cloudflare.com/log-explorer/), or [Logpush](https://developers.cloudflare.com/logs/logpush/).
 
+Use [Custom Log Fields](https://developers.cloudflare.com/logs/logpush/logpush-job/custom-fields/), in order to add additional relevant fields, such as request headers `x-forwarded-for` and [`cf-connecting-ip`](https://developers.cloudflare.com/fundamentals/reference/http-headers/#cf-connecting-ip), as well as cookie [`cf_clearance`](https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/). This allows logging them within Log Explorer and Instant Logs.
+
 > In the GraphQL Analytics API dataset [`httpRequestsAdaptiveGroups`](https://blog.cloudflare.com/introducing-timing-insights/), look for relevant fields, such as `edgeTimeToFirstByteMs`, `edgeDnsResponseTimeMs`, `originResponseDurationMs`.
 
 > In Log Explorer and Logpush check for relevant [HTTP request fields](https://developers.cloudflare.com/logs/logpush/logpush-job/datasets/zone/http_requests/), such as `EdgeTimeToFirstByteMs`, `CacheCacheStatus`, `CacheTieredFill`, `ClientTCPRTTMs`, `OriginDNSResponseTimeMs`, `OriginResponseDurationMs`, and `OriginTCPHandshakeDurationMs`.
